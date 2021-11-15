@@ -2,7 +2,7 @@
 pgrep dockerd > /dev/null || sudo systemctl start docker
 
 # si el container no está corriendo, arrancarlo
-docker inspect --format="{{.State.Status}}" mongodb-unr | grep -q running || docker start mongodb-unr
+docker inspect --format="{{.State.Status}}" mongodb-mgp | grep -q running || docker start mongodb-mgp
 
 # si no estamos usando node v8, cambiar a esa
 node -v | grep -q v8 || nvm use v8

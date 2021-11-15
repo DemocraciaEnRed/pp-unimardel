@@ -48,17 +48,13 @@ export default class HomeMultiforumOverride extends Component {
     return (
       <div className='ext-home-multiforum'>
         <Anchor id='container'>
-          <BannerForoVecinal title="Presupuesto participativo - Facultades" texts={this.state.texts} />
+          <BannerForoVecinal title="Presupuesto participativo de General Pueyrredón" texts={this.state.texts} />
           <ThumbsVoto texts={this.state.texts} />
           <div className="banner-ideas">
             <img src="/ext/lib/site/home-multiforum/icon-idea.svg" alt="Ideas"/>
-            <p>Conocé <strong>los proyectos </strong>que podés votar para que sean realidad en el 2022. <strong>¡Elegí hasta tres proyectos y votá!</strong>. Podés conocerlas aquí.</p>
-            <Link to={'/propuestas'} className="boton-foro" href="">Ir a UNR DECIDE</Link>
+            <p>Subí tu idea o participá para mejorar con tus aportes para otros proyectos.</p>
+            <Link to={'/propuestas'} className="boton-foro" href="">Accedé al Formulario de subida de IDEAS</Link>
           </div>
-          {/* <Proyectos /> */}
-          {/* <ProyectosFactibles /> */}
-          {/* <ProyectosGanadores /> */}
-          {/* <Barrios /> */}
           <Jump goTop={this.goTop} />
           <Footer />
         </Anchor>

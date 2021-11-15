@@ -25,7 +25,7 @@ export default function ThumbsVoto(props) {
   return (
     <section className="thumbs info-landing">
       <div className="container-fluid">
-        <div className="row cont fondo-violeta">
+        <div className="row cont fondo-celeste">
           <div className="subtitulo">
             { subtitleUrl ?
               <h2 dangerouslySetInnerHTML={{__html: subtitle}} />
@@ -57,6 +57,17 @@ export default function ThumbsVoto(props) {
             </div>
           </div>
         </div>
+        <div className="row cont">
+
+            <div className="intro-ideas">
+              <h2>
+              <strong>¡SUMÁ TU IDEA!</strong><br />
+              Con <strong>Participa MGP</strong> vas a poder presentar los proyecto
+              </h2>
+
+          </div>
+
+        </div>        
         <div className="row cont">
           <div className="col-md-4">
             <div
