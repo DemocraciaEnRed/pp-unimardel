@@ -25,38 +25,29 @@ export default function ThumbsVoto(props) {
   return (
     <section className="thumbs info-landing">
       <div className="container-fluid">
-        <div className="row cont fondo-violeta">
+        <div className="row cont fondo-celeste">
           <div className="subtitulo">
             { subtitleUrl ?
               <h2 dangerouslySetInnerHTML={{__html: subtitle}} />
               :
               <h2>{ subtitle }</h2>
             }
-            {/*<h3>Hasta el 31 de mayo inclusive tenés tiempo para presentar tus propuestas</h3> */}
             <h3>{ props.texts['home-subtitle-text'] }</h3>
             <div className="btn-container">
-              {//<div className="boton-azul boton-blanco">
-              //  <a href="https://forosvecinales.blob.core.windows.net/informes/Escrutinio-2019.xlsx">Ver Resultados</a>
-              //</div>
-              }
-              {/*
-                <Link
-                to='/formulario-idea'
-                className="boton-mandar-idea">
-                Subí tu idea
-              </Link>
-              */
-              }
-              
-              
-              {/*<Link
-                to='/proyectos'
-                className="boton-azul boton-blanco">
-                Ver Proyectos
-              </Link>*/}
             </div>
           </div>
         </div>
+        <div className="row cont">
+
+            <div className="intro-ideas">
+              <h2>
+              <strong>¡SUMÁ TU IDEA!</strong><br />
+              Con <strong>Participa MGP</strong> vas a poder presentar los proyecto
+              </h2>
+
+          </div>
+
+        </div>        
         <div className="row cont">
           <div className="col-md-4">
             <div
@@ -64,7 +55,7 @@ export default function ThumbsVoto(props) {
               style={styleIcono1}>
             </div>
             <h2
-              className="text-center">
+              className="text-center mdq">
               { props.texts['home-icono1-titulo']}
             </h2>
             <p className="que-son-cont">
@@ -77,7 +68,7 @@ export default function ThumbsVoto(props) {
               className="que-propongo img-responsive"
               style={styleIcono2}>
             </div>
-            <h2 className="text-center">{props.texts['home-icono2-titulo']}</h2>
+            <h2 className="text-center mdq">{props.texts['home-icono2-titulo']}</h2>
             <p className="que-propongo-cont">
               {props.texts['home-icono2-texto']}
             </p>
@@ -89,7 +80,7 @@ export default function ThumbsVoto(props) {
               className="como-sigo img-responsive"
               style={styleIcono3}>
             </div>
-            <h2 className="text-center">
+            <h2 className="text-center mdq">
               { props.texts['home-icono3-titulo']}
             </h2>
             <p className="donde-voto-cont">

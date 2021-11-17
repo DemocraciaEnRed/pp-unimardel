@@ -168,9 +168,9 @@ class Header extends Component {
                 className='header-link'
                 tabIndex="3"
                 >
-                  UNR decide
+                  Propuestas
               </Link>
-            </div>
+            </div>          
             { showAdmin &&
               <div className={`header-item ${window.location.pathname.includes('/admin') ? 'active' : ''}`}>
                 <Link
