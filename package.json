@@ -211,7 +211,7 @@
     "npm": ">=3 <5"
   },
   "scripts": {
-    "preinstall": "bin/dos-ext-install",
+    "preinstall": "NODE_PATH=. bin/dos-ext-install",
     "start": "NODE_PATH=. node index.js",
     "build": "NODE_PATH=. gulp build",
     "watch": "NODE_PATH=. gulp watch",
