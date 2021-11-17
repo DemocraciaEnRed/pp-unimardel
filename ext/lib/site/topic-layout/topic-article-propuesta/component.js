@@ -81,7 +81,7 @@ class TopicArticle extends Component {
   }
 
   twitText = () => {
-    return encodeURIComponent('Sumate a pensar la Universidad que queremos. ')
+    return encodeURIComponent('Sumate a pensar la Ciudad que queremos. ')
   }
 
   render () {
@@ -232,7 +232,7 @@ class TopicArticle extends Component {
                 {topic.attrs['admin-comment-referencia'] && topic.attrs['admin-comment-referencia'] !== '' &&
                   <p className='admin-comment-referido'>Podés ver las ideas sistematizadas <a className='admin-comment-referido' href={topic.attrs['admin-comment-referencia']}>aquí</a>.</p>
                 }
-                <p className='font-weight-bold'>Equipo de Coordinación y Gestión PPUNR</p>
+                <p className='font-weight-bold'>Equipo de Coordinación y Gestión PPMGP</p>
               </div>
             )
         }

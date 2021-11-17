@@ -21,6 +21,6 @@ module.exports = ({
       text: 'Mirá los cambios'
     })}
     <p>Muchas gracias por tu aporte.</p>
-    <p>¡Sigamos mejorando juntos la Universidad de Rosario!</p>
+    <p>¡Sigamos mejorando juntos la Municipalidad General Pueyrredon!</p>
   `
 })

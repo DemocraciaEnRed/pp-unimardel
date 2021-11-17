@@ -110,11 +110,11 @@ class TopicArticle extends Component {
   twitText = () => {
     switch (this.props.topic.attrs.state) {
       case 'pendiente':
-      return encodeURIComponent('Apoyemos este proyecto para mejorar la Universidad de Rosario. ')
+      return encodeURIComponent('Apoyemos este proyecto para mejorar la Municipalidad General Pueyrredon. ')
       case 'perdedor':
       return encodeURIComponent(this.props.topic.mediaTitle)
       case 'proyectado':
-      return encodeURIComponent('Este proyecto se va a realizar gracias a la participación ciudadana de la Universidad de Rosario. ')
+      return encodeURIComponent('Este proyecto se va a realizar gracias a la participación ciudadana de la Municipalidad General Pueyrredon. ')
       default:
       return ''
     }

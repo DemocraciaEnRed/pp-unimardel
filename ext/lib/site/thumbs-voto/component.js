@@ -55,7 +55,7 @@ export default function ThumbsVoto(props) {
               style={styleIcono1}>
             </div>
             <h2
-              className="text-center mdq">
+              className="text-center mgp">
               { props.texts['home-icono1-titulo']}
             </h2>
             <p className="que-son-cont">
@@ -68,7 +68,7 @@ export default function ThumbsVoto(props) {
               className="que-propongo img-responsive"
               style={styleIcono2}>
             </div>
-            <h2 className="text-center mdq">{props.texts['home-icono2-titulo']}</h2>
+            <h2 className="text-center mgp">{props.texts['home-icono2-titulo']}</h2>
             <p className="que-propongo-cont">
               {props.texts['home-icono2-texto']}
             </p>
@@ -80,7 +80,7 @@ export default function ThumbsVoto(props) {
               className="como-sigo img-responsive"
               style={styleIcono3}>
             </div>
-            <h2 className="text-center mdq">
+            <h2 className="text-center mgp">
               { props.texts['home-icono3-titulo']}
             </h2>
             <p className="donde-voto-cont">
@@ -89,16 +89,7 @@ export default function ThumbsVoto(props) {
           </div>
 
         </div>
-        {/*
-        <div className='row'>
-          <div className='cont-boton-azul'>
-            <Link to='https://presupuestoparticipativo.unr.edu.ar/como-participo/' className="boton-azul">
-              ¿Como participo?
-            </Link>
-          </div>
-        </div>
-        */}      
-        
+
       </div>
     </section>
   )

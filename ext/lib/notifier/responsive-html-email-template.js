@@ -378,11 +378,11 @@ module.exports = ({
                         <td class="align-center">
                           <p>
                             <span style="color:#C4D94B">PRESUPUESTO PARTICIPATIVO DE LA UNIVERSIDAD NACIONAL DE ROSARIO</span>
-                            <br> <span style="color:#005e80">#PPUNR #LaUniversidadQueQueremos</span>
+                            <br> <span style="color:#005e80">#PPMGP #LaCiudadQueQueremos</span>
                           </p>
                           <!-- When inserting images remember to include the following attributes or
                           risk them breaking in different clients: src, alt, width, height, border -->
-                          <a href="${baseUrl}"><img class="block-center" src="${baseUrl}/ext/lib/boot/logo.png" alt="Presupuesto Participativo de la Universidad de Rosario" width="202" height="86" border="0" style="border:0; outline:none; text-decoration:none; display:block;"></a>
+                          <a href="${baseUrl}"><img class="block-center" src="${baseUrl}/ext/lib/boot/logo.png" alt="Presupuesto Participativo de la Municipalidad General Pueyrredon" width="202" height="86" border="0" style="border:0; outline:none; text-decoration:none; display:block;"></a>
                         </td>
                       </tr>
                     </table>

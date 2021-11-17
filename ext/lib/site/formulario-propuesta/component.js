@@ -470,7 +470,7 @@ class FormularioPropuesta extends Component {
     } return (
       <div className='form-propuesta'>
         <div className='propuesta-header'>
-          <h1 className='text-center'>PRESUPUESTO PARTICIPATIVO UNR</h1>
+          <h1 className='text-center'>PRESUPUESTO PARTICIPATIVO MGP</h1>
           {/* <p>¡Acá vas a poder subir tu propuesta para el presupuesto participativo!</p> */}
           <p>¡Gracias a todos y todas por participar!</p>
         </div>

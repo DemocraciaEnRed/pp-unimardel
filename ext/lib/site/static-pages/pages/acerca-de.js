@@ -24,7 +24,7 @@ export default class Page extends Component {
           <div className="banner"></div>
           <div className='contenedor'>
             <div className='fondo-titulo'>
-              <h1>Presupuesto Participativo UNR</h1>
+              <h1>Presupuesto Participativo MGP</h1>
             </div>
           </div>
         </section>
@@ -32,15 +32,15 @@ export default class Page extends Component {
           <div className='ext-acerca-de container'>
             <div className="filas">
               <div className="fila faq text-left">
-                <p className='p-padding'>Podés leer el reglamento completo haciendo click <a href="https://presupuestoparticipativo.unr.edu.ar/?page_id=1551" rel="noopener noreferer" target="_blank">aquí</a></p>
+                <p className='p-padding'>Podés leer el reglamento completo haciendo click <a href="https://participa.mardelplata.gob.ar/?page_id=1551" rel="noopener noreferer" target="_blank">aquí</a></p>
 
                 <Accordion>
                   <div data-trigger="+ ¿Quiénes pueden participar del PP Zonas?">
-                    <p className='p-padding'>Pueden participar docentes, nodocentes, estudiantes, graduados y graduadas de las 12 Zonas y otras Sedes y dependencias de la UNR.</p>
+                    <p className='p-padding'>Pueden participar docentes, nodocentes, estudiantes, graduados y graduadas de las 12 Zonas y otras Sedes y dependencias de la MGP.</p>
                   </div>
-                  <div data-trigger="+ ¿En qué se basa la etapa de Foro del PPUNR?">
+                  <div data-trigger="+ ¿En qué se basa la etapa de Foro del PPMGP?">
                     <p className='p-padding'>
-                      El Foro tiene por objetivo que las/os integrantes de la comunidad propongan ideas que aporten en la construcción de la Universidad que queremos. A su vez, podrán inscribirse para ser parte de la Comisión Universitaria, para transformar las ideas propuestas en proyectos. Estará abierto desde el 23 de junio al 7 de julio. 
+                      El Foro tiene por objetivo que las/os integrantes de la comunidad propongan ideas que aporten en la construcción de la Ciudad que queremos. A su vez, podrán inscribirse para ser parte de la Comisión Universitaria, para transformar las ideas propuestas en proyectos. Estará abierto desde el 23 de junio al 7 de julio. 
                     </p>
                   </div>
                   <div data-trigger="+ ¿Cómo participo?">
@@ -48,7 +48,7 @@ export default class Page extends Component {
                   </div>
                   <div data-trigger="+ ¿Cuáles son los temas para proponer ideas?">
                     <p className='p-padding'>
-                    Vas a encontrar en el formulario una serie de etiquetas que refieren a diversas áreas temáticas. Sólo podrás elegir una, la que te parezca define más y mejor tu idea. La misma luego será retomada por el área temática respectiva dentro de la Comisión Universitaria pudiendo ser reasignada por parte del equipo el PPUNR. 
+                    Vas a encontrar en el formulario una serie de etiquetas que refieren a diversas áreas temáticas. Sólo podrás elegir una, la que te parezca define más y mejor tu idea. La misma luego será retomada por el área temática respectiva dentro de la Comisión Universitaria pudiendo ser reasignada por parte del equipo el PPMGP. 
                     <br/>
                     <ul>
                       <li>Ambiente y Sustentabilidad</li>
@@ -69,7 +69,7 @@ export default class Page extends Component {
                   </div>
 
                   <div data-trigger="+ ¿Qué pasa si no puedo registrarme?">
-                    <p className='p-padding'>Te invitamos a que nos mandes un correo con todos tus datos (nombre completo, DNI, Zona, mail o forma de contacto) a <a href="mailto:presupuestoparticipativo@unr.edu.ar">presupuestoparticipativo@unr.edu.ar</a></p>
+                    <p className='p-padding'>Te invitamos a que nos mandes un correo con todos tus datos (nombre completo, DNI, Zona, mail o forma de contacto) a <a href="mailto:ParticipaMGP@mardelplata.gob.ar">ParticipaMGP@mardelplata.gob.ar</a></p>
                   </div>
                   
                   <div data-trigger="+ ¿Cuántas ideas puedo subir?">
@@ -77,7 +77,7 @@ export default class Page extends Component {
                   </div>
 
                   <div data-trigger="+ ¿Qué tipo de ideas esperamos que subas al Foro del PP Zonas?">
-                    <p className="p-padding">Las ideas tienen que implicar aportes para más de dos Zonas o para los espacios comunes (como el gimnasio o los comedores). No pueden ser ideas que sólo impacten en una unidad académica. Esto tiene por objetivo que pensemos a la Universidad en un sentido más transversal e inclusivo, así como también, alienta la generación de propuestas multidisciplinarias. </p>
+                    <p className="p-padding">Las ideas tienen que implicar aportes para más de dos Zonas o para los espacios comunes (como el gimnasio o los comedores). No pueden ser ideas que sólo impacten en una unidad académica. Esto tiene por objetivo que pensemos a la Ciudad en un sentido más transversal e inclusivo, así como también, alienta la generación de propuestas multidisciplinarias. </p>
                   </div>
                   
                   <div data-trigger="+ ¿Puedo modificar mi idea una vez que fue enviada?">
@@ -90,7 +90,7 @@ export default class Page extends Component {
                     </p>
                   </div>
                   <div data-trigger="+ ¿Qué pasará con mi idea?">
-                    <p className="p-padding">Otros/as participantes pueden comentar tu idea o darle like. Te invitamos a entrar en diálogo con otros/as participantes. Cerrado el Foro realizaremos una sistematización de ideas por temas. Las que sean aptas en el marco del PPUNR, se retomarán en la Comisión Universitaria para ser desarrolladas como proyectos elegibles en la etapa de votación. </p>
+                    <p className="p-padding">Otros/as participantes pueden comentar tu idea o darle like. Te invitamos a entrar en diálogo con otros/as participantes. Cerrado el Foro realizaremos una sistematización de ideas por temas. Las que sean aptas en el marco del PPMGP, se retomarán en la Comisión Universitaria para ser desarrolladas como proyectos elegibles en la etapa de votación. </p>
                   </div>
 
                   <div data-trigger="+ Si no participé de una etapa anterior, ¿puedo sumarme?">
@@ -100,7 +100,7 @@ export default class Page extends Component {
                   </div>
                   <div data-trigger="+ ¿Qué implica ser proyectista?">
                     <p className="p-padding">
-                      Luego de los Foros, la segunda etapa del PP es la conformación de la Comisión Universitaria. La misma estará integrada por todas las personas que se hayan propuesto para transformar las ideas en proyectos. Funcionará durante dos meses  (agosto- septiembre) en el marco de algunos encuentros organizados por área temática. En dichos encuentros se trabajará de manera colaborativa con el resto de los/as proyectistas y participarán técnicos de la Universidad que contribuirán a darle factibilidad a los proyectos que serán elegidos por la comunidad y ejecutados en 2022. 
+                      Luego de los Foros, la segunda etapa del PP es la conformación de la Comisión Universitaria. La misma estará integrada por todas las personas que se hayan propuesto para transformar las ideas en proyectos. Funcionará durante dos meses  (agosto- septiembre) en el marco de algunos encuentros organizados por área temática. En dichos encuentros se trabajará de manera colaborativa con el resto de los/as proyectistas y participarán técnicos de la Ciudad que contribuirán a darle factibilidad a los proyectos que serán elegidos por la comunidad y ejecutados en 2022. 
                     </p>
                   </div>
                   <div data-trigger="+ ¿Qué condiciones deben respetar los proyectos?">
@@ -108,7 +108,7 @@ export default class Page extends Component {
                       <ul>
                         <li>Incluir resultados para más de dos unidades académicas o algún espacio común.</li>
                         <li>No exceder el 70% del límite presupuestario.</li>
-                        <li>No exceder el ámbito de la Universidad.</li>
+                        <li>No exceder el ámbito de la Ciudad.</li>
                         <li>No afectar partidas presupuestarias de años posteriores.</li>
                         <li>Ser factibles técnicamente para poder ser ejecutados en caso de ser elegidos.</li>
                       </ul>
@@ -116,10 +116,10 @@ export default class Page extends Component {
                   </div>
                 <div data-trigger="+ ¿Qué espacios podemos intervenir con proyectos del PP?"> 
                   <p className="p-padding">
-                    Tiene que incluir resultados para más de una unidad académica o bien para algún espacio común de la Universidad (comedores, gimnasios, Sede, Rectorado, CUR, anexo, etc.).  
+                    Tiene que incluir resultados para más de una unidad académica o bien para algún espacio común de la Ciudad (comedores, gimnasios, Sede, Rectorado, CUR, anexo, etc.).  
                   </p>
                 </div>
-                <div data-trigger="+ ¿Cuál es el monto asignado al PPUNR edición 2021?">
+                <div data-trigger="+ ¿Cuál es el monto asignado al PPMGP edición 2021?">
                   <p className="p-padding">
                     $20.900.000<br/>
                     De los cuales se asignarán $1.300.000 a cada Escuela y $17.000.000 al PP Zonas. 
@@ -127,12 +127,12 @@ export default class Page extends Component {
                 </div>
                 <div data-trigger="+ ¿Cómo elegiremos los proyectos a ejecutarse en 2022?">
                   <p className="p-padding">
-                  Se realizarán jornadas de votación en el mes de octubre, previa difusión de los proyectos elegibles, para que toda la comunidad de la UNR pueda decidir cuáles serán ejecutados hasta alcanzar el total de la partida presupuestaria afectada al PP Zonas. Como ningún proyecto puede exceder el 70% del límite presupuestario, por lo menos dos proyectos serán los ganadores. 
+                  Se realizarán jornadas de votación en el mes de octubre, previa difusión de los proyectos elegibles, para que toda la comunidad de la MGP pueda decidir cuáles serán ejecutados hasta alcanzar el total de la partida presupuestaria afectada al PP Zonas. Como ningún proyecto puede exceder el 70% del límite presupuestario, por lo menos dos proyectos serán los ganadores. 
                   </p>
                 </div>
-                <div data-trigger="+ ¿Puedo participar si pertenezco a las Sedes, Gimnasio UNR, ECU, comedores y otras dependencias?">
+                <div data-trigger="+ ¿Puedo participar si pertenezco a las Sedes, Gimnasio MGP, ECU, comedores y otras dependencias?">
                   <p className="p-padding">
-                  Si, claro! todas las personas que integran la comunidad UNR están invitadas a participar. En el campo Zona del formulario de registro, encontrás la opción “Otras Sedes y Dependencias UNR” para vincularte.
+                  Si, claro! todas las personas que integran la comunidad MGP están invitadas a participar. En el campo Zona del formulario de registro, encontrás la opción “Otras Sedes y Dependencias MGP” para vincularte.
                   </p>
                 </div>
                 <div data-trigger="+ ¿Pueden participar los/las estudiantes de posgrado?">

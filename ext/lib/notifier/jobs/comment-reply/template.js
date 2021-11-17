@@ -25,7 +25,7 @@ module.exports = ({
     <p>Respuesta por <strong>${reply.author.fullName}</strong>:</p>
     <div style='padding:15px;padding-top:10px;border-radius: 5px;'><i>${reply.text}</i></div>
     <br />
-    <p>¡Seguí la charla y colaboremos para construir la Universidad que queremos!</p>
+    <p>¡Seguí la charla y colaboremos para construir la Ciudad que queremos!</p>
     <br />
     ${buttonTemplate({
       url: url,
