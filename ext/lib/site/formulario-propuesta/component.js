@@ -242,7 +242,7 @@ class FormularioPropuesta extends Component {
       <div className='form-propuesta'>
         <div className='propuesta-header'>
           <h1 className='text-center'>FORMULARIO PARA ENVIAR IDEAS</h1>
-          <p>¡Compartinos tus ideas para mejorar nuestra universidad!</p>
+          <p>¡Compartinos tus ideas para mejorar nuestra ciudad!</p>
           {//<p>¡Gracias a todos y todas por participar!</p>
           }
         </div>

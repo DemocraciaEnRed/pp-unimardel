@@ -377,7 +377,7 @@ module.exports = ({
                       <tr>
                         <td class="align-center">
                           <p>
-                            <span style="color:#C4D94B">PRESUPUESTO PARTICIPATIVO DE LA UNIVERSIDAD NACIONAL DE ROSARIO</span>
+                            <span style="color:#C4D94B">PRESUPUESTO PARTICIPATIVO DE LA MUNICIPALIDAD DE GENERAL PUEYRREDÓN</span>
                             <br> <span style="color:#005e80">#PPMGP #LaCiudadQueQueremos</span>
                           </p>
                           <!-- When inserting images remember to include the following attributes or

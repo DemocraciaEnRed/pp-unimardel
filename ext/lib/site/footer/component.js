@@ -14,7 +14,7 @@ const Footer = () => (
       </div>
       <div className='mapa-box'>
         <div>
-          <iframe className='mapa' src="https://www.google.com/maps/embed/v1/place?q=universidad+nacional+de+rosario&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8" frameBorder="0" allowFullScreen/>
+          <iframe className='mapa' src="https://maps.google.com/maps?q=municipalidad%20general%20pueyrredon&t=&z=13&ie=UTF8&iwloc=&output=embed" frameBorder="0" allowFullScreen/>
         </div>
       </div>
       <div className='social-icon'>
@@ -31,7 +31,7 @@ const Footer = () => (
           </div>
         </a>
         <div className='logo'>
-          <a className='logo-mgp' href='https://www.mardelplata.gob.ar/' aria-name="Link a pagina universidad nacional de rosario" rel="noopener noreferer" target="_blank" />
+          <a className='logo-mgp' href='https://www.mardelplata.gob.ar/' aria-name="Link a pagina mar del plata" rel="noopener noreferer" target="_blank" />
         </div>
         <div className="logo-access">
           <img src="/ext/lib/site/footer/accesibility-logo.png" alt="Logo accesibilidad universal"/>
@@ -39,8 +39,8 @@ const Footer = () => (
         <div className='logo-flor'>
           <img src="/ext/lib/site/footer/logo-flor.png" alt="Logo dibujante Flor Balestra"/>
         </div>
-        <div className='logo-universidad'>
-          <img src="/ext/lib/site/footer/logo-universidad-que-queremos.png" alt="Logo la universidad que queremos"/>
+        <div className='logo-ciudad'>
+          <img src="/ext/lib/site/footer/logo-ciudad-que-queremos.png" alt="Logo la ciudad que queremos"/>
         </div>
       </div>
       <div className='terminos'>
