@@ -32,28 +32,8 @@ export default function ThumbsVoto(props) {
               :
               <h2>{ subtitle }</h2>
             }
-            {/*<h3>Hasta el 31 de mayo inclusive tenés tiempo para presentar tus propuestas</h3> */}
             <h3>{ props.texts['home-subtitle-text'] }</h3>
             <div className="btn-container">
-              {//<div className="boton-azul boton-blanco">
-              //  <a href="https://forosvecinales.blob.core.windows.net/informes/Escrutinio-2019.xlsx">Ver Resultados</a>
-              //</div>
-              }
-              {/*
-                <Link
-                to='/formulario-idea'
-                className="boton-mandar-idea">
-                Subí tu idea
-              </Link>
-              */
-              }
-              
-              
-              {/*<Link
-                to='/proyectos'
-                className="boton-azul boton-blanco">
-                Ver Proyectos
-              </Link>*/}
             </div>
           </div>
         </div>
@@ -75,7 +55,7 @@ export default function ThumbsVoto(props) {
               style={styleIcono1}>
             </div>
             <h2
-              className="text-center">
+              className="text-center mdq">
               { props.texts['home-icono1-titulo']}
             </h2>
             <p className="que-son-cont">
@@ -88,7 +68,7 @@ export default function ThumbsVoto(props) {
               className="que-propongo img-responsive"
               style={styleIcono2}>
             </div>
-            <h2 className="text-center">{props.texts['home-icono2-titulo']}</h2>
+            <h2 className="text-center mdq">{props.texts['home-icono2-titulo']}</h2>
             <p className="que-propongo-cont">
               {props.texts['home-icono2-texto']}
             </p>
@@ -100,7 +80,7 @@ export default function ThumbsVoto(props) {
               className="como-sigo img-responsive"
               style={styleIcono3}>
             </div>
-            <h2 className="text-center">
+            <h2 className="text-center mdq">
               { props.texts['home-icono3-titulo']}
             </h2>
             <p className="donde-voto-cont">
