@@ -2,7 +2,7 @@ const dbReady = require('lib/models').ready
 
 const Forum = require('lib/models').Forum
 
-const nombreMigrationParaLog = 'updatear forum attr unr'
+const nombreMigrationParaLog = 'updatear forum attr mgp'
 
 const groups = [
 	{ name: '', order: 0},

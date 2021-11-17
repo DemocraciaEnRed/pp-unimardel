@@ -8,7 +8,7 @@ const Eje = models.Eje
 const etiquetas = [
   { nombre: "Ambiente y Sustentabilidad" },
   { nombre: "Género / DDHH / Accesibilidad" },
-  { nombre: "Infraestructura" },
+  { nombre: "Infraestructura / Producción" },
   { nombre: "Académica / Aprendizajes " },
   { nombre: "Vinculación con el medio" },
   { nombre: "Arte / Deporte / Salud " },

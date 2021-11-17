@@ -92,18 +92,12 @@ export class TopicCard extends Component {
             :
             <div className='topic-creation'>
               <span>Creado por: <span className='topic-card-author'>{topic.owner.firstName}</span></span>
-              {topic.owner.facultad && topic.owner.claustro &&
-                <span className='topic-card-facultad-claustro'>({topic.owner.facultad.abreviacion}, {topic.owner.claustro.nombre})</span>
+              {topic.owner.zona &&
+                <span className='topic-card-zona'>({topic.owner.zona.nombre})</span>
               }
-              {topic.owner.facultad && !topic.owner.claustro &&
-              <span className='topic-card-facultad'>({topic.owner.facultad.abreviacion})</span>
-              }
-              {!topic.owner.facultad && topic.owner.claustro &&
-                <span className='topic-card-claustro'>({topic.owner.claustro.nombre})</span>
-              }
-              {!topic.owner.facultad && topic.attrs && topic.attrs.facultad && topic.attrs.facultad != 'ninguna' &&
-              <span className='topic-card-facultad'>
-                ({this.props.facultades.length > 0 && this.props.facultades.find(f => f.value == topic.attrs.facultad).name})
+              {!topic.owner.zona && topic.attrs && topic.attrs.zona && topic.attrs.zona != 'ninguna' &&
+              <span className='topic-card-zona'>
+                ({this.props.zonas.length > 0 && this.props.zonas.find(f => f.value == topic.attrs.zona).name})
               </span>
               }
               <span

@@ -26,14 +26,9 @@ app.get('/topics',
         enum: allowedForums,
         required: true
       },
-      facultades: {
+      zonas: {
         type: 'string',
-        format: 'facultades',
-        default: ''
-      },
-      claustros: {
-        type: 'string',
-        format: 'claustros',
+        format: 'zonas',
         default: ''
       },
       tags: {
@@ -65,8 +60,7 @@ app.get('/topics',
   utils.findForum,
   utils.parseStates,
   utils.parseTipoIdea,
-  utils.parseFacultades,
-  utils.parseClaustros,
+  utils.parseZonas,
   utils.parseTags,
   middlewares.forums.privileges.canView,
   (req, res, next) => {

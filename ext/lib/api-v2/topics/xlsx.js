@@ -90,12 +90,11 @@ app.get('/export/topics/xlsx',
         'Idea Fecha': `${escapeTxt(moment(topic.createdAt, '', req.locale).format('LL LT'))}`,
         'Idea Título': `${escapeTxt(topic.mediaTitle)}`,
         'Idea Temas': `${escapeTxt(topic.tags.join(', '))}`,
-        'Idea Facultad': `${escapeTxt(topic.owner.facultad && topic.owner.facultad.abreviacion)}`,
+        'Idea Zona': `${escapeTxt(topic.owner.zona && topic.owner.zona.nombre)}`,
         'Idea Texto': `${escapeTxt(topic.attrs['problema'])}`,
         'Autor/a nombre': `${escapeTxt(topic.owner.firstName)}`,
         'Autor/a apellido': `${escapeTxt(topic.owner.lastName)}`,
         'Autor/a email': `${escapeTxt(topic.owner.email)}`,
-        'Autor/a claustro': `${escapeTxt(topic.owner.claustro && topic.owner.claustro.nombre)}`,
         'Autor/a género': `${escapeTxt(topic.attrs['genero'])}`,
         'Seguidores cantidad': `${escapeTxt(topic.action.count)}`,
         'Seguidores emails': `${escapeTxt(topic.action.results.join(', '))}`,
@@ -109,7 +108,7 @@ app.get('/export/topics/xlsx',
       infoTopics.push(theTopic);
     });
     try {
-      res.xls(`ideas-facultades.xlsx`, infoTopics);
+      res.xls(`ideas-zonas.xlsx`, infoTopics);
     } catch (err) {
       log('get csv: array to csv error', err)
       return res.status(500).end()
@@ -120,29 +119,16 @@ app.get('/export/topics/export-resultados',
   middlewares.users.restrict,
   middlewares.forums.findByName,
   middlewares.forums.privileges.canChangeTopics,
-  // cargar claustros a req
+  // cargar zonas a req
   (req, res, next) =>
-    api.claustro.all(function (err, claustros) {
-      let claustrosName = {}
+    api.zona.all(function (err, zonas) {
+      let zonasName = {}
       if (err) {
-        log('error serving claustros from DB:', err)
+        log('error serving zonas from DB:', err)
         return res.status(500).end()
       }
-      claustros.forEach(c => claustrosName[c._id] = c.nombre)
-      req.claustrosName = claustrosName
-      next()
-    })
-  ,
-  // cargar facultades a req
-  (req, res, next) =>
-    api.facultad.all(function (err, facultades) {
-      let facultadesName = {}
-      if (err) {
-        log('error serving facultades from DB:', err)
-        return res.status(500).end()
-      }
-      facultades.forEach(f => facultadesName[f._id] = f.abreviacion)
-      req.facultadesName = facultadesName
+      zonas.forEach(f => zonasName[f._id] = f.nombre)
+      req.zonasName = zonasName
       next()
     })
   ,
@@ -160,8 +146,7 @@ app.get('/export/topics/export-resultados',
       const topicAttrs = vote.topic.attrs
       const theVote = {
         'Fecha': `${escapeTxt(moment(vote.createdAt, '', req.locale).format('LL LT'))}`,
-        'Facultad': `${escapeTxt(req.facultadesName[vote.author.facultad])}`,
-        'Claustro': `${escapeTxt(req.claustrosName[vote.author.claustro])}`,
+        'Zona': `${escapeTxt(req.zonasName[vote.author.zona])}`,
         '#Proyecto': `${escapeTxt(topicAttrs.numero || '')}`,
         'Título Proyecto': `${escapeTxt(vote.topic.mediaTitle)}`,
       }
@@ -181,15 +166,15 @@ app.get('/export/topics/export-resultados-proyectos',
   middlewares.forums.findByName,
   middlewares.topics.findAllFromForum,
   middlewares.forums.privileges.canChangeTopics,
-  function getAllFacultades(req, res, next) {
-    api.facultad.all(function (err, facultades) {
-      let facultadesName = {}
+  function getAllZonas(req, res, next) {
+    api.zona.all(function (err, zonas) {
+      let zonasName = {}
       if (err) {
-        log('error serving facultades from DB:', err)
+        log('error serving zonas from DB:', err)
         return res.status(500).end()
       }
-      facultades.forEach(e => facultadesName[e._id] = e.nombre)
-      req.facultadesName = facultadesName
+      zonas.forEach(e => zonasName[e._id] = e.nombre)
+      req.zonasName = zonasName
       next()
     })
   },
@@ -234,7 +219,7 @@ app.get('/export/topics/export-resultados-proyectos',
       if (topic.attrs === undefined) {
         topic.attrs = {}
       }
-      console.log(topic.facultad)
+      console.log(topic.zona)
       let theTopic = {
         '#Proyecto': `${escapeTxt(topic.attrs['numero'])}`,
         'Título Proyecto': `${escapeTxt(topic.mediaTitle)}`,
@@ -256,31 +241,19 @@ app.get('/export/topics/export-resultados-votantes',
   middlewares.forums.findByName,
   middlewares.topics.findAllFromForum,
   middlewares.forums.privileges.canChangeTopics,
-  // cargar facultades a req
+  // cargar zonas a req
   (req, res, next) => {
-    api.facultad.all(function (err, facultades) {
-      let facultadesName = {}
+    api.zona.all(function (err, zonas) {
+      let zonasName = {}
       if (err) {
-        log('error serving facultades from DB:', err)
+        log('error serving zonas from DB:', err)
         return res.status(500).end()
       }
-      facultades.forEach(e => facultadesName[e._id] = e.abreviacion)
-      req.facultadesName = facultadesName
+      zonas.forEach(e => zonasName[e._id] = e.nombre)
+      req.zonasName = zonasName
       next()
     })
   },
-  // cargar claustros a req
-  (req, res, next) =>
-    api.claustro.all(function (err, claustros) {
-      let claustrosName = {}
-      if (err) {
-        log('error serving claustros from DB:', err)
-        return res.status(500).end()
-      }
-      claustros.forEach(c => claustrosName[c._id] = c.nombre)
-      req.claustrosName = claustrosName
-      next()
-    }),  
   // cargar votos
   function getAllVotos(req, res, next) {
     api.vote.all(function (err, votes) {
@@ -313,8 +286,7 @@ app.get('/export/topics/export-resultados-votantes',
         const votes_for_author = req.votes.filter((vote) => vote.author.toString() === votante.id)
         let theVotante = {
           'ID Votante': `${escapeTxt(votante.id)}`,
-          'Facultad': `${escapeTxt(req.facultadesName[votante.facultad])}`,
-          'Claustro': `${escapeTxt(req.claustrosName[votante.claustro])}`,
+          'Zona': `${escapeTxt(req.zonasName[votante.zona])}`,
           'Voto 1': `${escapeTxt(votes_for_author[0] ? req.topics.find(el => el.id === votes_for_author[0].topic.toString()).mediaTitle : "")}`,
           'Voto 2': `${escapeTxt(votes_for_author[1] ? req.topics.find(el => el.id === votes_for_author[1].topic.toString()).mediaTitle : "")}`,
           'Voto 3': `${escapeTxt(votes_for_author[2] ? req.topics.find(el => el.id === votes_for_author[2].topic.toString()).mediaTitle : "")}`,
