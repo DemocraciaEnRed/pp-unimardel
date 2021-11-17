@@ -6,7 +6,7 @@ const raw = require('es6-string-html-template').raw
 const juice = require('juice');
 
 const baseUrl = utils.buildUrl(config)
-const fontFamily = 'Museo, sans-serif'
+const fontFamily = 'Museo300, sans-serif'
 const colorBotones = '#C4D94B'
 
 // template sacado de: https://github.com/leemunroe/responsive-html-email-template

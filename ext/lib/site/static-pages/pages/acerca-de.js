@@ -24,15 +24,15 @@ export default class Page extends Component {
           <div className="banner"></div>
           <div className='contenedor'>
             <div className='fondo-titulo'>
-              <h1>Presupuesto Participativo MGP</h1>
+              <h1>Presupuesto Participativo</h1>
             </div>
           </div>
         </section>
-        <div id='container' className="container-imagen-acerca-de">
+        <div id='container' className="">
           <div className='ext-acerca-de container'>
             <div className="filas">
               <div className="fila faq text-left">
-                <p className='p-padding'>Podés leer el reglamento completo haciendo click <a href="https://participa.mardelplata.gob.ar/?page_id=1551" rel="noopener noreferer" target="_blank">aquí</a></p>
+                <p className='p-padding'>Accedé al <a href="">reglamento general</a> (colocar link) de Participa MGP. En este espacio te dejamos algunas normas básicas para que conozcas el funcionamiento del Programa.</p>
 
                 <Accordion>
                   <div data-trigger="+ ¿Quiénes pueden participar del PP Zonas?">

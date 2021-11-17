@@ -86,10 +86,10 @@ export default class FilterPropuestas extends Component {
     // - el .map(.find().name) hace la conversión de keys a values
     //   p.ej. barrio contiene keys, y para mostrar su formato para humanos hay
     //   que buscar la key dentro de barrios
-    /*if (zona.length)
+    if (zona.length)
       allActiveOpts.push(
         ...zona.sort().map(i => ({ value: i, name: zonas.find(j => j.value==i).name }))
-      )*/
+      )
     if (tag.length && tags.length)
       allActiveOpts.push(
         ...tag.sort().map(i => ({ value: i, name: tags.find(j => j.value==i).name }))
@@ -102,7 +102,7 @@ export default class FilterPropuestas extends Component {
     return (
       <nav id='filter-propuestas'>
         <div className='filters-nav center'>
-          {/* {<FilterBox
+          {<FilterBox
             name='zona'
             title='Zona'
             allOptions={zonas}
@@ -113,7 +113,7 @@ export default class FilterPropuestas extends Component {
             handleDropdown={this.handleDropdown}
             handleFilter={this.handleFilter}
             clearFilter={this.clearFilter}
-            />} */}
+            />}
 
           {/* <FilterBox
             name='tipoIdea'

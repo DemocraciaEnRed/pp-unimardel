@@ -40,7 +40,7 @@ const filters = {
     sort: 'popular',
   },
   newest: {
-    text: 'Más Actualizados',
+    text: 'Más Recientes',
     sort: 'newest',
   },
 }
@@ -306,7 +306,7 @@ class HomePropuestas extends Component {
                 ))}
             </div>
           */}
-          {/*this.state.topics && this.state.topics.length > 0 &&
+          {this.state.topics && this.state.topics.length > 0 &&
             <div className='topics-filter topics-sort-filter'>
               <span>Ordenar por</span>
               {Object.keys(filters).map((key) => (
@@ -319,7 +319,7 @@ class HomePropuestas extends Component {
                   </button>
                 ))}
             </div>
-          */}
+          }
         </div>
       </div>
     )
@@ -397,6 +397,7 @@ class HomePropuestas extends Component {
               }
             </div>
           </div>
+
 
           <div className='container topics-container'>
             <FilterPropuestas
