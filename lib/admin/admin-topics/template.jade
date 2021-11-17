@@ -25,21 +25,14 @@
             button.btn.btn-primary.sort.por-nombre(data-sort='topic-title')
               span='A - Z'
       .row.row-filtros
-        .col-md-3.col-xs-12
+        .col-md-8.col-xs-12
           .input-group.input-group-md
-            ='Facultad: '
-            select(name='facultad')
+            ='Zona: '
+            select(name='zona')
               option(value="") Todos
-              - each obj in uniqAttrs.facultades
+              - each obj in uniqAttrs.zonas
                   option(value="#{obj.value}") #{obj.name}
         .col-md-4.col-xs-12
-          .input-group.input-group-md
-            ='Claustro: '
-            select(name='claustro')
-              option(value="") Todos
-              - each obj in uniqAttrs.claustros
-                option(value="#{obj.value}") #{obj.name}
-        .col-md-5.col-xs-12
           .input-group.input-group-md
             ='Temas: '
             select(name='tema')
@@ -82,9 +75,7 @@
             span.text.topic-tags=topic.tags.map(toTitleCase).join(', ')
 
           .topic-status-data
-            - if (topic.owner && topic.owner.facultad)
-              span.placa.text=topic.owner.facultad.abreviacion
-            - if (topic.owner && topic.owner.claustro)
-              span.placa.text=topic.owner.claustro.nombre
+            - if (topic.owner && topic.owner.zona)
+              span.placa.text=topic.owner.zona.nombre
 
     .topics-pagination

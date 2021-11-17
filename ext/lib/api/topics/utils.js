@@ -4,12 +4,8 @@ const topicScopes = require('lib/api-v2/db-api/topics/scopes')
 const { notFound } = require('../errors')
 const ObjectID = require('mongoose').Types.ObjectId
 
-exports.parseFacultades = (req, res, next) => {
-  req.query.facultades = req.query.facultades.split(',').filter((t) => !!t)
-  next()
-}
-exports.parseClaustros = (req, res, next) => {
-  req.query.claustros = req.query.claustros.split(',').filter((t) => !!t)
+exports.parseZonas = (req, res, next) => {
+  req.query.zonas = req.query.zonas.split(',').filter((t) => !!t)
   next()
 }
 exports.parseTags = (req, res, next) => {
@@ -67,18 +63,14 @@ const queryTopics = (opts) => {
 // si modificás esta, habría que modificar la otra (considerar)
 const getPossibleOwners = (opts) => {
   const {
-    facultades,
-    facultad,
-    claustros,
-    claustro
+    zonas,
+    zona,
   } = opts
 
   const query = {}
 
-  if (facultades && facultades.length > 0) query.facultad = { $in: facultades.map(id => ObjectID(id)) }
-  else if (facultad) query.facultad = facultad
-  if (claustros && claustros.length > 0) query.claustro = { $in: claustros.map(id => ObjectID(id)) }
-  else if (claustro) query.claustro = claustro
+  if (zonas && zonas.length > 0) query.zona = { $in: zonas.map(id => ObjectID(id)) }
+  else if (zona) query.zona = zona
 
   if (Object.keys(query).length > 0)
     return apiV1.user.findIds(query)

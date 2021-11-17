@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import config from 'lib/config'
 import forumStore from 'lib/stores/forum-store/forum-store'
 import topicStore from 'lib/stores/topic-store/topic-store'
-import facultadStore from 'lib/stores/facultad-store'
-import claustroStore from 'lib/stores/claustro-store'
+import zonaStore from 'lib/stores/zona-store'
 import tagStore from 'lib/stores/tag-store/tag-store'
 import Tags from 'lib/admin/admin-topics-form/tag-autocomplete/component'
 import Attrs from 'lib/admin/admin-topics-form/attrs/component'
@@ -24,8 +23,7 @@ class FormularioPropuesta extends Component {
       topic: null,
 
       nombre: '',
-      claustro: '',
-      facultad: '',
+      zona: '',
       documento: '',
       genero: '',
       email: '',
@@ -38,8 +36,7 @@ class FormularioPropuesta extends Component {
       adminCommentReference: '',
 
       availableTags: [],
-      facultades: [],
-      claustros: []
+      zonas: [],
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -58,10 +55,8 @@ class FormularioPropuesta extends Component {
     const promises = [
       // data del forum
       forumStore.findOneByName('proyectos'),
-      // tags, facultades y claustros
       tagStore.findAll({field: 'name'}),
-      facultadStore.findAll(),
-      claustroStore.findAll()
+      zonaStore.findAll(),
     ]
 
     // si es edición traemos data del topic también
@@ -70,13 +65,12 @@ class FormularioPropuesta extends Component {
 
     Promise.all(promises).then(results => {
       // topic queda en undefined si no estamos en edit
-      const [ forum, tags, facultades, claustros, topic] = results
+      const [ forum, tags, zonas, topic] = results
 
       let newState = {
         forum,
         availableTags: tags,
-        facultades,
-        claustros,
+        zonas,
         mode: isEdit ? 'edit' : 'new'
       }
 
@@ -85,8 +79,7 @@ class FormularioPropuesta extends Component {
           titulo: topic.mediaTitle,
           documento: topic.attrs.documento,
           genero: topic.attrs.genero,
-          facultad: topic.attrs.facultad,
-          claustro: topic.attrs.claustro,
+          zona: topic.attrs.zona,
           problema: topic.attrs.problema,
           // los tags se guardan por nombre (¿por qué?) así que buscamos su respectivo objeto
           tags: tags.filter(t => topic.tags.includes(t.name)),
@@ -98,7 +91,7 @@ class FormularioPropuesta extends Component {
       console.log(isEdit, newState)
       this.setState(newState, () => {
         // updateamos campos de usuario
-        // (recién dps del setState tendremos facultades y claustros cargados)
+        // (recién dps del setState tendremos zonas cargadas)
         this.props.user.onChange(this.onUserStateChange)
         // si ya está loggeado de antes debería pasar por la función igualmente
         this.onUserStateChange()
@@ -124,8 +117,7 @@ class FormularioPropuesta extends Component {
     if (this.props.user.state.fulfilled){
       let user = this.props.user.state.value
       this.setState({
-        facultad: user.facultad._id,
-        claustro: user.claustro._id,
+        zona: user.zona._id,
         email: user.email,
         documento: user.dni,
         nombre: user.firstName + ' ' + user.lastName
@@ -212,8 +204,7 @@ class FormularioPropuesta extends Component {
     if (this.state.genero === '') return true
     if (this.state.email === '') return true
     if (this.state.titulo === '') return true
-    if (this.state.facultad === '') return true
-    if (this.state.claustro === '') return true
+    if (this.state.zona === '') return true
     if (this.state.problema === '') return true
     if (!this.state.tags || this.state.tags.length == 0) return true
     return false;
@@ -243,7 +234,7 @@ class FormularioPropuesta extends Component {
   }
 
   render () {
-    const { forum, facultades, claustros } = this.state
+    const { forum, zonas } = this.state
 
     if (!forum) return null
     if(config.propuestasAbiertas || (this.state.forum.privileges && this.state.forum.privileges.canChangeTopics)) {
@@ -278,39 +269,20 @@ class FormularioPropuesta extends Component {
               disabled={true} />
           </div>
           <div className='form-group'>
-            <label className='required' htmlFor='claustro'>
-              Claustro
+            <label className='required' htmlFor='zona'>
+              Zona
             </label>
             <select
               className='form-control special-height'
               required
-              name='claustro'
-              value={this.state['claustro']}
+              name='zona'
+              value={this.state['zona']}
               onChange={this.handleInputChange}
               disabled={true}>
-              <option value=''>Seleccione un claustro</option>
-              {claustros.length > 0 && claustros.map(claustro =>
-                <option key={claustro._id} value={claustro._id}>
-                  {claustro.nombre}
-                </option>
-              )}
-            </select>
-          </div>
-          <div className='form-group'>
-            <label className='required' htmlFor='facultad'>
-              Facultad
-            </label>
-            <select
-              className='form-control special-height'
-              required
-              name='facultad'
-              value={this.state['facultad']}
-              onChange={this.handleInputChange}
-              disabled={true}>
-              <option value=''>Seleccione una facultad</option>
-              {facultades.length > 0 && facultades.map(facultad =>
-                <option key={facultad._id} value={facultad._id}>
-                  {facultad.nombre}
+              <option value=''>Seleccione una zona</option>
+              {zonas.length > 0 && zonas.map(zona =>
+                <option key={zona._id} value={zona._id}>
+                  {zona.nombre}
                 </option>
               )}
             </select>
@@ -476,8 +448,7 @@ class FormularioPropuesta extends Component {
                     {this.hasErrorsField('genero') && <li className="error-li">El campo "Género" no puede quedar vacío</li> }
                     {this.hasErrorsField('email') && <li className="error-li">El campo "Email" no puede quedar vacío</li> }
                     {this.hasErrorsField('titulo') && <li className="error-li">El campo "Título" no puede quedar vacío</li> }
-                    {this.hasErrorsField('facultad') && <li className="error-li">El campo "Facultad" no puede quedar vacío</li> }
-                    {this.hasErrorsField('claustro') && <li className="error-li">El campo "Claustro" no puede quedar vacío</li> }
+                    {this.hasErrorsField('zona') && <li className="error-li">El campo "Zona" no puede quedar vacío</li> }
                     {this.hasErrorsField('tags') && <li className="error-li">El campo "Temas" no puede quedar vacío</li> }
                     {this.hasErrorsField('problema') && <li className="error-li">El campo "Tu idea" no puede quedar vacío</li> }
              </ul>

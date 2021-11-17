@@ -5,8 +5,7 @@ import forumStore from 'lib/stores/forum-store/forum-store'
 import topicStore from 'lib/stores/topic-store/topic-store'
 import userConnector from 'lib/site/connectors/user'
 import tagStore from 'lib/stores/tag-store/tag-store'
-import facultadStore from 'lib/stores/facultad-store'
-import claustroStore from 'lib/stores/claustro-store'
+import zonaStore from 'lib/stores/zona-store'
 import TopicCard from './topic-card/component'
 import BannerListadoTopics from 'ext/lib/site/banner-listado-topics/component'
 import FilterPropuestas from './filter-propuestas/component'
@@ -28,8 +27,7 @@ import Select from 'react-select'; // ! VERSIÓN 2.4.4 !
 
 const defaultValues = {
   limit: 20,
-  facultad: [],
-  claustro: [],
+  zona: [],
   tag: [],
   // 'barrio' o 'newest' o 'popular'
   sort: 'newest',
@@ -55,10 +53,8 @@ class HomePropuestas extends Component {
       forum: null,
       topics: null,
 
-      facultades: [],
-      facultad: defaultValues.facultad,
-      claustros: [],
-      claustro: defaultValues.claustro,
+      zonas: [],
+      zona: defaultValues.zona,
       tags: [],
       tag: defaultValues.tag,
       tiposIdea: [],
@@ -84,19 +80,17 @@ class HomePropuestas extends Component {
 
     // igual que filtros de admin (lib/admin/admin/admin.js)
     Promise.all([
-      facultadStore.findAll(),
-      claustroStore.findAll(),
+      zonaStore.findAll(),
       tagStore.findAll({field: 'name'}),
       forumStore.findOneByName('proyectos'),
       topicStore.findAllProyectos()
     ]).then(results => {
-      const [facultades, claustros, tags, forum, proyectos] = results
+      const [zonas, tags, forum, proyectos] = results
       const tagsMap = tags.map(tag => { return {value: tag.id, name: tag.name}; });
       const tag = this.props.location.query.tags ? [tagsMap.find(j => j.name == this.props.location.query.tags).value] : [];
       const tiposIdea = forum.topicsAttrs.find(a => a.name=='state').options.map(state => { return {value: state.name, name: state.title}; })
       this.setState({
-        facultades: facultades.map(facultad => { return {value: facultad._id, name: facultad.abreviacion}; }),
-        claustros: claustros.map(claustro => { return {value: claustro._id, name: claustro.nombre}; }),
+        zonas: zonas.map(zona => { return {value: zona._id, name: zona.nombre}; }),
         tags: tagsMap,
         tag,
         tiposIdea,
@@ -116,8 +110,7 @@ class HomePropuestas extends Component {
       page: page.toString(),
       limit: defaultValues.limit.toString(),
 
-      facultades: this.state.facultad,
-      claustros: this.state.claustro,
+      zonas: this.state.zona,
       tags: this.state.tags.filter(t => this.state.tag.includes(t.value)).map(t => t.name),
       sort: this.state.sort,
       tipoIdea: this.state.tipoIdea
@@ -262,11 +255,8 @@ class HomePropuestas extends Component {
 
   handleRemoveBadge = (option) => (e) => {
     // feísimo, feísimo
-    if (this.state.facultad.includes(option)){
-      this.setState({ facultad: this.state.facultad.filter(i => i != option) }
-      ,() => this.fetchTopics());
-    }else if (this.state.claustro.includes(option)){
-      this.setState({ claustro: this.state.claustro.filter(i => i != option) }
+    if (this.state.zona.includes(option)){
+      this.setState({ zona: this.state.zona.filter(i => i != option) }
       ,() => this.fetchTopics());
     }else if (this.state.tag.includes(option)){
       this.setState({ tag: this.state.tag.filter(i => i != option) }
@@ -361,7 +351,7 @@ class HomePropuestas extends Component {
   render () {
     //console.log('Render main')
 
-    const { forum, topics, facultades, searchableProyectos, selectedProyecto } = this.state
+    const { forum, topics, zonas, searchableProyectos, selectedProyecto } = this.state
     let filteredTopics;
 
     if (selectedProyecto)
@@ -410,10 +400,8 @@ class HomePropuestas extends Component {
 
           <div className='container topics-container'>
             <FilterPropuestas
-              facultades={this.state.facultades}
-              facultad={this.state.facultad}
-              claustros={this.state.claustros}
-              claustro={this.state.claustro}
+              zonas={this.state.zonas}
+              zona={this.state.zona}
               tags={this.state.tags}
               tag={this.state.tag}
               tiposIdea={this.state.tiposIdea}
@@ -458,7 +446,7 @@ class HomePropuestas extends Component {
                     onProyectista={this.handleProyectista}
                     forum={forum}
                     topic={topic}
-                    facultades={facultades} />
+                    zonas={zonas} />
                 ))}
                 {!filteredTopics && topics && !this.state.noMore && (
                   <div className='more-topics'>

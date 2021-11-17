@@ -16,14 +16,10 @@
         .form-group
           button.btn.btn-primary.buscar-dni-button= 'Buscar'
         pre#response-dni='Ingrese un DNI para buscar su informacion'
-        h4= 'Referencia Claustros'
+        h4= 'Referencia Zonas'
         pre
-          - each claustro in claustros
-            div ID: #{claustro.value} - Claustro #{claustro.name}
-        h4= 'Referencia Facultades'
-        pre
-          - each facultad in facultades
-            div ID: #{facultad.value} - Facultad #{facultad.name}
+          - each zona in zonas
+            div ID: #{zona.value} - Zona #{zona.name}
         hr
         h3= 'Agregar al padron'
         .form-group
