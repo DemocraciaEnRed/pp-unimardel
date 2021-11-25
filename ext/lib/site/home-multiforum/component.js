@@ -3,6 +3,7 @@ import {Link} from 'react-router'
 import config from 'lib/config'
 import Anchor from 'ext/lib/site/anchor'
 import BannerForoVecinal from 'ext/lib/site/banner-foro-vecinal/component'
+import BannerMapaVectores from 'ext/lib/site/banner-mapa-vectores/component'
 import ThumbsVoto from 'ext/lib/site/thumbs-voto/component'
 // import Barrios from 'ext/lib/site/barrios/component'
 // import Proyectos from 'ext/lib/site/proyectos/component'
@@ -55,6 +56,7 @@ export default class HomeMultiforumOverride extends Component {
             <p>Subí tu idea o participá para mejorar con tus aportes para otros proyectos.</p>
             <Link to={'/propuestas'} className="boton-foro" href="">Accedé al Formulario de subida de IDEAS</Link>
           </div>
+          <BannerMapaVectores />
           <Jump goTop={this.goTop} />
           <Footer />
         </Anchor>

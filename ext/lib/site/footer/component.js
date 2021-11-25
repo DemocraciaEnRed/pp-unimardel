@@ -12,11 +12,6 @@ const Footer = () => (
           <span>Email para consultas: <a tabIndex="8" href="mailto:ParticipaMGP@mardelplata.gob.ar">ParticipaMGP@mardelplata.gob.ar</a></span>
         </p>
       </div>
-      <div className='mapa-box'>
-        <div>
-          <iframe className='mapa' src="https://maps.google.com/maps?q=municipalidad%20general%20pueyrredon&t=&z=13&ie=UTF8&iwloc=&output=embed" frameBorder="0" allowFullScreen/>
-        </div>
-      </div>
       <div className='social-icon'>
         <a className='social-facebook' tabIndex="9"  href='https://facebook.com/municipalidadmardelplata/ ' target="_blank"/>
         <a className='social-instagram' tabIndex="10"  href='https://instagram.com/munimardelplata/' target="_blank" />
@@ -32,15 +27,6 @@ const Footer = () => (
         </a>
         <div className='logo'>
           <a className='logo-mgp' href='https://www.mardelplata.gob.ar/' aria-name="Link a pagina mar del plata" rel="noopener noreferer" target="_blank" />
-        </div>
-        <div className="logo-access">
-          <img src="/ext/lib/site/footer/accesibility-logo.png" alt="Logo accesibilidad universal"/>
-        </div>
-        <div className='logo-flor'>
-          <img src="/ext/lib/site/footer/logo-flor.png" alt="Logo dibujante Flor Balestra"/>
-        </div>
-        <div className='logo-ciudad'>
-          <img src="/ext/lib/site/footer/logo-ciudad-que-queremos.png" alt="Logo la ciudad que queremos"/>
         </div>
       </div>
       <div className='terminos'>
