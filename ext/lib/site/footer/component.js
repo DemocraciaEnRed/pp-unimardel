@@ -7,15 +7,15 @@ const Footer = () => (
       <div className='contacto-detalles'>
         <h3>CONTACTO</h3>
         <p>
-          <span>Coordinación y Secretaría Técnica PP MGP</span>
-          <span>Maipú 1065</span>
-          <span>Email para consultas: <a tabIndex="8" href="mailto:ParticipaMGP@mardelplata.gob.ar">ParticipaMGP@mardelplata.gob.ar</a></span>
+          <span>Dirección de Modernización e Información Estratégica</span>
+          <span>Av. Juan B. Justo 5665 Piso 1</span>
+          <span><a tabIndex="8" href="mailto:ParticipaMGP@mardelplata.gob.ar">ParticipaMGP@mardelplata.gob.ar</a></span>
         </p>
       </div>
       <div className='social-icon'>
         <a className='social-facebook' tabIndex="9"  href='https://facebook.com/municipalidadmardelplata/ ' target="_blank"/>
         <a className='social-instagram' tabIndex="10"  href='https://instagram.com/munimardelplata/' target="_blank" />
-        <a className='social-twitter' tabIndex="11"  href='https://twitter.com/MGPmardelplata/' target="_blank" />
+        <a className='social-twitter' tabIndex="11"  href='https://twitter.com/munimardelplata/' target="_blank" />
         <a className='social-mail' tabIndex="12"  href='mailto:ParticipaMGP@mardelplata.gob.ar' target="_blank"/>
       </div>
       <div className='logos'>

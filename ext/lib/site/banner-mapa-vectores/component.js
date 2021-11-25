@@ -7,7 +7,7 @@ export default function BannerForoVecinal (props) {
         <div className="row">
           <div className="col-md-12">
             <div className="fondo-titulo">
-              <h2>Zonas de MDQ</h2>
+              <h2> Zonas ParticipaMGP PP</h2>
             </div>
           </div>
         </div>
@@ -18,7 +18,7 @@ export default function BannerForoVecinal (props) {
         </div>  
         <div className="row">
           <div className="col-md-8">
-            <p className="text-right">Puede ver el mapa en detalle <a href="https://www.google.com/maps/d/u/0/viewer?mid=1lCtk77BcCijc9i12q4Kg6RQTsejF1aJJ&ll=-37.97165492717816%2C-57.78389299999999&z=10" target="_blank">aqui</a></p>
+            <p className="text-right">Puede ver el mapa en detalle <a href="https://www.google.com/maps/d/viewer?mid=1Q1kDWfyz0PCdRx1OFlNoOA644HP9W2Bu&ll=-37.97165492717815%2C-57.78389299999999&z=10" target="_blank">aqui</a></p>
           </div>
           <div className="col-md-4"></div>
         </div>                
