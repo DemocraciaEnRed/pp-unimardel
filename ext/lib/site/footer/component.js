@@ -7,7 +7,7 @@ const Footer = () => (
       <div className='contacto-detalles'>
         <h3>CONTACTO</h3>
         <p>
-          <span>Dirección de Modernización e Información Estratégica</span>
+          <span>Subsecretaría de Modernización</span>
           <span>Av. Juan B. Justo 5665 Piso 1</span>
           <span><a tabIndex="8" href="mailto:ParticipaMGP@mardelplata.gob.ar">ParticipaMGP@mardelplata.gob.ar</a></span>
         </p>
