@@ -37,17 +37,15 @@ export default function ThumbsVoto(props) {
             </div>
           </div>
         </div>
-        <div className="row cont">
-
+        {/* <div className="row cont">
             <div className="intro-ideas">
               <h2>
               <strong>¡SUMÁ TU IDEA!</strong><br />
               Con <strong>Participa MGP</strong> vas a poder presentar los proyecto
               </h2>
+            </div>
+        </div>     */}
 
-          </div>
-
-        </div>        
         <div className="row cont">
           <div className="col-md-4">
             <div
