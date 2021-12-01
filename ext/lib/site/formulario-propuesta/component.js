@@ -3,6 +3,7 @@ import config from 'lib/config'
 import forumStore from 'lib/stores/forum-store/forum-store'
 import topicStore from 'lib/stores/topic-store/topic-store'
 import zonaStore from 'lib/stores/zona-store'
+
 import tagStore from 'lib/stores/tag-store/tag-store'
 import Tags from 'lib/admin/admin-topics-form/tag-autocomplete/component'
 import Attrs from 'lib/admin/admin-topics-form/attrs/component'
@@ -25,7 +26,7 @@ class FormularioPropuesta extends Component {
       nombre: '',
       zona: '',
       documento: '',
-      genero: '',
+      // genero: '',
       email: '',
       titulo: '',
       tags: [],
@@ -78,7 +79,7 @@ class FormularioPropuesta extends Component {
         Object.assign(newState, {
           titulo: topic.mediaTitle,
           documento: topic.attrs.documento,
-          genero: topic.attrs.genero,
+          // genero: topic.attrs.genero,
           zona: topic.attrs.zona,
           problema: topic.attrs.problema,
           // los tags se guardan por nombre (¿por qué?) así que buscamos su respectivo objeto
@@ -87,8 +88,6 @@ class FormularioPropuesta extends Component {
           adminComment: topic.attrs['admin-comment'],
           adminCommentReference: topic.attrs['admin-comment-reference']
         })
-
-      console.log(isEdit, newState)
       this.setState(newState, () => {
         // updateamos campos de usuario
         // (recién dps del setState tendremos zonas cargadas)
@@ -131,7 +130,7 @@ class FormularioPropuesta extends Component {
       forum: this.state.forum.id,
       mediaTitle: this.state.titulo,
       'attrs.documento': this.state.documento,
-      'attrs.genero': this.state.genero,
+      // 'attrs.genero': this.state.genero,
       'attrs.problema': this.state.problema,
       tags: this.state.tags.map(tag => tag.name)
     }
@@ -201,7 +200,7 @@ class FormularioPropuesta extends Component {
   hasErrors = () => {
     if (this.state.nombre === '') return true
     if (this.state.documento === '') return true
-    if (this.state.genero === '') return true
+    // if (this.state.genero === '') return true
     if (this.state.email === '') return true
     if (this.state.titulo === '') return true
     if (this.state.zona === '') return true
@@ -241,8 +240,8 @@ class FormularioPropuesta extends Component {
     return (
       <div className='form-propuesta'>
         <div className='propuesta-header'>
-          <h1 className='text-center'>FORMULARIO PARA ENVIAR IDEAS</h1>
-          <p>¡Compartinos tus ideas para mejorar nuestra ciudad!</p>
+          <h1 className='text-center'>Formulario para enviar ideas</h1>
+          <p>¡Compartinos tus ideas para mejorar nuestra comunidad!</p>
           {//<p>¡Gracias a todos y todas por participar!</p>
           }
         </div>
@@ -273,7 +272,7 @@ class FormularioPropuesta extends Component {
               Zona
             </label>
             <select
-              className='form-control special-height'
+              className='form-control'
               required
               name='zona'
               value={this.state['zona']}
@@ -301,20 +300,6 @@ class FormularioPropuesta extends Component {
               value={this.state['documento']}
               onChange={this.handleInputChange}
               disabled={true}/>
-          </div>
-          <div className='form-group'>
-            <label className='required' htmlFor='genero'>
-              Género
-            </label>
-            <input
-              className='form-control'
-              required
-              type='text'
-              max='50'
-              name='genero'
-              placeholder=""
-              value={this.state['genero']}
-              onChange={this.handleInputChange} />
           </div>
           <div className='form-group'>
             <label className='required' htmlFor='email'>
@@ -445,7 +430,7 @@ class FormularioPropuesta extends Component {
              <ul>
                     {this.hasErrorsField('nombre') && <li className="error-li">El campo "Nombre y apellido" no puede quedar vacío</li> }
                     {this.hasErrorsField('documento') && <li className="error-li">El campo "DNI" no puede quedar vacío</li> }
-                    {this.hasErrorsField('genero') && <li className="error-li">El campo "Género" no puede quedar vacío</li> }
+                    {/* {this.hasErrorsField('genero') && <li className="error-li">El campo "Género" no puede quedar vacío</li> } */}
                     {this.hasErrorsField('email') && <li className="error-li">El campo "Email" no puede quedar vacío</li> }
                     {this.hasErrorsField('titulo') && <li className="error-li">El campo "Título" no puede quedar vacío</li> }
                     {this.hasErrorsField('zona') && <li className="error-li">El campo "Zona" no puede quedar vacío</li> }

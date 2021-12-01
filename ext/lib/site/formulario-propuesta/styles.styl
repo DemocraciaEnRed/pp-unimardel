@@ -6,6 +6,7 @@
   display: flex
   flex-direction: column
   align-items: center
+  font-family: 'Museo300', sans-serif
   @media (max-width: 400px)
     margin-top: 140px
   .propuesta-header
@@ -14,29 +15,32 @@
     display: flex
     align-items: center
     flex-direction: column
-    justify-content: center
+    justify-content: flex-end
     min-height: 250px
     width: 100%
     padding: 0 20px
     text-align: center
-    background-size: cover
-    background-image: unquote("url('ext/lib/site/formulario-propuesta/fondo-formulario-propuestas.png')")
+    background-image: unquote("url('ext/lib/site/formulario-propuesta/fondo-formulario-propuestas.svg')")
     background-repeat: no-repeat
     background-position: center;
+    background-color: #00a6cb
+    background-size: 100%
     h1
       font-size: 32px
       margin:0;
-      background-color: #C4D94B;
+      font-family: 'Museo300', sans-serif
+      background-color: #00A6CB;
       padding: 10px 20px;
       @media screen and (min-width: 764px)
         font-size: 32px
     p
       font-size: 16px
+      font-family: 'Museo900', sans-serif
       margin:0;
       padding: 4px 30px;
       // margin-top:6px;
       // background-color: rgba(23,145,190,0.6)
-      background-color: #0396a6
+      background-color: #0080A5
       @media screen and (min-width: 764px)
         font-size: 20px
 
@@ -62,11 +66,13 @@
       .section-title
         font-size: 30px
         font-weight: bold
+        font-family: 'Museo300', sans-serif
         color: #000
       .section-subtitle
         color: #484747
         font-size: 16px
         text-align: center
+        font-family: 'Museo300', sans-serif
       .section-intro
         background-color: #8c1e80
         font-size: 16px
@@ -104,9 +110,9 @@
     .submit-div
       text-align: center
       .submit-btn
-        color: #8c1e80
+        color: #C4D94B
         font-weight: 800
-        border: 2px solid #8c1e80
+        border: 2px solid #C4D94B
         background-color: #FFF;
         border-radius: 5px
         padding: 12px 60px
@@ -114,7 +120,7 @@
         font-size: 21px
         cursor: pointer
         &:hover
-          background-color: #8c1e80;
+          background-color: #C4D94B;
           color: #FFF
     .form-section-label
       color: #9e41b9
@@ -183,7 +189,7 @@
       border-left-color: #8c1e80; */
 
   .add-color
-    color: #8c1e80;
+    color: #0080A5;
   .help-text
     display: block
     font-size: 16px
