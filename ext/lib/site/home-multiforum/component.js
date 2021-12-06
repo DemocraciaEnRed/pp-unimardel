@@ -54,7 +54,7 @@ export default class HomeMultiforumOverride extends Component {
           <div className="banner-ideas">
             <img src="/ext/lib/site/home-multiforum/icon-idea.svg" alt="Ideas"/>
             <p>Subí tu idea o participá para mejorar con tus aportes para otros proyectos.</p>
-            <Link to={'/propuestas'} className="boton-foro" href="">Accedé al Formulario de subida de IDEAS</Link>
+            <Link to={'/propuestas'} className="boton-foro" href="">Accedé a las ideas</Link>
           </div>
           <BannerMapaVectores />
           <Jump goTop={this.goTop} />
