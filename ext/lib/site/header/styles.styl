@@ -29,6 +29,7 @@ nav.navbar
     text-transform: uppercase
     font-weight: bold
   .navbar-nav
+    height: 80px;
     font-size: 17px
     display: flex
     align-items center
@@ -49,7 +50,6 @@ nav.navbar
           @media screen and (min-width: 975px)
             font-weight: bold
   .header-item
-    height: 80px;
     padding: 0 20px;
     @media screen and (max-width: 500px)
       padding: 0 13px;
@@ -58,17 +58,15 @@ nav.navbar
     align-items: center;
     &:hover, &.active
       background-color: #F3F3F3
-      height: 44px;
-      left: -15px;
-      top: -4px;
       border-radius: 34px;
+      height: 44px;
       padding: 3px, 17px, 3px, 17px;
     .header-link
       height: auto
       position: relative
       color: black
   .user-badge-helper
-    margin-left 10px
+    margin-left 
 
  a.header-link.anon-user
   text-transform:lowercase

@@ -99,7 +99,7 @@ class Header extends Component {
             tabIndex="1"
             >
             <img
-              src={config.logo}
+              src={config.logoMobile}
               className='d-inline-block align-top'
               height='30'
               alt="MGP Presupuesto participativo"
