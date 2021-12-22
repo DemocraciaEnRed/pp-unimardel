@@ -13,8 +13,6 @@ import { Link } from 'react-router'
 
 // const PROPOSALS_FORUM_NAME = 'propuestas'
 
-const PLACEHOLDER = "Ejemplo: Propongo la construcción de barandas para senderos peatonales para cuidar los ambientes protegidos del Parque Natural. Este proyecto beneficiará a toda la comunidad brindando una mejor accesibilidad hacia los diferentes sectores de observación dentro del Parque Natural. Propongo la instalación de dos nuevos juegos en la plaza de la zona para garantizar la distancia social necesaria por el COVID-19. Este proyecto beneficiará a todos los niños y niñas de la zona."
-
 class FormularioPropuesta extends Component {
   constructor (props) {
     super(props)
@@ -377,8 +375,8 @@ class FormularioPropuesta extends Component {
             <textarea
               className='form-control'
               required
-              placeholder={PLACEHOLDER}
-              rows='6'
+              placeholder='Ejemplo N°1: Propongo la construcción de barandas para senderos peatonales para cuidar los ambientes protegidos del Parque Natural. Este proyecto beneficiará a toda la comunidad brindando una mejor accesibilidad hacia los diferentes sectores de observación dentro del Parque Natural.&#10;Ejemplo N°2: Propongo la instalación de dos nuevos juegos en la plaza de la zona para garantizar la distancia social necesaria por el COVID-19. Este proyecto beneficiará a todos los niños y niñas de la zona.'
+              rows='7'
               max='5000'
               name='problema'
               value={this.state['problema']}

@@ -23,12 +23,9 @@ export default function BannerForoVecinal (props) {
         </div>           */}
         <div className="row">
           <div className="col-md-12">
-            <div>
-              {/* <img src='' alt="Mapa de zonas en vectores"/> */}
-              <VectorMap 
-                onClick={(e) => alert("que dice")}
-              />
-            </div>
+            <VectorMap 
+              onClick={(e) => alert("que dice")}
+            />
           </div>
         </div>  
         <div className="row">
