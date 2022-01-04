@@ -105,7 +105,11 @@ export default class FilterPropuestas extends Component {
           {<FilterBox
             name='zona'
             title='Zona'
-            allOptions={zonas}
+            allOptions={zonas.sort(function(a, b) {
+              const y = a.name.split("Zona ")[1]
+              const z = b.name.split("Zona ")[1]
+              return y-z;
+            })}
             activeOptions={zona}
             tabIndex="0"
             activeDropdown={this.state.activeDropdown}
