@@ -40,7 +40,7 @@ export default class Page extends Component {
                   </div>
                   <div data-trigger="+ ¿CÓMO SE DISTRIBUYE EL DINERO POR ZONA?">
                     <p className='p-padding'>
-                    La partida presupuestaria anual asignada al Programa ParticipaMGP, definida anualmente por la Secretaría de Economía y Hacienda, respetando los límites expuestos en la O-25061, se distribuye en 09 zonas considerando equidad territorial, equidad distributiva y cumplimiento fiscal.
+                    La partida presupuestaria anual asignada al Programa ParticipaMGP, definida anualmente por la Secretaría de Economía y Hacienda, respetando los límites expuestos en la O-25061, se distribuye en 11 zonas considerando equidad territorial, equidad distributiva y cumplimiento fiscal.
                     <br/>
                     Para ésto, se le asignará a cada zona el monto que surja de las siguientes pautas:
                     <ul>
