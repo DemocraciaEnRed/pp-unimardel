@@ -58,9 +58,7 @@ export default function ThumbsVoto(props) {
               className="text-center mgp">
               { props.texts['home-icono1-titulo']}
             </h2>
-            <p className="que-son-cont">
-              { props.texts['home-icono1-texto']}
-            </p>
+            <p className="que-son-cont" dangerouslySetInnerHTML={{__html: props.texts['home-icono1-texto']}} />
           </div>
 
           <div className="col-md-4">
@@ -69,9 +67,7 @@ export default function ThumbsVoto(props) {
               style={styleIcono2}>
             </div>
             <h2 className="text-center mgp">{props.texts['home-icono2-titulo']}</h2>
-            <p className="que-propongo-cont">
-              {props.texts['home-icono2-texto']}
-            </p>
+            <p className="que-propongo-cont" dangerouslySetInnerHTML={{__html: props.texts['home-icono2-texto']}} />
 
           </div>
 
@@ -83,9 +79,7 @@ export default function ThumbsVoto(props) {
             <h2 className="text-center mgp">
               { props.texts['home-icono3-titulo']}
             </h2>
-            <p className="donde-voto-cont">
-              {props.texts['home-icono3-texto']}
-            </p>
+            <p className="donde-voto-cont" dangerouslySetInnerHTML={{__html: props.texts['home-icono3-texto']}} />
           </div>
 
         </div>

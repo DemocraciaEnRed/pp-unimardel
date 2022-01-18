@@ -9,7 +9,9 @@ const Footer = () => (
         <p>
           <span>Subsecretaría de Modernización</span>
           <span>Av. Juan B. Justo 5665 Piso 1</span>
-          <span><a tabIndex="8" href="mailto:ParticipaMGP@mardelplata.gob.ar">ParticipaMGP@mardelplata.gob.ar</a></span>
+          <span>Mar Del Plata, Provincia de Buenos Aires</span>
+          <span>Código postal: B7604AAG</span>
+          <span><a tabIndex="8" href="mailto:articipaMGP@mardelplata.gob.ar">ParticipaMGP@mardelplata.gob.ar</a></span>
         </p>
       </div>
       <div className='social-icon'>

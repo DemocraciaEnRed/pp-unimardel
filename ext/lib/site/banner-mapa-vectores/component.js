@@ -30,7 +30,7 @@ export default function BannerForoVecinal (props) {
         </div>  
         <div className="row">
           <div className="col-md-8">
-            <p className="text-right">Puede ver el mapa en detalle <a href="https://www.google.com/maps/d/viewer?mid=1Q1kDWfyz0PCdRx1OFlNoOA644HP9W2Bu&ll=-37.97165492717815%2C-57.78389299999999&z=10" target="_blank">aqui</a></p>
+            <p className="text-right">Puede ver el mapa en detalle <a href="https://www.google.com/maps/d/viewer?mid=1Q1kDWfyz0PCdRx1OFlNoOA644HP9W2Bu&ll=-37.97165492717815%2C-57.78389299999999&z=10" target="_blank">aquí</a></p>
           </div>
           <div className="col-md-4"></div>
         </div>                
