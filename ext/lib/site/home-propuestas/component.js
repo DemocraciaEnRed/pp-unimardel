@@ -436,7 +436,7 @@ class HomePropuestas extends Component {
                 {topics && topics.length === 0 && (
                   <div className='empty-msg'>
                     <div className='alert alert-success' role='alert'>
-                      No se encontraron propuestas.
+                      No se encontraron ideas.
                     </div>
                   </div>
                 )}

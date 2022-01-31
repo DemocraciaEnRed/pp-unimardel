@@ -195,7 +195,7 @@ export class TopicCard extends Component {
                   {
                     !isProyecto && !config.votacionVisible && config.propuestasVisibles && config.habilitarApoyo &&
                   <button
-                    className={`btn ${isProyectista ? '' : 'not-voted' }` }
+                    className={`btn btn-like ${isProyectista ? '' : 'not-voted' }` }
                     onClick={() => onProyectista(topic.id, !isProyectista)}
                     disabled={isProyectista}>
                   {isProyectista ? 'Te gusta' : 'Me gusta'}&nbsp;&nbsp;<span className='icon-like' /> {topic.proyectistas.length}
