@@ -2,6 +2,7 @@ import 'lib/boot/routes'
 import router from 'lib/site/boot/router'
 import AcercaDe from './pages/acerca-de'
 import TyC from './pages/terminos-y-condiciones'
+import PdfViewer from '../pdfviewer/component'
 
 router.childRoutes.unshift({
   path: 's/acerca-de',
@@ -11,4 +12,9 @@ router.childRoutes.unshift({
 router.childRoutes.unshift({
   path: 's/terminos-y-condiciones',
   component: TyC
+})
+
+router.childRoutes.unshift({
+  path: 'reglamento',
+  component: PdfViewer
 })

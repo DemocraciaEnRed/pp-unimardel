@@ -9,10 +9,10 @@ const etiquetas = [
   { nombre: "Ambiente y Sustentabilidad" },
   { nombre: "Género / DDHH / Accesibilidad" },
   { nombre: "Infraestructura / Producción" },
-  { nombre: "Académica / Aprendizajes " },
-  { nombre: "Vinculación con el medio" },
-  { nombre: "Arte / Deporte / Salud " },
+  { nombre: "Educación" },
+  { nombre: "Cultura y Deporte " },
   { nombre: "Convivencia y Participación" },
+  { nombre: "Salud" },
 ]
 
 const tags = etiquetas.map(etiqueta => {
