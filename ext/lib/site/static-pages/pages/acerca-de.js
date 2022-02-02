@@ -32,7 +32,7 @@ export default class Page extends Component {
           <div className='ext-acerca-de container'>
             <div className="filas">
               <div className="fila faq text-left">
-                <p className='p-padding'>Accedé al <a target="_blank" href="/reglamento">reglamento general</a> de Participa MGP. En este espacio te dejamos algunas normas básicas para que conozcas el funcionamiento del Presupuesto Participativo.</p>
+                <p className='p-padding'>Accedé al <a target="_blank" href="https://celeste.blob.core.windows.net/clients-assets/pp-mgp/pdf/presupuesto-participativo-mgp-2022.pdf">reglamento general</a> de Participa MGP. En este espacio te dejamos algunas normas básicas para que conozcas el funcionamiento del Presupuesto Participativo.</p>
 
                 <Accordion>
                   <div data-trigger="+ ¿QUÉ ES EL PRESUPUESTO PARTICIPATIVO DE GENERAL PUEYRREDON?">
