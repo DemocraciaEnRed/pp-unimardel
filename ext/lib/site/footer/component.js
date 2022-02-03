@@ -34,7 +34,7 @@ const Footer = () => (
       <div className='terminos'>
         <Link to='/s/terminos-y-condiciones' tabIndex="13"> Términos y condiciones
         </Link>
-        <a href="https://docs.google.com/document/d/1h3egOvtwpBDZHS2fY5Ms2dWP0YslU_pZ/edit?usp=sharing&ouid=104210888266272447846&rtpof=true&sd=true" tabIndex="14" rel="noopener noreferer" target="_blank"> Reglamento
+        <a href="/reglamento" tabIndex="14" rel="noopener noreferer" target="_blank"> Reglamento
         </a>
       </div>
     </div>

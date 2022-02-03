@@ -30,7 +30,8 @@ export default class PdfViewer extends Component {
     this.state = {
       loading: false,
       page: false,
-      pages: false
+      pages: false,
+      file: "https://celeste.blob.core.windows.net/clients-assets/pp-mgp/pdf/presupuesto-participativo-mgp-2022.pdf"
     }
   }
 
@@ -60,6 +61,7 @@ export default class PdfViewer extends Component {
     this.setState({ page: this.state.page + 1 })
   }
 
+
   render () {
     return (
       <div className='pdf-container'>
@@ -70,7 +72,7 @@ export default class PdfViewer extends Component {
         }
         <PDF
           fullWidth
-          file={`https://celeste.blob.core.windows.net/clients-assets/pp-mgp/pdf/presupuesto-participativo-mgp-2022.pdf`}
+          file={this.state.file}
           onDocumentComplete={this.onDocumentComplete}
           onPageComplete={this.onPageComplete}
           page={this.state.page}
@@ -93,6 +95,12 @@ export default class PdfViewer extends Component {
                 className='btn-pagination'>
                 <span className='icon-arrow-right' />
               </button>
+              <a
+                href={this.state.file}
+                target="_blank"
+                className='btn-pagination'>
+                <span className='icon-save' />
+              </a>              
             </div>
           </nav>
         }
