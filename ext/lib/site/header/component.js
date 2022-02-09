@@ -168,7 +168,7 @@ class Header extends Component {
                 className='header-link'
                 tabIndex="3"
                 >
-                  Propuestas
+                  Ideas
               </Link>
             </div>          
             { showAdmin &&
