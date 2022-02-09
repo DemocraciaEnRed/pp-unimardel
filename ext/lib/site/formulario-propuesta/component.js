@@ -340,7 +340,7 @@ class FormularioPropuesta extends Component {
             <label className='required'>
                 Temas
             </label>
-            <p className='help-text'>Elegí los temas relacionados a tu idea. Tenés un máximo de 1 tema.</p>
+            <p className='help-text'>Elegí los temas relacionados a tu idea. Recordá que podés seleccionar una sola opción.</p>
             {
               this.state.mode === 'edit' && this.state.tags &&
                 <ul className="tags">

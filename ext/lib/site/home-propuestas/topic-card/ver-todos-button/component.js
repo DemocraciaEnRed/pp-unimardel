@@ -11,7 +11,7 @@ class VerTodosButton extends Component {
               className="btn btn-empty"
               onClick={() => window.location.href = `/propuestas`
               }>
-                Ver todos los proyectos
+                Ver todas las ideas
               </button>
         </div>
     )
