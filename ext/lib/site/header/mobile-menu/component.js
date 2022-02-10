@@ -77,6 +77,19 @@ class MobileMenu extends Component {
                     Herramientas
                   </Link>
                 </div> */}
+                { this.props.showAdmin &&
+                  <div className='header-item'>
+                  <Link
+                    to='/proyectos/admin/topics'
+                    className={`header-link ${!~window.location.pathname.includes('/admin') ? 'active' : ''}`}
+                    activeStyle={{ color: '#8C1E81' }}
+                    onClick={this.props.toggleOnClick}
+                    tabIndex="3">
+                    Admin
+                  </Link>
+                </div>          
+                }                
+      
                 <div>
                   {this.props.user.state.rejected && (
                     <AnonUser form={this.props.form}
