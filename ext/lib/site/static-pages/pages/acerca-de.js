@@ -36,7 +36,7 @@ export default class Page extends Component {
 
                 <Accordion>
                   <div data-trigger="+ ¿QUÉ ES EL PRESUPUESTO PARTICIPATIVO DE GENERAL PUEYRREDON?">
-                    <p className='p-padding'>El Programa ParticipaMGP PP (Presupuesto Participativo) es un espacio donde vas a poder presentar las propuestas e ideas que tu barrio necesita. Luego, a través del voto, los vecinos del barrio van a poder decidir en qué utilizar parte del presupuesto del Municipio.</p>
+                    <p className='p-padding'>El Programa ParticipaMGP PP (Presupuesto Participativo) es un espacio donde vas a poder presentar las ideas que tu barrio necesita. Luego, a través del voto, los vecinos del barrio van a poder decidir en qué utilizar parte del presupuesto del Municipio.</p>
                   </div>
                   <div data-trigger="+ ¿CÓMO SE DISTRIBUYE EL DINERO POR ZONA?">
                     <p className='p-padding'>
@@ -51,20 +51,20 @@ export default class Page extends Component {
                     </ul>
                     </p>
                   </div>
-                  <div data-trigger="+ ¿QUIÉN PUEDE PRESENTAR PROPUESTAS?">
+                  <div data-trigger="+ ¿QUIÉN PUEDE PRESENTAR IDEAS?">
                     <p className='p-padding'>
                       Cualquier persona mayor de 16 años (cumplidos a la fecha de votación) con domicilio en su DNI en cualquiera de las zonas en las que se divide el Partido.
                     </p>
                   </div>
-                  <div data-trigger="+ ¿CÓMO SE ELABORAN LOS PROYECTOS?">
+                  <div data-trigger="+ ¿CÓMO SE ELABORAN LAS IDEAS?">
                     <p className='p-padding'>
-                    En una serie de reuniones informativas, los vecinos y los representantes de las entidades serán capacitados por funcionarios municipales y/o grupo de consejeros seleccionados en cada zona con el fin de cargar las ideas en la plataforma digital PARTICIPA.MARDELPLATA.GOB.AR utilizando el formulario de presentación de propuestas.
+                    En una serie de reuniones informativas, los vecinos y los representantes de las entidades serán capacitados por funcionarios municipales y/o grupo de consejeros seleccionados en cada zona con el fin de cargar las ideas en la plataforma digital PARTICIPA.MARDELPLATA.GOB.AR utilizando el formulario de presentación de ideas.
                     </p>
                   </div>
 
                   <div data-trigger="+ ¿CÓMO SE DECIDE QUÉ PROYECTOS VAN A VOTACIÓN?">
                     <p className="p-padding">
-                      Para que una propuesta pueda convertirse en un proyecto votable, luego del trabajo conjunto con funcionarios y/o grupo de consejeros, se pasa a una etapa de análisis legal, técnico y presupuestario. En esta instancia se termina de definir la factibilidad del proyecto y los costos estimados del mismo.
+                      Para que una idea pueda convertirse en un proyecto votable, luego del trabajo conjunto con funcionarios y/o grupo de consejeros, se pasa a una etapa de análisis legal, técnico y presupuestario. En esta instancia se termina de definir la factibilidad del proyecto y los costos estimados del mismo.
                     </p>
                   </div>
 
