@@ -1,0 +1,104 @@
+.seccion-proximos-encuentros
+  background-color: #00a6cb
+  //margin-bottom: 30px;
+  padding-top: 0;
+  padding-bottom: 30px;
+  @media screen and (max-width: 764px)
+    .eventos-container
+      flex-direction: column !important
+      text-align: center !important
+      .the-label
+        padding-right: 0 !important
+      .evento
+        margin: 15px !important
+  .boton-azul{
+    margin: 10px auto 40px;  
+  }
+  .btn-container{
+    width: 100%;
+    text-align: center;
+    margin: 10px 0px 40px;  
+  }
+  .fondo-titulo{
+    margin: 0 auto 30px;
+    margin-top: -30px;
+    position: relative;
+    h3{
+      margin: 5px 0;
+    }
+  }
+  .eventos-container{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0;
+    max-width: 768px;
+    margin: 0 auto;
+    p {
+      color: #FFF;
+      font-size: 12px;
+      margin: 0;
+      text-align: center
+    }
+    .the-label{
+      width: 100%;
+      padding-right: 40px;
+      color: #FFF;
+      h5{
+        margin-bottom: 15px;
+      }
+      a{
+        color: #FFF;
+        font-weight: 400px;
+        font-size: 14px;
+        margin-top:10px;
+        text-decoration: underline;
+      }
+    }
+    .evento{
+      margin: 0px 10px;
+      min-width: 110px; 
+      .top {
+        position: relative;
+        height: 25px;
+        background-color: #727272;
+        border-top-left-radius: 10px;  
+        border-top-right-radius: 10px;  
+        .poppi-left {
+          background-color: #BFBFBF;
+          position: absolute;
+          width: 12px;
+          height: 20px;
+          top: -5px;
+          left: 20%;
+          border-radius: 20px;
+        }
+        .poppi-right {
+          background-color: #BFBFBF;
+          position: absolute;
+          width: 12px;
+          height: 20px;
+          top: -5px;
+          right: 20%;
+          border-radius: 20px;
+        }
+      }
+      .bottom{
+        text-align: center;
+        padding: 8px 12px;
+        background-color: #FFF;
+        border-bottom-left-radius: 10px;  
+        border-bottom-right-radius: 10px;
+        h3{
+          color : #879c12;
+          margin: 10px 0;
+          font-weight: 800;
+        }  
+        p {
+          color: #000;
+          font-size: 12px;
+          margin: 0;
+        }
+      }
+    }
+  }
