@@ -11,6 +11,7 @@ import ThumbsVoto from 'ext/lib/site/thumbs-voto/component'
 // import ProyectosGanadores from 'ext/lib/site/proyectosGanadores/component'
 import Jump from 'ext/lib/site/jump-button/component'
 import Footer from 'ext/lib/site/footer/component'
+import EncuentrosProximos from 'ext/lib/site/encuentrosProximos/component'
 // import forumStore from 'lib/stores/forum-store/forum-store'
 // import topicStore from 'lib/stores/topic-store/topic-store'
 import textStore from 'lib/stores/text-store'
@@ -51,6 +52,7 @@ export default class HomeMultiforumOverride extends Component {
         <Anchor id='container'>
           <BannerForoVecinal title="Presupuesto participativo de General Pueyrredon" texts={this.state.texts} />
           <ThumbsVoto texts={this.state.texts} />
+          <EncuentrosProximos />
           <div className="banner-ideas">
             <img src="/ext/lib/site/home-multiforum/icon-idea.svg" alt="Ideas"/>
             <p>Subí tu idea o mejorá con tus comentarios las de los vecinos.</p>
