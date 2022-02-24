@@ -99,10 +99,10 @@ export default class Page extends Component {
         <div id='container' className="events-page">
           <div className='ext-herramientas'>
             <div className="text-center">
-              <h3 className="color-black">Calendario de reuniones</h3>
+              <h3 className="color-black">Calendario</h3>
               <p>Inscribite en la reunión de tu barrio y presentá propuestas para mejorarlo.</p>
             </div>
-            <br></br> 
+            <br/> 
              <div className="text-center">
               <h3 className="">Proximos encuentros</h3>
               {

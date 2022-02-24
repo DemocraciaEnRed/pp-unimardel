@@ -87,7 +87,7 @@ export default class EncuentrosProximos extends Component {
       <div className='seccion-proximos-encuentros'>
         <div className="text-center">
           <div className="fondo-titulo" style={{backgroundColor: '#c4d94b', fontFamily: 'Museo300'}}>
-            <h3 className='subtitle'>CALENDARIO DE ENCUENTROS</h3>
+            <h3 className='subtitle'>NOVEDADES Y PRÓXIMOS ENCUENTROS</h3>
           </div>
         </div>
         <div className="container-fluid">
