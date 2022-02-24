@@ -104,7 +104,7 @@ export default class Page extends Component {
             </div>
             <br/> 
              <div className="text-center">
-              <h3 className="">Proximos encuentros</h3>
+              <h3 className="">Próximos encuentros</h3>
               {
                 isLoading 
                 ? <p>Cargando...</p> 
