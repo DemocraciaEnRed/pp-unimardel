@@ -87,21 +87,21 @@ export default class EncuentrosProximos extends Component {
       <div className='seccion-proximos-encuentros'>
         <div className="text-center">
           <div className="fondo-titulo" style={{backgroundColor: '#c4d94b', fontFamily: 'Museo300'}}>
-            <h3 className='subtitle'>ENCUENTROS</h3>
+            <h3 className='subtitle'>CALENDARIO DE ENCUENTROS</h3>
           </div>
         </div>
-        <div className="container">
+        <div className="container-fluid">
 
         <div className="row text-center">
           <div className="col-lg-12">
-          <p className="text-white">Inscribite en la reunión de tu barrio y presentá propuestas para mejorarlo.<br/>Este año, debido a la pandemia por el COVID19, todas las reuniones se realizarán de forma virtual a través de Zoom.  </p>
+          <p className="text-white">Inscribite en la reunión de tu barrio y presentá propuestas para mejorarlo.<br/></p>
           </div>
         </div>
         <br></br>
-        <div className="row ">
+        <div className="row">
           <div className="eventos-container">
             <div className="the-label">
-              <h5><span className="glyphicon glyphicon-facetime-video"></span> PRÓXIMAS<br/>REUNIONES</h5>
+              <h5><span className="glyphicon glyphicon-calendar"></span> PRÓXIMAS<br/>REUNIONES</h5>
               <Link href="/s/encuentros">
                 Ver todos
               </Link>
@@ -120,11 +120,12 @@ export default class EncuentrosProximos extends Component {
                     <div className="poppi-right"></div>
                   </div>
                   <div className="bottom">
-                    <h3>{event.dia}/{event.mes}</h3>
-                    <p><b>{event.barrio}</b><br/>{
-                      event.cupoLleno == 'FALSE' ? 
-                    `${event.inicioHora} a ${event.finHora} Hrs`
-                    : <span style={{fontWeight: 'bold', color: 'red', fontSize: '10px'}}>¡CUPO LLENO!</span>}
+                    <h3>{event.barrio}</h3>
+                    <h4>{event.fechaDiaLegible}<br/>{event.inicioHora}:{event.inicioMinuto} Hs</h4>
+                    <p>
+                    <b>{event.descripcion}</b><br/>
+                    {event.direccion}<br/>{
+                      event.cupoLleno == 'TRUE' && <span style={{fontWeight: 'bold', color: 'red', fontSize: '10px'}}>¡CUPO LLENO!</span>}
                     </p>
                   </div>
                 </div>)
