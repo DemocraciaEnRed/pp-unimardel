@@ -94,7 +94,7 @@ export default class EncuentrosProximos extends Component {
 
         <div className="row text-center">
           <div className="col-lg-12">
-          <p className="text-white">Inscribite en la reunión de tu barrio y presentá propuestas para mejorarlo.<br/></p>
+          <p className="text-white">Agendate la reunión de tu barrio y presentá tus ideas.<br/></p>
           </div>
         </div>
         <br></br>
