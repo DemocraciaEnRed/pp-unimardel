@@ -132,6 +132,7 @@ class FormularioPropuesta extends Component {
       'attrs.documento': this.state.documento,
       // 'attrs.genero': this.state.genero,
       'attrs.problema': this.state.problema,
+      zona: this.state.zona,
       tags: this.state.tags.map(tag => tag.name)
     }
     if (this.state.forum.privileges && this.state.forum.privileges.canChangeTopics && this.state.mode === 'edit') {
