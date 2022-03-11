@@ -11,7 +11,7 @@ print('Nombre,Apellido,Email,Fecha de registro,Validado')
 //db.users.aggregate([
 //  {$sort: {createdAt: -1}}
 db.users.find().forEach(u => {
-	let d = u.createdAt 
+	var d = u.createdAt 
 	// convertimos a GMT-3
 	d.setHours(d.getHours() - 3)
 	print(
