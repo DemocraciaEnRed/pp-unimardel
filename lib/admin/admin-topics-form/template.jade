@@ -54,6 +54,14 @@
             - each tag in forum.initialTags
               button.btn.btn-default.btn-sm.forum-tag(data-value=tag, type='button', disabled=(topic.tags && !!~topic.tags.indexOf(tag)))= tag
 
+        .form-group
+          label= 'Zona'
+          select.form-control(name='zona', validate='required')
+            - var topicZona = topic.zona && topic.zona.nombre
+            - each zona in zonas
+              option(selected=zona.nombre === topicZona, value=zona._id)
+                = zona.nombre
+
         - if (forum.topicsAttrs.length > 0)
           fieldset.attrs-wrapper
             div(data-attrs)
