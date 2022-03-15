@@ -75,7 +75,7 @@
             span.text.topic-tags=topic.tags.map(toTitleCase).join(', ')
 
           .topic-status-data
-            - if (topic.owner && topic.owner.zona)
-              span.placa.text=topic.owner.zona.nombre
+            - if (topic.zona)
+              span.placa.text=topic.zona.nombre
 
     .topics-pagination
