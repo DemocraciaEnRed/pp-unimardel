@@ -32,8 +32,8 @@ exports.up = function up (done) {
               a.groupOrder = 1
               a.width = 12
               if (a.name == "admin-comment"){
-                a.title = "Comentario al autor/a de la idea"
-                a.description = "Escribir aquí un comentario"
+                a.title = "Comentario del moderador"
+                a.description = "Escribir aquí un comentario en el caso que se cambie el estado a \"Factible\" o \"No factible\""
               }else if (a.name == "admin-comment-referencia"){
                 a.title = "Integración de ideas"
                 a.description = "Colocar aquí el link a la idea final, en el caso que esta idea esté integrada junto con otra"
