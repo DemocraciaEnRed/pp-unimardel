@@ -57,7 +57,7 @@
         .form-group
           label= 'Zona'
           select.form-control(name='zona', validate='required')
-            - var topicZona = topic.zona && topic.zona.id
+            - var topicZona = typeof topic.zona === 'string' ? topic.zona : (topic.zona && topic.zona.id)
             - each zona in zonas
               option(selected=zona.id === topicZona, value=zona.id)
                 = zona.nombre
