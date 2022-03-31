@@ -20,6 +20,8 @@
           | &nbsp;
           i.icon-eye
     include commands
+    h3.subtitle
+      = "1. Idea original"
     .topic-admin
       form(action=form.action, method=form.method, role='form', autocomplete='off', novalidate, autovalidate='autovalidate', autosubmit='autosubmit')
         - if (topic.privileges && !topic.privileges.canEdit)
@@ -67,4 +69,5 @@
             div(data-attrs)
 
         input.btn.btn-success.hide(type='submit', value=t('admin-topics-form.button.submit'))
+
     include commands
