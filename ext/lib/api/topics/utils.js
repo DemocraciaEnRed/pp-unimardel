@@ -43,7 +43,9 @@ const queryTopics = (opts) => {
     forum,
     tags,
     related,
-    owners
+    owners,
+    zonas,
+    zona
   } = opts
 
   const query = {
@@ -53,6 +55,8 @@ const queryTopics = (opts) => {
 
   if (owners && owners.length > 0) query.owner = { $in: owners }
   if (tags && tags.length > 0) query.tags = { $in: tags }
+  if (zonas && zonas.length > 0) query.zona = { $in: zonas.map(id => ObjectID(id)) }
+  else if (zona) query.zona = zona
   if (state && state.length > 0) query['attrs.state'] = { $in: state }
   if (related && related.length > 0) query['attrs.admin-comment-referencia'] = { $regex: `.*${related}.*` }
 
@@ -69,8 +73,9 @@ const getPossibleOwners = (opts) => {
 
   const query = {}
 
-  if (zonas && zonas.length > 0) query.zona = { $in: zonas.map(id => ObjectID(id)) }
-  else if (zona) query.zona = zona
+  // La zona ahora se encuentra en el topic
+  // if (zonas && zonas.length > 0) query.zona = { $in: zonas.map(id => ObjectID(id)) }
+  // else if (zona) query.zona = zona
 
   if (Object.keys(query).length > 0)
     return apiV1.user.findIds(query)
