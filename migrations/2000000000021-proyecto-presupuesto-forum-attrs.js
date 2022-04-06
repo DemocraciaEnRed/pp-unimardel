@@ -205,16 +205,20 @@ exports.up = function up (done) {
 									"title" : "Pendiente"
 								},
 								{
-									"name" : "factible",
-									"title" : "Factible"
-								},
-								{
 									"name" : "no-factible",
 									"title" : "No factible"
 								},
 								{
 									"name": "integrado",
-									"title": "Integrado"
+									"title": "Integrada"
+								},								
+								{
+									"name" : "factible",
+									"title" : "Factible"
+								},
+								{
+									"name" : "ganador",
+									"title" : "Ganadora"
 								},								
 							]
 						}else if (attr.name == 'admin-comment') {
