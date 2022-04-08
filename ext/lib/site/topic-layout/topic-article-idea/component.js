@@ -17,6 +17,7 @@ import { Link } from 'react-router'
 import VotarButton from 'ext/lib/site/home-propuestas/topic-card/votar-button/component'
 import VerTodosButton from 'ext/lib/site/home-propuestas/topic-card/ver-todos-button/component'
 import config from 'lib/config'
+import Accordion from 'react-responsive-accordion';
 
 class TopicArticle extends Component {
   constructor (props) {
@@ -100,7 +101,7 @@ class TopicArticle extends Component {
       forum.privileges.canChangeTopics
     const isSistematizada = topic && topic.attrs && topic.attrs.state == 'sistematizada'
     const isIdeaProyecto = topic && topic.attrs && topic.attrs.state == 'idea-proyecto'
-    const isProyecto = topic && topic.attrs && topic.attrs.state == 'proyecto'
+    const isProyecto = topic && topic.attrs && topic.attrs.state == 'factible'
 
     if (!topic) {
       return (
@@ -135,62 +136,89 @@ class TopicArticle extends Component {
             <div onClick={hideSidebar} className='topic-overlay' />
         }
         
-          <Header
-            closingAt={topic.closingAt}
-            closed={topic.closed}
-            author={null}
-            authorUrl={null}
-            tags={topic.tags}
-            forumName={forum.name}
-            mediaTitle={topic.mediaTitle}
-            numero={topic.attrs && topic.attrs.numero} />
+        <Header
+          closingAt={topic.closingAt}
+          closed={topic.closed}
+          author={null}
+          authorUrl={null}
+          tags={topic.tags}
+          forumName={forum.name}
+          mediaTitle={topic.mediaTitle}
+          numero={topic.attrs && topic.attrs.numero} />
         
 
         <div className='topic-article-content entry-content skeleton-propuesta'>
+
+        <div className='topic-article-nombre'>Autor/es/as: {topic.owner.firstName}</div>
+          <div className='topic-article-zona'>{topic.zona.nombre}</div>
+
          <div className='topic-article-status-container'>
-        {
-          (forum.privileges && forum.privileges.canChangeTopics)
-            ? (
-              <div className='topic-article-content topic-admin-actions'>
-                <Link href={editUrl}>
-                  <a className='btn btn-default'>
-                    <i className='icon-pencil' />
-                    &nbsp;
-                    Editar proyecto
-                  </a>
-                </Link>
-              </div>
-            )
-            : (topic.privileges && topic.privileges.canEdit) &&
-
-               (
-                 <div className='topic-article-content topic-admin-actions'>
-                   <a
-                     href={editUrl}
-                     className='btn btn-default'>
-                     <i className='icon-pencil' />
+          {
+            (forum.privileges && forum.privileges.canChangeTopics)
+              ? (
+                <div className='topic-article-content topic-admin-actions'>
+                  <Link href={editUrl}>
+                    <a className='btn btn-default'>
+                      <i className='icon-pencil' />
                       &nbsp;
-                     Editar proyecto
-                   </a>
-                 </div>
-               )
+                      Editar proyecto
+                    </a>
+                  </Link>
+                </div>
+              )
+              : (topic.privileges && topic.privileges.canEdit) &&
 
-        }
-        </div>
-          { !isProyecto && <div className='topic-article-nombre'>Autor: {topic.owner.firstName}</div> }
-          { isProyecto && <div className='topic-article-presupuesto'>Monto estimado: ${topic.attrs.presupuesto.toLocaleString()}</div> }
-          { /* <h2 className='topic-article-subtitulo'>subtítulo de la propuesta</h2> */ }
+                (
+                  <div className='topic-article-content topic-admin-actions'>
+                    <a
+                      href={editUrl}
+                      className='btn btn-default'>
+                      <i className='icon-pencil' />
+                        &nbsp;
+                      Editar proyecto
+                    </a>
+                  </div>
+                )
 
-          <span className='topic-article-span'>{isProyecto ? 'Proyecto' : 'Idea'}</span>
-          {topic.attrs.problema &&
-            <div
-              className='topic-article-p'
-              dangerouslySetInnerHTML={{
-                __html: topic.attrs.problema.replace(/https?:\/\/[a-zA-Z0-9./]+/g, '<a href="$&" rel="noopener noreferer" target="_blank">$&</a>')
-              }}>
-            </div>
           }
         </div>
+
+        { isProyecto && <div className='topic-article-presupuesto'>Monto estimado: ${topic.attrs['presupuesto-total'].toLocaleString()}</div> }
+
+          {topic.attrs['proyecto-contenido'] &&
+            <div
+              className='topic-article-proyecto'
+              dangerouslySetInnerHTML={{
+                __html: topic.attrs['proyecto-contenido'].replace(/https?:\/\/[a-zA-Z0-9./]+/g, '<a href="$&" rel="noopener noreferer" target="_blank">$&</a>')
+              }}>
+            </div>
+          }        
+          
+        </div>
+        
+        <div className="seccion-idea">
+          <Accordion>
+            <div className='topic-article-idea' data-trigger={`Idea Original`}>
+              <div>
+                {topic.attrs['problema'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
+              </div>
+            </div>
+            <div className='topic-article-comentario' data-trigger={`Comentarios del moderador`}>
+              <div>
+                {topic.attrs['admin-comment'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
+                <p className='font-weight-bold'>Equipo de Coordinación y Gestión PPMGP</p>
+              </div>
+            </div>               
+          </Accordion>
+
+        </div>
+
+        {/* <span className='topic-article-span'>{isProyecto ? 'Proyecto' : 'Idea'}</span> */}
+
+        {/* <div className="seccion-idea"> */}
+        {/* </div> */}
+
+
         {/*topic.attrs.state !== 'pendiente' && topic.attrs.state !== 'no-factible' && topic.attrs.state !== 'integrado' && (topic.attrs.anio === '2019' || topic.attrs.anio === '2020')  &&
           <div className='topic-article-content alert alert-success alert-proyecto' role='alert'>
             Podés ver el proyecto final presentado en la votación <Link to={`/proyectos/topic/${topic.id}`} className='alert-link'>aquí</Link>.
@@ -221,19 +249,6 @@ class TopicArticle extends Component {
               <p className='alert alert-info alert-propuesta'>
                 El estado de ésta propuesta fue cambiado a {this.getEstado(topic.attrs.state)}, por lo tanto ya no puede ser editada por su autor/a.
               </p>
-            )
-        }
-        {
-          (topic.attrs['admin-comment'] && topic.attrs['admin-comment'] !== '') &&
-            (
-              <div className='alert alert-info alert-propuesta' role='alert'>
-                <p>{topic.attrs['admin-comment']}</p>
-
-                {topic.attrs['admin-comment-referencia'] && topic.attrs['admin-comment-referencia'] !== '' &&
-                  <p className='admin-comment-referido'>Podés ver las ideas sistematizadas <a className='admin-comment-referido' href={topic.attrs['admin-comment-referencia']}>aquí</a>.</p>
-                }
-                <p className='font-weight-bold'>Equipo de Coordinación y Gestión PPMGP</p>
-              </div>
             )
         }
 

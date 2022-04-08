@@ -240,11 +240,14 @@ topicColor2 = #999
     }
 
 .topic-article-nombre
-  color: #999
-  margin-bottom: 10px;
   font-size: .9em
   @media(max-width: 768px)
       padding: px
+
+.topic-article-zona
+  font-size: .9em
+  @media(max-width: 768px)
+      padding: px      
 
 .topic-article-presupuesto
   color: #C4D94B
@@ -264,12 +267,29 @@ topicColor2 = #999
   padding: 4px 17px 4px 6px;
   color: #FFF;
 
-.topic-article-p
+.topic-article-proyecto
   font-size: .9em
   font-weight: normal
   white-space: pre-wrap
   line-height: 1.5em
   margin: 10px 0 30px;
+
+.topic-article-idea
+  font-weight: normal
+  white-space: pre-wrap
+  line-height: 1.5em
+  margin: 10px 0 30px;  
+  padding: 2px 0 0 10px;
+  color: #696969;  
+
+.topic-article-comentario
+  font-weight: normal
+  white-space: pre-wrap
+  line-height: 1.5em
+  margin: 10px 0 30px;
+  padding: 2px 0 0 10px;
+  color: #696969;  
+
 
 // .topic-article-status-container
   // @media(max-width: 1100px)
@@ -340,6 +360,7 @@ topicColor2 = #999
       @media screen and (max-width: 760px)
         display: block
 
+
 .banner
     width: 100%
     display: block
@@ -362,6 +383,7 @@ topicColor2 = #999
     padding: 0;
     margin: 10px 0 20px;
     .btn-default
+      font-family: 'Museo900', sans-serif!important
       color: #00A6CB;
       background-color: #fff;
       border: 1px solid #00A6CB
@@ -427,3 +449,34 @@ topicColor2 = #999
 
   .btn-si
     margin-right: 10px;
+
+
+.seccion-idea
+  margin: auto
+  display: flex;
+  justify-content: center;  
+  width: 848px
+
+  .Collapsible
+    text-align: left;
+    margin-bottom: 10px;
+    border-top: unset
+    padding-top: unset
+    background: #F1F1F1;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    
+
+  .Collapsible__trigger
+    display: flex;
+    padding: 8px
+    border-radius: 5px;
+    cursor: pointer;
+    color: #FFFFFF
+    background: #00A6CB;
+    
+    .topic-article-idea
+      background: #00A6CB;
+
+    .topic-article-comentario
+      background: #C4D94B;
