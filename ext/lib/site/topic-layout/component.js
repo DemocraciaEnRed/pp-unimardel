@@ -7,7 +7,7 @@ import topicStore from 'lib/stores/topic-store/topic-store'
 import userConnector from 'lib/site/connectors/user'
 import topicConnector from 'lib/site/connectors/topic'
 //import TopicArticleProyecto from './topic-article-proyecto/component'
-import TopicArticlePropuesta from './topic-article-propuesta/component'
+import TopicArticleIdea from './topic-article-idea/component'
 import Jump from 'ext/lib/site/jump-button/component'
 import Anchor from 'ext/lib/site/anchor'
 import Footer from 'ext/lib/site/footer/component'
@@ -93,9 +93,9 @@ export class TopicLayout extends Component {
       <div className={`ext-topic-container ${this.props.user.state.fulfilled ? 'user-logged' : ''}`}>
         <Anchor id='container'>
           <div id='topic-wrapper'>
-            { <TopicArticlePropuesta topic={topic} forum={forum} onVote={this.handleVote} />
+            { <TopicArticleIdea topic={topic} forum={forum} onVote={this.handleVote} />
               /*name === 'propuestas'
-                ? <TopicArticlePropuesta topic={topic} forum={forum}/>
+                ? <TopicArticleIdea topic={topic} forum={forum}/>
                 : <TopicArticleProyecto topic={topic} forum={forum} />*/
             }
           </div>

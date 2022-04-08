@@ -57,15 +57,24 @@ export default class Header extends Component {
         </h2>
       )
     }
+    // return (
+    //   <header className='topic-article-header topic-article-content'>
+    //     { this.props.children }
+    //     {learnMore}
+    //     {closingAt}
+    //     <h1>{this.props.numero && `#${this.props.numero} ` }{this.props.mediaTitle}</h1>
+    //   </header>
+    // )
+
     return (
-      <header className='topic-article-header topic-article-content'>
-        { this.props.children }
-        {learnMore}
-        {closingAt}
-        <h1>{this.props.numero && `#${this.props.numero} ` }{this.props.mediaTitle}</h1>
-
-
-      </header>
+      <section className="banner-topic">
+      <div className="banner"></div>
+      <div className='contenedor'>
+        <div className='fondo-titulo'>
+          <h1>{this.props.numero && `#${this.props.numero} ` }{this.props.mediaTitle}</h1>
+        </div>
+      </div>
+    </section>
     )
   }
 }
