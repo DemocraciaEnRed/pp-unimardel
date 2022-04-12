@@ -4,20 +4,14 @@ import t from 't-component'
 import urlBuilder from 'lib/url-builder'
 import userConnector from 'lib/site/connectors/user'
 import Header from './header/component'
-import Content from './content/component'
-import Footer from './footer/component'
 import Social from './social/component'
-import Vote from './vote/component'
-import Poll from './poll/component'
 import Cause from './cause/component'
 import Comments from './comments/component'
-import AdminActions from './admin-actions/component'
-import Proyectos from 'ext/lib/site/proyectos/component'
 import { Link } from 'react-router'
 import VotarButton from 'ext/lib/site/home-propuestas/topic-card/votar-button/component'
 import VerTodosButton from 'ext/lib/site/home-propuestas/topic-card/ver-todos-button/component'
 import config from 'lib/config'
-import Accordion from 'react-responsive-accordion';
+import Collapsible from 'react-collapsible'
 
 class TopicArticle extends Component {
   constructor (props) {
@@ -99,9 +93,52 @@ class TopicArticle extends Component {
       forum &&
       forum.privileges &&
       forum.privileges.canChangeTopics
-    const isSistematizada = topic && topic.attrs && topic.attrs.state == 'sistematizada'
-    const isIdeaProyecto = topic && topic.attrs && topic.attrs.state == 'idea-proyecto'
     const isProyecto = topic && topic.attrs && topic.attrs.state == 'factible'
+    const ideasIntegradas = [
+      {
+        mediaTitle: "Idea integrada que redirije a una idea/proyecto integrador",
+        id: "62472d19e932bd5f3d5267f8"
+      },
+      {
+        mediaTitle: "Idea integrada 2",
+        id: "62559753b258d125fababba2"
+      },      
+      {
+        mediaTitle: "Idea integrada que redirije a una idea/proyecto integrador",
+        id: "62472d19e932bd5f3d5267f8"
+      },
+      {
+        mediaTitle: "Idea integrada 2",
+        id: "62559753b258d125fababba2"
+      },     
+      {
+        mediaTitle: "Idea integrada que redirije a una idea/proyecto integrador",
+        id: "62472d19e932bd5f3d5267f8"
+      },
+      {
+        mediaTitle: "Idea integrada 2",
+        id: "62559753b258d125fababba2"
+      },     
+      {
+        mediaTitle: "Idea integrada que redirije a una idea/proyecto integrador",
+        id: "62472d19e932bd5f3d5267f8"
+      },
+      {
+        mediaTitle: "Idea integrada 2",
+        id: "62559753b258d125fababba2"
+      },           
+      {
+        mediaTitle: "Idea integrada que redirije a una idea/proyecto integrador",
+        id: "62472d19e932bd5f3d5267f8"
+      },
+      {
+        mediaTitle: "Idea integrada 2",
+        id: "62559753b258d125fababba2"
+      },     
+    ]
+    const isIntegrada = topic && topic.attrs && topic.attrs.state === 'integrado'
+
+    const referenciaIntegradoraUrl = topic.attrs['admin-comment-referencia'] && window.location.origin + '/propuestas/topic/' + topic.attrs['admin-comment-referencia']
 
     if (!topic) {
       return (
@@ -183,7 +220,20 @@ class TopicArticle extends Component {
           }
         </div>
 
-        { isProyecto && <div className='topic-article-presupuesto'>Monto estimado: ${topic.attrs['presupuesto-total'].toLocaleString()}</div> }
+        <div className="row">
+          <div className="col-md-4"></div>
+          <div className="col-md-4">
+          { isProyecto && <div className='card-presupuesto'>
+            <h3>
+              Presupuesto asignado
+            </h3>
+            <span>${topic.attrs['presupuesto-total'].toLocaleString()}</span>
+          </div> }
+          </div>
+          <div className="col-md-4"></div>
+        </div>
+
+        
 
           {topic.attrs['proyecto-contenido'] &&
             <div
@@ -195,35 +245,7 @@ class TopicArticle extends Component {
           }        
           
         </div>
-        
-        <div className="seccion-idea">
-          <Accordion>
-            <div className='topic-article-idea' data-trigger={`Idea Original`}>
-              <div>
-                {topic.attrs['problema'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
-              </div>
-            </div>
-            <div className='topic-article-comentario' data-trigger={`Comentarios del moderador`}>
-              <div>
-                {topic.attrs['admin-comment'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
-                <p className='font-weight-bold'>Equipo de Coordinación y Gestión PPMGP</p>
-              </div>
-            </div>               
-          </Accordion>
 
-        </div>
-
-        {/* <span className='topic-article-span'>{isProyecto ? 'Proyecto' : 'Idea'}</span> */}
-
-        {/* <div className="seccion-idea"> */}
-        {/* </div> */}
-
-
-        {/*topic.attrs.state !== 'pendiente' && topic.attrs.state !== 'no-factible' && topic.attrs.state !== 'integrado' && (topic.attrs.anio === '2019' || topic.attrs.anio === '2020')  &&
-          <div className='topic-article-content alert alert-success alert-proyecto' role='alert'>
-            Podés ver el proyecto final presentado en la votación <Link to={`/proyectos/topic/${topic.id}`} className='alert-link'>aquí</Link>.
-          </div>
-        */}
         <div className='topic-actions topic-article-content'>
           { !isProyecto && <Cause
             topic={topic}
@@ -234,6 +256,49 @@ class TopicArticle extends Component {
           &nbsp;
           <VerTodosButton />
         </div>
+        
+        <div className="seccion-idea">
+          <div>
+            <Collapsible 
+              open={true} 
+              triggerClassName='topic-article-idea' 
+              triggerOpenedClassName='topic-article-idea' 
+              trigger={`Idea Original`}>
+              {topic.attrs['problema'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
+
+              {isIntegrada && referenciaIntegradoraUrl && 
+                <div className='topic-article-integrado'>
+                  <u className='titulo'>Podés ver el proyecto final integrador</u>
+                  <Link to={referenciaIntegradoraUrl} target="_blank">
+                  <a className='btn link'>aquí</a>  
+                  </Link>
+                
+                </div>
+              }
+              {isProyecto && ideasIntegradas && 
+                <div className='topic-article-integrado'>
+                  <u className='titulo'>Ideas integradas</u> <br />
+                  {ideasIntegradas.map((idea) => <Link to={idea.id} target="_blank">
+                    <a className='btn link'>{idea.mediaTitle}</a>  
+                  </Link>
+                  )}
+                </div>
+              }                            
+            </Collapsible>
+            
+            <Collapsible 
+              open={true} 
+              triggerClassName='topic-article-comentario' 
+              triggerOpenedClassName='topic-article-comentario' 
+              trigger={`Comentarios del moderador`}>
+              {topic.attrs['admin-comment'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
+              <p className='font-weight-bold'>Equipo de Coordinación y Gestión PPMGP</p>
+            </Collapsible>            
+
+          </div>
+
+        </div>
+
         <Social
           topic={topic}
           twitterText={twitterText}
@@ -253,7 +318,7 @@ class TopicArticle extends Component {
         }
 
         {
-          !user.state.pending && !isSistematizada && !isIdeaProyecto && !isProyecto && <Comments forum={forum} topic={topic} />
+          !user.state.pending && !isProyecto && <Comments forum={forum} topic={topic} />
         }
       </div>
     )
