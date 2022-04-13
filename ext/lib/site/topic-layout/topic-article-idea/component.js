@@ -94,51 +94,10 @@ class TopicArticle extends Component {
       forum.privileges &&
       forum.privileges.canChangeTopics
     const isProyecto = topic && topic.attrs && topic.attrs.state == 'factible'
-    const ideasIntegradas = [
-      {
-        mediaTitle: "Idea integrada que redirije a una idea/proyecto integrador",
-        id: "62472d19e932bd5f3d5267f8"
-      },
-      {
-        mediaTitle: "Idea integrada 2",
-        id: "62559753b258d125fababba2"
-      },      
-      {
-        mediaTitle: "Idea integrada que redirije a una idea/proyecto integrador",
-        id: "62472d19e932bd5f3d5267f8"
-      },
-      {
-        mediaTitle: "Idea integrada 2",
-        id: "62559753b258d125fababba2"
-      },     
-      {
-        mediaTitle: "Idea integrada que redirije a una idea/proyecto integrador",
-        id: "62472d19e932bd5f3d5267f8"
-      },
-      {
-        mediaTitle: "Idea integrada 2",
-        id: "62559753b258d125fababba2"
-      },     
-      {
-        mediaTitle: "Idea integrada que redirije a una idea/proyecto integrador",
-        id: "62472d19e932bd5f3d5267f8"
-      },
-      {
-        mediaTitle: "Idea integrada 2",
-        id: "62559753b258d125fababba2"
-      },           
-      {
-        mediaTitle: "Idea integrada que redirije a una idea/proyecto integrador",
-        id: "62472d19e932bd5f3d5267f8"
-      },
-      {
-        mediaTitle: "Idea integrada 2",
-        id: "62559753b258d125fababba2"
-      },     
-    ]
+    const ideasIntegradas = topic && topic.integradas
     const isIntegrada = topic && topic.attrs && topic.attrs.state === 'integrado'
 
-    const referenciaIntegradoraUrl = topic.attrs['admin-comment-referencia'] && window.location.origin + '/propuestas/topic/' + topic.attrs['admin-comment-referencia']
+    const referenciaIntegradoraUrl = topic && topic.attrs && topic.attrs['admin-comment-referencia'] && window.location.origin + '/propuestas/topic/' + topic.attrs['admin-comment-referencia']
 
     if (!topic) {
       return (
@@ -285,15 +244,17 @@ class TopicArticle extends Component {
                 </div>
               }                            
             </Collapsible>
-            
-            <Collapsible 
-              open={true} 
-              triggerClassName='topic-article-comentario' 
-              triggerOpenedClassName='topic-article-comentario' 
-              trigger={`Comentarios del moderador`}>
-              {topic.attrs['admin-comment'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
-              <p className='font-weight-bold'>Equipo de Coordinación y Gestión PPMGP</p>
-            </Collapsible>            
+            {
+              topic.attrs['admin-comment'] &&
+              <Collapsible 
+                open={true} 
+                triggerClassName='topic-article-comentario' 
+                triggerOpenedClassName='topic-article-comentario' 
+                trigger={`Comentarios del moderador`}>
+                {topic.attrs['admin-comment'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
+                <p className='font-weight-bold'>Equipo de Coordinación y Gestión PPMGP</p>
+              </Collapsible>            
+            }
 
           </div>
 
