@@ -20,7 +20,20 @@
 
   .idea-factible
     border: 3px solid #C4D94B;
-    background-image: unquote("url('ext/lib/site/home-catalogo/topic-card/voto.svg')")
+    background-image: unquote("url('ext/lib/site/home-catalogo/voto.svg')")
+    background-repeat: no-repeat
+    background-position: right;
+
+  .idea-integrado
+    background-image: unquote("url('ext/lib/site/home-catalogo/cadena.svg')")
+    background-repeat: no-repeat
+    background-position: right;    
+
+  .idea-no-factible
+    background-image: unquote("url('ext/lib/site/home-catalogo/desestimada.svg')")
+    background-repeat: no-repeat
+    background-position: right;    
+
 
   .topic-number
     font-size 22px
@@ -81,6 +94,8 @@
         font-weight: 400;
         &:last-child
           margin-right: 0
+      .tag-status
+        background-color: #00A6CB!important
     .buttons-wrapper
       display: flex
       flex-wrap: wrap;
