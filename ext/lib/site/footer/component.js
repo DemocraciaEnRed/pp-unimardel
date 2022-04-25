@@ -21,12 +21,13 @@ const Footer = () => (
         <a className='social-mail' tabIndex="12"  href='mailto:ParticipaMGP@mardelplata.gob.ar' target="_blank"/>
       </div>
       <div className='logos'>
-        <a href="https://democraciaenred.org/" rel="noopener noreferer" target="_blank">
+        {/* <a href="https://democraciaenred.org/" rel="noopener noreferer" target="_blank">
           <div className='logo-der'>
             <img src="/ext/lib/site/footer/logo-der.png" alt="Logo democracia en red"/>
             <span>Desarrollado por<br /><b>Democracia en red</b></span>
           </div>
-        </a>
+        </a> */}
+        <a href=""></a>
         <div className='logo'>
           <a className='logo-mgp' href='https://www.mardelplata.gob.ar/' aria-name="Link a pagina mar del plata" rel="noopener noreferer" target="_blank" />
         </div>
