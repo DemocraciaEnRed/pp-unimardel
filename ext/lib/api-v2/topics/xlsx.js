@@ -29,6 +29,7 @@ app.get('/export/topics/xlsx',
   middlewares.forums.findByName,
   middlewares.topics.findAllFromForum,
   middlewares.forums.privileges.canChangeTopics,
+
   /*function getAllTags(req, res, next) {
     api.tag.all(function (err, tags) {
       let tagsName = {}
@@ -76,6 +77,17 @@ app.get('/export/topics/xlsx',
   (req, res, next) =>
     api.user.populateProyectistas(req.topics).then(() => next())
   ,
+  (req, res, next) =>
+    api.zona.all(function (err, zonas) {
+      let zonasName = {}
+      if (err) {
+        log('error serving zonas from DB:', err)
+        return res.status(500).end()
+      }
+      zonas.forEach(f => zonasName[f._id] = f.nombre)
+      req.zonasName = zonasName
+      next()
+  }),
   function getXlsx(req, res, next) {
     let infoTopics = []
     const attrsNames = req.forum.topicsAttrs
@@ -90,12 +102,12 @@ app.get('/export/topics/xlsx',
         'Idea Fecha': `${escapeTxt(moment(topic.createdAt, '', req.locale).format('LL LT'))}`,
         'Idea Título': `${escapeTxt(topic.mediaTitle)}`,
         'Idea Temas': `${escapeTxt(topic.tags.join(', '))}`,
-        'Idea Zona': `${escapeTxt(topic.zona && topic.zona.nombre)}`,
-        'Idea Texto': `${escapeTxt(topic.attrs['problema'])}`,
+        'Idea Zona': `${escapeTxt(topic.zona && req.zonasName[topic.zona])}`,
+        'Idea Texto': `${escapeTxt(topic.attrs && topic.attrs.problema)}`,
         'Autor/a nombre': `${escapeTxt(topic.owner.firstName)}`,
         'Autor/a apellido': `${escapeTxt(topic.owner.lastName)}`,
         'Autor/a email': `${escapeTxt(topic.owner.email)}`,
-        'Autor/a género': `${escapeTxt(topic.attrs['genero'])}`,
+        // 'Autor/a género': `${escapeTxt(topic.attrs['genero'])}`,
         'Seguidores cantidad': `${escapeTxt(topic.action.count)}`,
         'Seguidores emails': `${escapeTxt(topic.action.results.join(', '))}`,
         'Proyectistas cantidad': `${escapeTxt(topic.proyectistas && topic.proyectistas.length)}`,
