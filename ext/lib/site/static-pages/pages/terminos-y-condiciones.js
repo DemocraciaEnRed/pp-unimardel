@@ -95,6 +95,11 @@ export default class Page extends Component {
                 MGP Presupuesto Participativo garantiza la debida protección de los datos personales almacenados en esta plataforma web así como también el acceso a la información registrada en el mismo, de conformidad a lo establecido en el artículo 43, párrafo tercero de la Constitución Nacional y la Ley N° 25.326 de Protección de los Datos Personales.<br/>
             </p>
 
+            <h2><span>Tecnología:</span></h2>
+            <p>
+                Presupuesto Participativo es un desarrollo basado en <a href="https://democracyos.org/" target="_blank">DemocracyOS</a> con la coordinación de la Municipalidad de General Pueyrredon. DemocracyOS es una plataforma online de código abierto especialmente diseñada para informar, debatir y comprometerse con propuestas públicas hacia la construcción de una democracia adaptada al siglo XXI. DemocracyOS es desarrollado por la Fundación <a href="https://democraciaenred.org/" target="_blank">Democracia en Red</a>.
+            </p>
+
             <p><span></span></p>
           </div>
         </Anchor>
