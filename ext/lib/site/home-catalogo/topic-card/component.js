@@ -138,7 +138,7 @@ export class TopicCard extends Component {
                   {
                     topic && topic.attrs && topic.attrs.state &&
                     <span
-                      className='tag-wrapper tag-status' >
+                      className={`tag-wrapper tag-status-${topic.attrs.state}`} >
                       {capitalizeFirstLetter(topic.attrs.state)}
                     </span>                  
                   }
