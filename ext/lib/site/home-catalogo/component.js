@@ -31,7 +31,7 @@ const defaultValues = {
   tag: [],
   // 'barrio' o 'newest' o 'popular'
   sort: 'newest',
-  tipoIdea: config.votacionVisible ? ['factible', 'no-factible', 'integrado'] : (config.propuestasVisibles ? ['pendiente'] : [])
+  tipoIdea: config.votacionVisible ? ['factible', 'no-factible', 'integrado', 'pendiente'] : (config.propuestasVisibles ? ['pendiente'] : [])
 }
 
 const filters = {
