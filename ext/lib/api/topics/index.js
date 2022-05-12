@@ -73,8 +73,8 @@ app.get('/topics',
       utils.findTopicsCount(opts)
     ]).then(([topics, count]) => {
       // pidieron mostrar siempre primero las ideas-proyecto
-      const ideasProyectos = topics.filter(t => t.attrs.state == 'idea-proyecto')
-      const ideasResto = topics.filter(t => t.attrs.state != 'idea-proyecto')
+      // const ideasProyectos = topics.filter(t => t.attrs.state == 'idea-proyecto')
+      // const ideasResto = topics.filter(t => t.attrs.state != 'idea-proyecto')
       res.status(200).json({
         status: 200,
         pagination: {
@@ -84,7 +84,7 @@ app.get('/topics',
           limit: opts.limit
         },
         results: {
-          topics: ideasProyectos.concat(ideasResto)
+          topics: topics
         }
       })
     }).catch(next)

@@ -250,11 +250,15 @@ class HomePropuestas extends Component {
 
   handleRemoveBadge = (option) => (e) => {
     // feísimo, feísimo
+    console.log(option)
     if (this.state.zona.includes(option)){
       this.setState({ zona: this.state.zona.filter(i => i != option) }
       ,() => this.fetchTopics());
     }else if (this.state.tag.includes(option)){
       this.setState({ tag: this.state.tag.filter(i => i != option) }
+      ,() => this.fetchTopics());
+    }else if (this.state.tipoIdea.includes(option)){
+      this.setState({ tipoIdea: this.state.tipoIdea.filter(i => i != option) }
       ,() => this.fetchTopics());
     }
   }
