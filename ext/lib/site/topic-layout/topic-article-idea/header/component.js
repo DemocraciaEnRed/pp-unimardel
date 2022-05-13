@@ -71,7 +71,7 @@ export default class Header extends Component {
       <div className="banner"></div>
       <div className='contenedor'>
         <div className='fondo-titulo'>
-          <h1>{this.props.numero && `#${this.props.numero} ` }{this.props.mediaTitle}</h1>
+          <h1>{this.props.mediaTitle}</h1>
         </div>
       </div>
     </section>
