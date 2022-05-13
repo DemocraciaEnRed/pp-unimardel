@@ -31,7 +31,9 @@ const defaultValues = {
   tag: [],
   // 'barrio' o 'newest' o 'popular'
   sort: 'newest',
-  tipoIdea: config.votacionVisible ? ['factible', 'no-factible', 'integrado', 'pendiente'] : (config.propuestasVisibles ? ['pendiente'] : [])
+  tipoIdea: config.propuestasVisibles ? 
+  (config.propuestasAbiertas ? ['pendiente'] : ['factible', 'no-factible', 'integrado', 'pendiente']) : 
+  (config.votacionVisible && ["factible"])
 }
 
 const filters = {
@@ -278,11 +280,12 @@ class HomePropuestas extends Component {
   renderSortFilter() {
     return (
       <div>
-        {
-          config.votacionVisible ? 
-            <h4 className="topics-title">Lista de ideas y proyectos</h4> :
-            config.propuestasVisibles && <h4 className="topics-title">Lista de ideas</h4>
+        <h4 className="topics-title">{
+          config.propuestasVisibles ? 
+          (config.propuestasAbiertas ? "Lista de ideas" : "Lista de ideas y proyectos") : 
+          (config.votacionVisible && "Lista de proyectos")
         }
+        </h4>
         <div className='topics-filters'>
           {/*this.state.forumStates &&
             <div className='topics-filter topics-state-filter'>
@@ -359,7 +362,11 @@ class HomePropuestas extends Component {
           <BannerListadoTopics
           btnText={config.propuestasAbiertas ? 'Subí tu idea' : undefined}
           btnLink={config.propuestasAbiertas ? '/formulario-idea' : undefined}
-            title={(!config.votacionVisible && config.propuestasVisibles ) ? 'Ideas' : 'Ideas y Proyectos'}
+            title={
+              config.propuestasVisibles ? 
+              (config.propuestasAbiertas ? "Ideas" : "Ideas y proyectos") : 
+              (config.votacionVisible && "Proyectos")
+            }
             subtitle={" "}
             />
 
