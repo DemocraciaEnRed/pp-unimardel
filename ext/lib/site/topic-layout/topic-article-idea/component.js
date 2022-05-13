@@ -125,6 +125,17 @@ class TopicArticle extends Component {
       `/formulario-idea/${topic.id}#acerca-propuesta`
     ;
 
+    const buttons = <div className='topic-actions topic-article-content'>
+    { !isProyecto && <Cause
+      topic={topic}
+      canVoteAndComment={forum.privileges.canVoteAndComment} /> }
+    { isProyecto &&
+      <VotarButton topic={topic} onVote={onVote} />
+    }
+    &nbsp;
+    <VerTodosButton />
+  </div>
+
     return (
       <div className='topic-article-wrapper'>
         {
@@ -145,8 +156,12 @@ class TopicArticle extends Component {
 
         <div className='topic-article-content entry-content skeleton-propuesta'>
 
+        {isProyecto && topic.attrs['proyecto-titulo']
+        && <div className='topic-article-nombre'>Proyecto: {topic.attrs['proyecto-titulo']}</div>}
         <div className='topic-article-nombre'>Autor/es/as: {topic.owner.firstName}</div>
-          <div className='topic-article-zona'>{topic.zona.nombre}</div>
+        <div className='topic-article-zona'>{topic.zona.nombre}</div>
+        {topic.attrs.state && 
+        <div className='topic-article-nombre'>Estado: {topic.attrs.state}</div>}        
 
          <div className='topic-article-status-container'>
           {
@@ -205,16 +220,8 @@ class TopicArticle extends Component {
           
         </div>
 
-        <div className='topic-actions topic-article-content'>
-          { !isProyecto && <Cause
-            topic={topic}
-            canVoteAndComment={forum.privileges.canVoteAndComment} /> }
-          { isProyecto &&
-            <VotarButton topic={topic} onVote={onVote} />
-          }
-          &nbsp;
-          <VerTodosButton />
-        </div>
+        {isProyecto && buttons}
+        
         
         <div className="seccion-idea">
           <div>
@@ -244,6 +251,9 @@ class TopicArticle extends Component {
                 </div>
               }                            
             </Collapsible>
+
+            {!isProyecto && buttons}
+
             {
               topic.attrs['admin-comment'] &&
               <Collapsible 
