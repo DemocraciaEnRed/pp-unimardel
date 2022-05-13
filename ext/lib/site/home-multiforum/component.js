@@ -55,7 +55,12 @@ export default class HomeMultiforumOverride extends Component {
           <EncuentrosProximos />
           <div className="banner-ideas">
             <img src="/ext/lib/site/home-multiforum/icon-idea.svg" alt="Ideas"/>
-            <p>Subí tu idea o mejorá con tus comentarios las de los vecinos.</p>
+            <p>{
+            config.propuestasAbiertas ? 
+            "Subí tu idea o mejorá con tus comentarios las de los vecinos.": 
+            "La etapa de subida de ideas ya finalizó. Ingresá para ver el listado completo"
+            }</p>
+            
             <Link to={'/propuestas'} className="boton-foro" href="">Accedé a las ideas</Link>
           </div>
           <BannerMapaVectores />
