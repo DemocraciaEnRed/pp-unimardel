@@ -87,7 +87,7 @@ const getPossibleOwners = (opts) => {
 const sortMap = {
   barrio: 'attrs.barrio',
   newest: '-createdAt',
-  popular: '-action.count'
+  popular: '-proyectistas'
 }
 
 exports.findTopics = (opts) => {
