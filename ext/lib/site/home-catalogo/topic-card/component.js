@@ -125,26 +125,24 @@ export class TopicCard extends Component {
           </div>
 
           <div className='topic-card-footer'>
-            { topic.tags && topic.tags.length > 0 && (
-                <div className='topic-card-tags'>
-                  <span className="glyphicon glyphicon-tag"></span>
-                  {topic.tags.slice(0, 12).map((tag, i) => (
-                    <span
-                      key={`${tag}-${i}`}
-                      className='tag-wrapper' >
-                      {capitalizeFirstLetter(tag)}
-                    </span>
-                  ))}
-                  {
-                    topic && topic.attrs && topic.attrs.state &&
-                    <span
-                      className={`tag-wrapper tag-status-${topic.attrs.state}`} >
-                      {capitalizeFirstLetter(topic.attrs.state)}
-                    </span>                  
-                  }
-                    
-                </div>
-            ) }
+            <div className='topic-card-tags'>
+              <span className="glyphicon glyphicon-tag"></span>
+              { topic.tags && topic.tags.length > 0 && topic.tags.slice(0, 12).map((tag, i) => (
+                <span
+                  key={`${tag}-${i}`}
+                  className='tag-wrapper' >
+                  {capitalizeFirstLetter(tag)}
+                </span>   
+                      
+              ))} 
+              {
+                topic && topic.attrs && topic.attrs.state &&
+                <span
+                  className={`tag-wrapper tag-status-${topic.attrs.state}`} >
+                  {capitalizeFirstLetter(topic.attrs.state)}
+                </span>                  
+              } 
+            </div>
 
             <div className='buttons-wrapper'>
               {/* antes en className estaba tmb ${likesCssClass} */}
