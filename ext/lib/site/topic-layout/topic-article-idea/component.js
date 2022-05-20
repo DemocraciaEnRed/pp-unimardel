@@ -241,7 +241,7 @@ class TopicArticle extends Component {
                 
                 </div>
               }
-              {isProyecto && ideasIntegradas && 
+              {isProyecto && ideasIntegradas.length > 0 && 
                 <div className='topic-article-integrado'>
                   <u className='titulo'>Ideas integradas</u> <br />
                   {ideasIntegradas.map((idea) => <Link to={idea.id} target="_blank">
