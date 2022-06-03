@@ -1,6 +1,5 @@
 import React from 'react'
-//import HomeProyectos from '../home-proyectos/component'
-// import HomePropuestas from '../home-propuestas/component'
+
 import HomeCatalogo from '../home-catalogo/component'
 
 const HomeForum = (props) => {
