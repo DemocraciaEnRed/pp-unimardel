@@ -63,7 +63,7 @@ export class TopicLayout extends Component {
     Anchor.goTo('container')
   }
 
-  // esta misma función está en ext/lib/site/home-propuestas/component.js
+  // esta misma función está en ext/lib/site/home-catalogo/component.js
   handleVote = (id, isVoted) => {
     const { user } = this.props
 
