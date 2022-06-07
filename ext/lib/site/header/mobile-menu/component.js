@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Link } from 'react-router'
+import config from 'lib/config'
 import bus from 'bus'
 import userConnector from 'lib/site/connectors/user'
 import AnonUser from 'ext/lib/site/header/anon-user/component'
@@ -56,6 +57,17 @@ class MobileMenu extends Component {
                     Ideas y Proyectos
                   </Link>
                 </div>
+                { config.votacionAbierta && <div className='header-item'>
+                  <Link
+                    to='/votacion'
+                    className={`header-link ${!~window.location.pathname.includes('votacion') ? 'active' : ''}`}
+                    activeStyle={{ color: '#8C1E81' }}
+                    onClick={this.props.toggleOnClick}
+                    tabIndex="4">
+                    Votá
+                  </Link>
+                </div>
+                }                 
                 {/* <div className='header-item mobile-link'>
                   <ProyectosLink />
                 </div>
@@ -84,7 +96,7 @@ class MobileMenu extends Component {
                     className={`header-link ${!~window.location.pathname.includes('/admin') ? 'active' : ''}`}
                     activeStyle={{ color: '#8C1E81' }}
                     onClick={this.props.toggleOnClick}
-                    tabIndex="3">
+                    tabIndex="5">
                     Admin
                   </Link>
                 </div>          

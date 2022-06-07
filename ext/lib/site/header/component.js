@@ -171,13 +171,23 @@ class Header extends Component {
                 >
                   Ideas y Proyectos
               </Link>
-            </div>          
+            </div>         
+            { config.votacionAbierta && <div className={`header-item ${window.location.pathname.includes('/votacion') ? 'active' : ''}`}>
+              <Link
+                to='/votacion'
+                className='header-link'
+                tabIndex="4"
+                >
+                  Votá
+              </Link>
+            </div>
+            } 
             { showAdmin &&
               <div className={`header-item ${window.location.pathname.includes('/admin') ? 'active' : ''}`}>
                 <Link
                   to='/proyectos/admin/topics'
                   className='header-link'
-                  tabIndex="4"
+                  tabIndex="5"
                   >
                     Admin
                 </Link>

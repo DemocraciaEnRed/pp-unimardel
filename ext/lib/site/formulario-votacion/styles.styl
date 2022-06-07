@@ -220,3 +220,102 @@
       margin-bottom: 0
     li.error-li
       color: red;
+
+.footer-votacion
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #FAFAFA;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.25);
+  color: white;
+  text-align: center;
+  justify-content: space-between;
+  padding: 1vh 25% 1vh 25%;
+  display: flex;
+  .button-anterior
+    display: inline-block
+    flex-direction: row;
+    gap: 20px;
+    background-color: #CCCCCC;
+    box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    padding: 15px 30px
+    font-family: 'Museo300', sans-serif
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+
+  .button-siguiente
+    display: inline-block
+    flex-direction: row;
+    gap: 20px;
+    background-color: #00A6CB;
+    box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    padding: 15px 30px
+    font-family: 'Museo300', sans-serif
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+
+.boton-comenzar
+  font-family: 'Museo300', sans-serif
+  font-size: 25px;
+  background: #C4D94B;
+  box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
+  border-radius: 5px;
+  color: white
+  padding: 1vh 3vh
+  display: inline-block;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2vh
+
+.superbold
+  font-family: 'Museo900', sans-serif
+
+.step-tracker
+  text-align: center
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2vh
+  .step-1
+  .step-2
+  .step-3
+  .step-4
+  .step-5
+    background: #B5B5B5;  
+    background-repeat: no-repeat
+    background-size: cover
+    border-radius: 50%;
+    padding: 1vh
+    color: white
+    height: 4vh;
+    width: 4vh;
+    display: inline-block
+  .active
+    border: 2px solid #000000;
+  .past
+    background: #00A6CB
+  .step-line
+    height: 2px;
+    width: 40px;
+    background-color: #B5B5B5;
+    float: left;
+    margin: 20px 0px;
+  .step-line-past
+    height: 2px;
+    width: 40px;
+    background-color: #00A6CB
+    float: left;
+    margin: 20px 0px;

@@ -14,6 +14,7 @@ import VotoZona from "./steps/votoZona"
 import VotoOtraZona from "./steps/votoOtraZona"
 import Confirmacion from "./steps/confirmacion"
 import Agradecimiento from "./steps/agradecimiento"
+import Welcome from "./steps/bienvenida"
 
 class FormularioVoto extends Component {
   constructor (props) {
@@ -24,6 +25,7 @@ class FormularioVoto extends Component {
       step:0,
 
       //  Datos de usuario
+      dni: '',
       zona: '',
       nombre: '',
       documento: '',
@@ -40,7 +42,10 @@ class FormularioVoto extends Component {
       tags: [],
       availableTags: [],
       zonas: [],
+      userPrivileges: null
     }
+
+    props.user.onChange(this.onUserStateChange)
 
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -79,24 +84,36 @@ class FormularioVoto extends Component {
     )
   }
 
-  onUserStateChange = () => {
-    if (this.props.user.state.fulfilled){
-      let user = this.props.user.state.value
-      this.setState({
-        zona: user.zona._id,
-        email: user.email,
-        documento: user.dni,
-        nombre: user.firstName + ' ' + user.lastName
-      })
+  componentDidUpdate () {
+    if (
+      !this.state.userPrivileges && this.state.dni === "" && this.state.zona === "" &&
+      this.props.user.state.value && this.props.user.state.value.zona && this.props.user.state.value.dni
+
+      ) {
+          this.setState({
+            zona: this.props.user.state.value.zona.id,
+            dni: this.props.user.state.value.dni
+          })
     }
+
   }
 
+  onUserStateChange = () => {
+    if (this.props.user.state.fulfilled){
+      forumStore.findOneByName(config.forumProyectos).then(
+        forum => this.setState({ userPrivileges: forum.privileges.canChangeTopics })
+      )
+    }
+  }
+  
   handleSubmit (e) {
     e.preventDefault()
     const formData = {
 
     }
-    this.crearVoto(formData)
+    // this.crearVoto(formData)
+    console.log("archivese")
+    this.changeStep(this.state.step + 1)    
   }
 
   crearVoto = (formData) => {
@@ -141,44 +158,77 @@ class FormularioVoto extends Component {
     });
   }
 
-  componentWillUpdate (props, state) {
+  componentWillUpdate () {
     if (this.props.user.state.rejected) {
       browserHistory.push('/signin?ref=/votacion')
     }
-  }
+  }  
 
   changeStep = (step) => {
     this.setState({step})
   }
 
-  renderStep = () => {
-    const handlerSetp = {
-      0: <SelectVoter />,
-      1: <Info />,
-      2: <VotoZona />,
-      3: <VotoOtraZona />,
-      4: <Confirmacion />,
-      5: <Agradecimiento />,
+  fetchSteps = (userPrivileges) => {
+    const steps = []
+    if (userPrivileges) {
+      steps.push(<SelectVoter zonas={this.state.zonas} setState={this.handleInputChange} />)
     }
-    return handlerSetp[this.state.step]
+    steps.push(<Welcome changeStep={() => this.changeStep(this.state.step+1)} />)
+    steps.push(<Info />)
+    steps.push(<VotoZona topics={this.state.topics.filter(t => t.zona.id === this.state.zona)} />)
+    steps.push(<VotoOtraZona topics={this.state.topics.filter(t => t.id !== this.state.voto1)} />)
+    steps.push(<Confirmacion />)
+    steps.push(<Agradecimiento />)
+    return steps
+  }
+
+  renderStep = (userPrivileges, step) => {
+    return this.fetchSteps(userPrivileges)[step]
   }
 
   render () {
-    const { forum, topics, step  } = this.state
-
+    const { forum, topics, step, userPrivileges  } = this.state
     if (!forum) return null
+
+    let steps = Array.from(Array(this.fetchSteps(userPrivileges).length).keys())
+    steps.shift()
+    steps.pop()
+    const welcome = userPrivileges ? 2 : 1
+    const pondera = userPrivileges ? -1 : 0
+
     return (
-      <div className='form-votacion'>
+      <div className='form-votacion'> 
+        {
+          config.votacionAbierta && step >= welcome && <div className='step-tracker'>
+          {[1,2,3,4].map((s, index) => (<div>
+            {s > 1 && <span className={`step-line${step+pondera >= s ? "-past" : ""}`} />}
+            <span 
+            key={index} 
+            className={`step-${s} ${step+pondera === s ? "active" : (step+pondera > s ? "past" : "")}`}>
+              {s}
+            </span>
+          </div>))}
+        </div>
+        } 
+
         {
           config.votacionAbierta ? 
-          this.renderStep() :
+          this.renderStep(userPrivileges, step) :
           <Close />
         }
-
-        {config.votacionAbierta && (
-          <div>
-            <button disabled={step === 0 ? true : false} onClick={() => this.changeStep(step - 1)}>Anterior</button>
-            <button disabled={step === 5 ? true : false} onClick={() => this.changeStep(step + 1)}>Siguiente</button>
+        {config.votacionAbierta && step !== steps.length+1 && step !== welcome-1 && (
+          <div className='footer-votacion'>
+            <button className='button-anterior' disabled={step <= welcome ? true : false} onClick={() => this.changeStep(step - 1)}>
+              <span className='icon-arrow-left-circle'></span> Anterior
+            </button>
+            {step === steps.length ?
+            <button className='button-siguiente' onClick={this.handleSubmit}>
+              Enviar Votos <span className='icon-like'></span>
+            </button> :
+            <button className='button-siguiente' disabled={step === steps.length+1 ? true : false} onClick={() => this.changeStep(step + 1)}>
+              Siguiente <span className='icon-arrow-right-circle'></span>
+            </button>
+            }
           </div>
         )}
      </div>
