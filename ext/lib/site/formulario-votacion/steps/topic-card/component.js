@@ -19,30 +19,47 @@ function createClauses({ attrs, clauses }) {
   }
   div.innerHTML = content
   let returnText = div.textContent.replace(/\r?\n|\r/g, '')
-  return returnText.length > 400 ? returnText.slice(0, 400) + '...' : returnText
+  return returnText.length > 200 ? returnText.slice(0, 200) + '...' : returnText
 }
 
 export class VotoTopicCard extends Component {
-  selectTopic = (e) => {
-    e.preventDefault()
-    console.log("hola")
-  }
+
   render() {
-    const { topic } = this.props
+    const { topic, handler, selected, setState } = this.props
 
     return (
-      <div className='ext-topic-card ideas-topic-card' onClick={this.selectTopic}>
-        <div className={`idea-${topic && topic.attrs && topic.attrs.state}`}>
-          <div className='topic-card-info'>
-            <h1 className={`topic-card-title `}>
-              {topic.mediaTitle}
-            </h1>
-            <p className='topic-card-description'>
-              {createClauses(topic)}
-            </p>
+      <div className={`voto-topic-card ${topic.id === selected && 'active'}`}>
+        <div className="row">
+          <div className="col-md-8">
+            <div className='voto-topic-card-info'>
+              <h1 className='voto-topic-card-title'>
+                {topic.mediaTitle.length > 70 ? topic.mediaTitle.slice(0,70) + "..." : topic.mediaTitle}
+              </h1>
+              <p className='voto-topic-card-description'>
+                {createClauses(topic)}
+              </p>
+            </div>
+
           </div>
+          <div className="col-md-2">
+            <div className='voto-topic-card-info'>
+                <h1 className='voto-topic-card-title'>
+                  Presupuesto
+                </h1>
+                <p className='voto-topic-card-presupuesto'>
+                  ${topic.attrs['presupuesto-total'].toLocaleString()}
+                </p>
+              </div>
+          </div>
+          <div className="col-md-2">
+            <div className="voto-topic-card-checkbox">
+              <input type="checkbox" name={handler} value={topic.id} onChange={setState} className='select-topic' />
+            </div>
+          </div>          
 
         </div>
+
+
       </div>
     )
   }

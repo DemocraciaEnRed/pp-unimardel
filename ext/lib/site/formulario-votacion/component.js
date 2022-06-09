@@ -11,7 +11,7 @@ import Close from "./steps/close"
 import SelectVoter from "./steps/select-voter"
 import Info from "./steps/info"
 import VotoZona from "./steps/votoZona"
-import VotoOtraZona from "./steps/votoOtraZona"
+import VotoCualquierZona from "./steps/votoCualquierZona"
 import Confirmacion from "./steps/confirmacion"
 import Agradecimiento from "./steps/agradecimiento"
 import Welcome from "./steps/bienvenida"
@@ -23,6 +23,7 @@ class FormularioVoto extends Component {
     this.state = {
       forum: null,
       step:0,
+      warning: {},
 
       //  Datos de usuario
       dni: '',
@@ -76,7 +77,7 @@ class FormularioVoto extends Component {
         forum,
         availableTags: tags,
         zonas,
-        topics,
+        topics
       }
       this.setState(newState)
     }).catch(err =>
@@ -88,12 +89,15 @@ class FormularioVoto extends Component {
     if (
       !this.state.userPrivileges && this.state.dni === "" && this.state.zona === "" &&
       this.props.user.state.value && this.props.user.state.value.zona && this.props.user.state.value.dni
-
       ) {
           this.setState({
             zona: this.props.user.state.value.zona.id,
             dni: this.props.user.state.value.dni
           })
+          if (this.state.step === 0) {
+            this.changeStep(1)
+          }
+        
     }
 
   }
@@ -168,64 +172,125 @@ class FormularioVoto extends Component {
     this.setState({step})
   }
 
-  fetchSteps = (userPrivileges) => {
-    const steps = []
-    if (userPrivileges) {
-      steps.push(<SelectVoter zonas={this.state.zonas} setState={this.handleInputChange} />)
-    }
-    steps.push(<Welcome changeStep={() => this.changeStep(this.state.step+1)} />)
-    steps.push(<Info />)
-    steps.push(<VotoZona topics={this.state.topics.filter(t => t.zona.id === this.state.zona)} />)
-    steps.push(<VotoOtraZona topics={this.state.topics.filter(t => t.id !== this.state.voto1)} />)
-    steps.push(<Confirmacion />)
-    steps.push(<Agradecimiento />)
-    return steps
+  fetchSteps = () => {
+   return [
+      <SelectVoter zonas={this.state.zonas} setState={this.handleInputChange} />,
+      <Welcome changeStep={() => this.changeStep(this.state.step+1)} />,
+      <Info />,
+      <VotoZona 
+        topics={this.state.topics.filter(t => t.zona.id === this.state.zona)} 
+        handler="voto1"
+        selected={this.state.voto1}
+        setState={this.handleInputChange} 
+      />,
+      <VotoCualquierZona 
+        topics={this.state.topics.filter(t => t.id !== this.state.voto1)} 
+        handler="voto2"
+        selected={this.state.voto2}
+        setState={this.handleInputChange} 
+      />,
+      <Confirmacion />,
+      <Agradecimiento />
+   ]
+  }
+  
+
+  renderStep = (step) => {
+    return this.fetchSteps()[step]
   }
 
-  renderStep = (userPrivileges, step) => {
-    return this.fetchSteps(userPrivileges)[step]
+  checkWarning = () => {
+    const { step, dni, zona, voto1, voto2 } = this.state
+
+    switch (step) {
+      case 0:
+        return !dni || !zona ? {
+          message: 'Los campos "DNI" y "zona" no pueden quedar vacíos',
+          canPass: false
+        } : {}
+      case 3:
+        return !voto1 ? {
+          message: 'Este voto es obligatorio',
+          canPass: false
+        } : {}
+      case 4:
+        return !voto2 ? {
+          message: 'Este voto no es obligatorio',
+          canPass: true
+        } : {}        
+      default:
+        return {}
+    }
+  }
+
+  showAlert = (warning) => {
+    console.log(warning)
+  }
+
+  handleNext = () => {
+    const { step } = this.state
+    const warning = this.checkWarning()
+    warning && warning.message ? this.setState({warning: warning}) : this.changeStep(step + 1)
+  }
+
+  closeDialog = () => {
+    this.setState({warning: {}})
+  }
+
+  performNext = (canPass, step) => {
+    this.closeDialog()
+    
+    if (canPass) {
+      this.changeStep(step+1)
+    }
+
   }
 
   render () {
-    const { forum, topics, step, userPrivileges  } = this.state
+    const { forum, step, warning  } = this.state
     if (!forum) return null
+    if (!config.votacionAbierta) return <Close />
 
-    let steps = Array.from(Array(this.fetchSteps(userPrivileges).length).keys())
-    steps.shift()
-    steps.pop()
-    const welcome = userPrivileges ? 2 : 1
-    const pondera = userPrivileges ? -1 : 0
+    
+    const confirm = 5
+    const welcome = 1
 
     return (
       <div className='form-votacion'> 
+        {Object.keys(warning).length > 0 && <dialog
+                    open
+                >
+                    <h5>{warning.message}</h5>
+                    <button onClick={() => this.closeDialog()}>Cancelar</button>
+                    <button onClick={() => this.performNext(warning.canPass, step)}>Entendido</button>
+                </dialog>
+          }      
         {
-          config.votacionAbierta && step >= welcome && <div className='step-tracker'>
+          step > welcome && <div className='step-tracker'>
           {[1,2,3,4].map((s, index) => (<div>
-            {s > 1 && <span className={`step-line${step+pondera >= s ? "-past" : ""}`} />}
+            {s > 1 && <span className={`step-line${step-1 >= s ? "-past" : ""}`} />}
             <span 
             key={index} 
-            className={`step-${s} ${step+pondera === s ? "active" : (step+pondera > s ? "past" : "")}`}>
+            className={`step-${s} ${step-1 === s ? "active" : (step-1 > s ? "past" : "")}`}>
               {s}
             </span>
           </div>))}
         </div>
         } 
-
-        {
-          config.votacionAbierta ? 
-          this.renderStep(userPrivileges, step) :
-          <Close />
-        }
-        {config.votacionAbierta && step !== steps.length+1 && step !== welcome-1 && (
+        {this.renderStep(step)}
+        {config.votacionAbierta && step !== welcome && step <= confirm && (
           <div className='footer-votacion'>
             <button className='button-anterior' disabled={step <= welcome ? true : false} onClick={() => this.changeStep(step - 1)}>
               <span className='icon-arrow-left-circle'></span> Anterior
             </button>
-            {step === steps.length ?
+            {step === confirm ?
             <button className='button-siguiente' onClick={this.handleSubmit}>
               Enviar Votos <span className='icon-like'></span>
             </button> :
-            <button className='button-siguiente' disabled={step === steps.length+1 ? true : false} onClick={() => this.changeStep(step + 1)}>
+            <button 
+              className='btn button-siguiente'
+              onClick={() => this.handleNext()}
+            >
               Siguiente <span className='icon-arrow-right-circle'></span>
             </button>
             }

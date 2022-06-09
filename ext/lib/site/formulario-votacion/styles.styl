@@ -253,7 +253,7 @@
     display: inline-block
     flex-direction: row;
     gap: 20px;
-    background-color: #00A6CB;
+    background: #00A6CB
     box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
     border-radius: 8px;
     padding: 15px 30px
@@ -319,3 +319,47 @@
     background-color: #00A6CB
     float: left;
     margin: 20px 0px;
+
+
+.voto-topic-card
+  width: 100%
+  height: auto
+  min-height: 17vh
+  max-height: 17vh
+  border-radius: 5px;
+  box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.25);
+  border: solid 1px #bab8b8;
+  margin-bottom: 2vh
+  color: black
+  padding-left: 3vh
+  &:hover
+    box-shadow: 0 2px 5px #555
+  &.active
+    background: #00A6CB;
+    color: white
+
+
+  .voto-topic-card-title
+    margin-bottom: 5px
+    font-size: 18px
+    font-family: 'Museo900', sans-serif
+    text-transform: uppercase
+
+  .voto-topic-card-description
+    text-transform: none
+  
+  .voto-topic-card-presupuesto
+    margin-bottom: 5px
+    font-size: 18px
+    font-family: 'Museo900', sans-serif
+  
+  .voto-topic-card-checkbox
+    padding-top: 45%
+
+    .select-topic
+      box-sizing: border-box;
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 2px solid #00A6CB;
+      border-radius: 5px;

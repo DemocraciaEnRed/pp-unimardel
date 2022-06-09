@@ -14,7 +14,6 @@ export default ({zonas, setState}) => (
             </label>
             <input
               className='form-control'
-              required
               type='text'
               name='dni'
               placeholder="Ingrese su nombre de usuario / dni"
@@ -27,7 +26,6 @@ export default ({zonas, setState}) => (
             </label>
             <select
               className='form-control'
-              required
               name='zona'
               onChange={setState}>
             <option value=''>Seleccioná una zona</option>

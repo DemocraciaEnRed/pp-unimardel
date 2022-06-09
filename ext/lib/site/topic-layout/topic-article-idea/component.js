@@ -129,9 +129,9 @@ class TopicArticle extends Component {
     { !isProyecto && <Cause
       topic={topic}
       canVoteAndComment={forum.privileges.canVoteAndComment} /> }
-    { isProyecto &&
+    {/* { isProyecto &&
       <VotarButton topic={topic} onVote={onVote} />
-    }
+    } */}
     &nbsp;
     <VerTodosButton />
   </div>
