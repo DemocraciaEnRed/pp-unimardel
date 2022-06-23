@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import config from 'lib/config'
+
 import forumStore from 'lib/stores/forum-store/forum-store'
 import topicStore from 'lib/stores/topic-store/topic-store'
 import zonaStore from 'lib/stores/zona-store'
-
+import voteStore from 'lib/stores/vote-store'
 import tagStore from 'lib/stores/tag-store/tag-store'
+
 import { browserHistory } from 'react-router'
 import userConnector from 'lib/site/connectors/user'
 import Close from "./steps/close"
@@ -24,6 +26,7 @@ class FormularioVoto extends Component {
       forum: null,
       step:0,
       warning: {},
+      hasVoted: '',
 
       //  Datos de usuario
       dni: '',
@@ -41,14 +44,16 @@ class FormularioVoto extends Component {
 
       // Para filtros
       tags: [],
-      availableTags: [],
       zonas: [],
+      activeTags: [],
+      activeZonas: [],
       userPrivileges: null
     }
 
     props.user.onChange(this.onUserStateChange)
 
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleCheckboxInputChange = this.handleCheckboxInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.renderStep = this.renderStep.bind(this)
     this.changeStep = this.changeStep.bind(this)
@@ -75,7 +80,7 @@ class FormularioVoto extends Component {
       const [ forum, tags, zonas, topics ] = results
       let newState = {
         forum,
-        availableTags: tags,
+        tags,
         zonas,
         topics
       }
@@ -86,18 +91,39 @@ class FormularioVoto extends Component {
   }
 
   componentDidUpdate () {
+    const {userPrivileges, dni, zona, step, hasVoted} = this.state
+    const { user } = this.props
+
     if (
-      !this.state.userPrivileges && this.state.dni === "" && this.state.zona === "" &&
-      this.props.user.state.value && this.props.user.state.value.zona && this.props.user.state.value.dni
+      !userPrivileges && dni === "" && zona === "" &&
+      user.state.value && user.state.value.zona && user.state.value.dni
       ) {
           this.setState({
-            zona: this.props.user.state.value.zona.id,
-            dni: this.props.user.state.value.dni
+            zona: user.state.value.zona.id,
+            dni: user.state.value.dni
           })
-          if (this.state.step === 0) {
+          if (step === 0) {
             this.changeStep(1)
           }
         
+    }
+    if (
+      step === 1 && dni !== "" && hasVoted === ""
+    ) {
+      voteStore.hasVoted(dni)
+      .then(
+        hasVoted => {
+          hasVoted === "no" ? 
+          this.setState({ hasVoted }) :
+          this.setState({ 
+            hasVoted, 
+            step: 6
+          })
+          
+        }
+      )
+
+
     }
 
   }
@@ -112,53 +138,27 @@ class FormularioVoto extends Component {
   
   handleSubmit (e) {
     e.preventDefault()
+    const { forum, dni, zona, voto1, voto2, userPrivileges } = this.state
+    const { user } = this.props
     const formData = {
-
+      forum: forum.id,
+      user: user.state.value.id,
+      dni,
+      zona,
+      userPrivileges,
+      voto1,
+      voto2
     }
-    // this.crearVoto(formData)
-    console.log("archivese")
-    this.changeStep(this.state.step + 1)    
-  }
-
-  crearVoto = (formData) => {
-    window.fetch(`/api/v2/topics`, {
-      method: 'POST',
-      credentials: 'include',
-      body: JSON.stringify(formData),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((res) => res.json())
-    .then((res) => {
-      if (res.status === 200) {
-        window.location.href = `/votacion/${res.results.id}`
-      }
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  }
-
-  toggleTag = (tag) => (e) => {
-    // If is inside state.tags, remove from there
-    this.setState((state) => {
-      let theTags = state.tags
-      if(theTags.includes(tag)){
-        return { tags: theTags.filter(t => t !== tag)}
-      }else if(theTags.length < 1)
-        theTags.push(tag)
-      return { tags: theTags }
+    voteStore.sendVotes(formData)
+    .then((vote) => {
+      this.changeStep(this.state.step + 1)
     })
   }
 
   handleCheckboxInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
+    const { target: { value, name, checked } } = event
     this.setState({
-      [name]: value
+      [name]: checked ? value : null
     });
   }
 
@@ -168,35 +168,81 @@ class FormularioVoto extends Component {
     }
   }  
 
+  handleFilter = (filter, value) => {
+    if (!this.state[filter].includes(value)) {
+      this.setState({
+        [filter]: [...this.state[filter], value]
+      })
+    } else {
+      this.setState({
+        [filter]: [...this.state[filter]].filter((item) => item !== value)
+      })
+    }
+
+}
+
+  handleDefaultFilter = (filter, value) => {
+    this.setState({
+      [filter]: [value]
+    })
+  }
+
+  // Clear all selected items from a filter
+  clearFilter = (filter) => {
+    this.setState({
+      [filter]: []
+    })
+  }
+
   changeStep = (step) => {
     this.setState({step})
   }
 
-  fetchSteps = () => {
-   return [
-      <SelectVoter zonas={this.state.zonas} setState={this.handleInputChange} />,
-      <Welcome changeStep={() => this.changeStep(this.state.step+1)} />,
-      <Info />,
-      <VotoZona 
-        topics={this.state.topics.filter(t => t.zona.id === this.state.zona)} 
-        handler="voto1"
-        selected={this.state.voto1}
-        setState={this.handleInputChange} 
-      />,
-      <VotoCualquierZona 
-        topics={this.state.topics.filter(t => t.id !== this.state.voto1)} 
-        handler="voto2"
-        selected={this.state.voto2}
-        setState={this.handleInputChange} 
-      />,
-      <Confirmacion />,
-      <Agradecimiento />
-   ]
-  }
-  
-
   renderStep = (step) => {
-    return this.fetchSteps()[step]
+    switch (step) {
+      case 0:
+        return <SelectVoter zonas={this.state.zonas} setState={this.handleInputChange} />
+      case 1:
+        return <Welcome changeStep={() => this.changeStep(this.state.step+1)} />
+      case 2:
+        return <Info />
+      case 3:
+        return <VotoZona 
+          topics={this.state.topics.filter(t => t.zona.id === this.state.zona)} 
+          handler="voto1"
+          selected={this.state.voto1}
+          setState={this.handleCheckboxInputChange} 
+          // Filters
+          tags={this.state.tags}
+          activeTags={this.state.activeTags}
+          handleFilter={this.handleFilter}
+          handleDefaultFilter={this.handleDefaultFilter}
+          clearFilter={this.clearFilter}
+        />
+      case 4:
+        return <VotoCualquierZona 
+          topics={this.state.topics.filter(t => t.id !== this.state.voto1)} 
+          handler="voto2"
+          selected={this.state.voto2}
+          setState={this.handleCheckboxInputChange} 
+          tags={this.state.tags}
+          activeTags={this.state.activeTags}
+          zonas={this.state.zonas}
+          activeZonas={this.state.activeZonas}
+          handleFilter={this.handleFilter}
+          handleDefaultFilter={this.handleDefaultFilter}
+          clearFilter={this.clearFilter}
+        />
+      case 5:
+        return <Confirmacion
+          topics={this.state.topics.filter(t => [this.state.voto1, this.state.voto2].includes(t.id))} 
+        />
+      case 6:
+        return <Agradecimiento dni={this.state.dni} hasVoted={this.state.hasVoted} />
+      default:
+        return <Close />
+
+    }
   }
 
   checkWarning = () => {
@@ -205,26 +251,22 @@ class FormularioVoto extends Component {
     switch (step) {
       case 0:
         return !dni || !zona ? {
-          message: 'Los campos "DNI" y "zona" no pueden quedar vacíos',
+          message: 'Los campos "DNI" y "Zona de Residencia" no pueden quedar vacíos',
           canPass: false
         } : {}
       case 3:
         return !voto1 ? {
-          message: 'Este voto es obligatorio',
+          message: 'El primer voto es obligatorio y se destina a tu zona indicada al momento de registro',
           canPass: false
         } : {}
       case 4:
         return !voto2 ? {
-          message: 'Este voto no es obligatorio',
+          message: 'No has elegido ningún proyecto, esto se considerará como VOTO EN BLANCO.',
           canPass: true
         } : {}        
       default:
         return {}
     }
-  }
-
-  showAlert = (warning) => {
-    console.log(warning)
   }
 
   handleNext = () => {
@@ -254,23 +296,31 @@ class FormularioVoto extends Component {
     
     const confirm = 5
     const welcome = 1
+    const hasWarning = Object.keys(warning).length > 0
 
     return (
-      <div className='form-votacion'> 
-        {Object.keys(warning).length > 0 && <dialog
+      <div>
+        {hasWarning && <dialog
+                    className='dialog-votacion text-center'
                     open
                 >
                     <h5>{warning.message}</h5>
-                    <button onClick={() => this.closeDialog()}>Cancelar</button>
-                    <button onClick={() => this.performNext(warning.canPass, step)}>Entendido</button>
+                    <div className="row">
+                      <div className="col-md-6 text-right">
+                        <button className='btn btn-cancelar' onClick={() => this.closeDialog()}>Cancelar</button>
+                      </div>
+                      <div className="col-md-6 text-left">
+                        <button className='btn btn-entendido' onClick={() => this.performNext(warning.canPass, step)}>Entendido</button>
+                      </div>
+                    </div>
                 </dialog>
-          }      
+          }
+      <div className={`form-votacion ${hasWarning ? "blur" : ""}`}> 
         {
           step > welcome && <div className='step-tracker'>
-          {[1,2,3,4].map((s, index) => (<div>
+          {[1,2,3,4].map((s, index) => (<div key={index} >
             {s > 1 && <span className={`step-line${step-1 >= s ? "-past" : ""}`} />}
             <span 
-            key={index} 
             className={`step-${s} ${step-1 === s ? "active" : (step-1 > s ? "past" : "")}`}>
               {s}
             </span>
@@ -297,6 +347,8 @@ class FormularioVoto extends Component {
           </div>
         )}
      </div>
+      </div>
+
     )
   }
 }

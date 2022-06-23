@@ -22,7 +22,7 @@ export default ({zonas, setState}) => (
           </div>         
           <div className='form-group'>
             <label className='required' htmlFor='zona'>
-              Zona de residencia
+              Zona de Residencia
             </label>
             <select
               className='form-control'

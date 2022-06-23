@@ -7,6 +7,8 @@
   flex-direction: column
   align-items: center
   font-family: 'Museo300', sans-serif
+  margin-bottom: 10%
+  
   @media (max-width: 400px)
     margin-top: 140px
   .votacion-header
@@ -297,11 +299,9 @@
     background: #B5B5B5;  
     background-repeat: no-repeat
     background-size: cover
-    border-radius: 50%;
+    border-radius: 60%;
     padding: 1vh
     color: white
-    height: 4vh;
-    width: 4vh;
     display: inline-block
   .active
     border: 2px solid #000000;
@@ -324,8 +324,8 @@
 .voto-topic-card
   width: 100%
   height: auto
-  min-height: 17vh
-  max-height: 17vh
+  min-height: 16vh
+  max-height: 23vh
   border-radius: 5px;
   box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.25);
   border: solid 1px #bab8b8;
@@ -363,3 +363,72 @@
       height: 40px;
       border: 2px solid #00A6CB;
       border-radius: 5px;
+
+
+  .voto-topic-card-footer
+    padding: 20px 35px
+    @media screen and (min-width: 769px)
+      display: flex;
+      justify-content: space-between;
+
+    .voto-topic-card-tags
+      margin-bottom: 10px;
+      @media screen and (min-width: 769px)
+        margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      align-content: baseline;
+      flex-wrap: wrap;
+      .voto-glyphicon
+        margin-right: 10px;
+        top: 0px;
+      .voto-tag-wrapper
+        font-size: 14px
+        margin-right: 8px
+        margin-bottom: 10px;
+        color: #000000;
+        border-radius: 8px;
+        background-color: #f3f3f3;
+        padding: 5px 7px;
+        font-weight: 400;
+        &.tag-zona
+          background-color: #c4d94b;
+        &:last-child
+          margin-right: 0
+        
+
+
+
+
+.dialog-votacion
+  box-sizing: border-box;
+
+  background: #FFFFFF;
+  border: 3px solid #00A6CB;
+  border-radius: 20px;
+
+  .btn-cancelar
+    font-family: 'Museo900', sans-serif
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    color: #FF6D6D;
+    margin: 1vh
+
+  .btn-entendido
+    font-family: 'Museo900', sans-serif
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    color: white
+    background: #C4D94B;
+    box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
+    border-radius: 5px;  
+    margin: 1vh
+
+
+
+@import './steps/filter-proyectos/styles.styl'
+  

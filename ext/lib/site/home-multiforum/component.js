@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router'
+
 import config from 'lib/config'
 import Anchor from 'ext/lib/site/anchor'
 import BannerForoVecinal from 'ext/lib/site/banner-foro-vecinal/component'
@@ -12,6 +12,7 @@ import ThumbsVoto from 'ext/lib/site/thumbs-voto/component'
 import Jump from 'ext/lib/site/jump-button/component'
 import Footer from 'ext/lib/site/footer/component'
 import EncuentrosProximos from 'ext/lib/site/encuentrosProximos/component'
+import BannerInvitacion from 'ext/lib/site/banner-invitacion/component'
 // import forumStore from 'lib/stores/forum-store/forum-store'
 // import topicStore from 'lib/stores/topic-store/topic-store'
 import textStore from 'lib/stores/text-store'
@@ -52,17 +53,8 @@ export default class HomeMultiforumOverride extends Component {
         <Anchor id='container'>
           <BannerForoVecinal title="Presupuesto participativo de General Pueyrredon" texts={this.state.texts} />
           <ThumbsVoto texts={this.state.texts} />
+          <BannerInvitacion />
           <EncuentrosProximos />
-          <div className="banner-ideas">
-            <img src="/ext/lib/site/home-multiforum/icon-idea.svg" alt="Ideas"/>
-            <p>{
-            config.propuestasAbiertas ? 
-            "Subí tu idea o mejorá con tus comentarios las de los vecinos.": 
-            "La etapa de subida de ideas ya finalizó. Ingresá para ver el listado completo"
-            }</p>
-            
-            <Link to={'/propuestas'} className="boton-foro" href="">Accedé a las ideas</Link>
-          </div>
           <BannerMapaVectores />
           <Jump goTop={this.goTop} />
           <Footer />

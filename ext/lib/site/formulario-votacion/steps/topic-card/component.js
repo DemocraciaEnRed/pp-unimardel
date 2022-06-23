@@ -27,6 +27,12 @@ export class VotoTopicCard extends Component {
   render() {
     const { topic, handler, selected, setState } = this.props
 
+    function capitalizeFirstLetter(str) {
+      if (!str) return ''
+      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+
+
     return (
       <div className={`voto-topic-card ${topic.id === selected && 'active'}`}>
         <div className="row">
@@ -35,13 +41,39 @@ export class VotoTopicCard extends Component {
               <h1 className='voto-topic-card-title'>
                 {topic.mediaTitle.length > 70 ? topic.mediaTitle.slice(0,70) + "..." : topic.mediaTitle}
               </h1>
-              <p className='voto-topic-card-description'>
+              {topic.attrs && <p className='voto-topic-card-description'>
                 {createClauses(topic)}
-              </p>
+              </p>}
+
             </div>
 
+
+
+            <div className='voto-topic-card-footer'>
+              <div className='voto-topic-card-tags'>
+                <span className="glyphicon glyphicon-tag"></span>
+                { topic.tags && topic.tags.length > 0 && topic.tags.slice(0, 12).map((tag, i) => (
+                  <span
+                    key={`${tag}-${i}`}
+                    className='voto-tag-wrapper' >
+                    {capitalizeFirstLetter(tag)}
+                  </span>   
+                ))}
+                {
+                  topic.zona && <span
+                  className='voto-tag-wrapper tag-zona' >
+                  {capitalizeFirstLetter(topic.zona.nombre)}
+                </span>
+                }
+              </div>
+            </div>
+
+
+
+
+
           </div>
-          <div className="col-md-2">
+          {topic.attrs && topic.attrs['presupuesto-total'] && <div className="col-md-2">
             <div className='voto-topic-card-info'>
                 <h1 className='voto-topic-card-title'>
                   Presupuesto
@@ -50,12 +82,13 @@ export class VotoTopicCard extends Component {
                   ${topic.attrs['presupuesto-total'].toLocaleString()}
                 </p>
               </div>
-          </div>
-          <div className="col-md-2">
+          </div>}
+          {handler && setState && <div className="col-md-2">
             <div className="voto-topic-card-checkbox">
               <input type="checkbox" name={handler} value={topic.id} onChange={setState} className='select-topic' />
             </div>
-          </div>          
+          </div>}
+          
 
         </div>
 
