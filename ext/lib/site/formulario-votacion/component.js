@@ -23,17 +23,25 @@ class FormularioVoto extends Component {
     super(props)
 
     this.state = {
+      forumAndTopicFetched: false,
       forum: null,
       step:0,
       warning: {},
       hasVoted: '',
 
       //  Datos de usuario
+      userFetched: false,
       dni: '',
       zona: '',
       nombre: '',
       documento: '',
       email: '',
+
+      // Control for Step 0
+      notInPadron: null,
+      differentZone: null,
+      searchedUser: null,
+      noUser: null,
 
       //  Votos
       // Se decidieron estos nombres por si cambia el criterio de asignación en el futuro
@@ -82,7 +90,8 @@ class FormularioVoto extends Component {
         forum,
         tags,
         zonas,
-        topics
+        topics,
+        forumAndTopicFetched: true
       }
       this.setState(newState)
     }).catch(err =>
@@ -90,50 +99,86 @@ class FormularioVoto extends Component {
     )
   }
 
-  componentDidUpdate () {
-    const {userPrivileges, dni, zona, step, hasVoted} = this.state
-    const { user } = this.props
-
-    if (
-      !userPrivileges && dni === "" && zona === "" &&
-      user.state.value && user.state.value.zona && user.state.value.dni
-      ) {
-          this.setState({
-            zona: user.state.value.zona.id,
-            dni: user.state.value.dni
-          })
-          if (step === 0) {
-            this.changeStep(1)
-          }
+  // componentDidUpdate () {
+  //   const {userPrivileges, dni, zona, step, hasVoted, fetched } = this.state
+  //   const { user } = this.props
+  //   // if fetched is true, we have already fetched the user data
+  //   if (
+  //     !userPrivileges && dni === "" && zona === "" &&
+  //     user.state.value && user.state.value.zona && user.state.value.dni
+  //     ) {
+  //         this.setState({
+  //           zona: user.state.value.zona.id,
+  //           dni: user.state.value.dni,
+  //           fetched: true
+  //         })
+  //         if (step === 0) {
+  //           this.changeStep(1)
+  //         }
         
-    }
-    if (
-      step === 1 && dni !== "" && hasVoted === ""
-    ) {
-      voteStore.hasVoted(dni)
-      .then(
-        hasVoted => {
-          hasVoted === "no" ? 
-          this.setState({ hasVoted }) :
-          this.setState({ 
-            hasVoted, 
-            step: 6
-          })
+  //   }
+  //   if (
+  //     step === 1 && dni !== "" && hasVoted === ""
+  //   ) {
+  //     voteStore.hasVoted(dni)
+  //     .then(
+  //       hasVoted => {
+  //         hasVoted === "no" ? 
+  //         this.setState({ hasVoted, fetched: true }) :
+  //         this.setState({ 
+  //           hasVoted,
+  //           fetched: true, 
+  //           step: 6
+  //         })
           
-        }
-      )
+  //       }
+  //     )
 
 
-    }
+  //   }
 
-  }
+  // }
 
   onUserStateChange = () => {
-    if (this.props.user.state.fulfilled){
-      forumStore.findOneByName(config.forumProyectos).then(
-        forum => this.setState({ userPrivileges: forum.privileges.canChangeTopics })
-      )
+    // if already fetched
+    if (this.state.userFetched) return
+
+    const { step, dni, hasVoted } = this.state
+    const { user } = this.props
+
+    if (!user.state.value.staff) {
+      // !userPrivileges && dni === "" && zona === "" &&
+      // user.state.value && user.state.value.zona && user.state.value.dni
+      voteStore.hasVoted(user.state.value.dni)
+      .then((hasVoted) => {
+        if (hasVoted === "yes") {
+          this.setState({
+            zona: user.state.value.zona.id,
+            dni: user.state.value.dni,
+            userFetched: true,
+            hasVoted,
+            step: 6
+          })
+        } else {
+          this.setState({
+            zona: user.state.value.zona.id,
+            dni: user.state.value.dni,
+            userFetched: true,
+            hasVoted,
+            step: 1
+          })
+        }
+      })
+    } else {
+      this.setState({
+        userFetched: true
+      })
     }
+    // if (this.props.user.state.fulfilled){
+    //   forumStore.findOneByName(config.forumProyectos).then(
+    //     forum => this.setState({ userPrivileges: forum.privileges.canChangeTopics })
+    //   )
+    // }
   }
   
   handleSubmit (e) {
@@ -246,14 +291,44 @@ class FormularioVoto extends Component {
   }
 
   checkWarning = () => {
-    const { step, dni, zona, voto1, voto2 } = this.state
+    const { step, dni, zona, voto1, voto2, notInPadron, noUser, hasVoted, differentZone, searchedUser, zonas } = this.state
 
     switch (step) {
       case 0:
-        return !dni || !zona ? {
-          message: 'Los campos "DNI" y "Zona de Residencia" no pueden quedar vacíos',
-          canPass: false
-        } : {}
+        if (!dni || !zona) {
+          return {
+            message: 'Los campos "DNI" y "Zona de Residencia" no pueden quedar vacíos',
+            canPass: false
+          }
+        } else if (notInPadron === true){
+          // if user already voted, show warning and cant pass through
+          return {
+            message: `El usuario con DNI ${dni} no esta en el padrón, se lo estará agrengando con el voto.`,
+            canPass: true
+          }
+        } else if (noUser === true) {
+          return {
+            message: `Se encontro el ${dni} en el padrón. No se registro en la plataforma. Continue.`,
+            canPass: true
+          }
+        } else if (hasVoted === true) {
+          return {
+            message: `El usuario con DNI ${dni} ya votó anteriormente. No pueden continuar.`,
+            canPass: false
+          }
+        } else if (differentZone === true) {
+          return {
+            message: `El usuario con DNI ${dni} declaro como zona "${zonas.find(z => z.id === searchedUser.zona).nombre}". Cambielo.`,
+            canPass: false
+          }
+        } else {
+          return {}
+        }
+
+        // return !dni || !zona ? {
+        //   message: 'Los campos "DNI" y "Zona de Residencia" no pueden quedar vacíos',
+        //   canPass: false
+        // } : {}
       case 3:
         return !voto1 ? {
           message: 'El primer voto es obligatorio y se destina a tu zona indicada al momento de registro',
@@ -270,9 +345,57 @@ class FormularioVoto extends Component {
   }
 
   handleNext = () => {
-    const { step } = this.state
-    const warning = this.checkWarning()
-    warning && warning.message ? this.setState({warning: warning}) : this.changeStep(step + 1)
+    const { step, dni, zona } = this.state
+    if(step == 0){
+      this.setState({
+        notInPadron: null,
+        hasVoted: null,
+        noUser: null,
+        differentZone: null,
+        searchedUser: null
+      }, () => {
+        window.fetch(`api/padron/search/dni?dni=${dni}`, {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        })
+        .then(res => res.json())
+        .then(res => {
+          // if response is an empty object
+          if (Object.keys(res).length === 0){
+            // then user is not in padron
+            this.setState({
+              notInPadron: true
+            })
+          } else if (res.voted && res.voted === true) {
+            // then user has voted
+            this.setState({
+              hasVoted: true
+            })
+          } else if (res && !res.user){
+            // the dni is in padron but there is no user
+            this.setState({
+              noUser: true
+            })
+          } else if (res && res.user && zona != res.user.zona){
+            // user is in padron, but declared a differnet zone
+            this.setState({
+              differentZone: true,
+              searchedUser: res.user
+            })
+          }
+          const warning = this.checkWarning()
+          warning && warning.message ? this.setState({warning: warning}) : this.changeStep(step + 1)
+        })
+      })
+      // add dni as query
+    } else {
+      const warning = this.checkWarning()
+      warning && warning.message ? this.setState({warning: warning}) : this.changeStep(step + 1)
+    }
   }
 
   closeDialog = () => {
@@ -289,11 +412,12 @@ class FormularioVoto extends Component {
   }
 
   render () {
-    const { forum, step, warning  } = this.state
+    const { forum, step, warning, forumAndTopicFetched, userFetched } = this.state
     if (!forum) return null
     if (!config.votacionAbierta) return <Close />
 
-    
+    if (!forumAndTopicFetched || !userFetched) return (<p>Loading...</p>)
+
     const confirm = 5
     const welcome = 1
     const hasWarning = Object.keys(warning).length > 0
