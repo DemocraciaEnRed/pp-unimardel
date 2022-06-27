@@ -77,7 +77,6 @@ export default class FilterProyectos extends Component {
       activeTags, tags,
       handleRemoveBadge
     } = this.props
-    console.log(tags)
     let allActiveOpts = []
     // explicando un poco las operaciones que siguen:
     // - los "..." expanden el array que devuelve el map, sino pushearía un

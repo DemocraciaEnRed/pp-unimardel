@@ -325,10 +325,6 @@ class FormularioVoto extends Component {
           return {}
         }
 
-        // return !dni || !zona ? {
-        //   message: 'Los campos "DNI" y "Zona de Residencia" no pueden quedar vacíos',
-        //   canPass: false
-        // } : {}
       case 3:
         return !voto1 ? {
           message: 'El primer voto es obligatorio y se destina a tu zona indicada al momento de registro',
@@ -429,14 +425,8 @@ class FormularioVoto extends Component {
                     open
                 >
                     <h5>{warning.message}</h5>
-                    <div className="row">
-                      <div className="col-md-6 text-right">
-                        <button className='btn btn-cancelar' onClick={() => this.closeDialog()}>Cancelar</button>
-                      </div>
-                      <div className="col-md-6 text-left">
-                        <button className='btn btn-entendido' onClick={() => this.performNext(warning.canPass, step)}>Entendido</button>
-                      </div>
-                    </div>
+                    <button className='btn btn-cancelar' onClick={() => this.closeDialog()}>Cancelar</button>
+                    <button className='btn btn-entendido' onClick={() => this.performNext(warning.canPass, step)}>Entendido</button>
                 </dialog>
           }
       <div className={`form-votacion ${hasWarning ? "blur" : ""}`}> 
