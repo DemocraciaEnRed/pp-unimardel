@@ -57,8 +57,8 @@ export class UserBadge extends Component {
     if (this.props.menuOn) classes.push('active')
 
     return (
-      <div className={classes.join(' ')} onClick={this.props.toggleOnClick}>
-        <button className='header-link'>
+      <li className={classes.join(' ')} onClick={this.props.toggleOnClick}>
+        <button className='header-link' tabIndex="86">
           <img src={userAttrs.avatar} alt='' />
           {userAttrs.firstName}
           <span className="glyphicon glyphicon-triangle-bottom"></span>
@@ -66,22 +66,22 @@ export class UserBadge extends Component {
         <ul
           className='dropdown-list'>
           <li>
-            <Link to={urlBuilder.for('settings')}>
+            <Link to={urlBuilder.for('settings')} tabIndex="87">
               {t('header.settings')}
             </Link>
           </li>
           {UserBadge.links.map((link, i) => (
             <li key={`link-${i}`}>
-              <Link to={link.path}>{link.label}</Link>
+              <Link tabIndex={i+7} to={link.path}>{link.label}</Link>
             </li>
           ))}
           <li>
-            <a onClick={this.props.user.logout}>
+            <a onClick={this.props.user.logout} tabIndex="88">
               {t('header.logout')}
             </a>
           </li>
         </ul>
-      </div>
+      </li>
     )
   }
 }

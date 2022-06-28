@@ -51,7 +51,11 @@ export class VotoTopicCard extends Component {
 
             <div className='voto-topic-card-footer'>
               <div className='voto-topic-card-tags'>
-                <span className="glyphicon glyphicon-tag"></span>
+                { topic.zona && <span
+                  className='voto-tag-wrapper tag-zona' >
+                  {capitalizeFirstLetter(topic.zona.nombre)}
+                </span>
+                }                
                 { topic.tags && topic.tags.length > 0 && topic.tags.slice(0, 12).map((tag, i) => (
                   <span
                     key={`${tag}-${i}`}
@@ -59,12 +63,6 @@ export class VotoTopicCard extends Component {
                     {capitalizeFirstLetter(tag)}
                   </span>   
                 ))}
-                {
-                  topic.zona && <span
-                  className='voto-tag-wrapper tag-zona' >
-                  {capitalizeFirstLetter(topic.zona.nombre)}
-                </span>
-                }
               </div>
             </div>
 
@@ -85,7 +83,7 @@ export class VotoTopicCard extends Component {
           </div>}
           {handler && setState && <div className="col-md-2">
             <div className="voto-topic-card-checkbox">
-              <input type="checkbox" name={handler} value={topic.id} onChange={setState} className='select-topic' />
+              <input type="checkbox" name={handler} value={topic.id} onChange={setState} checked={topic.id === selected && true} className='select-topic' />
             </div>
           </div>}
           

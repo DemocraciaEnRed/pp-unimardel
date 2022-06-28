@@ -25,7 +25,7 @@ export default class Jump extends Component {
 		return (
 			<div className='jump-container'>
 				{ this.state.visibility && (
-					<div className='boton-jump' onClick={this.props.goTop}>
+					<div className='boton-jump' tabIndex="200" onClick={this.props.goTop}>
 					</div>
 				)}
 			</div>

@@ -303,12 +303,12 @@ class FormularioVoto extends Component {
         } else if (notInPadron === true){
           // if user already voted, show warning and cant pass through
           return {
-            message: `El usuario con DNI ${dni} no esta en el padrón, se lo estará agrengando con el voto.`,
+            message: `El usuario con DNI ${dni} no se encuentra en el padrón, se lo agregará al mismo con el voto.`,
             canPass: true
           }
         } else if (noUser === true) {
           return {
-            message: `Se encontro el ${dni} en el padrón. No se registro en la plataforma. Continue.`,
+            message: `Se encontró el ${dni} en el padrón. No se registró en la plataforma. Puede continuar.`,
             canPass: true
           }
         } else if (hasVoted === true) {
@@ -318,8 +318,8 @@ class FormularioVoto extends Component {
           }
         } else if (differentZone === true) {
           return {
-            message: `El usuario con DNI ${dni} declaro como zona "${zonas.find(z => z.id === searchedUser.zona).nombre}". Cambielo.`,
-            canPass: false
+            message: `El usuario con DNI ${dni} declaró como zona "${zonas.find(z => z.id === searchedUser.zona).nombre}".`,
+            canPass: true
           }
         } else {
           return {}

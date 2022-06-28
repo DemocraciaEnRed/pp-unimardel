@@ -23,7 +23,7 @@ export default class AnonUser extends Component {
 
   render () {
     return (
-      <div className='header-item'>
+      <li className='header-item'>
         {
           this.state.signup &&
            (
@@ -31,7 +31,7 @@ export default class AnonUser extends Component {
                to='/signup'
                className='header-link anon-user'
                onClick={this.props.toggleOnClick}
-               tabIndex="4">
+               tabIndex="86">
                {t('header.signup')}
              </Link>
            )
@@ -48,12 +48,12 @@ export default class AnonUser extends Component {
                }}
                className='header-link anon-user'
                onClick={this.props.toggleOnClick}
-               tabIndex="5">
+               tabIndex="86">
                {t('header.signin')}
              </Link>
            )
         }
-      </div>
+      </li>
     )
   }
 }

@@ -19,13 +19,13 @@ export default () =>  (
         "La etapa de subida de ideas ya finalizó. Ingresá para ver el listado completo"
         }</p>
         
-        <Link to={'/propuestas'} className="boton-foro" href="">
+        <Link to={'/propuestas'} tabIndex="31" className="boton-foro" href="">
             {
                 config.votacionAbierta ? "Catálogo de Proyectos" : "Accedé a las ideas"
             }
         </Link>
         {
-            config.votacionAbierta && <Link to={'/votacion'} className="boton-votacion" href="">Votá los proyectos</Link>
+            config.votacionAbierta && <Link to={'/votacion'} tabIndex="32" className="boton-votacion" href="">Votá los proyectos</Link>
         }
         
     </div>

@@ -105,7 +105,7 @@ export default class FilterProyectos extends Component {
               return y-z;
             })}
             activeOptions={this.props.activeZonas}
-            tabIndex="0"
+            tabIndex="100"
             activeDropdown={this.state.activeDropdown}
             clearedFilters={this.state.clearedFilters}
             handleDropdown={this.handleDropdown}
