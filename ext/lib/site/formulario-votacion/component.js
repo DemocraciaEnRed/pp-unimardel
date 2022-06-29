@@ -74,13 +74,14 @@ class FormularioVoto extends Component {
   }
 
   componentWillMount () {
+    const { user } = this.props
 
     const promises = [
       // data del forum
       forumStore.findOneByName('proyectos'),
       tagStore.findAll({field: 'name'}),
       zonaStore.findAll(),
-      topicStore.findAllProyectos(),
+      topicStore.findAllProyectosForVoting()
     ]
 
     Promise.all(promises).then(results => {
@@ -93,11 +94,20 @@ class FormularioVoto extends Component {
         topics,
         forumAndTopicFetched: true
       }
+      if (!user.state.pending && user.state.fulfilled){
+        this.onUserStateChange()
+      }
       this.setState(newState)
     }).catch(err =>
       console.error(err)
     )
   }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (!this.props.user.state.pending && this.props.user.state.fulfilled){
+  //     this.onUserStateChange()
+  //   }
+  // }
 
   // componentDidUpdate () {
   //   const {userPrivileges, dni, zona, step, hasVoted, fetched } = this.state

@@ -117,6 +117,29 @@ exports.findTopics = (opts) => {
     return topicScopes.ordinary.expose(topic, forum, user)
   })))
 }
+exports.findAllTopics = (opts) => {
+  const {
+    forum,
+    sort,
+    user
+  } = opts
+  return getPossibleOwners(opts).then(owners => {
+    // si devuelve null es porque no se filtró por owner
+    // (porque no se pasaron dichos parámetros en opts)
+    if (owners === null || owners.length > 0){
+      opts.owners = owners
+      return queryTopics(opts)
+          .populate(topicScopes.ordinary.populate)
+          .sort(sortMap[sort])
+          .select(topicScopes.ordinary.select)
+          .exec()
+    } else {
+      return []
+    }
+  }).then((topics) => Promise.all(topics.map((topic) => {
+    return topicScopes.ordinary.expose(topic, forum, user)
+  })))
+}
 
 exports.findTopicsCount = (opts) => getPossibleOwners(opts).then(owners => {
   // si devuelve null es porque no se filtró por owner

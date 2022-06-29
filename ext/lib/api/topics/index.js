@@ -90,4 +90,71 @@ app.get('/topics',
     }).catch(next)
   })
 
+app.get('/topics/all',
+  validate({
+    query: Object.assign({}, validate.schemas.pagination, {
+      forumName: {
+        type: 'string',
+        enum: allowedForums,
+        required: true
+      },
+      zonas: {
+        type: 'string',
+        format: 'zonas',
+        default: ''
+      },
+      tags: {
+        type: 'string',
+        format: 'tags',
+        default: ''
+      },
+      state: {
+        type: 'string',
+        format: 'states',
+        default: 'pendiente,factible,no-factible,integrado'
+      },
+      sort: {
+        type: 'string',
+        enum: ['newest', 'popular', 'barrio'],
+        default: 'newest'
+      },
+      related: {
+        type: 'string',
+        default: '',
+        format: 'barrio'
+      },
+      tipoIdea: {
+        type: 'string',
+        default: 'pendiente,proyecto'
+      }
+    })
+  }, { formats }),
+  utils.findForum,
+  utils.parseStates,
+  utils.parseTipoIdea,
+  utils.parseZonas,
+  utils.parseTags,
+  middlewares.forums.privileges.canView,
+  (req, res, next) => {
+    const opts = Object.assign({}, req.query)
+    opts.forum = req.forum
+    opts.user = req.user
+    opts.state = opts.tipoIdea
+    utils.findAllTopics(opts).then(topics => apiNoExt.user.populateOwners(topics))
+    .then((topics) => {
+      // pidieron mostrar siempre primero las ideas-proyecto
+      // const ideasProyectos = topics.filter(t => t.attrs.state == 'idea-proyecto')
+      // const ideasResto = topics.filter(t => t.attrs.state != 'idea-proyecto')
+      res.status(200).json({
+        status: 200,
+        pagination: {
+          count: topics.length
+        },
+        results: {
+          topics: topics
+        }
+      })
+    }).catch(next)
+  })
+
 module.exports = app
