@@ -24,5 +24,9 @@ exports.findVoto1FromBody = function findById (req, res, next) {
 }
 
 exports.findVoto2FromBody = function findById (req, res, next) {
-  findWithId(req, res, next, 'voto2', req.body.voto2)
+  if (req.body.voto2){
+    findWithId(req, res, next, 'voto2', req.body.voto2)
+  } else {
+    next()
+  }
 }
