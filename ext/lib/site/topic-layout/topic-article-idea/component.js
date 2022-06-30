@@ -8,8 +8,8 @@ import Social from './social/component'
 import Cause from './cause/component'
 import Comments from './comments/component'
 import { Link } from 'react-router'
-import VotarButton from 'ext/lib/site/home-propuestas/topic-card/votar-button/component'
-import VerTodosButton from 'ext/lib/site/home-propuestas/topic-card/ver-todos-button/component'
+import VotarButton from 'ext/lib/site/home-catalogo/topic-card/votar-button/component'
+import VerTodosButton from 'ext/lib/site/home-catalogo/topic-card/ver-todos-button/component'
 import config from 'lib/config'
 import Collapsible from 'react-collapsible'
 
@@ -129,9 +129,9 @@ class TopicArticle extends Component {
     { !isProyecto && <Cause
       topic={topic}
       canVoteAndComment={forum.privileges.canVoteAndComment} /> }
-    { isProyecto &&
+    {/* { isProyecto &&
       <VotarButton topic={topic} onVote={onVote} />
-    }
+    } */}
     &nbsp;
     <VerTodosButton />
   </div>

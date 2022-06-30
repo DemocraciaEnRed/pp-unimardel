@@ -111,7 +111,7 @@ export default class FilterPropuestas extends Component {
               return y-z;
             })}
             activeOptions={zona}
-            tabIndex="0"
+            tabIndex="110"
             activeDropdown={this.state.activeDropdown}
             clearedFilters={this.state.clearedFilters}
             handleDropdown={this.handleDropdown}

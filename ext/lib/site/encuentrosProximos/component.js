@@ -102,7 +102,7 @@ export default class EncuentrosProximos extends Component {
           <div className="eventos-container">
             <div className="the-label">
               <h5><span className="glyphicon glyphicon-calendar"></span> PRÓXIMAS<br/>REUNIONES</h5>
-              <Link href="/s/encuentros">
+              <Link href="/s/encuentros" tabIndex="40">
                 Ver todos
               </Link>
             </div>

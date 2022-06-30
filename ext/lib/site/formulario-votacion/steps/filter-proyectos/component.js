@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Badges from './badges/component'
 
-export default class FilterPropuestas extends Component {
+export default class FilterProyectos extends Component {
   constructor (props) {
     super(props)
 
@@ -73,12 +73,10 @@ export default class FilterPropuestas extends Component {
     //console.log('Render filters')
 
     const {
-      zona, zonas,
-      tags, tag,
-      tiposIdea, tipoIdea,
+      activeZonas, zonas,
+      activeTags, tags,
       handleRemoveBadge
     } = this.props
-
     let allActiveOpts = []
     // explicando un poco las operaciones que siguen:
     // - los "..." expanden el array que devuelve el map, sino pushearía un
@@ -86,58 +84,40 @@ export default class FilterPropuestas extends Component {
     // - el .map(.find().name) hace la conversión de keys a values
     //   p.ej. barrio contiene keys, y para mostrar su formato para humanos hay
     //   que buscar la key dentro de barrios
-    if (zona.length)
+    if (activeZonas && activeZonas.length)
       allActiveOpts.push(
-        ...zona.sort().map(i => ({ value: i, name: zonas.find(j => j.value==i).name }))
+        ...activeZonas.sort().map(i => ({ value: i, name: zonas.find(j => j.value==i) }))
       )
-    if (tag.length && tags.length)
+    if (activeTags && activeTags.length)
       allActiveOpts.push(
-        ...tag.sort().map(i => ({ value: i, name: tags.find(j => j.value==i).name }))
-      )
-    if (tipoIdea.length && tiposIdea.length)
-      allActiveOpts.push(
-        ...tipoIdea.sort().map(i => ({ value: i, name: tiposIdea.find(j => j.value==i).name }))
+        ...activeTags.sort().map(i => ({ value: i, name: tags.find(j => j.value==i) }))
       )
 
     return (
-      <nav id='filter-propuestas'>
+      <nav id='filter-proyectos'>
         <div className='filters-nav center'>
-          {<FilterBox
-            name='zona'
+          {zonas && zonas.length > 0 && <FilterBox
+            name='activeZonas'
             title='Zona'
             allOptions={zonas.sort(function(a, b) {
-              const y = a.name.split("Zona ")[1]
-              const z = b.name.split("Zona ")[1]
+              const y = a.nombre.split("Zona ")[1]
+              const z = b.nombre.split("Zona ")[1]
               return y-z;
             })}
-            activeOptions={zona}
-            tabIndex="0"
+            activeOptions={this.props.activeZonas}
+            tabIndex="100"
             activeDropdown={this.state.activeDropdown}
             clearedFilters={this.state.clearedFilters}
             handleDropdown={this.handleDropdown}
             handleFilter={this.handleFilter}
             clearFilter={this.clearFilter}
             />}
-
-          {/* <FilterBox
-            name='tipoIdea'
-            title='Tipo de idea'
-            allOptions={tiposIdea}
-            activeOptions={tipoIdea}
-
-            activeDropdown={this.state.activeDropdown}
-            clearedFilters={this.state.clearedFilters}
-            handleDropdown={this.handleDropdown}
-            handleFilter={this.handleFilter}
-            clearFilter={this.clearFilter}
-            /> */}
-
+          
           <FilterBox
-            name='tag'
+            name='activeTags'
             title='Tema'
             allOptions={tags}
-            activeOptions={tag}
-
+            activeOptions={this.props.activeTags}
             activeDropdown={this.state.activeDropdown}
             clearedFilters={this.state.clearedFilters}
             handleDropdown={this.handleDropdown}
@@ -146,9 +126,9 @@ export default class FilterPropuestas extends Component {
             />
         </div>
 
-        {allActiveOpts.length != 0 &&
+        {/* {allActiveOpts.length != 0 &&
           <Badges options={allActiveOpts} handleRemove={handleRemoveBadge} />
-        }
+        } */}
 
       </nav>
     )
@@ -191,15 +171,15 @@ class FilterBox extends Component {
         { activeDropdown === name &&
           <div className='dropdown-options'>
             <div className='options-container'>
-              { allOptions.map((obj) => (
-                <label className='option-label' key={ obj.value }>
+              { allOptions.map((obj, key) => (
+                <label className='option-label' key={ key }>
                   <input
                     role="checkbox"
                     type='checkbox'
-                    value={ obj.value }
+                    value={ obj.id }
                     onChange={ handleFilter(name) }
-                    checked={ hasSelection && activeOptions.includes(obj.value) } />
-                  <span className='checkbox-label'>{ obj.name }</span>
+                    checked={ hasSelection && activeOptions.includes(obj.id) } />
+                  <span className='checkbox-label'>{ obj.name || obj.nombre }</span>
                 </label>
               )) }
             </div>

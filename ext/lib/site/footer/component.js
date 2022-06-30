@@ -11,14 +11,14 @@ const Footer = () => (
           <span>Av. Juan B. Justo 5665 Piso 1</span>
           <span>Mar Del Plata, Provincia de Buenos Aires</span>
           <span>Código postal: B7604AAG</span>
-          <span><a tabIndex="8" href="mailto:articipaMGP@mardelplata.gob.ar">ParticipaMGP@mardelplata.gob.ar</a></span>
+          <span><a tabIndex="101" href="mailto:ParticipaMGP@mardelplata.gob.ar">Mail de contacto: ParticipaMGP@mardelplata.gob.ar</a></span>
         </p>
       </div>
       <div className='social-icon'>
-        <a className='social-facebook' tabIndex="9"  href='https://facebook.com/municipalidadmardelplata/ ' target="_blank"/>
-        <a className='social-instagram' tabIndex="10"  href='https://instagram.com/munimardelplata/' target="_blank" />
-        <a className='social-twitter' tabIndex="11"  href='https://twitter.com/munimardelplata/' target="_blank" />
-        <a className='social-mail' tabIndex="12"  href='mailto:ParticipaMGP@mardelplata.gob.ar' target="_blank"/>
+        <a aria-label='Ícono de facebook' className='social-facebook' tabIndex="102"  href='https://facebook.com/municipalidadmardelplata/ ' target="_blank"/>
+        <a aria-label='Ícono de instagram' className='social-instagram' tabIndex="103"  href='https://instagram.com/munimardelplata/' target="_blank" />
+        <a aria-label='Ícono de twitter' className='social-twitter' tabIndex="104"  href='https://twitter.com/munimardelplata/' target="_blank" />
+        <a aria-label='Ícono de mail' className='social-mail' tabIndex="105"  href='mailto:ParticipaMGP@mardelplata.gob.ar' target="_blank"/>
       </div>
       <div className='logos'>
         {/* <a href="https://democraciaenred.org/" rel="noopener noreferer" target="_blank">
@@ -27,15 +27,14 @@ const Footer = () => (
             <span>Desarrollado por<br /><b>Democracia en red</b></span>
           </div>
         </a> */}
-        <a href=""></a>
         <div className='logo'>
-          <a className='logo-mgp' href='https://www.mardelplata.gob.ar/' aria-name="Link a pagina mar del plata" rel="noopener noreferer" target="_blank" />
+          <a className='logo-mgp' tabIndex="106" href='https://www.mardelplata.gob.ar/' aria-label="Link a página de Mar del Plata" rel="noopener noreferer" target="_blank" />
         </div>
       </div>
       <div className='terminos'>
-        <Link to='/s/terminos-y-condiciones' tabIndex="13"> Términos y condiciones
+        <Link to='/s/terminos-y-condiciones' tabIndex="107"> Términos y condiciones
         </Link>
-        <a href="/reglamento" tabIndex="14" rel="noopener noreferer" target="_blank"> Reglamento
+        <a href="/reglamento" tabIndex="108" rel="noopener noreferer" target="_blank"> Reglamento
         </a>
       </div>
     </div>

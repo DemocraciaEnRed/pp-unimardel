@@ -101,8 +101,8 @@ class Header extends Component {
             <img
               src={config.logoMobile}
               className='d-inline-block align-top'
+              alt="Logo de la Municipalidad de Mar del Plata"
               height='30'
-              alt="MGP Presupuesto participativo"
               />
           </Link>
 
@@ -121,7 +121,7 @@ class Header extends Component {
 
             {userState.fulfilled && (
               <UserBadge
-                tabIndex="2"
+                tabIndex="82"
                 menuOn={this.state.userMenu}
                 toggleOnClick={this.toggleUserMenu} />
             )}
@@ -145,43 +145,55 @@ class Header extends Component {
           <Link
             to={config.homeLink}
             className='navbar-brand'
+            aria-label="Link a página de inicio"
             tabIndex="1">
             <img
               src={config.logo}
+              alt="Logo de la Municipalidad de Mar del Plata"
               className='d-inline-block align-top'
             />
           </Link>
 
           <ul className='nav navbar-nav'>
 
-            <div className={`header-item ${window.location.pathname.includes('/acerca-de') ? 'active' : ''}`}>
+            <li className={`header-item ${window.location.pathname.includes('/acerca-de') ? 'active' : ''}`}>
               <Link
                 to='/s/acerca-de'
                 className='header-link'
-                tabIndex="2"
+                tabIndex="82"
                 >
                   Acerca de
               </Link>
-            </div>
-            <div className={`header-item ${window.location.pathname.includes('/propuestas') ? 'active' : ''}`}>
+            </li>
+            <li className={`header-item ${window.location.pathname.includes('/propuestas') ? 'active' : ''}`}>
               <Link
                 to='/propuestas'
                 className='header-link'
-                tabIndex="3"
+                tabIndex="83"
                 >
                   Ideas y Proyectos
               </Link>
-            </div>          
+            </li>         
+            { config.votacionAbierta && <li className={`header-item ${window.location.pathname.includes('/votacion') ? 'active' : ''}`}>
+              <Link
+                to='/votacion'
+                className='header-link'
+                tabIndex="84"
+                >
+                  Votá
+              </Link>
+            </li>
+            } 
             { showAdmin &&
-              <div className={`header-item ${window.location.pathname.includes('/admin') ? 'active' : ''}`}>
+              <li className={`header-item ${window.location.pathname.includes('/admin') ? 'active' : ''}`}>
                 <Link
                   to='/proyectos/admin/topics'
                   className='header-link'
-                  tabIndex="4"
+                  tabIndex="85"
                   >
                     Admin
                 </Link>
-              </div>
+              </li>
             }
             {/*<div className={`header-item">
               <Link
