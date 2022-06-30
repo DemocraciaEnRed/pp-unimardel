@@ -86,11 +86,11 @@ export default class FilterProyectos extends Component {
     //   que buscar la key dentro de barrios
     if (activeZonas && activeZonas.length)
       allActiveOpts.push(
-        ...activeZonas.sort().map(i => ({ value: i, name: zonas.find(j => j.value==i).name }))
+        ...activeZonas.sort().map(i => ({ value: i, name: zonas.find(j => j.value==i) }))
       )
     if (activeTags && activeTags.length)
       allActiveOpts.push(
-        ...activeTags.sort().map(i => ({ value: i, name: tags.find(j => j.value==i).name }))
+        ...activeTags.sort().map(i => ({ value: i, name: tags.find(j => j.value==i) }))
       )
 
     return (
@@ -171,14 +171,14 @@ class FilterBox extends Component {
         { activeDropdown === name &&
           <div className='dropdown-options'>
             <div className='options-container'>
-              { allOptions.map((obj) => (
-                <label className='option-label' key={ obj.value }>
+              { allOptions.map((obj, key) => (
+                <label className='option-label' key={ key }>
                   <input
                     role="checkbox"
                     type='checkbox'
-                    value={ obj.value }
+                    value={ obj.id }
                     onChange={ handleFilter(name) }
-                    checked={ hasSelection && activeOptions.includes(obj.value) } />
+                    checked={ hasSelection && activeOptions.includes(obj.id) } />
                   <span className='checkbox-label'>{ obj.name || obj.nombre }</span>
                 </label>
               )) }

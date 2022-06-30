@@ -39,7 +39,7 @@ export class VotoTopicCard extends Component {
           <div className="col-md-8">
             <div className='voto-topic-card-info'>
               <h1 className='voto-topic-card-title'>
-                {topic.mediaTitle.length > 70 ? topic.mediaTitle.slice(0,70) + "..." : topic.mediaTitle}
+                {topic.mediaTitle.length > 70 ? topic.mediaTitle.slice(0,50) + "..." : topic.mediaTitle}
               </h1>
               {topic.attrs && <p className='voto-topic-card-description'>
                 {createClauses(topic)}
@@ -56,13 +56,11 @@ export class VotoTopicCard extends Component {
                   {capitalizeFirstLetter(topic.zona.nombre)}
                 </span>
                 }                
-                { topic.tags && topic.tags.length > 0 && topic.tags.slice(0, 12).map((tag, i) => (
-                  <span
-                    key={`${tag}-${i}`}
+                { topic.tag && <span
                     className='voto-tag-wrapper' >
-                    {capitalizeFirstLetter(tag)}
+                    {capitalizeFirstLetter(topic.tag.name)}
                   </span>   
-                ))}
+                }
               </div>
             </div>
 

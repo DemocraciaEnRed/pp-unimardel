@@ -254,6 +254,8 @@ class FormularioVoto extends Component {
   }
 
   renderStep = (step) => {
+    const tags = this.state.activeTags.length > 0 ? this.state.activeTags :  this.state.tags.map(t => t.id)
+    const zonas = this.state.activeZonas.length > 0 ? this.state.activeZonas :  this.state.zonas.map(t => t.id)
     switch (step) {
       case 0:
         return <SelectVoter zonas={this.state.zonas} setState={this.handleInputChange} />
@@ -263,7 +265,7 @@ class FormularioVoto extends Component {
         return <Info />
       case 3:
         return <VotoZona 
-          topics={this.state.topics.filter(t => t.zona.id === this.state.zona)} 
+          topics={this.state.topics.filter(t => (t.zona.id === this.state.zona && tags.includes(t.tag.id)))} 
           handler="voto1"
           selected={this.state.voto1}
           setState={this.handleCheckboxInputChange} 
@@ -276,7 +278,7 @@ class FormularioVoto extends Component {
         />
       case 4:
         return <VotoCualquierZona 
-          topics={this.state.topics.filter(t => t.id !== this.state.voto1)} 
+          topics={this.state.topics.filter(t => t.id !== this.state.voto1 && tags.includes(t.tag.id) && zonas.includes(t.zona.id))} 
           handler="voto2"
           selected={this.state.voto2}
           setState={this.handleCheckboxInputChange} 
@@ -418,7 +420,7 @@ class FormularioVoto extends Component {
   }
 
   render () {
-    const { forum, step, warning, forumAndTopicFetched, userFetched } = this.state
+    const { forum, step, warning, forumAndTopicFetched, userFetched, activeTags, activeZonas } = this.state
     if (!forum) return null
     if (!config.votacionAbierta) return <Close />
 
