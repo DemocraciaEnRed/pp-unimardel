@@ -98,7 +98,7 @@ class HomePropuestas extends Component {
         forum,
         // searchableProyectos: proyectos.filter(p => p.attrs.state == (config.votacionVisible ? 'proyecto' : 'pendiente')).map(p => ({label: `${p.mediaTitle}`, value: p._id}))
         // searchableProyectos: config.votacionVisible ? proyectos.map(p => p.state == 'proyecto') : proyectos.map(p => p.state == 'pendiente')
-        searchableProyectos: proyectos.map(p => ({label: `#${p.attrs && p.attrs.numero} ${p.mediaTitle}`, value: p._id}))
+        searchableProyectos: proyectos.map(p => ({label: `#${p.attrs && p.attrs.numero} ${p.mediaTitle}`, value: p.id}))
       }, () => this.fetchTopics())
     }).catch((err) => { throw err })
   }
@@ -326,6 +326,7 @@ class HomePropuestas extends Component {
 
   handleSelectedProyecto = (selectedProyecto) => {
     //console.log(`Option selected:`, selectedProyecto);
+    console.log(selectedProyecto)
 
     const topicId = selectedProyecto.value
     if (this.state.topics.find(t => t.id == selectedProyecto.value) == undefined){
