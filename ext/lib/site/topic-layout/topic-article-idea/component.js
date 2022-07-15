@@ -160,8 +160,10 @@ class TopicArticle extends Component {
         && <div className='topic-article-nombre'>Proyecto: {topic.attrs['proyecto-titulo']}</div>}
         <div className='topic-article-nombre'>Autor/es/as: {topic.owner.firstName}</div>
         <div className='topic-article-zona'>{topic.zona.nombre}</div>
+        
         {topic.attrs.state && 
         <div className='topic-article-nombre'>Estado: {topic.attrs.state}</div>}        
+        <div className='topic-article-zona superbold'>Presupuesto: ${topic.attrs['presupuesto-total'].toLocaleString()}</div>
 
          <div className='topic-article-status-container'>
           {
@@ -193,7 +195,7 @@ class TopicArticle extends Component {
 
           }
         </div>
-
+{/* 
         <div className="row">
           <div className="col-md-4"></div>
           <div className="col-md-4">
@@ -205,13 +207,13 @@ class TopicArticle extends Component {
           </div> }
           </div>
           <div className="col-md-4"></div>
-        </div>
+        </div> */}
 
         
 
           {topic.attrs['proyecto-contenido'] &&
             <div
-              className='topic-article-proyecto'
+              className='topic-article-proyecto superbold'
               dangerouslySetInnerHTML={{
                 __html: topic.attrs['proyecto-contenido'].replace(/https?:\/\/[a-zA-Z0-9./]+/g, '<a href="$&" rel="noopener noreferer" target="_blank">$&</a>')
               }}>

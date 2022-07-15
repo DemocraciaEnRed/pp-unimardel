@@ -19,20 +19,19 @@ function createClauses({ attrs, clauses }) {
   }
   div.innerHTML = content
   let returnText = div.textContent.replace(/\r?\n|\r/g, '')
-  return returnText.length > 200 ? returnText.slice(0, 200) + '...' : returnText
+  return returnText.length > 200 ? returnText.slice(0, 190) + '...' : returnText
 }
 
-export class VotoTopicCard extends Component {
+function capitalizeFirstLetter(str) {
+  if (!str) return ''
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
 
-  render() {
-    const { topic, handler, selected, setState } = this.props
+class VotoTopicCard extends Component { 
 
-    function capitalizeFirstLetter(str) {
-      if (!str) return ''
-      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-    }
 
-    if (window.matchMedia('(max-width: 768px)').matches) {
+    displayMobile() {
+      const { topic, handler, selected, setState } = this.props
       return (
         <div className={`voto-topic-card ${topic.id === selected ? 'active' : ""}`}>
           <div className="row">
@@ -57,7 +56,10 @@ export class VotoTopicCard extends Component {
           </div>
         </div>
       )
-    } else {
+    }
+
+    displayDesktop() {
+      const { topic, handler, selected, setState, handleShowTopicDialog } = this.props
       return (
         <div className={`voto-topic-card ${topic.id === selected ? 'active' : ""}`}>
           <div className="row">
@@ -66,7 +68,7 @@ export class VotoTopicCard extends Component {
                 <h1>
                   {topic.mediaTitle.length > 70 ? topic.mediaTitle.slice(0,50) + "..." : topic.mediaTitle}
                 </h1>
-                {topic.attrs && <p>{createClauses(topic)}</p>}
+                {topic.attrs && <p>{createClauses(topic)} <button onClick={() => handleShowTopicDialog(topic)}>VER MAS</button></p>}
                 <div className='voto-topic-card-tags'>
                   {topic.zona && <span className='voto-tag-wrapper tag-zona' >{capitalizeFirstLetter(topic.zona.nombre)}</span>}                
                   {topic.tag && <span className='voto-tag-wrapper' >{capitalizeFirstLetter(topic.tag.name)}</span>}
@@ -87,8 +89,12 @@ export class VotoTopicCard extends Component {
           </div>
         </div>
       )
-    }
+    }    
+
+    render() {
+      return (window.matchMedia('(max-width: 768px)').matches ? this.displayMobile() : this.displayDesktop())
   }
 }
+
 
 export default VotoTopicCard

@@ -14,7 +14,8 @@ export default ({
         activeZonas,
         handleFilter,
         handleDefaultFilter,
-        clearFilter        
+        clearFilter,
+        handleShowTopicDialog
     }) => (
     <div className='form-votacion'>
         <div className='votacion-header'>
@@ -37,6 +38,7 @@ export default ({
                     handler={handler} 
                     selected={selected} 
                     setState={setState} 
+                    handleShowTopicDialog={handleShowTopicDialog}
                 />
             ))}
         </div>
