@@ -55,7 +55,11 @@ class FormularioVoto extends Component {
       zonas: [],
       activeTags: [],
       activeZonas: [],
-      userPrivileges: null
+      userPrivileges: null,
+
+      // Para dialog de topic
+      isTopicDialogOpen: false,
+      topicDialog:{}
     }
 
     props.user.onChange(this.onUserStateChange)
@@ -65,6 +69,7 @@ class FormularioVoto extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.renderStep = this.renderStep.bind(this)
     this.changeStep = this.changeStep.bind(this)
+    this.handleShowTopicDialog = this.handleShowTopicDialog.bind(this)
   }
 
   handleInputChange (evt) {
@@ -251,6 +256,7 @@ class FormularioVoto extends Component {
 
   changeStep = (step) => {
     this.setState({step})
+    window.scrollTo(0,0)    
   }
 
   renderStep = (step) => {
@@ -275,6 +281,7 @@ class FormularioVoto extends Component {
           handleFilter={this.handleFilter}
           handleDefaultFilter={this.handleDefaultFilter}
           clearFilter={this.clearFilter}
+          handleShowTopicDialog={this.handleShowTopicDialog}
         />
       case 4:
         return <VotoCualquierZona 
@@ -289,6 +296,7 @@ class FormularioVoto extends Component {
           handleFilter={this.handleFilter}
           handleDefaultFilter={this.handleDefaultFilter}
           clearFilter={this.clearFilter}
+          handleShowTopicDialog={this.handleShowTopicDialog}
         />
       case 5:
         return <Confirmacion
@@ -419,8 +427,17 @@ class FormularioVoto extends Component {
 
   }
 
+  handleShowTopicDialog (topicDialog={}) {
+
+    this.setState({
+        isTopicDialogOpen: !this.state.isTopicDialogOpen,
+        topicDialog
+    })
+};  
+
   render () {
-    const { forum, step, warning, forumAndTopicFetched, userFetched, activeTags, activeZonas } = this.state
+    
+    const { forum, step, warning, forumAndTopicFetched, userFetched, isTopicDialogOpen, topicDialog } = this.state
     if (!forum) return null
     if (!config.votacionAbierta) return <Close />
 
@@ -436,43 +453,58 @@ class FormularioVoto extends Component {
                     className='dialog-votacion text-center'
                     open
                 >
-                    <h5>{warning.message}</h5>
-                    <button className='btn btn-cancelar' onClick={() => this.closeDialog()}>Cancelar</button>
-                    <button className='btn btn-entendido' onClick={() => this.performNext(warning.canPass, step)}>Entendido</button>
-                </dialog>
-          }
-      <div className={`form-votacion ${hasWarning ? "blur" : ""}`}> 
-        {
-          step > welcome && <div className='step-tracker'>
-          {[1,2,3,4].map((s, index) => (<div key={index} >
-            {s > 1 && <span className={`step-line${step-1 >= s ? "-past" : ""}`} />}
-            <span 
-            className={`step-${s} ${step-1 === s ? "active" : (step-1 > s ? "past" : "")}`}>
-              {s}
-            </span>
-          </div>))}
-        </div>
-        } 
-        {this.renderStep(step)}
-        {config.votacionAbierta && step !== welcome && step <= confirm && (
-          <div className='footer-votacion'>
-            <button className='button-anterior' disabled={step <= welcome ? true : false} onClick={() => this.changeStep(step - 1)}>
-              <span className='icon-arrow-left-circle'></span> Anterior
-            </button>
-            {step === confirm ?
-            <button className='button-siguiente' onClick={this.handleSubmit}>
-              Enviar Votos <span className='icon-like'></span>
-            </button> :
-            <button 
-              className='btn button-siguiente'
-              onClick={() => this.handleNext()}
-            >
-              Siguiente <span className='icon-arrow-right-circle'></span>
-            </button>
-            }
+                  <h5>{warning.message}</h5>
+                  <button className='btn btn-cancelar' onClick={() => this.closeDialog()}>Cancelar</button>
+                  <button className='btn btn-entendido' onClick={() => this.performNext(warning.canPass, step)}>Entendido</button>
+              </dialog>
+        }
+        {isTopicDialogOpen && <dialog
+                    className='dialog-topic'
+                    open
+                >
+                  <div className="header">
+                    <h1>Proyecto completo</h1>
+                    <span onClick={this.handleShowTopicDialog}>X</span>
+                  </div>
+                  <div className="body">
+                    <p>{topicDialog.mediaTitle}</p>
+                    {topicDialog.attrs && <p>{topicDialog.attrs.problema}</p>}
+                  </div>
+              </dialog>
+        }
+
+        <div className={`form-votacion ${(hasWarning | isTopicDialogOpen) ? "blur" : ""}`}> 
+          {
+            step > welcome && <div className='step-tracker'>
+            {[1,2,3,4].map((s, index) => (<div key={index} >
+              {s > 1 && <span className={`step-line${step-1 >= s ? "-past" : ""}`} />}
+              <span 
+              className={`step-${s} ${step-1 === s ? "active" : (step-1 > s ? "past" : "")}`}>
+                {s}
+              </span>
+            </div>))}
           </div>
-        )}
-     </div>
+          } 
+          {this.renderStep(step)}
+          {config.votacionAbierta && step !== welcome && step <= confirm && !(hasWarning | isTopicDialogOpen) && (
+            <div className='footer-votacion'>
+              <button className='button-anterior' disabled={step <= welcome ? true : false} onClick={() => this.changeStep(step - 1)}>
+                <span className='icon-arrow-left-circle'></span> Anterior
+              </button>
+              {step === confirm ?
+              <button className='button-siguiente' onClick={this.handleSubmit}>
+                Enviar Votos <span className='icon-like'></span>
+              </button> :
+              <button 
+                className='btn button-siguiente'
+                onClick={() => this.handleNext()}
+              >
+                Siguiente <span className='icon-arrow-right-circle'></span>
+              </button>
+              }
+            </div>
+          )}
+        </div>
       </div>
 
     )

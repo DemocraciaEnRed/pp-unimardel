@@ -8,6 +8,13 @@
   align-items: center
   font-family: 'Museo300', sans-serif
   margin-bottom: 10%
+  &.blur
+    -webkit-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -o-filter: blur(8px);
+    -ms-filter: blur(8px);
+    filter: blur(8px);  
+    pointer-events: none;  
   
   @media (max-width: 400px)
     margin-top: 140px
@@ -47,6 +54,11 @@
     width: 100%
     padding: 20px
     position: relative
+    li
+      font-size: 16px
+      font-family: 'Museo300', sans-serif
+      margin:0;
+      padding: 4px 30px;
     .more-info
       text-align: center;
       font-size: 1.3em;
@@ -223,51 +235,51 @@
     li.error-li
       color: red;
 
-.footer-votacion
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #FAFAFA;
-  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.25);
-  color: white;
-  text-align: center;
-  justify-content: space-between;
-  padding: 1vh 25% 1vh 25%;
-  display: flex;
-  @media (max-width: 768px)
-    padding: 1vh 0 1vh 0;  
-  .button-anterior
-    display: inline-block
-    flex-direction: row;
-    gap: 20px;
-    background-color: #CCCCCC;
-    box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
-    border-radius: 8px;
-    padding: 10px 15px
-    font-family: 'Museo300', sans-serif
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 30px;
-    text-align: center;
+  .footer-votacion
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #FAFAFA;
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.25);
     color: white;
+    text-align: center;
+    justify-content: space-between;
+    padding: 1vh 25% 1vh 25%;
+    display: flex;
+    @media (max-width: 768px)
+      padding: 1vh 0 1vh 0;  
+    .button-anterior
+      display: inline-block
+      flex-direction: row;
+      gap: 20px;
+      background-color: #CCCCCC;
+      box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
+      border-radius: 8px;
+      padding: 10px 15px
+      font-family: 'Museo300', sans-serif
+      font-style: normal;
+      font-weight: 400;
+      font-size: 25px;
+      line-height: 30px;
+      text-align: center;
+      color: white;
 
-  .button-siguiente
-    display: inline-block
-    flex-direction: row;
-    gap: 20px;
-    background: #00A6CB
-    box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
-    border-radius: 8px;
-    padding: 10px 15px
-    font-family: 'Museo300', sans-serif
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 30px;
-    text-align: center;
-    color: white;
+    .button-siguiente
+      display: inline-block
+      flex-direction: row;
+      gap: 20px;
+      background: #00A6CB
+      box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
+      border-radius: 8px;
+      padding: 10px 15px
+      font-family: 'Museo300', sans-serif
+      font-style: normal;
+      font-weight: 400;
+      font-size: 25px;
+      line-height: 30px;
+      text-align: center;
+      color: white;
 
 .boton-comenzar
   font-family: 'Museo300', sans-serif
@@ -300,8 +312,10 @@
     background: #B5B5B5;  
     background-repeat: no-repeat
     background-size: cover
-    border-radius: 60%;
+    border-radius: 50%;
     padding: 1vh
+    width: 4vh
+    height: 4vh
     color: white
     display: inline-block
   .active
@@ -324,7 +338,27 @@
 
         
 
-
+.dialog-topic
+  box-sizing: border-box;
+  background: #F1F1F1;
+  width: 50%
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;  
+  .header
+    padding: 2%
+    justify-content: space-between;
+    align-items: center;
+    background: #C4D94B;
+    border-radius: 5px;
+    h1
+      font-family: 'Museo900', sans-serif
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 30px;    
+      color: #FFFFFF; 
+  p
+    font-size: 12px;
 
 
 .dialog-votacion
