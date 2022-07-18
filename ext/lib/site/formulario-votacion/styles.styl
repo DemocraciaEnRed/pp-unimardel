@@ -341,15 +341,28 @@
 .dialog-topic
   box-sizing: border-box;
   background: #F1F1F1;
-  width: 50%
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;  
+  padding: 0 
+  border: 0px
+  max-width: 70%
+  overflow-y: initial !important
   .header
-    padding: 2%
+    padding-left: 15px
+    padding-right: 15px
+    border-radius: 10px
     justify-content: space-between;
     align-items: center;
     background: #C4D94B;
-    border-radius: 5px;
+    display: grid
+    grid-template-columns: 90% 10%
+    span
+      text-align: right;
+      font-family: 'Museo900', sans-serif
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 30px;    
+      color: #FFFFFF;       
+      cursor: pointer
     h1
       font-family: 'Museo900', sans-serif
       font-style: normal;
@@ -357,9 +370,14 @@
       font-size: 18px;
       line-height: 30px;    
       color: #FFFFFF; 
-  p
-    font-size: 12px;
-
+  .body
+    padding: 5px
+    font-family: 'Museo300', sans-serif
+    font-style: normal;
+    font-size: 16px;
+    line-height: 20px;
+    max-height: 500px;
+    overflow-y: auto;    
 
 .dialog-votacion
   box-sizing: border-box;

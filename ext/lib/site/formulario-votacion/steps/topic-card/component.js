@@ -31,7 +31,7 @@ class VotoTopicCard extends Component {
 
 
     displayMobile() {
-      const { topic, handler, selected, setState } = this.props
+      const { topic, handler, selected, setState, handleShowTopicDialog } = this.props
       return (
         <div className={`voto-topic-card ${topic.id === selected ? 'active' : ""}`}>
           <div className="row">
@@ -40,7 +40,7 @@ class VotoTopicCard extends Component {
                 <h1>
                   {topic.mediaTitle.length > 70 ? topic.mediaTitle.slice(0,50) + "..." : topic.mediaTitle}
                 </h1>
-                {topic.attrs && <p>{createClauses(topic)}</p>}
+                {topic.attrs && <p>{createClauses(topic)} <button className='btn btn-ver' onClick={() => handleShowTopicDialog(topic)}>VER MAS</button></p>}
                 <div className='voto-topic-card-tags'>
                   {topic.zona && <span className='voto-tag-wrapper tag-zona' >{capitalizeFirstLetter(topic.zona.nombre)}</span>}                
                   {topic.attrs && topic.attrs['presupuesto-total'] && <span className='voto-tag-wrapper tag-presupuesto'>Presupuesto: ${topic.attrs['presupuesto-total'].toLocaleString()}</span>}
@@ -68,7 +68,7 @@ class VotoTopicCard extends Component {
                 <h1>
                   {topic.mediaTitle.length > 70 ? topic.mediaTitle.slice(0,50) + "..." : topic.mediaTitle}
                 </h1>
-                {topic.attrs && <p>{createClauses(topic)} <button onClick={() => handleShowTopicDialog(topic)}>VER MAS</button></p>}
+                {topic.attrs && <p>{createClauses(topic)} <u onClick={() => handleShowTopicDialog(topic)}>VER MAS</u></p>}
                 <div className='voto-topic-card-tags'>
                   {topic.zona && <span className='voto-tag-wrapper tag-zona' >{capitalizeFirstLetter(topic.zona.nombre)}</span>}                
                   {topic.tag && <span className='voto-tag-wrapper' >{capitalizeFirstLetter(topic.tag.name)}</span>}

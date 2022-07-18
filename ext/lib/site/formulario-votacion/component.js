@@ -467,8 +467,10 @@ class FormularioVoto extends Component {
                     <span onClick={this.handleShowTopicDialog}>X</span>
                   </div>
                   <div className="body">
-                    <p>{topicDialog.mediaTitle}</p>
-                    {topicDialog.attrs && <p>{topicDialog.attrs.problema}</p>}
+                    <p className='superbold'>{topicDialog.mediaTitle}</p>
+                    <p>Presupuesto: ${topicDialog.attrs['presupuesto-total'].toLocaleString()}</p>
+                    <p>{topicDialog.zona.nombre}</p>
+                    {topicDialog.attrs['problema'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}
                   </div>
               </dialog>
         }
