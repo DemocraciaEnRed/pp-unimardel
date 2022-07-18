@@ -26,6 +26,11 @@ ul.admin-menu.nav.nav-pills.nav-stacked(class=forum.privileges.canChangeTopics ?
         =t('admin-sidebar.whitelists.title')
   - if (user.staff)
     li
+      a(href=urlBuilder.for('admin.padron', {forum: forum.name}) data-section='padron')
+        span.glyphicon.glyphicon-list
+        ='Padrón'
+  - if (user.staff)
+    li
       a(href=urlBuilder.for('admin.contenido-portada', {forum: forum.name}) data-section='contenido-portada')
         span.glyphicon.glyphicon-home
-        ='Portada & Padron'
+        ='Textos portada'
