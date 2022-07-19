@@ -3,7 +3,7 @@ import React from 'react'
 export default ({zonas, setState}) => (
     <div className='form-votacion'>
         <div className='votacion-header'>
-            <h1 tabIndex="0" className='text-center'>Votación del Presupuesto Participativo General Pueyrredon 2022</h1>
+            <h1 tabIndex="0" className='text-center'>Votación del Presupuesto Participativo General Pueyrredón 2022</h1>
             <p>Gracias por participar de la votacion del presupuesto participativo 2022</p>
         </div>
         <div className='wrapper text-center'>

@@ -38,7 +38,7 @@ export default class Page extends Component {
             </p>
 
             <h2><span>Validación de usuarios</span></h2>
-            <p>Municipalidad de General Pueyrredon se reserva el derecho de validar la información brindada por la/el usuaria/o al momento de la inscripción. En caso de que la información brindada no pueda validarse, Presupuesto Participativo se reserva el derecho de no dar de alta a ese usuario/a. Por su parte, Presupuesto Participativo deslinda su responsabilidad en el caso de no ser veraz la información suministrada al respecto.<br/>
+            <p>Municipalidad de General Pueyrredón se reserva el derecho de validar la información brindada por la/el usuaria/o al momento de la inscripción. En caso de que la información brindada no pueda validarse, Presupuesto Participativo se reserva el derecho de no dar de alta a ese usuario/a. Por su parte, Presupuesto Participativo deslinda su responsabilidad en el caso de no ser veraz la información suministrada al respecto.<br/>
               Al momento de la inscripción el/la usuario/a asume el compromiso y la responsabilidad de:</p>
             <ul>
                 <li>No proporcionar información personal falsa ni crear cuentas a nombre de terceras personas sin autorización.</li>
@@ -53,7 +53,7 @@ export default class Page extends Component {
               La/El usuaria/o deberá respetar estos Términos y Condiciones de Uso. Las infracciones por acción u omisión de estos Términos y Condiciones de Uso generarán el derecho a favor de Presupuesto Participativo de suspender al/la usuario/a que las haya realizado.<br/>
               La/El usuaria/o es responsable del contenido que suba, publique o muestre en ParticipaMGP, garantizando que el mismo no infringe derechos de terceras personas ni los Términos y Condiciones de Uso ni viola ninguna ley, reglamento u otra normativa. Los/as usuarios/as entienden y aceptan que el material y/o contenido que suba y/o publique podría ser utilizado por otros/as usuarios/as de la plataforma web y/o por terceras personas ajenas, y que ParticipaMGP no será responsable en ningún caso por tales utilizaciones.<br/>
               La/El usuaria/o debe usar ParticipaMGP en forma correcta y lícita. En caso contrario, ParticipaMGP podrá retirar el contenido y/o suspender la cuenta de aquellos/as usuarios/as que incurran en actitudes contrarias a estos términos y condiciones y/o de la política de privacidad, ofensivas, ilegales, violatorias de derechos de terceras personas, contrarias a la moral y buenas costumbres y/o amenaza para la seguridad de otros usuarios.<br/>
-              En relación a los aportes, colaboraciones y comentarios que los/as usuarios/as realicen con respecto a las iniciativas propuestas, las mismas no son de carácter vinculante, obligatorio y/o impositivo sobre las acciones de Municipalidad de General Pueyrredon.
+              En relación a los aportes, colaboraciones y comentarios que los/as usuarios/as realicen con respecto a las iniciativas propuestas, las mismas no son de carácter vinculante, obligatorio y/o impositivo sobre las acciones de Municipalidad de General Pueyrredón.
             </p>
 
             <h2><span>Actividades Prohibidas</span></h2>
@@ -71,7 +71,7 @@ export default class Page extends Component {
             <p>En caso de sufrir alguna de estas situaciones, comunicarse con Presupuesto Participativo a través de  <a href="mailto:ParticipaMGP@mardelplata.gob.ar">ParticipaMGP@mardelplata.gob.ar</a>.</p>
 
             <h2><span>Moderación de la actividad en Presupuesto Participativo</span></h2>
-            <p>La actividad en esta plataforma web contará con moderadores/as responsables de hacer cumplir estos Términos y Condiciones de Uso. Los/as mismos/as serán designados/as por Municipalidad de General Pueyrredon en pos de fomentar un diálogo franco y abierto que evite afrentas a personas o instituciones, material comercial no relacionado (SPAM) u otros desvíos de la intención original de Presupuesto Participativo.</p>
+            <p>La actividad en esta plataforma web contará con moderadores/as responsables de hacer cumplir estos Términos y Condiciones de Uso. Los/as mismos/as serán designados/as por Municipalidad de General Pueyrredón en pos de fomentar un diálogo franco y abierto que evite afrentas a personas o instituciones, material comercial no relacionado (SPAM) u otros desvíos de la intención original de Presupuesto Participativo.</p>
             <ul>
               <li>Rechazar o eliminar contenido que no cumpla con estos términos de uso o que, de alguna forma, sea cuestionable.</li>
               <li>Quitar el acceso a quien no cumpliera, de alguna forma, con estos términos de uso.</li>
@@ -97,7 +97,7 @@ export default class Page extends Component {
 
             <h2><span>Tecnología:</span></h2>
             <p>
-                Presupuesto Participativo es un desarrollo basado en <a href="https://democracyos.org/" target="_blank">DemocracyOS</a> con la coordinación de la Municipalidad de General Pueyrredon. DemocracyOS es una plataforma online de código abierto especialmente diseñada para informar, debatir y comprometerse con propuestas públicas hacia la construcción de una democracia adaptada al siglo XXI. DemocracyOS es desarrollado por la Fundación <a href="https://democraciaenred.org/" target="_blank">Democracia en Red</a>.
+                Presupuesto Participativo es un desarrollo basado en <a href="https://democracyos.org/" target="_blank">DemocracyOS</a> con la coordinación de la Municipalidad de General Pueyrredón. DemocracyOS es una plataforma online de código abierto especialmente diseñada para informar, debatir y comprometerse con propuestas públicas hacia la construcción de una democracia adaptada al siglo XXI. DemocracyOS es desarrollado por la Fundación <a href="https://democraciaenred.org/" target="_blank">Democracia en Red</a>.
             </p>
 
             <p><span></span></p>
