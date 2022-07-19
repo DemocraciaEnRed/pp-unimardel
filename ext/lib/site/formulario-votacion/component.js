@@ -80,6 +80,7 @@ class FormularioVoto extends Component {
 
   componentWillMount () {
     const { user } = this.props
+    document.getElementById("side_panel").style.visibility = "hidden";
 
     const promises = [
       // data del forum
@@ -108,6 +109,9 @@ class FormularioVoto extends Component {
     )
   }
 
+  componentWillUnmount() {
+    document.getElementById("side_panel").style.visibility = "visible";
+  }
   // componentDidUpdate(prevProps, prevState) {
   //   if (!this.props.user.state.pending && this.props.user.state.fulfilled){
   //     this.onUserStateChange()
