@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link, browserHistory } from 'react-router'
 import moment from 'moment'
 import userConnector from 'lib/site/connectors/user'
-import VotarButton from 'ext/lib/site/home-catalogo/topic-card/votar-button/component'
 // import { config } from 'democracyos-notifier'
 import config from 'lib/config'
 

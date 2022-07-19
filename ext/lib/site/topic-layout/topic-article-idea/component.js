@@ -126,12 +126,11 @@ class TopicArticle extends Component {
     ;
 
     const buttons = <div className='topic-actions topic-article-content'>
-    { !isProyecto && <Cause
-      topic={topic}
-      canVoteAndComment={forum.privileges.canVoteAndComment} /> }
-    {/* { isProyecto &&
-      <VotarButton topic={topic} onVote={onVote} />
-    } */}
+    { config.votacionAbierta ? 
+    <VotarButton /> : 
+    !isProyecto && <Cause
+    topic={topic}
+    canVoteAndComment={forum.privileges.canVoteAndComment} /> }
     &nbsp;
     <VerTodosButton />
   </div>
@@ -150,83 +149,70 @@ class TopicArticle extends Component {
           authorUrl={null}
           tags={topic.tags}
           forumName={forum.name}
-          mediaTitle={topic.mediaTitle}
+          mediaTitle={topic.attrs['proyecto-titulo'] ? topic.attrs['proyecto-titulo'] : topic.mediaTitle}
           numero={topic.attrs && topic.attrs.numero} />
         
 
         <div className='topic-article-content entry-content skeleton-propuesta'>
 
-        {isProyecto && topic.attrs['proyecto-titulo']
-        && <div className='topic-article-nombre'>Proyecto: {topic.attrs['proyecto-titulo']}</div>}
-        <div className='topic-article-nombre'>Autor/es/as: {topic.owner.firstName}</div>
-        <div className='topic-article-zona'>{topic.zona.nombre}</div>
+          <div className='topic-article-nombre'><span>Autor/es/as:</span> {topic.owner.fullName}</div>
+          <div className='topic-article-zona'><span>{topic.zona.nombre}</span></div>
         
-        {topic.attrs.state && 
-        <div className='topic-article-nombre'>Estado: {topic.attrs.state}</div>}        
-        <div className='topic-article-zona superbold'>Presupuesto: ${topic.attrs['presupuesto-total'].toLocaleString()}</div>
+          {topic.attrs.state && <div className='topic-article-nombre'><span>Estado:</span> {topic.attrs.state}</div>}        
+          {topic.attrs['presupuesto-total'] && <div className='topic-article-presupuesto'>Presupuesto asignado: <span>${topic.attrs['presupuesto-total'].toLocaleString()}</span></div>}
 
-         <div className='topic-article-status-container'>
-          {
-            (forum.privileges && forum.privileges.canChangeTopics)
-              ? (
-                <div className='topic-article-content topic-admin-actions'>
-                  <Link href={editUrl}>
-                    <a className='btn btn-default'>
-                      <i className='icon-pencil' />
-                      &nbsp;
-                      Editar proyecto
-                    </a>
-                  </Link>
-                </div>
-              )
-              : (topic.privileges && topic.privileges.canEdit) &&
-
-                (
+          <div className='topic-article-status-container'>
+            {
+              (forum.privileges && forum.privileges.canChangeTopics)
+                ? (
                   <div className='topic-article-content topic-admin-actions'>
-                    <a
-                      href={editUrl}
-                      className='btn btn-default'>
-                      <i className='icon-pencil' />
+                    <Link href={editUrl}>
+                      <a className='btn btn-default'>
+                        <i className='icon-pencil' />
                         &nbsp;
-                      Editar proyecto
-                    </a>
+                        Editar proyecto
+                      </a>
+                    </Link>
                   </div>
                 )
+                : (topic.privileges && topic.privileges.canEdit) &&
 
-          }
-        </div>
-{/* 
-        <div className="row">
-          <div className="col-md-4"></div>
-          <div className="col-md-4">
-          { isProyecto && <div className='card-presupuesto'>
-            <h3>
-              Presupuesto asignado
-            </h3>
-            <span>${topic.attrs['presupuesto-total'].toLocaleString()}</span>
-          </div> }
-          </div>
-          <div className="col-md-4"></div>
-        </div> */}
+                  (
+                    <div className='topic-article-content topic-admin-actions'>
+                      <a
+                        href={editUrl}
+                        className='btn btn-default'>
+                        <i className='icon-pencil' />
+                          &nbsp;
+                        Editar proyecto
+                      </a>
+                    </div>
+                  )
 
-        
-
-          {topic.attrs['proyecto-contenido'] &&
-            <div
-              className='topic-article-proyecto superbold'
-              dangerouslySetInnerHTML={{
-                __html: topic.attrs['proyecto-contenido'].replace(/https?:\/\/[a-zA-Z0-9./]+/g, '<a href="$&" rel="noopener noreferer" target="_blank">$&</a>')
-              }}>
+            }
             </div>
-          }        
           
         </div>
 
-        {isProyecto && buttons}
         
         
-        <div className="seccion-idea">
+        
+        <div className="seccion-contenido">
           <div>
+
+          {
+              topic.attrs['proyecto-contenido'] &&
+              <Collapsible 
+                open={true} 
+                triggerClassName='topic-article-proyecto' 
+                triggerOpenedClassName='topic-article-proyecto' 
+                trigger={`Proyecto final`}>
+                {topic.attrs['proyecto-contenido'].replace(/https?:\/\/[a-zA-Z0-9./]+/g, '<a href="$&" rel="noopener noreferer" target="_blank">$&</a>')}
+              </Collapsible>
+            }        
+
+            {isProyecto && buttons}
+
             <Collapsible 
               open={true} 
               triggerClassName='topic-article-idea' 

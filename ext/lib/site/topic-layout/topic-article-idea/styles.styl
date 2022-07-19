@@ -249,9 +249,18 @@ topicColor2 = #999
       padding: px      
 
 .topic-article-presupuesto
-  color: #C4D94B
+  color: #00A6CB
   font-weight: bold
+  font-family: 'Museo900', sans-serif!important
+  text-transform: uppercase;
   margin-bottom: 10px;
+  span
+    font-family: 'Museo300', sans-serif!important
+    color: #000000
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+
 
 .topic-article-subtitulo
   color: #1D9DC1
@@ -267,25 +276,25 @@ topicColor2 = #999
   color: #FFF;
 
 .topic-article-proyecto
-  font-size: .9em
   font-weight: normal
   white-space: pre-wrap
-  line-height: 1.5em
-  margin: 10px 0 30px;
+  line-height: 1.5em 
+  padding: 2px 0 0 10px;
+  color: #000000 
 
 .topic-article-idea
   font-weight: normal
   white-space: pre-wrap
   line-height: 1.5em 
   padding: 2px 0 0 10px;
-  color: #696969;  
+  color: #000000 
 
 .topic-article-comentario
   font-weight: normal
   white-space: pre-wrap
   line-height: 1.5em
   padding: 2px 0 0 10px;
-  color: #696969;  
+  color: #000000
 
 
 // .topic-article-status-container
@@ -345,7 +354,7 @@ topicColor2 = #999
 
 .topic-article-wrapper
   .topic-article-content
-    margin-top: 8vh
+    margin-top: 3vh
     flex-basis: 300px;
     flex-grow: 0;
     flex-shrink: 0;
@@ -415,13 +424,13 @@ topicColor2 = #999
 .votar-button-wrapper
   float: left;
   .btn
-    background: #C4D94B
+    background: #00A6CB
     margin: 0
     border-radius: 5px;
     font-weight: 600
     font-size: 14px
     text-transform: uppercase;
-    border: solid 1px #C4D94B;
+    border: solid 1px #00A6CB
     &.btn-empty
       background: #FFFFFF
       color: #C4D94B
@@ -448,7 +457,44 @@ topicColor2 = #999
     margin-right: 10px;
 
 
-.seccion-idea
+.ver-todos-button-wrapper
+  float: left;
+  .btn
+    background: #00A6CB
+    margin: 0
+    border-radius: 5px;
+    font-weight: 600
+    font-size: 14px
+    text-transform: uppercase;
+    border: solid 1px #00A6CB
+    &.btn-empty
+      background: #FFFFFF
+      color: #C4D94B
+      border: solid 2px #C4D94B;
+    &.btn-filled
+      background: #C4D94B
+      color: #FFFFFF
+      &:hover
+        background: #FFFFFF
+        color: #C4D94B
+        border: solid 1px #C4D94B;
+    &.btn-voted
+      background: #C4D94B
+      color: #FFFFFF
+      &:hover
+        cursor: default;
+
+  .confirmas-voto
+    color: #C4D94B
+    font-weight: bold
+    margin-right: 9px;
+
+  .btn-si
+    margin-right: 10px;
+
+
+
+.seccion-contenido
   margin: auto
   display: flex;
   justify-content: center;  
@@ -477,6 +523,9 @@ topicColor2 = #999
     background: #00A6CB;
 
   .topic-article-comentario
+    background: #C4D94B;
+
+  .topic-article-proyecto
     background: #C4D94B;
 
   .topic-article-integrado
