@@ -17,7 +17,13 @@ export default ({dni, hasVoted}) => (
             </div>)
         }
         <div className='wrapper text-center'>
-            Te agradecemos nuevamente por haber participado del primer Presupuesto participativo de General Pueyrredon
+            Te agradecemos nuevamente por haber participado del primer Presupuesto participativo de General Pueyrredón
         </div>
+
+        <div className='votacion-share'>
+            Proximamente podras conocer los resultados en la web del presupuesto participativo
+        </div>
+
+
     </div>
 )
