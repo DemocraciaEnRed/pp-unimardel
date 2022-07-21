@@ -149,7 +149,7 @@ class TopicArticle extends Component {
           authorUrl={null}
           tags={topic.tags}
           forumName={forum.name}
-          mediaTitle={topic.attrs['proyecto-titulo'] ? topic.attrs['proyecto-titulo'] : topic.mediaTitle}
+          mediaTitle={topic.mediaTitle}
           numero={topic.attrs && topic.attrs.numero} />
         
 

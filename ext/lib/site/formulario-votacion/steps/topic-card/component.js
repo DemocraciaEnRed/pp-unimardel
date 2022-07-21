@@ -14,8 +14,8 @@ function createClauses({ attrs, clauses }) {
       })
       .join('')
   } else {
-    const { problema } = attrs
-    content = `${problema}`
+    const text = attrs['proyecto-contenido']
+    content = `${text}`
   }
   div.innerHTML = content
   let returnText = div.textContent.replace(/\r?\n|\r/g, '')
