@@ -55,6 +55,7 @@ class FormularioVoto extends Component {
       zonas: [],
       activeTags: [],
       activeZonas: [],
+      searchedByName: '',
       userPrivileges: null,
 
       // Para dialog de topic
@@ -165,7 +166,7 @@ class FormularioVoto extends Component {
     const { step, dni, hasVoted } = this.state
     const { user } = this.props
 
-    if (!user.state.value.staff) {
+    if (!user.state.value.privileges.canManage) {
       // !userPrivileges && dni === "" && zona === "" &&
       // user.state.value && user.state.value.zona && user.state.value.dni
       voteStore.hasVoted(user.state.value.dni)
@@ -266,6 +267,7 @@ class FormularioVoto extends Component {
   renderStep = (step) => {
     const tags = this.state.activeTags.length > 0 ? this.state.activeTags :  this.state.tags.map(t => t.id)
     const zonas = this.state.activeZonas.length > 0 ? this.state.activeZonas :  this.state.zonas.map(t => t.id)
+    
     switch (step) {
       case 0:
         return <SelectVoter zonas={this.state.zonas} setState={this.handleInputChange} />
@@ -288,8 +290,14 @@ class FormularioVoto extends Component {
           handleShowTopicDialog={this.handleShowTopicDialog}
         />
       case 4:
+        const { searchedByName } = this.state
         return <VotoCualquierZona 
-          topics={this.state.topics.filter(t => t.id !== this.state.voto1 && tags.includes(t.tag.id) && zonas.includes(t.zona.id))} 
+          topics={searchedByName ? 
+              topics.filter(t => searchedByName.include(t.id)) :
+              this.state.topics.filter(t => t.id !== this.state.voto1 && 
+                tags.includes(t.tag.id) && 
+                zonas.includes(t.zona.id))
+          } 
           handler="voto2"
           selected={this.state.voto2}
           setState={this.handleCheckboxInputChange} 
@@ -365,7 +373,7 @@ class FormularioVoto extends Component {
   }
 
   handleNext = () => {
-    const { step, dni, zona } = this.state
+    const { step, dni, zona, forum } = this.state
     if(step == 0){
       this.setState({
         notInPadron: null,
@@ -374,7 +382,7 @@ class FormularioVoto extends Component {
         differentZone: null,
         searchedUser: null
       }, () => {
-        window.fetch(`api/padron/search/dni?dni=${dni}`, {
+        window.fetch(`api/padron/search/dni?dni=${dni}&forum=${forum.id}`, {
           method: 'GET',
           credentials: 'include',
           headers: {
@@ -442,6 +450,7 @@ class FormularioVoto extends Component {
   render () {
     
     const { forum, step, warning, forumAndTopicFetched, userFetched, isTopicDialogOpen, topicDialog } = this.state
+    console.log(this.state)
     if (!forum) return null
     if (!config.votacionAbierta) return <Close />
 
@@ -471,10 +480,10 @@ class FormularioVoto extends Component {
                     <span onClick={this.handleShowTopicDialog}>X</span>
                   </div>
                   <div className="body">
-                    <p className='superbold'>{topicDialog.mediaTitle}</p>
-                    <p>Presupuesto: ${topicDialog.attrs['presupuesto-total'].toLocaleString()}</p>
-                    <p>{topicDialog.zona.nombre}</p>
-                    {topicDialog.attrs['problema'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}
+                    <p className='titulo'>{topicDialog.mediaTitle}</p>
+                    <p className='presupuesto'>Presupuesto: ${topicDialog.attrs['presupuesto-total'].toLocaleString()}</p>
+                    <p className='zona'>{topicDialog.zona.nombre}</p>
+                    <p className='contenido'>{topicDialog.attrs['proyecto-contenido'].replace(/\r?\n|\r/g, '\n')}</p>
                   </div>
               </dialog>
         }

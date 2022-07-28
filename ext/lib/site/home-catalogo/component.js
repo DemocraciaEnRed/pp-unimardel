@@ -386,7 +386,7 @@ class HomePropuestas extends Component {
                   )
                 )
               }
-              {config.votacionVisible &&
+              {/* {config.votacionVisible &&
                 (config.votacionAbierta
                   ? (
                     <div className='notice'>
@@ -398,7 +398,7 @@ class HomePropuestas extends Component {
                     </div>
                   )
                 )
-              }
+              } */}
             </div>
           </div>
 

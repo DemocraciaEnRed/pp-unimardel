@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import Badges from './badges/component'
+import Select from 'react-select';
 
 export default class FilterProyectos extends Component {
   constructor (props) {
@@ -75,6 +75,7 @@ export default class FilterProyectos extends Component {
     const {
       activeZonas, zonas,
       activeTags, tags,
+      topics,
       handleRemoveBadge
     } = this.props
     let allActiveOpts = []
@@ -124,6 +125,15 @@ export default class FilterProyectos extends Component {
             handleFilter={this.handleFilter}
             clearFilter={this.clearFilter}
             />
+          {/* {topics && topics.length > 0 && <Select
+            value={this.props.activeTitulo}
+            onChange={(e) => this.handleFilter('activeTitulo', e.value)}
+            placeholder='Buscá un proyecto por nombre'
+            isSearchable={true}
+            className='search-proyecto-select'
+            options={topics.map((topic) => ({label: `#${topic.attrs && topic.attrs.numero} ${topic.mediaTitle}`, value: topic.id}))}
+            />} */}
+                
         </div>
 
         {/* {allActiveOpts.length != 0 &&

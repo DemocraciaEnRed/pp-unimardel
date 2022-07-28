@@ -25,13 +25,17 @@ app.get('/votes/hasVoted/:dni',
 
 app.post('/votes/create',
   middlewares.users.restrict, // restringe
+  middlewares.forums.findFromBody,
   function checkPadronIfAlreadyVoted (req, res, next){
-    if (req.user.staff) {
-      log('User is staff -- Can add votes for any dni. Checking...')
+    req.canManage = req.user.staff || req.forum.hasRole(req.user, 'admin')
+
+
+    if (req.canManage) {
+      log('User can manage -- Can add votes for any dni. Checking...')
     } else {
-      log('User is not staff, checking if dni in body is the same than the user\'s dni...')
+      log('User can not manage, checking if dni in body is the same than the user\'s dni...')
     }
-    if (req.user.staff || req.user.dni === req.body.dni) {
+    if (req.canManage || req.user.dni === req.body.dni) {
       dbApi.padron.isInPadron(req.body.dni)
         .then(padron => {
           if (padron) {
@@ -64,11 +68,10 @@ app.post('/votes/create',
           }
         })
     } else {
-      log('User is not staff OR dni in body is not the same that the users dni -- sending error')
+      log('User can not manage OR dni in body is not the same that the users dni -- sending error')
       res.status(403).json({ error: 'Forbidden' })
     }
   },
-  middlewares.forums.findFromBody,
   middlewares.zonas.findFromBody,
   votesMiddlewares.findVoto1FromBody, // Agrega el voto1 al req
   votesMiddlewares.findVoto2FromBody,// Agrega el voto2 al req
@@ -80,7 +83,7 @@ app.post('/votes/create',
     // console.log(req.voto2)
     // console.log('Zona')
     // console.log(req.zona)
-    if (!req.user.staff && req.voto1.zona.toString() !== req.user.zona.toString()) {
+    if (!req.canManage && req.voto1.zona.toString() !== req.user.zona.toString()) {
       log('User is not in the same zona as the vote -- sending error')
       res.status(403).json({
         error: 'Cant vote projects from different zone'
@@ -97,8 +100,6 @@ app.post('/votes/create',
       voto2: req.voto2
     })
     .then((vote) => {
-      console.log('Voto')
-      console.log(vote)
       log('Vote for dni %s created', vote.dni)
       return dbApi.padron.setVoted(vote.dni)
     })

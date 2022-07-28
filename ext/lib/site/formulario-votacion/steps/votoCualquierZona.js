@@ -28,7 +28,9 @@ export default ({
               activeZonas={activeZonas}
               handleFilter={handleFilter}
               handleDefaultFilter={handleDefaultFilter}
-              clearFilter={clearFilter} />            
+              clearFilter={clearFilter} 
+              topics={topics}
+              />            
         </div>
         <div className='wrapper'>
             {topics && topics.map((topic) => (
