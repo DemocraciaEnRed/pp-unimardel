@@ -38,7 +38,7 @@
             select(name='tema')
               option(value="") Todos
               - each obj in uniqAttrs.tags
-                option(value="#{obj.name}") #{obj.name}
+                option(value="#{obj.value}") #{obj.name}
     #topic-list.list.list-group.col-xs-12
       - each topic in topics
         .list-group-item(data-topicid=topic.id, data-topic-ispublic=topic.public)
