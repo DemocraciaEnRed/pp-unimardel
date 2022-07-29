@@ -126,14 +126,7 @@ export class TopicCard extends Component {
           <div className='topic-card-footer'>
             <div className='topic-card-tags'>
               <span className="glyphicon glyphicon-tag"></span>
-              { topic.tags && topic.tags.length > 0 && topic.tags.slice(0, 12).map((tag, i) => (
-                <span
-                  key={`${tag}-${i}`}
-                  className='tag-wrapper' >
-                  {capitalizeFirstLetter(tag)}
-                </span>   
-                      
-              ))} 
+              { topic.tag && <span className='tag-wrapper' >{topic.tag.name}</span>} 
               {
                 topic && topic.attrs && topic.attrs.state &&
                 <span
