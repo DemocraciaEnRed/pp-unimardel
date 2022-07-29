@@ -155,12 +155,6 @@ class TopicArticle extends Component {
 
         <div className='topic-article-content entry-content skeleton-propuesta'>
 
-          <div className='topic-article-nombre'><span>Autor/es/as:</span> {topic.owner.fullName}</div>
-          <div className='topic-article-zona'><span>{topic.zona.nombre}</span></div>
-        
-          {topic.attrs.state && <div className='topic-article-nombre'><span>Estado:</span> {topic.attrs.state}</div>}        
-          {topic.attrs['presupuesto-total'] && <div className='topic-article-presupuesto'>Presupuesto asignado: <span>${topic.attrs['presupuesto-total'].toLocaleString()}</span></div>}
-
           <div className='topic-article-status-container'>
             {
               (forum.privileges && forum.privileges.canChangeTopics)
@@ -199,7 +193,6 @@ class TopicArticle extends Component {
         
         <div className="seccion-contenido">
           <div>
-
           {
               topic.attrs['proyecto-contenido'] &&
               <Collapsible 
@@ -207,6 +200,10 @@ class TopicArticle extends Component {
                 triggerClassName='topic-article-proyecto' 
                 triggerOpenedClassName='topic-article-proyecto' 
                 trigger={`Proyecto final`}>
+                <div className='topic-article-author'><span>Autor/es/as:</span> {topic.owner.fullName}</div>
+                {topic.attrs['presupuesto-total'] && <div>Presupuesto asignado: <span>${topic.attrs['presupuesto-total'].toLocaleString()}</span></div>}
+                <div className='topic-article-zona'><span>{topic.zona.nombre}</span></div>
+
                 {topic.attrs['proyecto-contenido'].replace(/https?:\/\/[a-zA-Z0-9./]+/g, '<a href="$&" rel="noopener noreferer" target="_blank">$&</a>')}
               </Collapsible>
             }        
