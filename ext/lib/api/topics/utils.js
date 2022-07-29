@@ -52,9 +52,8 @@ const queryTopics = (opts) => {
     forum: forum._id,
     publishedAt: { $ne: null }
   }
-
   if (owners && owners.length > 0) query.owner = { $in: owners }
-  if (tags && tags.length > 0) query.tags = { $in: tags }
+  if (tags && tags.length > 0) query.tag = { $in: tags }
   if (zonas && zonas.length > 0) query.zona = { $in: zonas.map(id => ObjectID(id)) }
   else if (zona) query.zona = zona
   if (state && state.length > 0) query['attrs.state'] = { $in: state }

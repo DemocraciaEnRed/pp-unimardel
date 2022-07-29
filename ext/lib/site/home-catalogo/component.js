@@ -105,14 +105,13 @@ class HomePropuestas extends Component {
 
   fetchTopics = (page) => {
     page = page || 1
-
     let query = {
       forumName: config.forumProyectos,
       page: page.toString(),
       limit: defaultValues.limit.toString(),
 
       zonas: this.state.zona,
-      tags: this.state.tags.filter(t => this.state.tag.includes(t.value)).map(t => t.name),
+      tags: this.state.tag,
       sort: this.state.sort,
       tipoIdea: this.state.tipoIdea
     }
