@@ -25,7 +25,7 @@ class FormularioVoto extends Component {
     this.state = {
       forumAndTopicFetched: false,
       forum: null,
-      step:0,
+      step: 0,
       warning: {},
       hasVoted: '',
 
@@ -450,7 +450,6 @@ class FormularioVoto extends Component {
   render () {
     
     const { forum, step, warning, forumAndTopicFetched, userFetched, isTopicDialogOpen, topicDialog } = this.state
-    console.log(this.state)
     if (!forum) return null
     if (!config.votacionAbierta) return <Close />
 
@@ -480,9 +479,10 @@ class FormularioVoto extends Component {
                     <span onClick={this.handleShowTopicDialog}>X</span>
                   </div>
                   <div className="body">
-                    <p className='titulo'>{topicDialog.mediaTitle}</p>
-                    <p className='presupuesto'>Presupuesto: ${topicDialog.attrs['presupuesto-total'].toLocaleString()}</p>
-                    <p className='zona'>{topicDialog.zona.nombre}</p>
+                    <p className='titulo'>Título: {topicDialog.mediaTitle}</p>
+                    <div className='author'>Autor/es/as: {topicDialog.owner.fullName}</div>
+                    <div className='presupuesto'>Presupuesto: ${topicDialog.attrs['presupuesto-total'].toLocaleString()}</div>
+                    <div className='zona'>{topicDialog.zona.nombre}</div>
                     <p className='contenido'>{topicDialog.attrs['proyecto-contenido'].replace(/\r?\n|\r/g, '\n')}</p>
                   </div>
               </dialog>
