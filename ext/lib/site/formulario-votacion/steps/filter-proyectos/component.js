@@ -124,15 +124,15 @@ export default class FilterProyectos extends Component {
             handleDropdown={this.handleDropdown}
             handleFilter={this.handleFilter}
             clearFilter={this.clearFilter}
-            />
-          {/* {topics && topics.length > 0 && <Select
+            />            
+          {topics && topics.length > 0 && <Select
             value={this.props.activeTitulo}
             onChange={(e) => this.handleFilter('activeTitulo', e.value)}
             placeholder='Buscá un proyecto por nombre'
             isSearchable={true}
-            className='search-proyecto-select'
+            className='voto-search-name'
             options={topics.map((topic) => ({label: `#${topic.attrs && topic.attrs.numero} ${topic.mediaTitle}`, value: topic.id}))}
-            />} */}
+            />}
                 
         </div>
 
