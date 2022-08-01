@@ -231,7 +231,7 @@ app.get('/export/topics/export-resultados-proyectos',
       if (topic.attrs === undefined) {
         topic.attrs = {}
       }
-      console.log(topic.zona)
+      // const votes = req.votes.filter(v => (v.voto1 === topic.id || v.voto2 === topic.id))
       let theTopic = {
         '#Proyecto': `${escapeTxt(topic.attrs['numero'])}`,
         'Título Proyecto': `${escapeTxt(topic.mediaTitle)}`,
@@ -290,21 +290,22 @@ app.get('/export/topics/export-resultados-votantes',
   function getXlsx(req, res, next) {
     let infoVotantes = []
     req.votantes.forEach((votante) => {
-      if (!votante.staff) {
-        if (votante.attrs === undefined) {
-          votante.attrs = {}
-        }
-        
-        const votes_for_author = req.votes.filter((vote) => vote.author.toString() === votante.id)
-        let theVotante = {
-          'ID Votante': `${escapeTxt(votante.id)}`,
-          'Zona': `${escapeTxt(req.zonasName[votante.zona])}`,
-          'Voto 1': `${escapeTxt(votes_for_author[0] ? req.topics.find(el => el.id === votes_for_author[0].topic.toString()).mediaTitle : "")}`,
-          'Voto 2': `${escapeTxt(votes_for_author[1] ? req.topics.find(el => el.id === votes_for_author[1].topic.toString()).mediaTitle : "")}`,
-          'Voto 3': `${escapeTxt(votes_for_author[2] ? req.topics.find(el => el.id === votes_for_author[2].topic.toString()).mediaTitle : "")}`,
-        }
-        infoVotantes.push(theVotante);
+      if (votante.attrs === undefined) {
+        votante.attrs = {}
       }
+      
+      req.votes
+        .filter((ballot) => ballot.user.toString() === votante.id)
+        .forEach((ballot) => {
+          let theVotante = {
+            'ID Votante': `${escapeTxt(votante.id)}`,
+            'Zona': `${escapeTxt(req.zonasName[votante.zona])}`,
+            'Voto 1': `${escapeTxt(ballot.voto1 ? req.topics.find(el => el.id === ballot.voto1.toString()).mediaTitle : "")}`,
+            'Voto 2': `${escapeTxt(ballot.voto2 ? req.topics.find(el => el.id === ballot.voto2.toString()).mediaTitle : "")}`,
+          }
+          infoVotantes.push(theVotante);
+
+        })
     });
     try {
       res.xls(`resultados-votacion-votantes.xlsx`, infoVotantes);
