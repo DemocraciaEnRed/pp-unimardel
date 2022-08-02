@@ -185,13 +185,9 @@ class TopicArticle extends Component {
 
             }
             </div>
-          
-        </div>
 
-        
-        
-        
-        <div className="seccion-contenido">
+
+            <div className="seccion-contenido">
           <div>
           {
               topic.attrs['proyecto-contenido'] &&
@@ -252,8 +248,14 @@ class TopicArticle extends Component {
             }
 
           </div>
-
+        </div>            
+          
         </div>
+
+        
+        
+        
+
 
         <Social
           topic={topic}
