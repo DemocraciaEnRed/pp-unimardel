@@ -17,7 +17,7 @@ module.exports = ({
   let topicRelativeUrl = urlBuilder.for('site.topic', { forum: config.forumProyectos, id: topic.id })
   return emailTemplate({
     body: html`
-      <p>Hay una nueva idea sobre <strong>${topic.mediaTitle}</strong> en el presupuesto participativo de la Municipalidad General Pueyrredón.</p>
+      <p>Hay una nueva idea sobre <strong>${topic.mediaTitle}</strong> en el presupuesto participativo de la Municipalidad General Pueyrredon.</p>
       <br />
       <h1>${topic.mediaTitle}</h1>
       <p>

@@ -382,7 +382,7 @@ module.exports = ({
                           </p>
                           <!-- When inserting images remember to include the following attributes or
                           risk them breaking in different clients: src, alt, width, height, border -->
-                          <a href="${baseUrl}"><img class="block-center" src="${baseUrl}/ext/lib/boot/logo.png" alt="Presupuesto Participativo de la Municipalidad General Pueyrredón" width="250" height="58" border="0" style="border:0; outline:none; text-decoration:none; display:block;"></a>
+                          <a href="${baseUrl}"><img class="block-center" src="${baseUrl}/ext/lib/boot/logo.png" alt="Presupuesto Participativo de la Municipalidad General Pueyrredon" width="250" height="58" border="0" style="border:0; outline:none; text-decoration:none; display:block;"></a>
                         </td>
                       </tr>
                     </table>
