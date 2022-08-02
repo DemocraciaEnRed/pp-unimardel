@@ -364,7 +364,7 @@ class FormularioVoto extends Component {
         } : {}
       case 4:
         return !voto2 ? {
-          message: 'No has elegido ningún proyecto, esto se considerará como VOTO EN BLANCO.',
+          message: 'No elegiste ningún proyecto, esto se considerará como VOTO EN BLANCO.',
           canPass: true
         } : {}        
       default:

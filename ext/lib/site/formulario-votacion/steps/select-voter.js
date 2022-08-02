@@ -4,10 +4,9 @@ export default ({zonas, setState}) => (
     <div className='form-votacion'>
         <div className='votacion-header'>
             <h1 tabIndex="0" className='text-center'>Votación del Presupuesto Participativo General Pueyrredón 2022</h1>
-            <p>Gracias por participar de la votacion del presupuesto participativo 2022</p>
         </div>
         <div className='wrapper text-center'>
-            <p className="superbold">Ingrese datos del usuario no registrado</p>
+            <p className="superbold">Ingresá los datos del votante</p>
             <div className='form-group'>
             <label className='required' htmlFor='dni'>
               DNI
@@ -16,7 +15,7 @@ export default ({zonas, setState}) => (
               className='form-control'
               type='text'
               name='dni'
-              placeholder="Ingrese su nombre de usuario / dni"
+              placeholder="Ingresá el DNI"
               onChange={setState}
               />
           </div>         

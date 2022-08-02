@@ -18,7 +18,7 @@ export default ({
     }) => (
     <div className='form-votacion'>
         <div className='votacion-header'>
-            <h1 className='text-center'>2. Elige un proyecto de tu zona</h1>
+            <h1 className='text-center'>2. Elegí un proyecto de tu zona</h1>
             <FilterProyectos
               tags={tags}
               activeTags={activeTags}

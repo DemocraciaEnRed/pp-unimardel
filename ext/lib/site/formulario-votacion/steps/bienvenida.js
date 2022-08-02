@@ -10,7 +10,7 @@ export default ({changeStep}) => (
         <div className='wrapper text-center'>
             <button onClick={changeStep} className='boton-comenzar'>Comenzar</button>
             <p>
-                Si aun no has visto los proyectos a votar <a href="/propuestas" target="_blank">podés verlos en mas detalle aquí</a>.
+            Si aún no viste los proyectos a votar <a href="/propuestas" target="_blank">podés verlos en más detalle aquí</a>.
             </p>
         </div>
     </div>

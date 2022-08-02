@@ -33,7 +33,7 @@ export default ({dni, hasVoted}) => {
                     <a target='_blank' href={`https://api.whatsapp.com/send?text=${shareText + " " + socialLinksUrl}`} rel='noopener noreferrer' className='wp'></a>
                 </div>  
                 <br />
-                <p>Proximamente podrás conocer los resultados en la web del presupuesto participativo</p>
+                <p>Próximamente podrás conocer los resultados en la web del presupuesto participativo</p>
             </div>
     
     

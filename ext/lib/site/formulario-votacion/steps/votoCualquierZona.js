@@ -19,8 +19,8 @@ export default ({
     }) => (
     <div className='form-votacion'>
         <div className='votacion-header'>
-            <h1 className='text-center'>3. Elige un proyecto de cualquier zona</h1>
-            <p>Si desea votar en blanco presione siguiente sin elegir ningun proyecto</p>
+            <h1 className='text-center'>3. Elegí un proyecto de cualquier zona</h1>
+            <p>Si querés votar en blanco presioná "Siguiente" sin elegir ningún proyecto</p>
             <FilterProyectos
               tags={tags}
               activeTags={activeTags}
