@@ -31,7 +31,7 @@
     background-color: #FFF
     background-size: 100%
     h1
-      font-size: 35px
+      font-size: 25px
       margin:0;
       font-family: 'Museo900', sans-serif
       text-transform: uppercase;
@@ -248,7 +248,7 @@
     padding: 1vh 25% 1vh 25%;
     display: flex;
     @media (max-width: 768px)
-      padding: 1vh 0 1vh 0;  
+      padding: 1vh 1vh 1vh 1vh;  
     .button-anterior
       display: inline-block
       flex-direction: row;
@@ -256,14 +256,17 @@
       background-color: #CCCCCC;
       box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
       border-radius: 8px;
-      padding: 10px 15px
+      font-size: 20px;
+      @media (min-width: 768px)
+        padding: 10px 15px
+        font-size: 25px;
       font-family: 'Museo300', sans-serif
       font-style: normal;
       font-weight: 400;
-      font-size: 25px;
       line-height: 30px;
       text-align: center;
       color: white;
+      
 
     .button-siguiente
       display: inline-block
@@ -272,14 +275,17 @@
       background: #00A6CB
       box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
       border-radius: 8px;
-      padding: 10px 15px
+      font-size: 20px;
+      @media (min-width: 768px)
+        padding: 10px 15px
+        font-size: 25px;
       font-family: 'Museo300', sans-serif
       font-style: normal;
       font-weight: 400;
-      font-size: 25px;
       line-height: 30px;
       text-align: center;
       color: white;
+      
 
 .boton-comenzar
   font-family: 'Museo300', sans-serif
