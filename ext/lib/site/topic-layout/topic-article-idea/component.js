@@ -184,70 +184,70 @@ class TopicArticle extends Component {
                   )
 
             }
-            </div>
-
-
-            <div className="seccion-contenido">
-          <div>
-          {
-              topic.attrs['proyecto-contenido'] &&
-              <Collapsible 
-                open={true} 
-                triggerClassName='topic-article-proyecto' 
-                triggerOpenedClassName='topic-article-proyecto' 
-                trigger={`Proyecto final`}>
-                <div className='topic-article-author'><span>Autor/es/as:</span> {topic.owner.fullName}</div>
-                {topic.attrs['presupuesto-total'] && <div>Presupuesto asignado: <span>${topic.attrs['presupuesto-total'].toLocaleString()}</span></div>}
-                <div className='topic-article-zona'><span>{topic.zona.nombre}</span></div>
-
-                {topic.attrs['proyecto-contenido'].replace(/https?:\/\/[a-zA-Z0-9./]+/g, '<a href="$&" rel="noopener noreferer" target="_blank">$&</a>')}
-              </Collapsible>
-            }        
-
-            {isProyecto && buttons}
-
-            <Collapsible 
-              open={true} 
-              triggerClassName='topic-article-idea' 
-              triggerOpenedClassName='topic-article-idea' 
-              trigger={`Idea Original`}>
-              {topic.attrs['problema'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
-
-              {isIntegrada && referenciaIntegradoraUrl && 
-                <div className='topic-article-integrado'>
-                  <u className='titulo'>Podés ver el proyecto final integrador</u>
-                  <Link to={referenciaIntegradoraUrl} target="_blank">
-                  <a className='btn link'>aquí</a>  
-                  </Link>
-                
-                </div>
-              }
-              {isProyecto && ideasIntegradas.length > 0 && 
-                <div className='topic-article-integrado'>
-                  <u className='titulo'>Ideas integradas</u> <br />
-                  {ideasIntegradas.map((idea) => <Link to={idea.id} target="_blank">
-                    <a className='btn link'>{idea.mediaTitle}</a>  
-                  </Link>
-                  )}
-                </div>
-              }                            
-            </Collapsible>
-
-            {!isProyecto && buttons}
-
-            {
-              topic.attrs['admin-comment'] &&
-              <Collapsible 
-                open={true} 
-                triggerClassName='topic-article-comentario' 
-                triggerOpenedClassName='topic-article-comentario' 
-                trigger={`Comentarios del moderador`}>
-                {topic.attrs['admin-comment'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
-                <p className='font-weight-bold'>Equipo de Coordinación y Gestión PPMGP</p>
-              </Collapsible>            
-            }
-
           </div>
+
+
+          <div className="seccion-contenido">
+            <div>
+              {
+                topic.attrs['proyecto-contenido'] &&
+                <Collapsible 
+                  open={true} 
+                  triggerClassName='topic-article-proyecto' 
+                  triggerOpenedClassName='topic-article-proyecto' 
+                  trigger={`Proyecto final`}>
+                  <div className='topic-article-author'><span>Autor/es/as:</span> {topic.owner.fullName}</div>
+                  {topic.attrs['presupuesto-total'] && <div>Presupuesto asignado: <span>${topic.attrs['presupuesto-total'].toLocaleString()}</span></div>}
+                  <div className='topic-article-zona'><span>{topic.zona.nombre}</span></div>
+
+                  {topic.attrs['proyecto-contenido'].replace(/https?:\/\/[a-zA-Z0-9./]+/g, '<a href="$&" rel="noopener noreferer" target="_blank">$&</a>')}
+                </Collapsible>
+              }        
+
+              {isProyecto && buttons}
+
+              <Collapsible 
+                open={true} 
+                triggerClassName='topic-article-idea' 
+                triggerOpenedClassName='topic-article-idea' 
+                trigger={`Idea Original`}>
+                {topic.attrs['problema'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
+
+                {isIntegrada && referenciaIntegradoraUrl && 
+                  <div className='topic-article-integrado'>
+                    <u className='titulo'>Podés ver el proyecto final integrador</u>
+                    <Link to={referenciaIntegradoraUrl} target="_blank">
+                    <a className='btn link'>aquí</a>  
+                    </Link>
+                  
+                  </div>
+                }
+                {isProyecto && ideasIntegradas.length > 0 && 
+                  <div className='topic-article-integrado'>
+                    <u className='titulo'>Ideas integradas</u> <br />
+                    {ideasIntegradas.map((idea) => <Link to={idea.id} target="_blank">
+                      <a className='btn link'>{idea.mediaTitle}</a>  
+                    </Link>
+                    )}
+                  </div>
+                }                            
+              </Collapsible>
+
+              {!isProyecto && buttons}
+
+              {
+                topic.attrs['admin-comment'] &&
+                <Collapsible 
+                  open={true} 
+                  triggerClassName='topic-article-comentario' 
+                  triggerOpenedClassName='topic-article-comentario' 
+                  trigger={`Comentarios del moderador`}>
+                  {topic.attrs['admin-comment'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
+                  <p className='font-weight-bold'>Equipo de Coordinación y Gestión PPMGP</p>
+                </Collapsible>            
+              }
+
+            </div>
         </div>            
           
         </div>
