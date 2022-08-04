@@ -62,7 +62,8 @@
     margin: 30px auto;
     position: relative;
     padding: 20px 35px;
-    display: flex;
+    @media(min-width: 470px)
+      display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -478,8 +479,6 @@ topicColor2 = #999
 
 .seccion-contenido
   margin: auto
-  display: flex;
-  justify-content: center;  
   max-width: 848px
 
   .Collapsible
