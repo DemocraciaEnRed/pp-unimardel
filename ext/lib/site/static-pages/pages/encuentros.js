@@ -80,7 +80,6 @@ export default class Page extends Component {
         unavailableEvents.push(event)
       }
     })
-    console.log(output)
     this.setState({ events: output, availableEvents: available, availableEventsId: availableId, unavailableEvents: unavailableEvents, isLoading: false })
   }
 

@@ -35,7 +35,6 @@ function getAllTags (req, res, next) {
       log('error serving tags from DB:', err)
       return res.status(500).end()
     }
-    console.log(tags)
     tags.forEach(t => tagsName[t.id] = t.name)
     req.tagsName = tagsName
     next()

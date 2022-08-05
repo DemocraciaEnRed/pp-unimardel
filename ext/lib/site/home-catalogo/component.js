@@ -325,7 +325,6 @@ class HomePropuestas extends Component {
 
   handleSelectedProyecto = (selectedProyecto) => {
     //console.log(`Option selected:`, selectedProyecto);
-    console.log(selectedProyecto)
 
     const topicId = selectedProyecto.value
     if (this.state.topics.find(t => t.id == selectedProyecto.value) == undefined){
