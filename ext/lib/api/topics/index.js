@@ -43,8 +43,8 @@ app.get('/topics',
       },
       sort: {
         type: 'string',
-        enum: ['newest', 'popular', 'barrio'],
-        default: 'newest'
+        enum: ['', 'newest', 'popular', 'barrio'],
+        default: ''
       },
       related: {
         type: 'string',
@@ -75,6 +75,12 @@ app.get('/topics',
       // pidieron mostrar siempre primero las ideas-proyecto
       // const ideasProyectos = topics.filter(t => t.attrs.state == 'idea-proyecto')
       // const ideasResto = topics.filter(t => t.attrs.state != 'idea-proyecto')
+      let finalTopics
+      if (opts.sort === '') {
+        finalTopics = topics.sort(() => 0.5 - Math.random())
+      } else {
+        finalTopics = topics
+      }
       res.status(200).json({
         status: 200,
         pagination: {
@@ -84,7 +90,7 @@ app.get('/topics',
           limit: opts.limit
         },
         results: {
-          topics: topics
+          topics: finalTopics
         }
       })
     }).catch(next)
@@ -115,8 +121,8 @@ app.get('/topics/all',
       },
       sort: {
         type: 'string',
-        enum: ['newest', 'popular', 'barrio'],
-        default: 'newest'
+        enum: ['', 'newest', 'popular', 'barrio'],
+        default: ''
       },
       related: {
         type: 'string',
@@ -145,13 +151,19 @@ app.get('/topics/all',
       // pidieron mostrar siempre primero las ideas-proyecto
       // const ideasProyectos = topics.filter(t => t.attrs.state == 'idea-proyecto')
       // const ideasResto = topics.filter(t => t.attrs.state != 'idea-proyecto')
+      let finalTopics
+      if (opts.sort === '') {
+        finalTopics = topics.sort(() => 0.5 - Math.random())
+      } else {
+        finalTopics = topics
+      }      
       res.status(200).json({
         status: 200,
         pagination: {
-          count: topics.length
+          count: finalTopics.length
         },
         results: {
-          topics: topics
+          topics: finalTopics
         }
       })
     }).catch(next)

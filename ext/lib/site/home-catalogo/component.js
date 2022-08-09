@@ -30,7 +30,7 @@ const defaultValues = {
   zona: [],
   tag: [],
   // 'barrio' o 'newest' o 'popular'
-  sort: 'newest',
+  sort: '',
   tipoIdea: config.propuestasVisibles ? 
   (config.propuestasAbiertas ? ['pendiente'] : ['factible', 'no-factible', 'integrado', 'pendiente']) : 
   (config.votacionVisible && ["factible"])
