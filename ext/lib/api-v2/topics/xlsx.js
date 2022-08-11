@@ -233,7 +233,8 @@ app.get('/export/topics/export-resultados-proyectos',
       }
       // const votes = req.votes.filter(v => (v.voto1 === topic.id || v.voto2 === topic.id))
       let theTopic = {
-        '#Proyecto': `${escapeTxt(topic.attrs['numero'])}`,
+        '#Proyecto': `${escapeTxt(topic._id)}`,
+        'Zona': `${escapeTxt(req.zonasName[topic.zona])}`,
         'Título Proyecto': `${escapeTxt(topic.mediaTitle)}`,
         'Cantidad Votos': `${topic.action.results.length}`,
       }
@@ -299,6 +300,8 @@ app.get('/export/topics/export-resultados-votantes',
         .forEach((ballot) => {
           let theVotante = {
             'ID Votante': `${escapeTxt(votante.id)}`,
+            'Email': `${escapeTxt(votante.email)}`,
+            'DNI': `${escapeTxt(ballot.dni)}`,
             'Zona': `${escapeTxt(req.zonasName[votante.zona])}`,
             'Voto 1': `${escapeTxt(ballot.voto1 ? req.topics.find(el => el.id === ballot.voto1.toString()).mediaTitle : "")}`,
             'Voto 2': `${escapeTxt(ballot.voto2 ? req.topics.find(el => el.id === ballot.voto2.toString()).mediaTitle : "")}`,
