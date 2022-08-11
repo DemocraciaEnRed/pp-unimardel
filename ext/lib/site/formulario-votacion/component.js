@@ -382,7 +382,7 @@ class FormularioVoto extends Component {
         differentZone: null,
         searchedUser: null
       }, () => {
-        window.fetch(`api/padron/search/dni?dni=${dni}&forum=${forum.id}`, {
+        window.fetch(`api/padron/search/dni?dni=${dni}&forum=${forum.name}`, {
           method: 'GET',
           credentials: 'include',
           headers: {
