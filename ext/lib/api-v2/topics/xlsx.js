@@ -257,11 +257,11 @@ app.get('/export/topics/export-resultados-votantes',
   // cargar zonas a req
   (req, res, next) => {
     api.zona.all(function (err, zonas) {
-      let zonasName = {}
       if (err) {
         log('error serving zonas from DB:', err)
         return res.status(500).end()
       }
+      let zonasName = {}
       zonas.forEach(e => zonasName[e._id] = e.nombre)
       req.zonasName = zonasName
       next()
@@ -284,32 +284,38 @@ app.get('/export/topics/export-resultados-votantes',
         log('error serving votantes from DB:', err)
         return res.status(500).end()
       }
-      req.votantes = users
+      req.votantes = {}
+      users.forEach((u) => {
+        req.votantes[`${u._id}`] = {
+          email: u.email,
+          dni: u.dni,
+          zona: u.zona ? u.zona : ""
+        }
+      })
       next()
     })
   },
+  function parseTopics(req, res, next) {
+    req.topicsName = {}
+    req.topics.forEach((t) => {
+      req.topicsName[`${t._id}`] = t.mediaTitle
+    })
+    next()
+  },  
   function getXlsx(req, res, next) {
     let infoVotantes = []
-    req.votantes.forEach((votante) => {
-      if (votante.attrs === undefined) {
-        votante.attrs = {}
-      }
-      
-      req.votes
-        .filter((ballot) => ballot.user.toString() === votante.id)
-        .forEach((ballot) => {
-          let theVotante = {
-            'ID Votante': `${escapeTxt(votante.id)}`,
-            'Email': `${escapeTxt(votante.email)}`,
-            'DNI': `${escapeTxt(ballot.dni)}`,
-            'Zona': `${escapeTxt(req.zonasName[votante.zona])}`,
-            'Voto 1': `${escapeTxt(ballot.voto1 ? req.topics.find(el => el.id === ballot.voto1.toString()).mediaTitle : "")}`,
-            'Voto 2': `${escapeTxt(ballot.voto2 ? req.topics.find(el => el.id === ballot.voto2.toString()).mediaTitle : "")}`,
-          }
-          infoVotantes.push(theVotante);
-
-        })
-    });
+    req.votes.forEach((ballot) => {
+        const userId = ballot.user
+        let theVotante = {
+          'ID Votante': `${escapeTxt(userId)}`,
+          'Email': `${escapeTxt(req.votantes[userId].email)}`,
+          'DNI': `${escapeTxt(req.votantes[userId].dni)}`,
+          'Zona': `${escapeTxt(req.zonasName[ballot.zona])}`,
+          'Voto 1': `${escapeTxt(ballot.voto1 ? req.topicsName[ballot.voto1] : "")}`,
+          'Voto 2': `${escapeTxt(ballot.voto2 ? req.topicsName[ballot.voto2] : "")}`,
+        }
+        infoVotantes.push(theVotante);
+      });
     try {
       res.xls(`resultados-votacion-votantes.xlsx`, infoVotantes);
     } catch (err) {
@@ -317,3 +323,32 @@ app.get('/export/topics/export-resultados-votantes',
       return res.status(500).end()
     }
 })
+// function getXlsx(req, res, next) {
+//   let infoVotantes = []
+//   req.votantes.forEach((votante) => {
+//     if (votante.attrs === undefined) {
+//       votante.attrs = {}
+//     }
+    
+//     req.votes
+//       .filter((ballot) => ballot.user.toString() === votante.id)
+//       .forEach((ballot) => {
+//         let theVotante = {
+//           'ID Votante': `${escapeTxt(votante.id)}`,
+//           'Email': `${escapeTxt(votante.email)}`,
+//           'DNI': `${escapeTxt(ballot.dni)}`,
+//           'Zona': `${escapeTxt(req.zonasName[votante.zona])}`,
+//           'Voto 1': `${escapeTxt(ballot.voto1 ? req.topics.find(el => el.id === ballot.voto1.toString()).mediaTitle : "")}`,
+//           'Voto 2': `${escapeTxt(ballot.voto2 ? req.topics.find(el => el.id === ballot.voto2.toString()).mediaTitle : "")}`,
+//         }
+//         infoVotantes.push(theVotante);
+
+//       })
+//   });
+//   try {
+//     res.xls(`resultados-votacion-votantes.xlsx`, infoVotantes);
+//   } catch (err) {
+//     log('get csv: array to csv error', err)
+//     return res.status(500).end()
+//   }
+// })
