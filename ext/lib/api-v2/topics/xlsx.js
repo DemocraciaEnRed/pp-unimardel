@@ -234,9 +234,12 @@ app.get('/export/topics/export-resultados-proyectos',
       // const votes = req.votes.filter(v => (v.voto1 === topic.id || v.voto2 === topic.id))
       let theTopic = {
         '#Proyecto': `${escapeTxt(topic._id)}`,
+        'Estado': `${escapeTxt(topic.attrs.state)}`,
         'Zona': `${escapeTxt(req.zonasName[topic.zona])}`,
         'Título Proyecto': `${escapeTxt(topic.mediaTitle)}`,
         'Cantidad Votos': `${topic.action.results.length}`,
+        'Monto': `${topic.attrs['presupuesto-total'] ? topic.attrs['presupuesto-total'] : 0}`,
+        'Texto': `${escapeTxt(topic.attrs['proyecto-contenido'])}`,
       }
       infoTopics.push(theTopic);
     });
