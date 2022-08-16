@@ -137,62 +137,10 @@ export class TopicCard extends Component {
             </div>
 
             <div className='buttons-wrapper'>
-              {/* antes en className estaba tmb ${likesCssClass} */}
-              {/*!isSistematizada && !isIdeaProyecto &&
-                <div className={`cause-wrapper`}>
-                  <div
-                    className='btn btn-primary btn-empty'>
-                    Seguidores
-                    {likesCountDiv}
-                  </div>
-                {/*topic.voted && (
-                    <button
-                      onClick={() => onVote(topic.id, topic.voted)}
-                      className='btn btn-primary btn-filled'>
-                      Ya seguís
-                      {likesCountDiv}
-                    </button>
-                  )}
-                {!topic.voted && (
-                    <button
-                      disabled={!topic.privileges.canVote || isStaff}
-                      onClick={() => onVote(topic.id, topic.voted)}
-                      className='btn btn-primary btn-empty'>
-                      Seguir
-                      {likesCountDiv}
-                    </button>
-                  )}
-                </div>
-              */}
-              {/*!isSistematizada && !isIdeaProyecto &&
-                <div
-                  className={`subscribe-wrapperr ${subscribeCssClass}`}
-                  onClick={this.handleWrapperClick}>
-                  <div
-                    className='btn btn-primary btn-empty'>
-                    Comentarios
-                    {subscribesCountDiv}
-                  </div>
-                </div>
-              */}
-              {/*isSistematizada &&
-                <div
-                  className='proyectista-wrapper'>
-                  <button
-                    className={`btn btn-primary btn-${isProyectista ? 'empty' : 'filled'}`}
-                    onClick={() => onProyectista(topic.id, !isProyectista)}
-                    disabled={isProyectista}>
-                    {isProyectista ? '¡Ya sos proyectista!' : '¡Quiero ser proyectista!'}
-                  </button>
-                </div>
-              */}
-              {/* {isProyecto && config.votacionVisible && config.votacionAbierta &&
-                <VotarButton topic={topic} onVote={onVote} />
-              } */}
                   <div
                     className='proyectista-wrapper'>
                     {
-                      !isProyecto && !config.votacionVisible && config.propuestasVisibles && config.habilitarApoyo &&
+                      !isProyecto && config.propuestasVisibles && config.habilitarApoyo &&
                     <button
                       className={`btn ${isProyectista ? '' : 'not-voted' }` }
                       onClick={() => onProyectista(topic.id, !isProyectista)}

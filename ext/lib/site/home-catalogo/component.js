@@ -20,7 +20,6 @@ import Select from 'react-select'; // ! VERSIÓN 2.4.4 !
 // config.propuestasAbiertas
 // config.propuestasTextoAbiertas
 // config.propuestasTextoCerradas
-// config.votacionVisible
 // config.votacionAbierta
 // config.votacionTextoAbierta
 // config.votacionTextoCerrada
@@ -33,7 +32,7 @@ const defaultValues = {
   sort: '',
   tipoIdea: config.propuestasVisibles ? 
   (config.propuestasAbiertas ? ['pendiente'] : ['factible', 'no-factible', 'integrado', 'pendiente']) : 
-  (config.votacionVisible && ["factible"])
+  ["factible"]
 }
 
 const filters = {
@@ -96,8 +95,6 @@ class HomePropuestas extends Component {
         tag,
         tiposIdea,
         forum,
-        // searchableProyectos: proyectos.filter(p => p.attrs.state == (config.votacionVisible ? 'proyecto' : 'pendiente')).map(p => ({label: `${p.mediaTitle}`, value: p._id}))
-        // searchableProyectos: config.votacionVisible ? proyectos.map(p => p.state == 'proyecto') : proyectos.map(p => p.state == 'pendiente')
         searchableProyectos: proyectos.map(p => ({label: `#${p.attrs && p.attrs.numero} ${p.mediaTitle}`, value: p.id}))
       }, () => this.fetchTopics())
     }).catch((err) => { throw err })
@@ -282,7 +279,7 @@ class HomePropuestas extends Component {
         <h4 className="topics-title">{
           config.propuestasVisibles ? 
           (config.propuestasAbiertas ? "Lista de ideas" : "Lista de ideas y proyectos") : 
-          (config.votacionVisible && "Lista de proyectos")
+          "Lista de proyectos"
         }
         </h4>
         <div className='topics-filters'>
@@ -364,7 +361,7 @@ class HomePropuestas extends Component {
             title={
               config.propuestasVisibles ? 
               (config.propuestasAbiertas ? "Ideas" : "Ideas y proyectos") : 
-              (config.votacionVisible && "Proyectos")
+              "Proyectos"
             }
             subtitle={" "}
             />
@@ -384,19 +381,7 @@ class HomePropuestas extends Component {
                   )
                 )
               }
-              {/* {config.votacionVisible &&
-                (config.votacionAbierta
-                  ? (
-                    <div className='notice'>
-                      <h1>{config.votacionTextoAbierta}</h1>
-                    </div>
-                  ) : (
-                    <div className='notice'>
-                      <h1>{config.votacionTextoCerrada}</h1>
-                    </div>
-                  )
-                )
-              } */}
+
             </div>
           </div>
 
@@ -417,7 +402,6 @@ class HomePropuestas extends Component {
 
             <div className='row'>
               <div className='col-md-10 offset-md-1'>
-              { config.votacionVisible && 
                 <div className='search-proyecto-wrapper'>
                   {/* para esto usamos react-select version 2.4.4 */}
                   <Select
@@ -432,7 +416,6 @@ class HomePropuestas extends Component {
                     Limpiar filtro
                   </button>
                 </div>
-              }
 
                 {  this.renderSortFilter() }
                 {topics && topics.length === 0 && (

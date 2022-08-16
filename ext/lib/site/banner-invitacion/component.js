@@ -12,11 +12,13 @@ export default () =>  (
 
         } alt="Ideas"/>
         <p>{
-        config.propuestasAbiertas ? 
-        "Subí tu idea o mejorá con tus comentarios las de los vecinos.": 
         config.votacionAbierta ? 
         'Te invitamos a conocer los proyectos y a votar los que quieras que se lleven adelante' :
-        "La etapa de subida de ideas ya finalizó. Ingresá para ver el listado completo"
+        config.propuestasAbiertas ? 
+        "Subí tu idea o mejorá con tus comentarios las de los vecinos.": 
+        config.propuestasVisibles ? 
+        "La etapa de subida de ideas ya finalizó. Ingresá para ver el listado completo" :
+        'La etapa de votación ya finalizó. Proximamente se publicarán los resultados con los proyectos ganadores'
         }</p>
         
         <Link to={'/propuestas'} tabIndex="31" className="boton-foro" href="">
