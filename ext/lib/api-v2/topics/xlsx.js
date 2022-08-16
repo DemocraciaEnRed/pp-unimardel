@@ -312,7 +312,7 @@ app.get('/export/topics/export-resultados-votantes',
         let theVotante = {
           'ID Votante': `${escapeTxt(userId)}`,
           'Email': `${escapeTxt(req.votantes[userId].email)}`,
-          'DNI': `${escapeTxt(req.votantes[userId].dni)}`,
+          'DNI': `${escapeTxt(ballot.dni)}`,
           'Zona': `${escapeTxt(req.zonasName[ballot.zona])}`,
           'Voto 1': `${escapeTxt(ballot.voto1 ? req.topicsName[ballot.voto1] : "")}`,
           'Voto 2': `${escapeTxt(ballot.voto2 ? req.topicsName[ballot.voto2] : "")}`,
