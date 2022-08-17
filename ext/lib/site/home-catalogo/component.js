@@ -30,9 +30,10 @@ const defaultValues = {
   tag: [],
   // 'barrio' o 'newest' o 'popular'
   sort: '',
-  tipoIdea: config.propuestasVisibles ? 
-  (config.propuestasAbiertas ? ['pendiente'] : ['factible', 'no-factible', 'integrado', 'pendiente']) : 
-  ["factible"]
+  tipoIdea: config.propuestasAbiertas ? ['pendiente'] : 
+  config.votacionAbierta ? ['factible'] :
+  config.votacionVisible ? ['ganador'] : 
+  ['factible', 'no-factible', 'integrado', 'pendiente']
 }
 
 const filters = {
