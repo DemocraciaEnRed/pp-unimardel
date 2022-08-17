@@ -18,12 +18,12 @@ export default () =>  (
         "Subí tu idea o mejorá con tus comentarios las de los vecinos.": 
         config.propuestasVisibles ? 
         "La etapa de subida de ideas ya finalizó. Ingresá para ver el listado completo" :
-        'La etapa de votación ya finalizó. Proximamente se publicarán los resultados con los proyectos ganadores'
+        'La etapa de votación ya finalizó. Podrás acceder a ver los proyectos ganadores'
         }</p>
         
         <Link to={'/propuestas'} tabIndex="31" className="boton-foro" href="">
             {
-                config.votacionAbierta ? "Catálogo de Proyectos" : "Accedé a las ideas"
+                (config.votacionAbierta || config.votacionVisible) ? "Catálogo de Proyectos" : "Accedé a las ideas"
             }
         </Link>
         {
