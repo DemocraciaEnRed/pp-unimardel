@@ -29,6 +29,9 @@ export default () =>  (
         {
             config.votacionAbierta && <Link to={'/votacion'} tabIndex="32" className="boton-votacion" href="">Votá los proyectos</Link>
         }
+        {
+            !config.votacionAbierta && config.votacionVisible && <Link tabIndex="33" className="boton-votacion" target="_blank" href="https://www.mardelplata.gob.ar/documentos/comunicacion/participamgpproyectosganadores.pdf">Votos por proyectos</Link>
+        }        
         
     </div>
 )
