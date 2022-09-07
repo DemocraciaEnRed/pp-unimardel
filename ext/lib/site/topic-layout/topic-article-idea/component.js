@@ -12,7 +12,7 @@ import VotarButton from 'ext/lib/site/home-catalogo/topic-card/votar-button/comp
 import VerTodosButton from 'ext/lib/site/home-catalogo/topic-card/ver-todos-button/component'
 import config from 'lib/config'
 import Collapsible from 'react-collapsible'
-
+import StepProgress from './step-progress/component'
 class TopicArticle extends Component {
   constructor (props) {
     super(props)
@@ -57,7 +57,7 @@ class TopicArticle extends Component {
     })
     return barrioName
   }
-
+// ooo" habria que agregar el estado ganador a este switch
   getEstado (name) {
     switch (name) {
       case 'pendiente':
@@ -125,6 +125,10 @@ class TopicArticle extends Component {
       `/formulario-idea/${topic.id}#acerca-propuesta`
     ;
 
+    // ooo" delete me after test
+    console.log("Content of Topic>>>\n", topic)
+    console.log("Content of attrs>>>\n", topic.attrs['presupuesto-estado'])
+
     const buttons = <div className='topic-actions topic-article-content'>
     { config.votacionAbierta ? 
     <VotarButton /> : 
@@ -188,6 +192,10 @@ class TopicArticle extends Component {
 
 
           <div className="seccion-contenido">
+            {/* ooo" stepProgress */}
+            <StepProgress 
+              completeState={topic.attrs}
+            />
             <div>
               {
                 topic.attrs['proyecto-contenido'] &&
