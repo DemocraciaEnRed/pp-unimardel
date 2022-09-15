@@ -126,8 +126,8 @@ class TopicArticle extends Component {
     ;
 
     // ooo" delete me after test
-    console.log("Content of Topic>>>\n", topic)
-    console.log("Content of attrs>>>\n", topic.attrs['presupuesto-estado'])
+    // console.log("Content of Topic>>>\n", topic)
+    // console.log("Content of attrs>>>\n", topic.attrs['presupuesto-estado'])
 
     const buttons = <div className='topic-actions topic-article-content'>
     { config.votacionAbierta ? 
