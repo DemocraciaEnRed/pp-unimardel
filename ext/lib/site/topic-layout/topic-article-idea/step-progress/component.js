@@ -20,11 +20,15 @@ export default class StepProgress extends React.Component {
     if (stateProfress == 'preparacion') {
       let bullet = document.querySelector('#preparacion')
       bullet.className += 'active'
+      bullet = document.querySelector('#compra')
+      bullet.className += 'inProgress'
     } else     if (stateProfress == 'compra') {
       let bullet = document.querySelector('#preparacion')
       bullet.className += 'active'
       bullet = document.querySelector('#compra')
       bullet.className += 'active'
+      bullet = document.querySelector('#ejecucion')
+      bullet.className += 'inProgress'
     } else     if (stateProfress == 'ejecucion') {
       let bullet = document.querySelector('#preparacion')
       bullet.className += 'active'
@@ -32,6 +36,8 @@ export default class StepProgress extends React.Component {
       bullet.className += 'active'
       bullet = document.querySelector('#ejecucion')
       bullet.className += ' active'
+      bullet = document.querySelector('#finalizado')
+      bullet.className += 'inProgress'
     } else     if (stateProfress == 'finalizado') {
       console.log('else >>finalizado');
 
@@ -61,11 +67,9 @@ export default class StepProgress extends React.Component {
       <div>
             <div className='topic-article-idea title-progress'>Seguimiento / Estado de proyecto</div>
             <div className='contenedor-progress'>
-              {/* <h3>{voteState}</h3> */}
-              {/* <h3>{stateProfress}</h3> */}
               <div className='contenedor-etapas'>
                 <div className='flex-col'>
-                  <p className='subtitle-progress'>ETAPAS</p>
+                  <p className='subtitle-progress'><b>ETAPAS</b></p>
                     <div className='step-progressbar bullets'>
                       <div className='bullet-div'>
                         <p className='step-text'>Preparación</p>
@@ -81,14 +85,14 @@ export default class StepProgress extends React.Component {
                       </div>
                       <div className='bullet-div'>
                         <p className='step-text'>Ejecución</p>
-                        <div id="ejecucion" className='step bullet-wrapper'>
+                        <div id="ejecucion" className='step bullet-wrapper '>
                             <div className='bullet'></div>
                         </div>
                       </div>
                       <div className='bullet-div'>
                         <p className='step-text'>Finalizado</p>
-                        <div id="finalizado" className='step bullet-wrapper'>
-                            <div className='bullet'></div>
+                        <div id="finalizado" className='step bullet-wrapper '>
+                            <div id='finalBullet' className='bullet'></div>
                         </div>
                       </div>
                   </div>
@@ -98,7 +102,7 @@ export default class StepProgress extends React.Component {
                   <p className='numero-votos'>{budgetTotal}</p>
                 </div>
               </div>
-              <p>Presupuesto: {budgetTotal}</p>
+              <p><b>Presupuesto Estimado:</b> {budgetTotal}</p>
         </div>
       </div>
     );
