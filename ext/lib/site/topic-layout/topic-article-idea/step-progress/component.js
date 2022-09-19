@@ -65,12 +65,14 @@ export default class StepProgress extends React.Component {
 
     return (
       <div>
-            <div className='topic-article-idea title-progress'>Seguimiento / Estado de proyecto</div>
+            <div className=' title-progress'>Seguimiento / Estado de proyecto</div>
             <div className='contenedor-progress'>
               <div className='contenedor-etapas'>
                 <div className='flex-col'>
                   <p className='subtitle-progress'><b>ETAPAS</b></p>
-                    <div className='step-progressbar bullets'>
+                  <div className=' responsive-bullet-div'>
+                      {/* steps bullet  */}
+                     <div className='step-progressbar bullets'>
                       <div className='bullet-div'>
                         <p className='step-text'>Preparación</p>
                         <div id="preparacion" className='step bullet-wrapper '>
@@ -96,13 +98,21 @@ export default class StepProgress extends React.Component {
                         </div>
                       </div>
                   </div>
+                  {/* for responsive */}
+                  <div className='responsive-tag-steps'>
+                    <p className='step-text'>Preparación</p>
+                    <p className='step-text'>Compra</p>
+                    <p className='step-text'>Ejecución</p>
+                    <p className='step-text'>Finalizado</p>
+                  </div>
+                  </div>
+                  <p><b>Presupuesto Estimado:</b> {budgetTotal}</p>
                 </div>
                 <div className='contenedor-votos'>
                   <p>VOTOS</p>
                   <p className='numero-votos'>{budgetTotal}</p>
                 </div>
               </div>
-              <p><b>Presupuesto Estimado:</b> {budgetTotal}</p>
         </div>
       </div>
     );

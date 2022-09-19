@@ -193,6 +193,12 @@ class TopicArticle extends Component {
 
           <div className="seccion-contenido">
             {/* ooo" stepProgress */}
+            {/* <Collapsible 
+                  open={true} 
+                  triggerClassName='topic-article-proyecto' 
+                  triggerOpenedClassName='topic-article-proyecto' 
+                  trigger={`Proyecto final`}>
+                </Collapsible> */}
             <StepProgress 
               completeState={topic.attrs}
             />
