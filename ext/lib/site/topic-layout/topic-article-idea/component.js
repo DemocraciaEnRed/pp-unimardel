@@ -199,9 +199,15 @@ class TopicArticle extends Component {
                   triggerOpenedClassName='topic-article-proyecto' 
                   trigger={`Proyecto final`}>
                 </Collapsible> */}
-            <StepProgress 
-              completeState={topic.attrs}
-            />
+          {/* <Collapsible
+            trigger="Seguimiento"> */}
+            <div id='content-all-progress'>
+              <StepProgress 
+                  completeState={topic.attrs}
+                />
+              </div>
+          {/* </Collapsible> */}
+
             <div>
               {
                 topic.attrs['proyecto-contenido'] &&

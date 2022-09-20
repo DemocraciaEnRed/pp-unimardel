@@ -64,8 +64,9 @@ export default class StepProgress extends React.Component {
     console.log('stateComplete', this.props.completeState);
 
     return (
-      <div>
-            <div className=' title-progress'>Seguimiento / Estado de proyecto</div>
+      <div >
+            <div id='titulo-desk' className=' title-progress'>Seguimiento / Estado de proyecto</div>
+            <div id='titulo-res' className=' title-progress'>Estapas del Proyecto</div>
             <div className='contenedor-progress'>
               <div className='contenedor-etapas'>
                 <div className='flex-col'>
