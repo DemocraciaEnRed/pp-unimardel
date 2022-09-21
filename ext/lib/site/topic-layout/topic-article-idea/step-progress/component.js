@@ -72,12 +72,14 @@ export default class StepProgress extends React.Component {
                 <div className='flex-col'>
                   <p className='subtitle-progress'><b>ETAPAS</b></p>
                   <div className=' responsive-bullet-div'>
-                      {/* steps bullet  */}
+                      {/* ooo" steps bullet  */}
                      <div className='step-progressbar bullets'>
                       <div className='bullet-div'>
                         <p className='step-text'>Preparación</p>
                         <div id="preparacion" className='step bullet-wrapper '>
                             <div className='bullet'></div>
+                            <p className='step-text'>Preparación</p>
+
                         </div>
                       </div>
                       <div className='bullet-div'>
@@ -99,7 +101,7 @@ export default class StepProgress extends React.Component {
                         </div>
                       </div>
                   </div>
-                  {/* for responsive */}
+                  {/* ooo" for responsive */}
                   <div className='responsive-tag-steps'>
                     <p className='step-text'>Preparación</p>
                     <p className='step-text'>Compra</p>
@@ -107,6 +109,7 @@ export default class StepProgress extends React.Component {
                     <p className='step-text'>Finalizado</p>
                   </div>
                   </div>
+                  {/* ooo" name for varible {budgetTitle} */}
                   <p><b>Presupuesto Estimado:</b> {budgetTotal}</p>
                 </div>
                 <div className='contenedor-votos'>
