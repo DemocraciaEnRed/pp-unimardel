@@ -6,6 +6,10 @@ export default class StepProgress extends React.Component {
     // ooo" console.log('props:', this.props);
     console.log('constructing');
     this.state = {}
+    this.stepBudget = {
+      "tagBudget" : "",
+      "numberBudget": 0
+    }
   }
   componentDidMount () {
     this.state = this.props
@@ -13,15 +17,17 @@ export default class StepProgress extends React.Component {
     const voteState = stateComplete.state
     const stateProfress = stateComplete.completeState['presupuesto-estado']
     const budgetTotal = stateComplete['presupuesto-total']
-    console.log('antes de montar\n',stateProfress)
 
-    // ooo" Ahora encadenar los if segun cada etapa mas las clases CSS
-    // que se suman siempre onc el active y los selectores de id #
     if (stateProfress == 'preparacion') {
       let bullet = document.querySelector('#preparacion')
       bullet.className += 'active'
       bullet = document.querySelector('#compra')
       bullet.className += 'inProgress'
+
+      // ooo" se compone el #stepBudget
+      this.stepBudget.tagBudget="Presupuesto estimado"
+      this.stepBudget.numberBudget = stateComplete.completeState['presupuesto-preparacion']
+
     } else     if (stateProfress == 'compra') {
       let bullet = document.querySelector('#preparacion')
       bullet.className += 'active'
@@ -29,6 +35,11 @@ export default class StepProgress extends React.Component {
       bullet.className += 'active'
       bullet = document.querySelector('#ejecucion')
       bullet.className += 'inProgress'
+
+      // ooo" se compone el #stepBudget
+      this.stepBudget.tagBudget="Presupuesto a ejecutar"
+      this.stepBudget.numberBudget = stateComplete.completeState['presupuesto-compra']
+      
     } else     if (stateProfress == 'ejecucion') {
       let bullet = document.querySelector('#preparacion')
       bullet.className += 'active'
@@ -38,8 +49,11 @@ export default class StepProgress extends React.Component {
       bullet.className += ' active'
       bullet = document.querySelector('#finalizado')
       bullet.className += 'inProgress'
+
+      // ooo" se compone el #stepBudget
+      this.stepBudget.tagBudget="Presupuesto en ejecución"
+      this.stepBudget.numberBudget = stateComplete.completeState['presupuesto-ejecucion']
     } else     if (stateProfress == 'finalizado') {
-      console.log('else >>finalizado');
 
       let bullet = document.querySelector('#preparacion')
       bullet.className += 'active'
@@ -49,8 +63,12 @@ export default class StepProgress extends React.Component {
       bullet.className += ' active'
       bullet = document.querySelector('#finalizado')
       bullet.className += '   active'
+
+      // ooo" se compone el #stepBudget
+      this.stepBudget.tagBudget="Presupuesto ejecutado"
+      this.stepBudget.numberBudget = stateComplete.completeState['presupuesto-finalizado']
     }else{
-      console.log('ELSE DIDMOUNT  >>>>>', this.state["presupuesto-estado"])
+      console.log('::: don´t mount component for step progress :::',)
 
     }
   }
@@ -61,6 +79,7 @@ export default class StepProgress extends React.Component {
     const voteState = stateComplete.state
     const stateProfress = stateComplete['presupuesto-estado']
     const budgetTotal = stateComplete['presupuesto-total']
+    const totalVote = stateComplete['proyecto-votos']
     console.log('stateComplete', this.props.completeState);
 
     return (
@@ -78,7 +97,7 @@ export default class StepProgress extends React.Component {
                         <p className='step-text'>Preparación</p>
                         <div id="preparacion" className='step bullet-wrapper '>
                             <div className='bullet'></div>
-                            <p className='step-text'>Preparación</p>
+                            {/* <p id='titulo-res' className='step-text'>Preparación</p> */}
 
                         </div>
                       </div>
@@ -110,11 +129,11 @@ export default class StepProgress extends React.Component {
                   </div>
                   </div>
                   {/* ooo" name for varible {budgetTitle} */}
-                  <p><b>Presupuesto Estimado:</b> {budgetTotal}</p>
+                  <p id='stepBudget'><b>{this.stepBudget.tagBudget}:</b> {this.stepBudget.numberBudget}</p>
                 </div>
                 <div className='contenedor-votos'>
                   <p>VOTOS</p>
-                  <p className='numero-votos'>{budgetTotal}</p>
+                  <p className='numero-votos'>{totalVote}</p>
                 </div>
               </div>
         </div>

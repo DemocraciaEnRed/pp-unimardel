@@ -43,6 +43,8 @@ export class TopicCard extends Component {
     const { topic, onVote, onProyectista, user } = this.props
 
     const isStaff = !user.state.rejected && user.state.value.staff
+    // ooo" ta step progress
+    const tagProgress = topic.attrs['presupuesto-estado']
 
     // tipo de propuesta
     const isSistematizada = topic && topic.attrs && topic.attrs.state == 'sistematizada'
@@ -132,7 +134,16 @@ export class TopicCard extends Component {
                 <span
                   className={`tag-wrapper tag-status-${topic.attrs.state}`} >
                   {capitalizeFirstLetter(topic.attrs.state)}
-                </span>                  
+                </span>
+                                  
+              } 
+              {
+                topic && topic.attrs && topic.attrs.state &&
+                <span
+                  className={`tag-wrapper tag-status-${tagProgress}`} >
+                  {capitalizeFirstLetter(tagProgress)}
+                </span>
+                                  
               } 
             </div>
 

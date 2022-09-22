@@ -87,6 +87,24 @@
                     width 200%
                     height 0.3rem
                     background-color red
+        &.inProgress
+                .bullet
+                    color white
+                    background-color #d9d9d9
+                    border-color #000000
+                &:nth-child(n
+                    & + 2)
+                        flex-grow 1
+                    & + 2)::after
+                        content ''
+                        width 100%
+                        height 2px
+                        position: absolute;
+                        z-index: 2;
+                        right: 0;
+                        top: 0;
+                        transform: rotate(90deg) translate(36px, -3px);
+                        background-color #d9d9d9
     .contenedor-votos
         border-left: 0px !important
         padding-left: opx !important
@@ -169,6 +187,15 @@
     display flex
     flex-direction row
     align-items center
+    .bullet
+        &:nth-child(n
+                & + 2)
+                    flex-grow 1
+                & + 2)::after
+                    content ''
+                    width 100%
+                    height 2px
+                    background-color #d9d9d9
     &.active
         .bullet
             color white
@@ -181,21 +208,21 @@
             & + 2)::after
                 content ''
                 width 100%
-                height 0.3rem
+                height 2px
                 background-color #000000
     &.inProgress
             .bullet
                 color white
-                background-color none
+                background-color #d9d9d9
                 border-color #000000
             &:nth-child(n
                 & + 2)
                     flex-grow 1
                 & + 2)::after
                     content ''
-                    width 0%
-                    height 0.3rem
-                    background-color #000000
+                    width 100%
+                    height 2px
+                    background-color #d9d9d9
 
 .bullet
     display flex
@@ -211,7 +238,7 @@
     border-color #d9d9d9
     font-size .009rem
     color #a6a6a6
-    background-color #d9d9d9
+    // background-color #d9d9d9
     border-radius 100%
     cursor arrow
     text-align center
