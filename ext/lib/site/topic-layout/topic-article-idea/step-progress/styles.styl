@@ -1,0 +1,285 @@
+#content-all-progress
+    margin-bottom: 30px
+    max-height: 266px
+#titulo-res
+    display: none
+.is-flex
+    display: flex
+
+.flex-col
+    display: flex
+    flex-direction: column
+    width: 100%
+.flex-row
+    display: flex
+    flex-direction: row
+.contenedor-progress
+    margin-bottom: 10px
+    background: #F1F1F1
+    padding: 20px
+    max-height: 268px
+
+    // width: 800px
+.responsive-tag-steps
+    display: none
+@media screen and (min-width: 774px)
+    .contenedor-progress
+        min-width: 800px !important
+    .contenedor-votos
+        padding: 20px 60px
+
+
+@media screen and (max-width: 724px)
+    #content-all-progress
+        max-height: 716px
+        justify-content: center
+    #titulo-desk
+        display: none
+    #titulo-res
+        display: block
+    .contenedor-progress
+        max-height: 716px
+
+    .contenedor-etapas
+       flex-direction: column
+       max-height: none
+
+    .step-progressbar
+       flex-direction: column
+       justify-content: space-between
+       align-items: flex-start !important
+       margin: 0px !important
+       margin-bottom: 30px !important
+       width: 20% !important
+    .bullet-div
+        height: 50px
+        p
+            visibility: hidden
+    .responsive-bullet-div
+        display: flex
+        flex-direction: row
+    .responsive-tag-steps
+        display: block
+        display: flex
+        flex-direction: column
+        justify-content: space-around
+        margin-top 20px
+    .step-text
+        font-size: 24px !important
+    .bullet-wrapper
+        display flex
+        flex-direction row
+        align-items center
+        position: relative
+        &.active
+            .bullet
+                color white
+                background-color #000000
+                border-color #000000
+            &:nth-child(n
+                & + 2)
+                    flex-grow 1
+                & + 2)::after
+                    content ''
+                    position: absolute;
+                    z-index: 2;
+                    right: 0;
+                    top: 0;
+                    transform: rotate(90deg) translate(36px, -3px);
+                    padding-bottom: 0px
+                    margin 0px
+                    width 200%
+                    height 0.3rem
+        &.inProgress
+                .bullet
+                    color white
+                    background-color #a7a7a7
+                    border-color #000000
+                &:nth-child(n
+                    & + 2)
+                        flex-grow 1
+                    & + 2)::after
+                        content ''
+                        width 100%
+                        height 2px
+                        position: absolute;
+                        z-index: 2;
+                        right: 0;
+                        top: 0;
+                        transform: rotate(90deg) translate(36px, -3px);
+                        background-color #a7a7a7
+    .contenedor-votos
+        border-left: 0px !important
+        margin: auto !important
+        margin-top 10px !important
+        border-top: 1px solid #000
+        padding-top 5px
+        text-align: center
+        width: 50%
+        font-family: 'Museo Sans Rounded'
+        font-style: normal
+        font-weight: 400
+        font-size: 20px
+        line-height: 30px
+        /* identical to box height, or 150% */
+        padding opx !important
+        text-align: center
+        text-transform: uppercase
+
+        color: #000000
+
+
+.contenedor-etapas
+    display flex
+    align-items: center
+
+
+.step-progressbar
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+    width: 300px
+    margin: 0  auto
+    margin-bottom: 40px
+
+.title-progress
+    width: 100%
+    background: #00A6CB
+    font-family: 'Museo Sans Rounded'
+    font-style: normal
+    font-weight: 400
+    font-size: 20px
+    line-height: 30px
+    text-transform: uppercase
+    color: #000000
+    padding: 10px
+
+.subtitle-progress
+    font-family: 'Museo Sans Rounded'
+    font-style: normal
+    font-weight: 400
+    font-size: 20px
+    line-height: 30px
+    text-transform: uppercase
+    color: #000000
+
+.contenedor-votos
+    border-left: 1px solid #979797
+    text-align: center !important
+
+.numero-votos
+    font-family: 'Museo Sans Rounded'
+    font-style: normal
+    font-weight: 600
+    font-size: 50px
+    line-height: 30px
+    text-align: center
+    text-transform: uppercase
+    color: #00A6CB
+
+.step
+    text-align: center
+
+
+.step-text 
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 400
+    font-size: 16px
+    line-height: 19px
+    margin-bottom: 10px
+    color: #000
+
+
+.bullets
+    display flex
+    justify-content space-between
+    width 80%
+    // margin 0 auto 1.6rem
+
+.bullet-div
+    width: 25%
+    margin:  0px
+
+.bullet-wrapper
+    display flex
+    flex-direction row
+    align-items center
+    .bullet
+        &:nth-child(n
+                & + 2)
+                    flex-grow 1
+                & + 2)::after
+                    content ''
+                    width 100%
+                    height 2px
+                    background-color #a7a7a7
+    &.active
+        .bullet
+            color white
+            background-color #000000
+            border-color #000000
+        // estas son las lineas que unen los bullets
+        &:nth-child(n
+            & + 2)
+                flex-grow 1
+            & + 2)::after
+                content ''
+                width 100%
+                height 2px
+                background-color #000000
+    &.inProgress
+            .bullet
+                color white
+                background-color #a7a7a7
+                border-color #000000
+            &:nth-child(n
+                & + 2)
+                    flex-grow 1
+                & + 2)::after
+                    content ''
+                    width 100%
+                    height 2px
+                    background-color #A7A7A7
+    &.inFinalProgress
+            .bullet
+                color white
+                background-color #a7a7a7
+                border-color #000000
+            &:nth-child(n
+                & + 2)
+                    flex-grow 1
+                & + 2)::after
+                    content ''
+                    width 0%
+                    height 2px
+                    background-color #a7a7a7
+
+
+.bullet
+    display flex
+    justify-content center
+    align-items center
+    width 24px
+    height 24px
+    flex-shrink 0
+    margin 0.06rem
+    padding 0.1rem
+    background-clip content-box
+    border 0.03rem solid
+    border-color #a7a7a7
+    font-size .009rem
+    color #a6a6a6
+    // background-color #d9d9d9
+    border-radius 100%
+    cursor arrow
+    text-align center
+
+#finalizado 
+	&.active 
+		&:nth-child(n 
+			& + 2)::after 
+				content ''
+				width 0%
+				height 0rem
+				background-color #000
