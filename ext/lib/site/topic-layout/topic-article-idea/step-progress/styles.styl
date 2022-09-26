@@ -25,6 +25,9 @@
 @media screen and (min-width: 774px)
     .contenedor-progress
         min-width: 800px !important
+    .contenedor-votos
+        padding: 20px 60px
+
 
 @media screen and (max-width: 724px)
     #content-all-progress
@@ -60,6 +63,7 @@
         display: flex
         flex-direction: column
         justify-content: space-around
+        margin-top 20px
     .step-text
         font-size: 24px !important
     .bullet-wrapper
@@ -86,11 +90,10 @@
                     margin 0px
                     width 200%
                     height 0.3rem
-                    background-color red
         &.inProgress
                 .bullet
                     color white
-                    background-color #d9d9d9
+                    background-color #a7a7a7
                     border-color #000000
                 &:nth-child(n
                     & + 2)
@@ -104,17 +107,32 @@
                         right: 0;
                         top: 0;
                         transform: rotate(90deg) translate(36px, -3px);
-                        background-color #d9d9d9
+                        background-color #a7a7a7
     .contenedor-votos
         border-left: 0px !important
-        padding-left: opx !important
-        border-top: 1px solid #979797
+        margin: auto !important
+        margin-top 10px !important
+        border-top: 1px solid #000
         padding-top 5px
         text-align: center
         width: 50%
+        font-family: 'Museo Sans Rounded'
+        font-style: normal
+        font-weight: 400
+        font-size: 20px
+        line-height: 30px
+        /* identical to box height, or 150% */
+        padding opx !important
+        text-align: center
+        text-transform: uppercase
+
+        color: #000000
+
 
 .contenedor-etapas
     display flex
+    align-items: center
+
 
 .step-progressbar
     display: flex
@@ -147,7 +165,7 @@
 
 .contenedor-votos
     border-left: 1px solid #979797
-    padding-left 5px
+    text-align: center !important
 
 .numero-votos
     font-family: 'Museo Sans Rounded'
@@ -195,7 +213,7 @@
                     content ''
                     width 100%
                     height 2px
-                    background-color #d9d9d9
+                    background-color #a7a7a7
     &.active
         .bullet
             color white
@@ -213,7 +231,7 @@
     &.inProgress
             .bullet
                 color white
-                background-color #d9d9d9
+                background-color #a7a7a7
                 border-color #000000
             &:nth-child(n
                 & + 2)
@@ -222,7 +240,21 @@
                     content ''
                     width 100%
                     height 2px
-                    background-color #d9d9d9
+                    background-color #A7A7A7
+    &.inFinalProgress
+            .bullet
+                color white
+                background-color #a7a7a7
+                border-color #000000
+            &:nth-child(n
+                & + 2)
+                    flex-grow 1
+                & + 2)::after
+                    content ''
+                    width 0%
+                    height 2px
+                    background-color #a7a7a7
+
 
 .bullet
     display flex
@@ -235,7 +267,7 @@
     padding 0.1rem
     background-clip content-box
     border 0.03rem solid
-    border-color #d9d9d9
+    border-color #a7a7a7
     font-size .009rem
     color #a6a6a6
     // background-color #d9d9d9
@@ -248,6 +280,6 @@
 		&:nth-child(n 
 			& + 2)::after 
 				content ''
-				width 100%
+				width 0%
 				height 0rem
 				background-color #000

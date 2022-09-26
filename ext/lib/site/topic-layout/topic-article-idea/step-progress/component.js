@@ -4,7 +4,6 @@ export default class StepProgress extends React.Component {
   constructor() {
     super();
     // ooo" console.log('props:', this.props);
-    console.log('constructing');
     this.state = {}
     this.stepBudget = {
       "tagBudget" : "",
@@ -48,7 +47,7 @@ export default class StepProgress extends React.Component {
       bullet = document.querySelector('#ejecucion')
       bullet.className += ' active'
       bullet = document.querySelector('#finalizado')
-      bullet.className += 'inProgress'
+      bullet.className +=  'inProgress inFInalProgress'
 
       // ooo" se compone el #stepBudget
       this.stepBudget.tagBudget="Presupuesto en ejecución"
@@ -80,7 +79,6 @@ export default class StepProgress extends React.Component {
     const stateProfress = stateComplete['presupuesto-estado']
     const budgetTotal = stateComplete['presupuesto-total']
     const totalVote = stateComplete['proyecto-votos']
-    console.log('stateComplete', this.props.completeState);
 
     return (
       <div >
@@ -132,7 +130,7 @@ export default class StepProgress extends React.Component {
                   <p id='stepBudget'><b>{this.stepBudget.tagBudget}:</b> {this.stepBudget.numberBudget}</p>
                 </div>
                 <div className='contenedor-votos'>
-                  <p>VOTOS</p>
+                  <p><b>VOTOS</b></p>
                   <p className='numero-votos'>{totalVote}</p>
                 </div>
               </div>

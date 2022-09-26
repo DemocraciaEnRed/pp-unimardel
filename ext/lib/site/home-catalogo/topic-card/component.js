@@ -44,8 +44,16 @@ export class TopicCard extends Component {
 
     const isStaff = !user.state.rejected && user.state.value.staff
     // ooo" ta step progress
-    const tagProgress = topic.attrs['presupuesto-estado']
+    var tagProgress = topic.attrs['presupuesto-estado']
+    try {
+      tagProgress = tagProgress.replace("cion","ción")
+      console.log(' tildation....', tagProgress)
 
+    } catch (error) {
+      console.log('not tildation....')
+    }
+
+    // "ooo
     // tipo de propuesta
     const isSistematizada = topic && topic.attrs && topic.attrs.state == 'sistematizada'
     const isIdeaProyecto = topic && topic.attrs && topic.attrs.state == 'idea-proyecto'
@@ -70,7 +78,16 @@ export class TopicCard extends Component {
         <span className='icon-arrow-right' />
       </div>
     )
-
+    function unTilder(pal){
+      try {
+        console.log('untilder',pal)
+        pal = pal.replace("ción","cion")
+        return pal
+  
+      } catch (error) {
+        console.log('not tildation....')
+      }
+    }
     function capitalizeFirstLetter(str) {
       if (!str) return ''
       return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -140,7 +157,7 @@ export class TopicCard extends Component {
               {
                 topic && topic.attrs && topic.attrs.state &&
                 <span
-                  className={`tag-wrapper tag-status-${tagProgress}`} >
+                  className={`tag-wrapper tag-status-${unTilder(tagProgress)}`} >
                   {capitalizeFirstLetter(tagProgress)}
                 </span>
                                   
