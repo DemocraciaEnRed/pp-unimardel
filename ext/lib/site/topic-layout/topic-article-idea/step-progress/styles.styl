@@ -22,12 +22,20 @@
     // width: 800px
 .responsive-tag-steps
     display: none
+
 @media screen and (min-width: 774px)
     .contenedor-progress
         min-width: 800px !important
     .contenedor-votos
-        padding: 20px 60px
-
+        padding: 0px 60px
+        
+        display:flex
+        flex-direction: column
+        justify-content: start
+        height: 100%
+        p
+            min-height: 50%
+            border: 1px solid red
 
 @media screen and (max-width: 724px)
     #content-all-progress

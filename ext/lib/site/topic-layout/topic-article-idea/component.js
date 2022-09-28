@@ -201,11 +201,14 @@ class TopicArticle extends Component {
                 </Collapsible> */}
           {/* <Collapsible
             trigger="Seguimiento"> */}
+            {/* ooo" hay que chequear si es ganador sin ono debe mostrarse */}
+            {console.log(topic.attrs)}
+  {       topic.attrs.state == 'ganador' &&
             <div id='content-all-progress'>
               <StepProgress 
                   completeState={topic.attrs}
                 />
-              </div>
+              </div>}
           {/* </Collapsible> */}
 
             <div>

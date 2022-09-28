@@ -19,8 +19,6 @@ export default class StepProgress extends React.Component {
 
     if (stateProfress == 'preparacion') {
       let bullet = document.querySelector('#preparacion')
-      bullet.className += 'active'
-      bullet = document.querySelector('#compra')
       bullet.className += 'inProgress'
 
       // ooo" se compone el #stepBudget
@@ -31,10 +29,8 @@ export default class StepProgress extends React.Component {
       let bullet = document.querySelector('#preparacion')
       bullet.className += 'active'
       bullet = document.querySelector('#compra')
-      bullet.className += 'active'
-      bullet = document.querySelector('#ejecucion')
       bullet.className += 'inProgress'
-
+      
       // ooo" se compone el #stepBudget
       this.stepBudget.tagBudget="Presupuesto a ejecutar"
       this.stepBudget.numberBudget = stateComplete.completeState['presupuesto-compra']
@@ -45,9 +41,9 @@ export default class StepProgress extends React.Component {
       bullet = document.querySelector('#compra')
       bullet.className += 'active'
       bullet = document.querySelector('#ejecucion')
-      bullet.className += ' active'
+      bullet.className += ' inProgress'
       bullet = document.querySelector('#finalizado')
-      bullet.className +=  'inProgress inFInalProgress'
+    
 
       // ooo" se compone el #stepBudget
       this.stepBudget.tagBudget="Presupuesto en ejecución"
@@ -127,7 +123,7 @@ export default class StepProgress extends React.Component {
                   </div>
                   </div>
                   {/* ooo" name for varible {budgetTitle} */}
-                  <p id='stepBudget'><b>{this.stepBudget.tagBudget}:</b> {this.stepBudget.numberBudget}</p>
+                  <p id='stepBudget'><b>{this.stepBudget.tagBudget}: </b>$ {this.stepBudget.numberBudget}</p>
                 </div>
                 <div className='contenedor-votos'>
                   <p><b>VOTOS</b></p>
