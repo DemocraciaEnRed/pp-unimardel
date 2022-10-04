@@ -22,7 +22,10 @@
     // width: 800px
 .responsive-tag-steps
     display: none
-
+// .contenedor-votos{
+//     justify-items: center
+//     text-align: center
+//     }
 @media screen and (min-width: 774px)
     .contenedor-progress
         min-width: 800px !important
@@ -39,40 +42,45 @@
         -webkit-flex-wrap wrap
         -ms-flex-wrap wrap
         flex-wrap wrap
-        -webkit-justify-content center
-        -ms-flex-pack center
-        justify-content center
-        -webkit-align-content center
-        -ms-flex-line-pack center
-        align-content center
-        -webkit-align-items flex-start
-        -ms-flex-align start
-        align-items flex-start
-        .flex-item
+
+        p
+            margin-bottom: 20px
+        // -webkit-justify-content center
+        // -ms-flex-pack center
+        // justify-content center
+        // -webkit-align-content center
+        // -ms-flex-line-pack center
+        // align-content center
+        // -webkit-align-items flex-start
+        // -ms-flex-align start
+        // align-items flex-start
+        // .flex-item
         
-            &:nth-child(1)
-                -webkit-order 01
-                -ms-flex-order 01
-                order 0
-                -webkit-flex 0 1 auto
-                -ms-flex 0 1 auto
-                flex 0 1 auto
-                -webkit-align-self flex-start
-                -ms-flex-item-align start
-                align-self flex-start
-                p
-                    text-align: center !important
-            &:nth-child(2)
-                -webkit-order 1
-                -ms-flex-order 1
-                order 1
-                -webkit-flex 10 1 auto
-                -ms-flex 10 1 auto
-                flex 10 1 auto
-                -webkit-align-self auto
-                -ms-flex-item-align auto
-                align-self center
-                justify-content: center
+        //     &:nth-child(1)
+        //         -webkit-order 01
+        //         -ms-flex-order 01
+        //         order 0
+        //         -webkit-flex 0 1 auto
+        //         -ms-flex 0 1 auto
+        //         flex 0 1 auto
+        //         -webkit-align-self flex-start
+        //         -ms-flex-item-align start
+        //         align-self flex-start
+        //         align-content: center
+        //         p
+                
+        //             text-align: center !important
+        //     &:nth-child(2)
+        //         -webkit-order 1
+        //         -ms-flex-order 1
+        //         order 1
+        //         -webkit-flex 10 1 auto
+        //         -ms-flex 10 1 auto
+        //         flex 10 1 auto
+        //         -webkit-align-self auto
+        //         -ms-flex-item-align auto
+        //         align-self center
+        //         justify-content: center
 @media screen and (max-width: 724px)
     #content-all-progress
         max-height: 716px
@@ -160,7 +168,7 @@
         padding-top 5px
         text-align: center
         width: 50%
-        font-family: 'Museo100', sans-serif
+        font-family: 'Museo300', sans-serif
         font-style: normal
         font-weight: 400
         font-size: 20px
@@ -175,7 +183,7 @@
 
 .contenedor-etapas
     display flex
-    align-items: center
+    align-items: none !important
 
 
 .step-progressbar
@@ -189,7 +197,7 @@
 .title-progress
     width: 100%
     background: #00A6CB
-    font-family: 'Museo100'
+    font-family: 'Museo300'
     font-style: normal
     font-weight: 400
     font-size: 20px
@@ -199,7 +207,7 @@
     padding: 10px
 
 .subtitle-progress
-    font-family: 'Museo100'
+    font-family: 'Museo300'
     font-style: normal
     font-weight: 400
     font-size: 20px
@@ -212,7 +220,7 @@
     text-align: center !important
 
 .numero-votos
-    font-family: 'Museo100'
+    font-family: 'Museo300'
     font-style: normal
     font-weight: 600
     font-size: 50px
