@@ -1,6 +1,11 @@
 #content-all-progress
-    margin-bottom: 30px
-    max-height: 266px
+    margin-bottom: 10px
+    // max-height: 266px
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.25)
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 #titulo-res
     display: none
 .is-flex
@@ -17,7 +22,9 @@
     margin-bottom: 10px
     background: #F1F1F1
     padding: 20px
-    max-height: 268px
+    // max-height: 268px
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 
     // width: 800px
 .responsive-tag-steps
@@ -49,12 +56,13 @@
        justify-content: space-between
        align-items: flex-start !important
        margin: 0px !important
-       margin-bottom: 30px !important
-       width: 20% !important
+       margin-bottom: 0px !important
+       width: 50px !important
     .bullet-div
+        width: 20px !important;
         height: 50px
         p
-            visibility: hidden
+            display: none
     .responsive-bullet-div
         display: flex
         flex-direction: row
@@ -62,10 +70,12 @@
         display: block
         display: flex
         flex-direction: column
-        justify-content: space-around
-        margin-top 20px
+        justify-content: flex-start
+        margin-top 2px
     .step-text
-        font-size: 24px !important
+        font-size: 19px !important
+        line-height: normal !important
+        margin-bottom: 28px !important
     .bullet-wrapper
         display flex
         flex-direction row
@@ -116,7 +126,7 @@
         padding-top 5px
         text-align: center
         width: 50%
-        font-family: 'Museo Sans Rounded'
+        font-family: 'MuseoSansRounded-500'
         font-style: normal
         font-weight: 400
         font-size: 20px
@@ -139,23 +149,25 @@
     justify-content: space-between
     align-items: flex-end
     width: 300px
-    margin: 0  auto
+    margin: 0 auto
+    margin-top: 10px;
     margin-bottom: 40px
 
 .title-progress
     width: 100%
     background: #00A6CB
-    font-family: 'Museo Sans Rounded'
+    font-family: 'Museo900', sans-serif !important
     font-style: normal
-    font-weight: 400
-    font-size: 20px
+    font-size: 1.2em;
     line-height: 30px
-    text-transform: uppercase
-    color: #000000
+    // text-transform: uppercase
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #fff
     padding: 10px
 
 .subtitle-progress
-    font-family: 'Museo Sans Rounded'
+    font-family: 'Museo300'
     font-style: normal
     font-weight: 400
     font-size: 20px
@@ -168,9 +180,8 @@
     text-align: center !important
 
 .numero-votos
-    font-family: 'Museo Sans Rounded'
+    font-family: 'Museo900'
     font-style: normal
-    font-weight: 600
     font-size: 50px
     line-height: 30px
     text-align: center
@@ -182,7 +193,7 @@
 
 
 .step-text 
-    font-family: 'Inter'
+    font-family: 'MuseoSansRounded-500'
     font-style: normal
     font-weight: 400
     font-size: 16px
@@ -205,15 +216,19 @@
     display flex
     flex-direction row
     align-items center
+    &#preparacion, &#compra, &#ejecucion
+        &::after
+            content ''
+            width 100%
+            height 2px
+            background-color #a7a7a7
+    &#preparacion.active::after
+        background-color #000000
+    &#compra.active::after
+        background-color #000000
+    &#ejecucion.active::after
+        background-color #000000
     .bullet
-        &:nth-child(n
-                & + 2)
-                    flex-grow 1
-                & + 2)::after
-                    content ''
-                    width 100%
-                    height 2px
-                    background-color #a7a7a7
     &.active
         .bullet
             color white
@@ -264,7 +279,7 @@
     height 24px
     flex-shrink 0
     margin 0.06rem
-    padding 0.1rem
+    padding 0.24rem
     background-clip content-box
     border 0.03rem solid
     border-color #a7a7a7
