@@ -130,8 +130,12 @@ export default class StepProgress extends React.Component {
                   <p id='stepBudget'><b>{this.stepBudget.tagBudget}:</b> $ {this.stepBudget.numberBudget}</p>
                 </div>
                 <div className='contenedor-votos'>
-                  <p><b>VOTOS</b></p>
-                  <p className='numero-votos'>{totalVote}</p>
+                  <div className='flex-item'>
+                    <p ><b>VOTOS</b></p>
+                  </div>
+                  <div className='flex-item'>
+                    <p className='numero-votos'>{totalVote}</p>  
+                  </div>
                 </div>
               </div>
         </div>
