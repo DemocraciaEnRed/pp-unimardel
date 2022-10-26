@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 const states = [
   { 'name': 'estimado', 'value': 'preparacion', 'title': 'En preparación', },
-  { 'name': 'a ejecutar', 'value': 'compra', 'title': 'En proceso de compra' },
+  { 'name': 'a ejecutar', 'value': 'compra', 'title': 'En contratación' },
   { 'name': 'en ejecución', 'value': 'ejecucion', 'title': 'En ejecución' },
   { 'name': 'ejecutado', 'value': 'finalizado', 'title': 'Finalizado' }
 ]

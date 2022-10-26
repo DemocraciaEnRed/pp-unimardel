@@ -5,22 +5,22 @@ import userConnector from 'lib/site/connectors/user'
 // import { config } from 'democracyos-notifier'
 import config from 'lib/config'
 
-// const estados = (state) => {
-//   switch (state) {
-//     case 'sistematizada':
-//       return 'Sistematizada'
-//       break
-//     case 'idea-proyecto':
-//       return 'Idea-Proyecto'
-//       break
-//     case 'pendiente':
-//       return 'Idea'
-//       break
-//     case 'proyecto':
-//       return 'Proyecto'
-//       break
-//   }
-// }
+const getSeguimientoStateLabel = (state) => {
+  switch (state) {
+    case 'preparacion':
+      return 'Preparación'
+      break
+    case 'compra':
+      return 'Contratación'
+      break
+    case 'ejecucion':
+      return 'Ejecución'
+      break
+    case 'finalizado':
+      return 'Finalizado'
+      break
+  }
+}
 
 export class TopicCard extends Component {
   handleWrapperClick = (e) => {
@@ -155,10 +155,10 @@ export class TopicCard extends Component {
                                   
               } 
               {
-                topic && topic.attrs && topic.attrs.state &&
+                topic && topic.attrs && topic.attrs.state && topic.attrs.state === 'ganador' && topic.attrs['presupuesto-estado'] &&
                 <span
-                  className={`tag-wrapper tag-status-${unTilder(tagProgress)}`} >
-                  {capitalizeFirstLetter(tagProgress)}
+                  className={`tag-wrapper tag-status-${topic.attrs['presupuesto-estado']}`} >
+                  {getSeguimientoStateLabel(topic.attrs['presupuesto-estado'])}
                 </span>
                                   
               } 

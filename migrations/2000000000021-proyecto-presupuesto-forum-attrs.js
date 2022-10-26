@@ -96,7 +96,7 @@ const newFields = [
 			},
 			{
 				"name" : "compra",
-				"title" : "En Proceso de Compra"
+				"title" : "En Contratación"
 			},
 			{
 				"name" : "ejecucion",

@@ -70,7 +70,7 @@ class TopicArticle extends Component {
         return 'en preparación'
         break
       case 'compra':
-        return 'en proceso de compra'
+        return 'en contratación'
         break
       case 'ejecucion':
         return 'en ejecución'

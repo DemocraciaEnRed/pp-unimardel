@@ -100,7 +100,7 @@ export default class StepProgress extends React.Component {
                         </div>
                       </div>
                       <div className='bullet-div'>
-                        <p className='step-text'>Compra</p>
+                        <p className='step-text'>En contratación</p>
                         <div id="compra" className='step bullet-wrapper '>
                             <div className='bullet'></div>
                         </div>
@@ -121,7 +121,7 @@ export default class StepProgress extends React.Component {
                   {/* ooo" for responsive */}
                   <div className='responsive-tag-steps'>
                     <p className='step-text'>Preparación</p>
-                    <p className='step-text'>Compra</p>
+                    <p className='step-text'>En contratación</p>
                     <p className='step-text'>Ejecución</p>
                     <p className='step-text'>Finalizado</p>
                   </div>
