@@ -83,7 +83,6 @@ export default class StepProgress extends React.Component {
     return (
       <div >
             <div id='titulo-desk' className=' title-progress'>Seguimiento / Estado de proyecto</div>
-            <div id='titulo-res' className=' title-progress'>Estapas del Proyecto</div>
             <div className='contenedor-progress'>
               <div className='contenedor-etapas'>
                 <div className='flex-col'>
@@ -138,6 +137,13 @@ export default class StepProgress extends React.Component {
                   </div>
                 </div>
               </div>
+              {
+                stateComplete['presupuesto-historial'] && stateComplete['presupuesto-historial'].length > 0 &&
+                <div className='contenedor-historial'>
+                  <h4>Historial</h4>
+                  <p>{stateComplete['presupuesto-historial']}</p>
+                </div>
+              }
         </div>
       </div>
     );
