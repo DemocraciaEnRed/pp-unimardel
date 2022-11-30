@@ -67,6 +67,14 @@
         - if (forum.topicsAttrs.length > 0)
           fieldset.attrs-wrapper
             div(data-attrs)
+        
+        hr
+        h3.subtitle
+          = "Album de fotos"
+        p="Para ir editar el album de fotos, haga clic en el siguiente link (Antes, guarde los cambios de esta página)"
+        a(href=urlBuilder.for('admin.topics.id.album', {id: topic.id, forum: forum.name}), target='_blank')
+          = "Editar album de fotos"
+        
 
         input.btn.btn-success.hide(type='submit', value=t('admin-topics-form.button.submit'))
 
