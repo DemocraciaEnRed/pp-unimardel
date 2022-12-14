@@ -271,15 +271,8 @@ class TopicArticle extends Component {
               }
 
             </div>
-        </div>            
-          
+          </div>
         </div>
-
-        
-        
-        
-
-
         <Social
           topic={topic}
           twitterText={twitterText}
@@ -297,7 +290,42 @@ class TopicArticle extends Component {
               </p>
             )
         }
-
+        <div className="topic-article-content">
+          <div className='topic-article-album'>
+            <h3>Album de imágenes</h3>
+            {
+              forum.privileges && forum.privileges.canChangeTopics && (
+                <div style={{marginBottom: '10px'}}>
+                  <a href={urlBuilder.for('admin.topics.id.album', { id: topic.id, forum: forum.name })} className=''>
+                    ✏️ Agregar o editar imagenes
+                  </a>
+                </div>
+              )
+            }
+            <div className="row">
+              {
+              topic.extra && topic.extra.album && topic.extra.album.length > 0 && topic.extra.album.map((image, i) => (
+                  <div className='col-md-4 col-sm-3 col-xs-6' key={i}>
+                    <a href={image} target="_blank">
+                      <div className='topic-article-album-image' style={{backgroundImage: `url(${image})`}} />
+                    </a>
+                  </div>
+                // <div className="gallery-item" key={i}>
+                //   <a href={image.url} target="_blank">
+                //     <img src={image.thumbnailUrl} className="gallery-image" />
+                //   </a>
+                // </div>
+                ))
+              }
+              {
+                (!topic.extra || (topic.extra && !topic.extra.album) || (topic.extra && !topic.extra.album && topic.extra.album.length === 0)) && 
+                <div className='col-md-12 col-xs-12 col-sm-12 '>
+                  No hay imágenes en este album
+                </div>
+              }
+            </div>
+          </div>
+        </div>
         {
           !user.state.pending && !isProyecto && <Comments forum={forum} topic={topic} />
         }
