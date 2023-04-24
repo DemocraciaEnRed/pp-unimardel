@@ -47,10 +47,8 @@ export class TopicCard extends Component {
     var tagProgress = topic.attrs['presupuesto-estado']
     try {
       tagProgress = tagProgress.replace("cion","ción")
-      console.log(' tildation....', tagProgress)
 
     } catch (error) {
-      console.log('not tildation....')
     }
 
     // "ooo
@@ -85,7 +83,6 @@ export class TopicCard extends Component {
         return pal
   
       } catch (error) {
-        console.log('not tildation....')
       }
     }
     function capitalizeFirstLetter(str) {
