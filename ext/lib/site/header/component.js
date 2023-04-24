@@ -170,10 +170,21 @@ class Header extends Component {
                 to='/propuestas'
                 className='header-link'
                 tabIndex="83"
+                onClick={() => window.location.href = '/propuestas'}
                 >
                   Ideas y Proyectos
               </Link>
             </li>         
+            <li className={`header-item ${window.location.pathname.includes('/archivo') ? 'active' : ''}`}>
+              <Link
+                to='/archivo'
+                className='header-link'
+                tabIndex="83"
+                onClick={() => window.location.href = '/archivo'}
+                >
+                  Archivo
+              </Link>
+            </li>                
             { config.votacionAbierta && <li className={`header-item ${window.location.pathname.includes('/votacion') ? 'active' : ''}`}>
               <Link
                 to='/votacion'

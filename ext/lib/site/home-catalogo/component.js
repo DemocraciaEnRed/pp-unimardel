@@ -30,10 +30,7 @@ const defaultValues = {
   tag: [],
   // 'barrio' o 'newest' o 'popular'
   sort: '',
-  tipoIdea: config.propuestasAbiertas ? ['pendiente'] : 
-  config.votacionAbierta ? ['factible'] :
-  config.votacionVisible ? ['ganador'] : 
-  ['factible', 'no-factible', 'integrado', 'pendiente']
+  tipoIdea: config.propuestasAbiertas ? ['pendiente'] :  config.votacionAbierta ? ['factible'] : config.votacionVisible ? ['ganador'] : ['factible', 'no-factible', 'integrado', 'pendiente']
 }
 
 const filters = {
@@ -50,7 +47,6 @@ const filters = {
 class HomePropuestas extends Component {
   constructor () {
     super()
-
     this.state = {
       forum: null,
       topics: null,
@@ -67,14 +63,19 @@ class HomePropuestas extends Component {
       noMore: null,
 
       selectedProyecto: null,
-      searchableProyectos: []
+      searchableProyectos: [],
+
+      archive: false,
+      years: [],
     }
+    
 
     this.handleInputChange = this.handleInputChange.bind(this)
     this.renderSortFilter = this.renderSortFilter.bind(this)
   }
 
   componentDidMount () {
+    const {archive, years} = this.props;
     window.scrollTo(0,0)
     if (this.props.location.query.tags)
       defaultValues.tag.push(this.props.location.query.tags)
@@ -95,7 +96,9 @@ class HomePropuestas extends Component {
         tags: tagsMap,
         tag,
         tiposIdea,
+        tipoIdea: archive ? ['ganador'] : this.state.tipoIdea,
         forum,
+        years,
         searchableProyectos: proyectos.map(p => ({label: `#${p.attrs && p.attrs.numero} ${p.mediaTitle}`, value: p.id}))
       }, () => this.fetchTopics())
     }).catch((err) => { throw err })
@@ -111,7 +114,8 @@ class HomePropuestas extends Component {
       zonas: this.state.zona,
       tags: this.state.tag,
       sort: this.state.sort,
-      tipoIdea: this.state.tipoIdea
+      tipoIdea: this.state.tipoIdea,
+      years: this.state.years
     }
 
     let queryString = Object.keys(query)
@@ -345,9 +349,9 @@ class HomePropuestas extends Component {
   }
 
   render () {
-    //console.log('Render main')
 
     const { forum, topics, zonas, searchableProyectos, selectedProyecto } = this.state
+    const {archive} = this.props
     let filteredTopics;
 
     if (selectedProyecto)
@@ -357,10 +361,10 @@ class HomePropuestas extends Component {
       <div className={`ext-home-ideas ${this.props.user.state.fulfilled ? 'user-logged' : ''}`}>
         <Anchor id='container'>
           <BannerListadoTopics
-          btnText={config.propuestasAbiertas ? 'Subí tu idea' : undefined}
-          btnLink={config.propuestasAbiertas ? '/formulario-idea' : undefined}
+          btnText={(!archive && config.propuestasAbiertas) ? 'Subí tu idea' : undefined}
+          btnLink={(!archive && config.propuestasAbiertas) ? '/formulario-idea' : undefined}
             title={
-              config.propuestasVisibles ? 
+              archive ? "Archivo de proyectos" : config.propuestasVisibles ? 
               (config.propuestasAbiertas ? "Ideas" : "Ideas y proyectos") : 
               "Proyectos"
             }
@@ -369,7 +373,9 @@ class HomePropuestas extends Component {
 
           <div className='container'>
             <div className="row">
-              {config.propuestasVisibles &&
+              {archive ? <div className='notice'>
+                      <h1>Aquí podes visualizar los proyectos de años anteriores</h1>
+                    </div> : config.propuestasVisibles &&
                 (config.propuestasAbiertas
                   ? (
                     <div className='notice'>

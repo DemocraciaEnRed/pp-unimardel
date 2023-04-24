@@ -23,6 +23,11 @@ exports.parseTipoIdea = (req, res, next) => {
   next()
 }
 
+exports.parseYears = (req, res, next) => {
+  req.query.years = req.query.years.split(',').filter((t) => !!t)
+  next()
+}
+
 exports.findForum = (req, res, next) => {
   api.forums.find({ name: req.query.forumName })
     .findOne()
@@ -45,12 +50,12 @@ const queryTopics = (opts) => {
     related,
     owners,
     zonas,
-    zona
+    zona,
+    years
   } = opts
-
   const query = {
     forum: forum._id,
-    publishedAt: { $ne: null }
+    publishedAt: { $ne: null },
   }
   if (owners && owners.length > 0) query.owner = { $in: owners }
   if (tags && tags.length > 0) query.tag = { $in: tags }
@@ -59,6 +64,12 @@ const queryTopics = (opts) => {
   if (state && state.length > 0) query['attrs.state'] = { $in: state }
   if (related && related.length > 0) query['attrs.admin-comment-referencia'] = { $regex: `.*${related}.*` }
 
+  if (years && years.length > 0) query.$or = years.map(year => ({createdAt: {$gte: new Date(year,0,1),$lte: new Date(year,11,31)}}))
+  
+  // if (years && years.length > 0) query.$where = function (){
+  //   const year = this.createdAt.getFullYear().toString()
+  //   return years.includes(year);
+  // }
   return api.topics.find().where(query)
 }
 

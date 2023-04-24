@@ -57,6 +57,16 @@ class MobileMenu extends Component {
                     Ideas y Proyectos
                   </Link>
                 </div>
+                <div className='header-item'>
+                  <Link
+                    to='/archivo'
+                    className={`header-link ${!~window.location.pathname.includes('archivo') ? 'active' : ''}`}
+                    activeStyle={{ color: '#8C1E81' }}
+                    onClick={this.props.toggleOnClick}
+                    tabIndex="3">
+                    Archivo
+                  </Link>
+                </div>                
                 { config.votacionAbierta && <div className='header-item'>
                   <Link
                     to='/votacion'
