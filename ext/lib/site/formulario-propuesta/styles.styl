@@ -54,10 +54,20 @@
       font-size: 1.3em;
       margin-top: 10px;
     .bar-section
-      padding: 2rem 1rem;
+      padding: 1rem 1rem;
       text-align: center
+      &.acerca-requisitos
+        margin-top: 0
+        background: #00758F;
+        .section-title
+          font-size: 20px
+          font-family: 'Museo300', sans-serif
+          color: white
+          text-align: center;        
       &.acerca-propuesta
-        margin-top: 50px;
+        background: #00A6CB;
+        margin: 2rem 20%    
+        margin-bottom: 0
       p
         margin: 0
         color: #000
@@ -67,7 +77,8 @@
         font-size: 30px
         font-weight: bold
         font-family: 'Museo300', sans-serif
-        color: #000
+        color: white
+        text-align: center;
       .section-subtitle
         color: #484747
         font-size: 16px
@@ -95,6 +106,33 @@
       border: 1px solid #CACACA
       padding: 3px 10px
       width: 100%
+    
+    .btn-requirements-accepted
+      color: #00A6CB
+      font-family: 'Museo300', sans-serif
+      font-style: normal;
+      font-size: 25px;
+      line-height: 30px;
+      text-align: center;
+      padding: 1rem;
+      border: 3px solid #00A6CB;
+      filter: drop-shadow(0px 4px 4px rgba(255, 255, 255, 0.25));
+      border-radius: 5px;
+      background: #FFFFFF;      
+
+    .bullet-requisitos
+      margin-top: 40px
+    li
+      font-family: 'Museo300', sans-serif
+      font-style: normal;
+      font-weight: 400;
+      font-size: 25px;
+      line-height: 30px;
+      color: #000000;
+      text-align: justify
+      margin-bottom: 20px
+    .bold
+      font-weight: bold;
 
     input, select, textarea
       border-radius: 0px
@@ -148,9 +186,9 @@
     border-radius: 8px;
     color: #000;
     display: inline-block;
+    padding: 8px;
     //height: 25px;
     line-height: 25px;
-    padding: 0 11px;
     position: relative;
     margin: 0 10px 10px 0;
     text-decoration: none;
@@ -174,13 +212,15 @@
       right: 0;
       top: 0; */
     &:hover
-      background-color: #C4D94B;
+      background: #00A6CB;
       color: white !important;
       cursor: pointer;
+      padding: 8px;
     /* &:hover::after
       border-left-color: #8c1e80; */
     &.active
-      background-color: #C4D94B;
+      background: #00A6CB;
+      padding: 8px;
       color: white;
       &:after
         content: 'x'
@@ -224,3 +264,65 @@
       margin-bottom: 0
     li.error-li
       color: red;
+
+  .idea-no-factible
+    margin-top: 20px
+    margin-bottom: 20px  
+    align-items: center;
+    padding: 25px 20px;
+    width: 290px;
+    height: 110px;
+    background: #FFE8E3;
+    border: 5px solid #FB5734;
+    border-radius: 25px;    
+    img
+      margin-top: -2.8rem
+    p
+      font-family: 'Museo300', sans-serif
+      font-style: normal;
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 30px;
+      text-align: center;
+      color: #000000;
+
+  .idea-factible
+    margin-top: 20px
+    margin-bottom: 20px  
+    align-items: center;
+    padding: 25px 20px;
+    width: 290px;
+    height: 110px;
+    background: #FFE8E3;
+    border: 5px solid #C4D94B;
+    border-radius: 25px;    
+    img
+      margin-top: -2.8rem
+    p
+      font-family: 'Museo300', sans-serif
+      font-style: normal;
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 30px;
+      text-align: center;
+      color: #000000;    
+
+  .aceptar-tyc
+    font-family: 'Museo300', sans-serif
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #00A6CB;
+
+  .parte-ubicacion
+    font-family: 'Museo300', sans-serif
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+  
+  .buscar-zona
+    text-decoration-line: underline;
+    color: #00758F;
+    cursor: pointer;
