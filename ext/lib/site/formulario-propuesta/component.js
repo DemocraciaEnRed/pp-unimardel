@@ -66,8 +66,6 @@ class FormularioPropuesta extends Component {
       availableTags: [],
       zonas: [],
       barrios: [],
-      
-      dialogZonaisOpen: false,
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -82,7 +80,11 @@ class FormularioPropuesta extends Component {
     if (name === "barrio") {
       const {zonas} = this.state
       const finalZona = zonas.find(zona => zona.barrios.includes(value))
-      this.setState({ zona: finalZona.id })
+      if (finalZona) {
+        this.setState({ zona: finalZona.id })
+      } else {
+        this.setState({ zona: "" })
+      }
     }
   }
 
@@ -105,12 +107,11 @@ class FormularioPropuesta extends Component {
       const [ forum, tags, zonas, topic] = results
       let barrios = []
       zonas.forEach(zona => zona.barrios.forEach(barrio => barrios.push(barrio)))
-
       let newState = {
         forum,
         availableTags: tags,
         zonas,
-        barrios: barrios,
+        barrios: barrios.sort(),
         mode: isEdit ? 'edit' : 'new'
       }
 
@@ -157,7 +158,7 @@ class FormularioPropuesta extends Component {
     if (this.props.user.state.fulfilled){
       let user = this.props.user.state.value
       this.setState({
-        zona: user.zona._id,
+        // zona: user.zona._id,
         email: user.email,
         documento: user.dni,
         nombre: user.firstName + ' ' + user.lastName
@@ -171,10 +172,13 @@ class FormularioPropuesta extends Component {
       forum: this.state.forum.id,
       mediaTitle: this.state.titulo,
       'attrs.documento': this.state.documento,
+      'attrs.telefono': this.state.telefono,
       // 'attrs.genero': this.state.genero,
       'attrs.problema': this.state.problema,
       'attrs.solucion': this.state.solucion,
       'attrs.beneficios': this.state.beneficios,
+      'attrs.barrio': this.state.barrio,
+      'attrs.ubicacion': this.state.ubicacion,
       zona: this.state.zona,
       tags: this.state.tags.map(tag => tag.name)
     }
@@ -247,10 +251,12 @@ class FormularioPropuesta extends Component {
     // if (this.state.genero === '') return true
     if (this.state.email === '') return true
     if (this.state.titulo === '') return true
-    if (this.state.zona === '') return true
+    if (this.state.telefono === '') return true
     if (this.state.problema === '') return true
-    if (this.state.solucion === '') return true
     if (!this.state.tags || this.state.tags.length == 0) return true
+    if (this.state.solucion === '') return true
+    if (this.state.beneficios === '') return true
+    if (this.state.zona === '') return true
     return false;
 
   }
@@ -440,6 +446,22 @@ class FormularioPropuesta extends Component {
               value={this.state['titulo']}
               onChange={this.handleInputChange} />
           </div>       
+
+          <div className='form-group'>
+            <label className='required' htmlFor='telefono'>
+              * Número de teléfono
+            </label>
+            <p className="help-text">Únicamente será para contactarte por dudas o avances sobre tu idea.</p>
+            <input
+              className='form-control'
+              required
+              type='text'
+              max='128'
+              name='telefono'
+              value={this.state['telefono']}
+              onChange={this.handleInputChange} />
+          </div>         
+
           <div className='form-group'>
             <label className='required' htmlFor='problema'>
               * Problema o necesidad existente
@@ -455,12 +477,13 @@ class FormularioPropuesta extends Component {
               value={this.state['problema']}
               onChange={this.handleInputChange}>
             </textarea>
-          </div>          
+          </div>      
+
           <div className='tags-autocomplete'>
             <label className='required'>
-              * Temas
+              * Tipo de proyecto
             </label>
-            <p className='help-text'>Elegí los temas relacionados a tu idea. Recordá que podés seleccionar una sola opción.</p>
+            <p className='help-text'>Elegi un tipo de proyecto para tu idea</p>
             {
               this.state.mode === 'edit' && this.state.tags &&
                 <ul className="tags">
@@ -506,7 +529,7 @@ class FormularioPropuesta extends Component {
 
           <div className='form-group'>
             <label className='required' htmlFor='beneficios'>
-              Beneficios que brindará el proyecto al barrio
+              * Beneficios que brindará el proyecto al barrio
             </label>
             <p className='help-text'>¿Como ayuda este proyecto al barrio? ¿Quiénes se benefician?</p>
             <textarea
@@ -518,22 +541,7 @@ class FormularioPropuesta extends Component {
               value={this.state['beneficios']}
               onChange={this.handleInputChange}>
             </textarea>
-          </div>
-
-          <div className='form-group'>
-            <label className='required' htmlFor='telefono'>
-              Teléfono Celular
-            </label>
-            <p className="help-text">Colocá tu número de teléfono para poder contactarte</p>
-            <input
-              className='form-control'
-              required
-              type='text'
-              max='128'
-              name='telefono'
-              value={this.state['telefono']}
-              onChange={this.handleInputChange} />
-          </div>          
+          </div> 
 
           <div className="parte-ubicacion mt-5">
             <p className='section-title'>Ubicación</p>
@@ -541,76 +549,44 @@ class FormularioPropuesta extends Component {
           <hr />
 
 
-          <div className='form-group'>
-            <label className='required' htmlFor='zona'>
-              ¿En qué zona se desarrollará la idea?
-            </label>
-            <p className='help-text'>* Recorda que las ideas deben pertenecer o ejecutarse en una zona especifica, no aplican ideas para varias zonas, ni para todo MGP</p>
-            <select
-              className='form-control'
-              required
-              name='zona'
-              value={this.state['zona']}
-              onChange={this.handleInputChange}>
-              <option value=''>Seleccione una zona</option>
-              {zonas.length > 0 && zonas.map(zona =>
-                <option key={zona._id} value={zona._id}>
-                  {zona.nombre}
-                </option>
-              )}
-            </select>
-            <span onClick={() => this.setState({dialogZonaisOpen: !this.state.dialogZonaisOpen})} className='help-text buscar-zona mt-2'>No sé cual es mi zona</span>
-          </div>
-
-          {this.state.dialogZonaisOpen && (
-              <dialog
-                  open
-              >
-                  <span onClick={() => this.setState({dialogZonaisOpen: !this.state.dialogZonaisOpen})}>&times;</span>
-                  <h2>Buscador de zona</h2>
-
-                  <div className='form-group'>
-                    <label htmlFor='zona'>
-                      ¿Cual es el barrio?
-                    </label>
-                    <select
-                      className='form-control'
-                      name='barrio'
-                      value={this.state['barrio']}
-                      onChange={this.handleInputChange}>
-                      <option value=''>Seleccione un barrio</option>
-                      {barrios.length > 0 && barrios.map((barrio, index) =>
-                        <option key={index} value={barrio}>
-                          {barrio}
-                        </option>
-                      )}
-                    </select>
-                  </div>
 
 
-                  <div className='form-group'>
-                    <label htmlFor='zona'>
-                      Zona correspondiente
-                    </label>
-                    <select
-                      className='form-control'
-                      name='zona'
-                      value={this.state['zona']}
-                      onChange={this.handleInputChange}
-                      disabled={true}>
-                      <option value=''>Seleccione una zona</option>
-                      {zonas.length > 0 && zonas.map(zona =>
-                        <option key={zona._id} value={zona._id}>
-                          {zona.nombre}
-                        </option>
-                      )}
-                    </select>
-                  </div>
 
-                  <p className='text-center mt-3'>ó explora el <a href="">mapa de zonas y barrios</a></p>
+            <div className='form-group'>
+              <label htmlFor='zona'>
+                ¿En qué zona se desarrollará la idea?
+              </label>
+              <p className='help-text'>Selecciona el bario y te indicaremos la zona a la que pertenece</p>
+              <select
+                className='form-control'
+                name='barrio'
+                value={this.state['barrio']}
+                onChange={this.handleInputChange}>
+                <option value=''>Seleccione un barrio</option>
+                {barrios.length > 0 && barrios.map((barrio, index) =>
+                  <option key={index} value={barrio}>
+                    {barrio}
+                  </option>
+                )}
+              </select>
+              
+              <br />
 
-              </dialog>
-              )}
+              <select
+                className='form-control'
+                name='zona'
+                value={this.state['zona']}
+                onChange={this.handleInputChange}
+                disabled={true}>
+                <option value=''>Pertenece a la zona...</option>
+                {zonas.length > 0 && zonas.map(zona =>
+                  <option key={zona._id} value={zona._id}>
+                    {zona.nombre}
+                  </option>
+                )}
+              </select>              
+            </div>
+
                     
 
 
@@ -680,10 +656,12 @@ class FormularioPropuesta extends Component {
                     {/* {this.hasErrorsField('genero') && <li className="error-li">El campo "Género" no puede quedar vacío</li> } */}
                     {this.hasErrorsField('email') && <li className="error-li">El campo "Email" no puede quedar vacío</li> }
                     {this.hasErrorsField('titulo') && <li className="error-li">El campo "Título" no puede quedar vacío</li> }
-                    {this.hasErrorsField('zona') && <li className="error-li">El campo "Zona" no puede quedar vacío</li> }
-                    {this.hasErrorsField('tags') && <li className="error-li">El campo "Temas" no puede quedar vacío</li> }
+                    {this.hasErrorsField('telefono') && <li className="error-li">El campo "Teléfono" no puede quedar vacío</li> }
                     {this.hasErrorsField('problema') && <li className="error-li">El campo "Problema" no puede quedar vacío</li> }
+                    {this.hasErrorsField('tags') && <li className="error-li">El campo "Tipo" no puede quedar vacío</li> }
                     {this.hasErrorsField('solucion') && <li className="error-li">El campo "Tu idea" no puede quedar vacío</li> }
+                    {this.hasErrorsField('beneficios') && <li className="error-li">El campo "Beneficios" no puede quedar vacío</li> }
+                    {this.hasErrorsField('zona') && <li className="error-li">El campo "Zona" no puede quedar vacío</li> }
              </ul>
              </div>
           }

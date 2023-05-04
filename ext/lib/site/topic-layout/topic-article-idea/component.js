@@ -234,7 +234,34 @@ class TopicArticle extends Component {
                 triggerClassName='topic-article-idea' 
                 triggerOpenedClassName='topic-article-idea' 
                 trigger={`Idea Original`}>
-                {topic.attrs['problema'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
+
+                {topic.attrs['solucion'] ? 
+                <div>
+                  <div className="row">
+                      <div className="col-md-6">
+                        {topic.zona.nombre}
+                      </div>
+                      <div className="col-md-6">
+                        <strong>Autor/as/es:</strong> {topic.owner.fullName}
+                      </div>
+                    <hr />
+                    <div className="col-md-12">
+                      <strong>Problema:</strong>
+                      <p>{topic.attrs['problema'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}</p>
+                    </div>
+                    <div className="col-md-12">
+                      <strong>Solución:</strong>
+                      <p>{topic.attrs['solucion'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}</p>
+                    </div>
+                    <div className="col-md-12">
+                      <strong>Beneficios:</strong>
+                      <p>{topic.attrs['beneficios'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}</p>
+                    </div>
+                  </div>
+                </div> : 
+                topic.attrs['problema'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}
+
+
 
                 {isIntegrada && referenciaIntegradoraUrl && 
                   <div className='topic-article-integrado'>

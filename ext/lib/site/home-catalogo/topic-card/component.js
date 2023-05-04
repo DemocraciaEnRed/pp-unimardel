@@ -200,6 +200,9 @@ function createClauses({ attrs, clauses }) {
   } else {
     if (attrs['proyecto-contenido']) {
       content = `${attrs['proyecto-contenido']}`
+    } else if (attrs['solucion']){
+      const { solucion } = attrs
+      content = `${solucion}`
     } else {
       const { problema } = attrs
       content = `${problema}`
