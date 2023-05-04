@@ -40,9 +40,10 @@ dialog
   top: 15%
   max-width: 90%
   min-width: 40% 
-  background: #FFF
+  max-height: 60%
+  background: #E9E9E9
   box-shadow: 2px 2px 5px rgba(0,0,0,.4)
-  overflow: initial
+  overflow: auto
   z-index: 9999999  
 
   img
@@ -63,7 +64,10 @@ dialog
     -ms-text-overflow: ellipsis;  /* required for IE8, allegedly */  
     padding: 1rem 1rem;
     margin: -1rem -1rem -1rem -1rem;
-    
+  
+  li
+    text-align: left
+    font-size: 15px  
   
   span
     text-transform: uppercase

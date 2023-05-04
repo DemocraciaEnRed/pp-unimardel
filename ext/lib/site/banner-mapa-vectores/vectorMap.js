@@ -1,23 +1,44 @@
 import React, {useState} from 'react'
 
+import zonaStore from 'lib/stores/zona-store'
+
 export default class VectorMap extends React.Component {
+
     constructor (props) {
         super(props)
         this.state = {
-          isOpen: false,
-          src: '',
-          text: ''
+            isOpen: false,
+            src: '',
+            text: '',
+
+            zonas: [], // Una sola vez desde el store
+            barrios: [] // Cada vez que se consulta una zona se cambia
         }
         this.handleShowDialog = this.handleShowDialog.bind(this)
       }
 
+      componentWillMount () {
+    
+        Promise.all([zonaStore.findAll()]).then(results => {
+          const [ zonas ] = results
+          this.setState({zonas})
+        }).catch(err =>
+          console.error(err)
+        )
+      }
+    
 
-    handleShowDialog (mapa="", text="") {
+
+
+
+    handleShowDialog (mapa="", zona="") {
+        const {zonas} = this.state
 
         this.setState({
             isOpen: !this.state.isOpen,
-            src: 'ext/lib/site/banner-mapa-vectores/'+mapa+'.png',
-            text: text
+            // src: 'ext/lib/site/banner-mapa-vectores/'+mapa+'.png',
+            zona: zona,
+            barrios: zona ? zonas.find(z => z.nombre === zona).barrios : []
         })
     };
 
@@ -68,11 +89,13 @@ export default class VectorMap extends React.Component {
                     open
                 >
                     <span onClick={() => this.handleShowDialog()}>&times;</span>
-                    <h3>{this.state.text}</h3>
-                    <img
-                    src={this.state.src}
-                    alt={this.state.text}
-                    />
+                    <h3>{this.state.zona}</h3>
+                    <div className='mt-5'>
+                        <ul>
+                            {this.state.barrios.map((barrio, index) => <li key={index}>{barrio}</li>)}
+                        </ul>
+                        <p className='mt-5'>Tambien podes <a href="">visitar el mymaps</a>, con el detalle completo.</p>
+                    </div>
                 </dialog>
                 )}
           </div>
