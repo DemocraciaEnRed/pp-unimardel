@@ -44,7 +44,7 @@ class VotoTopicCard extends Component {
                 <div className='voto-topic-card-tags'>
                   {topic.zona && <span className='voto-tag-wrapper tag-zona' >{capitalizeFirstLetter(topic.zona.nombre)}</span>}                
                   {topic.attrs && topic.attrs['presupuesto-total'] && <span className='voto-tag-wrapper tag-presupuesto'>Presupuesto: ${topic.attrs['presupuesto-total'].toLocaleString()}</span>}
-                  {topic.tag && <span className='voto-tag-wrapper'>{capitalizeFirstLetter(topic.tag.name)}</span>}
+                  {topic.tags.length > 0 && <span className='voto-tag-wrapper'>{capitalizeFirstLetter(topic.tags[0])}</span>}
                 </div>                
               </div>
             </div>
