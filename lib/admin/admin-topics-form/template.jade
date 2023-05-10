@@ -37,19 +37,19 @@
             span.help-text= t('admin-topics-form.description.mediaTitle')
           input.form-control(type='text', maxlength='200', id='mediaTitle', name='mediaTitle', placeholder=t('admin-topics-form.label.mediaTitle'), value=topic.mediaTitle, validate='required')
 
-        .form-group
-          label= 'Eje'
-          - if (te('admin-topics-form.description.tag'))
-            span.help-text= t('admin-topics-form.description.tag')
-          select.form-control(name='tag', validate='required')
-            - var topicTag = typeof topic.tag === 'string' ? topic.tag : (topic.tag && topic.tag.id)
-            - each tag in tags
-              option(selected=tag.id === topicTag, value=tag.id)
-                = tag.name
+        //- .form-group
+        //-   label= 'Eje'
+        //-   - if (te('admin-topics-form.description.tag'))
+        //-     span.help-text= t('admin-topics-form.description.tag')
+        //-   select.form-control(name='tag', validate='required')
+        //-     - var topicTag = typeof topic.tag === 'string' ? topic.tag : (topic.tag && topic.tag.id)
+        //-     - each tag in tags
+        //-       option(selected=tag.id === topicTag, value=tag.id)
+        //-         = tag.name
 
         .form-group
-          label= 'Temas'
-          span.help-text= 'Solo se admiten los temas precargados. Escribí las primeras dos letras y se te sugerirán temas.'
+          label= 'Tema'
+          span.help-text= 'Solo se admite UN tema precargado. Escribí las primeras dos letras y se te sugerirán temas.'
           div.tags-autocomplete
           - if (forum.initialTags && forum.initialTags.length > 0)
             span.help-text= t('admin-topics-form.description.forum-tags')
