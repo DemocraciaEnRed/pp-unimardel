@@ -6,6 +6,7 @@ const Tag = models.Tag
 const Eje = models.Eje
 
 const etiquetas = [
+  { nombre: 'Otras Ideas Innovadoras' },
   { nombre: 'Asfalto/Mejora asfaltica' },
   { nombre: 'Luminarias' },
   { nombre: 'Semáforos' },
@@ -22,6 +23,7 @@ const etiquetas = [
   { nombre: 'Limpieza' },
   { nombre: 'Red wifi' },
   { nombre: 'Cámaras COM' },
+  { nombre: 'Ideas para Organizaciones/Clubes' },
 ]
 
 

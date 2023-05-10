@@ -14,6 +14,7 @@ import { Link } from 'react-router'
 // const PROPOSALS_FORUM_NAME = 'propuestas'
 
 const descripciones = {
+  'otras-ideas-innovadoras': "Describí tu idea de solución",
   'asfalto/mejora-asfaltica': "Cantidad de cuadras/Metros\nEs cordón cuneta: Si/No\nSolo cordón cuneta: Si/No",
   'luminarias': "Hay que renovar instalaciones?\nEs instalar nueva luminaria?\nQué cantidad?",
   'semáforos': "Cuánto semáforos?\nVehicular o peatonal?",
@@ -30,6 +31,7 @@ const descripciones = {
   'limpieza': "Es un terreno baldío, mini basural, espacio público descuidado?",
   'red-wifi': "Dónde la ubicamos?",
   'cámaras-com': "Cuántas cámaras crees que hacen falta?\nEn qué zona especifica las ubicamos?",
+  'ideas-para-organizaciones/clubes': "",
 }
 
 
@@ -256,6 +258,7 @@ class FormularioPropuesta extends Component {
     if (!this.state.tags || this.state.tags.length == 0) return true
     if (this.state.solucion === '') return true
     if (this.state.beneficios === '') return true
+    if (this.state.barrio === '') return true
     if (this.state.zona === '') return true
     return false;
 
@@ -483,33 +486,60 @@ class FormularioPropuesta extends Component {
             <label className='required'>
               * Tipo de proyecto
             </label>
-            <p className='help-text'>Elegi un tipo de proyecto para tu idea</p>
+            <p className='help-text'>Tipologias para Espacio publico</p>
             {
-              this.state.mode === 'edit' && this.state.tags &&
+              this.state.mode === 'edit' && this.state.tags && <div>
                 <ul className="tags">
                 {
-                  this.state.availableTags.map((tag) => {
+                  this.state.availableTags.filter(tag => tag.hash !== "ideas-para-organizaciones/clubes").map((tag) => {
                     return (
                       <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tags.includes(tag) ? 'tag active' : 'tag'}>{tag.name}</span></li>
                     )
                   })
                 }
                 </ul>
+                <p className='help-text'>Tipologías para Organizaciónes de base / Clubes / Etc</p>
+                <ul className="tags">
+                {
+                  this.state.availableTags.filter(tag => tag.hash === "ideas-para-organizaciones/clubes").map((tag) => {
+                    return (
+                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tags.includes(tag) ? 'tag active' : 'tag'}>{tag.name}</span></li>
+                    )
+                  })
+                }
+                </ul>
+              </div>
             }
             {
-              this.state.mode === 'new' &&
+              this.state.mode === 'new' && <div>
                 <ul className="tags">
                 {
-                  this.state.availableTags.map((tag) => {
+                  this.state.availableTags.filter(tag => tag.hash !== "ideas-para-organizaciones/clubes").map((tag) => {
                     return (
                       <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tags.includes(tag) ? 'tag active' : 'tag'}>{tag.name}</span></li>
                     )
                   })
                 }
                 </ul>
+                <p className='help-text'>Tipologías para Organizaciónes de base / Clubes / Etc</p>
+                <ul className="tags">
+                {
+                  this.state.availableTags.filter(tag => tag.hash === "ideas-para-organizaciones/clubes").map((tag) => {
+                    return (
+                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tags.includes(tag) ? 'tag active' : 'tag'}>{tag.name}</span></li>
+                    )
+                  })
+                }
+                </ul>                
+              </div>
             }
           </div>
           
+          {this.state.tags.length > 0 && this.state.tags.filter(t => t.hash === "ideas-para-organizaciones/clubes").length > 0 && <div className="disclaimer-orgas mb-3">
+          Las <b>ideas dirigidas a mejorar o equipar organizaciones</b>, en primera instancia <b>serán evaluadas internamente</b>, luego de aprobadas por la misma podrán avanzar a siguientes etapas. <br />
+          Solo serán factibles las ideas que impliquen entregar equipamiento o materiales para la organización, el municipio no realizara obras en las mismas de manera directa.
+          </div>}
+
           <div className='form-group'>
             <label className='required' htmlFor='solucion'>
               * La propuesta de solución / tu idea
@@ -554,14 +584,16 @@ class FormularioPropuesta extends Component {
 
             <div className='form-group'>
               <label htmlFor='zona'>
-                ¿En qué zona se desarrollará la idea?
+                * ¿En qué zona se desarrollará la idea?
               </label>
               <p className='help-text'>Selecciona el bario y te indicaremos la zona a la que pertenece</p>
               <select
                 className='form-control'
                 name='barrio'
                 value={this.state['barrio']}
-                onChange={this.handleInputChange}>
+                onChange={this.handleInputChange}
+                required
+                >
                 <option value=''>Seleccione un barrio</option>
                 {barrios.length > 0 && barrios.map((barrio, index) =>
                   <option key={index} value={barrio}>
@@ -573,10 +605,11 @@ class FormularioPropuesta extends Component {
               <br />
 
               <select
-                className='form-control'
+                className={`form-control ${this.state['zona'] && "zona-selected"}`}
                 name='zona'
                 value={this.state['zona']}
                 onChange={this.handleInputChange}
+                style={{'height': '50px'}}
                 disabled={true}>
                 <option value=''>Pertenece a la zona...</option>
                 {zonas.length > 0 && zonas.map(zona =>
@@ -584,7 +617,8 @@ class FormularioPropuesta extends Component {
                     {zona.nombre}
                   </option>
                 )}
-              </select>              
+              </select>
+              {this.state['zona'] && <p className='help-text'>* Recordá que las ideas compiten por zona y no por barrio, al momento de la votación verás que las ideas serán para diversos barrios</p>}
             </div>
 
                     
@@ -592,7 +626,7 @@ class FormularioPropuesta extends Component {
 
           <div className='form-group'>
             <label htmlFor='ubicacion'>
-              ¿Cuál es la dirección (calle y altura)?
+              ¿Cuál es la dirección (calle y altura)? (opcional)
             </label>
             <input
               className='form-control'
@@ -661,6 +695,7 @@ class FormularioPropuesta extends Component {
                     {this.hasErrorsField('tags') && <li className="error-li">El campo "Tipo" no puede quedar vacío</li> }
                     {this.hasErrorsField('solucion') && <li className="error-li">El campo "Tu idea" no puede quedar vacío</li> }
                     {this.hasErrorsField('beneficios') && <li className="error-li">El campo "Beneficios" no puede quedar vacío</li> }
+                    {this.hasErrorsField('barrio') && <li className="error-li">El campo "Barrio" no puede quedar vacío</li> }
                     {this.hasErrorsField('zona') && <li className="error-li">El campo "Zona" no puede quedar vacío</li> }
              </ul>
              </div>
