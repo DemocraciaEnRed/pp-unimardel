@@ -362,55 +362,80 @@ class FormularioPropuesta extends Component {
 
           <div className="bullet-requisitos">
             <ul>
-              <li className='bold'>Serán factibles las propuestas de obras o equipamiento para entidades sin fines de lucro (sociedades de fomento, centros de jubilados, asociaciones civiles, etc.) para espacios públicos y para escuelas de gestión pública provincial.</li>
-              <li>Serán factibles campañas o talleres sobre un tema específico cuya ejecución sólo sea durante el 2024.</li>
-              <li>No serán factibles las propuestas que impliquen un gasto corriente (recursos humanos que incrementen la planta municipal).</li>
-              <li>Cada propuesta se debe presentar para un solo barrio. (No se puede presentar una propuesta para todo el Municipio)</li>
-              <li>El presupuesto máximo de la propuesta no puede superar los $ 10.000.000.</li>
+              <li>Inversión en espacios públicos, actividades de bien público (talleres, capacitaciones, etc) y compra de bienes muebles para entidades sin fines de lucro.</li>
+              <li>Superar el análisis de factibilidad legal, técnica, económica y de impacto social.</li>
+              <li>Para entidades sin fines de lucro: contemplar un convenio con el municipio como contraprestación.</li>
+              <li>No superar el monto presupuestario asignado a la zona donde se ubica la propuesta.</li>
             </ul>
               
           </div>
+          <div className="bar-section acerca-requisitos">
+              <p className='section-title'>Argumentos de NO factibilidad</p>
+          </div>
+
+          <div className="bullet-requisitos">
+            <ul>
+              <li>Propuestas que impliquen un gasto corriente recurrente (recursos humanos que incrementen la planta municipal).</li>
+              <li>Afectar a proyectos ya existentes o en curso.</li>
+              <li>Subsidios en beneficio directo de quien lo proponga.</li>
+              <li>Inversiones en inmuebles pertenecientes a instituciones y/o entidades sin fines de lucro.</li>
+              <li>Para entidades sin fines de lucro: proyectos que superen el monto establecido para el procedimiento de “Concurso de Precios” del art. 151° de la Ley Orgánica de las Municipalidades y modificatorias.</li>
+              <li>Proyectos que no se encuentren dentro del ámbito de competencia del municipio o contradigan la normativa vigente.</li>
+            </ul>
+          </div>          
 
           <div className="row ideas-no-factibles">
-            <div className="col-md-4">
+            <div className="col-sm-6 ">
               <div className="idea-no-factible">
                 <img src="/ext/lib/site/formulario-propuesta/no-factible.png" alt="Ícono propuesta no factible"/>
-                <p>“Asfaltar todas las calles MGP”</p>
+                <p>Cloacas y red de agua para mi barrio</p>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-sm-6 ">
               <div className="idea-no-factible">
                 <img src="/ext/lib/site/formulario-propuesta/no-factible.png" alt="Ícono propuesta no factible"/>
-                <p>“Dictar clases de xxxx los sabados en la rambla”</p>
+                <p>Asfaltar todas las calles de MGP</p>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-sm-6 ">
               <div className="idea-no-factible">
                 <img src="/ext/lib/site/formulario-propuesta/no-factible.png" alt="Ícono propuesta no factible"/>
-                <p>“Mas personal en los centros municipales”</p>
+                <p>Mejora en la escuela provincial nro.x</p>
               </div>
             </div>
+            <div className="col-sm-6 ">
+              <div className="idea-no-factible">
+                <img src="/ext/lib/site/formulario-propuesta/no-factible.png" alt="Ícono propuesta no factible"/>
+                <p>Más personal en los centros municipales </p>
+              </div>
+            </div>            
           </div>
             
           <div className="row ideas-factibles">
-            <div className="col-md-4">
+            <div className="col-sm-6 ">
               <div className="idea-factible">
                 <img src="/ext/lib/site/formulario-propuesta/factible.png" alt="Ícono propuesta no factible"/>
-                <p>“Poner juego en la Plaza zxy”</p>
+                <p>Colocar un semáforo en la esquina de calle A y calle B</p>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-sm-6 ">
               <div className="idea-factible">
                 <img src="/ext/lib/site/formulario-propuesta/factible.png" alt="Ícono propuesta no factible"/>
-                <p>“Camaras de seguridad en xxx”</p>
+                <p>Equipamiento para la entidad X</p>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-sm-6 ">
               <div className="idea-factible">
                 <img src="/ext/lib/site/formulario-propuesta/factible.png" alt="Ícono propuesta no factible"/>
-                <p>“Colocar una plaza en el predio de la calle xxx”</p>
+                <p>Juegos en la plaza X</p>
               </div>
             </div>
+            <div className="col-sm-6 ">
+              <div className="idea-factible">
+                <img src="/ext/lib/site/formulario-propuesta/factible.png" alt="Ícono propuesta no factible"/>
+                <p>Construir Skatepark / Parkour / Playón Deportivo</p>
+              </div>
+            </div>            
           </div>
                         
           <hr />
@@ -536,8 +561,8 @@ class FormularioPropuesta extends Component {
           </div>
           
           {this.state.tags.length > 0 && this.state.tags.filter(t => t.hash === "ideas-para-organizaciones/clubes").length > 0 && <div className="disclaimer-orgas mb-3">
-          Las <b>ideas dirigidas a mejorar o equipar organizaciones</b>, en primera instancia <b>serán evaluadas internamente</b>, luego de aprobadas por la misma podrán avanzar a siguientes etapas. <br />
-          Solo serán factibles las ideas que impliquen entregar equipamiento o materiales para la organización, el municipio no realizara obras en las mismas de manera directa.
+          Las <b>ideas dirigidas a mejorar o equipar organizaciones serán evaluadas internamente</b> en primera instancia, y luego de aprobadas podrán avanzar a siguientes etapas. <br />
+          <b>NO serán factibles aquellas ideas que impliquen entregar equipamiento o construcción/refacción del inmueble.</b>
           </div>}
 
           <div className='form-group'>
