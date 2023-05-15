@@ -61,6 +61,10 @@ const barrios = [
     "zona": "Zona 1"
   },
   {
+    "barrio": "Constitución",
+    "zona": "Zona 1"
+  },  
+  {
     "barrio": "Arroyo Chapadmalal",
     "zona": "Zona 10"
   },
@@ -168,6 +172,10 @@ const barrios = [
     "barrio": "Villa Primera",
     "zona": "Zona 2"
   },
+  {
+    "barrio": "Caisamar",
+    "zona": "Zona 2"
+  },  
   {
     "barrio": "Alfar",
     "zona": "Zona 3"
@@ -285,15 +293,7 @@ const barrios = [
     "zona": "Zona 6"
   },
   {
-    "barrio": "Caisamar",
-    "zona": "Zona 6"
-  },
-  {
     "barrio": "Colonia Barragán",
-    "zona": "Zona 6"
-  },
-  {
-    "barrio": "Constitución",
     "zona": "Zona 6"
   },
   {
