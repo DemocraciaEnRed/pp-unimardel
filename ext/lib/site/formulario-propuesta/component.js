@@ -16,21 +16,12 @@ import { Link } from 'react-router'
 const descripciones = {
   'otras-ideas-innovadoras': "Describí tu idea de solución",
   'asfalto/mejora-asfaltica': "Cantidad de cuadras/Metros\nEs cordón cuneta: Si/No\nSolo cordón cuneta: Si/No",
-  'luminarias': "Hay que renovar instalaciones?\nEs instalar nueva luminaria?\nQué cantidad?",
-  'semáforos': "Cuánto semáforos?\nVehicular o peatonal?",
-  'plazas-espacios-públicos': "De qué tipo? Plaza / Playon deportivo/ Skatepark\nRenovación, ampliación o nueva?\n Tipo de mejoras: veredas, iluminación, juegos, bancos",
-  'equipamiento-plazas': "Qué elementos hay que mejorar o renovar? (Reparación, reposición y pintura de mobiliario urbano existente, Kit de juegos, Kit de juegos saludables, Cestos de basura, Banco de plaza de cemento)",
-  'señalización-vertical/horizontal': "Qué tipo? (señalizar senda peatonal, incluir numero de vivienda/propiedad, pintar cordón de la calle)\nEs carteleria o sobre el piso/asfalto?",
-  'cestos-de-basura': "Cuántos cestos querés aplicar?\nEn dónde querés que se distribuyan/apliquen?",
-  'rampas': "Qué tamaño de rampa?\nDónde estaría ubicada?",
-  'reductores-de-velocidad': "Dónde lo ubicamos?",
+  'luminarias': "Reconversion luminaria LED?: Si/No\nEs instalar nueva luminaria?",
+  'semáforos/reductores-de-velocidad': "Cuánto semáforos?\nCalle/Calle o intersección",
+  'plazas/espacios-públicos': "De qué tipo? Plaza / Playon deportivo/ Skatepark\nRenovación, ampliación o nueva?\n Tipo de mejoras: veredas, iluminación, juegos, bancos",
   'capacitaciones/actividades-deportivas': "Qué tipo de actividad?\nCuántas veces por semana?\nEn qué lugar lo harías?",
-  'ciclovía/bicisenda': "Es renovación de bicisenda existente?\nQué tramo o recorrido sería?",
-  'mejoras/equipamiento-entidades-de-bien-público': "Qué tipo de entidad?\nEs una mejora edilicia o compra de equipamiento?",
-  'garitas-de-colectivo': "Dónde estaría ubicada?\nEs renovación o instalación nueva?",
-  'limpieza': "Es un terreno baldío, mini basural, espacio público descuidado?",
-  'red-wifi': "Dónde la ubicamos?",
-  'cámaras-com': "Cuántas cámaras crees que hacen falta?\nEn qué zona especifica las ubicamos?",
+  'bicisendas': "Es renovación de bicisenda existente?\nQué tramo o recorrido sería?",
+  'mejoras-de-accesibilidad': "Qué tipo de entidad?\nEs una mejora edilicia o compra de equipamiento?",
   'ideas-para-organizaciones/clubes': "",
 }
 
@@ -370,7 +361,7 @@ class FormularioPropuesta extends Component {
               
           </div>
           <div className="bar-section acerca-requisitos">
-              <p className='section-title'>Argumentos de NO factibilidad</p>
+              <p className='section-title'>No serán factibles:</p>
           </div>
 
           <div className="bullet-requisitos">
