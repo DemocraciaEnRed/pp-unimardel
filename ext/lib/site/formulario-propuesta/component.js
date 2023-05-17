@@ -14,16 +14,19 @@ import { Link } from 'react-router'
 // const PROPOSALS_FORUM_NAME = 'propuestas'
 
 const descripciones = {
-  'otras-ideas-innovadoras': "Describí tu idea de solución",
-  'asfalto/mejora-asfaltica': "Cantidad de cuadras/Metros\nEs cordón cuneta: Si/No\nSolo cordón cuneta: Si/No",
-  'luminarias': "Reconversion luminaria LED?: Si/No\nEs instalar nueva luminaria?",
-  'semáforos/reductores-de-velocidad': "Cuánto semáforos?\nCalle/Calle o intersección",
-  'plazas/espacios-públicos': "De qué tipo? Plaza / Playon deportivo/ Skatepark\nRenovación, ampliación o nueva?\n Tipo de mejoras: veredas, iluminación, juegos, bancos",
-  'capacitaciones/actividades-deportivas': "Qué tipo de actividad?\nCuántas veces por semana?\nEn qué lugar lo harías?",
-  'bicisendas': "Es renovación de bicisenda existente?\nQué tramo o recorrido sería?",
-  'mejoras-de-accesibilidad': "Qué tipo de entidad?\nEs una mejora edilicia o compra de equipamiento?",
+  'otras-ideas-innovadoras': "Contanos con el mayor detalle posible, tu idea innovadora de solución",
+  'asfalto/mejora-asfaltica': "Cantidad de cuadras/Metros\nEs cordón cuneta? (Si/No)\nSolo cordón cuneta? (Sí/No)",
+  'luminarias': "Hay que instalar nuevas luminarias o convertir la luminaria a LED?",
+  'semáforos/reductores-de-velocidad': "En qué calle o intersección? (completar en el campo Dirección al final del formulario)\nCuántos hacen falta?",
+  'plazas/espacios-públicos': "De qué tipo? Plaza / Playón deportivo/ Skatepark\nQue hay que mejorar o inlcuirr? (Veredas, iluminación, juegos, bancos, cestos de basura, mejorar el paisajismo, delimitar canchas, Iluminación)",
+  'capacitaciones/actividades-deportivas': "Que tipo de actividad hace falta?\nDonde la realizarias (lugar y calles), cuantas veces por semana y de cuanto tiempo?",
+  'bicisendas': "Que recorrido o para que calles?",
+  'mejoras-de-accesibilidad': "Que cantidad de rampas?\nGrandes o pequeñas?",
   'ideas-para-organizaciones/clubes': "",
 }
+
+
+
 
 
 
