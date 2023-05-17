@@ -116,10 +116,13 @@ class FormularioPropuesta extends Component {
           titulo: topic.mediaTitle,
           documento: topic.attrs.documento,
           // genero: topic.attrs.genero,
-          zona: topic.attrs.zona,
+          zona: topic.zona.id,
           problema: topic.attrs.problema,
           solucion: topic.attrs.solucion,
           beneficios: topic.attrs.beneficios,
+          telefono: topic.attrs.telefono,
+          ubicacion: topic.attrs.ubicacion,
+          barrio: topic.attrs.barrio,
           // los tags se guardan por nombre (¿por qué?) así que buscamos su respectivo objeto
           tags: tags.filter(t => topic.tags.includes(t.name)),
           state: topic.attrs.state,
@@ -597,10 +600,6 @@ class FormularioPropuesta extends Component {
           </div>
           <hr />
 
-
-
-
-
             <div className='form-group'>
               <label htmlFor='zona'>
                 * ¿En qué zona se desarrollará la idea?
@@ -622,7 +621,6 @@ class FormularioPropuesta extends Component {
               </select>
               
               <br />
-
               <select
                 className={`form-control ${this.state['zona'] && "zona-selected"}`}
                 name='zona'
