@@ -87,7 +87,7 @@ class HomePropuestas extends Component {
       forumStore.findOneByName('proyectos'),
       topicStore.findAllProyectos()
     ]).then(results => {
-      const [zonas, tags, forum, proyectos] = results
+      const [zonas, tags, forum] = results
       const tagsMap = tags.map(tag => { return {value: tag.id, name: tag.name}; });
       const tag = this.props.location.query.tags ? [tagsMap.find(j => j.name == this.props.location.query.tags).value] : [];
       const tiposIdea = forum.topicsAttrs.find(a => a.name=='state').options.map(state => { return {value: state.name, name: state.title}; })
@@ -99,7 +99,6 @@ class HomePropuestas extends Component {
         tipoIdea: archive ? ['ganador'] : this.state.tipoIdea,
         forum,
         years,
-        searchableProyectos: proyectos.map(p => ({label: `#${p.attrs && p.attrs.numero} ${p.mediaTitle}`, value: p.id}))
       }, () => this.fetchTopics())
     }).catch((err) => { throw err })
   }
@@ -152,7 +151,8 @@ class HomePropuestas extends Component {
         this.setState(prevState => ({
           topics: page == 1 ? topics : prevState.topics.concat(topics),
           page: page,
-          noMore: noMore
+          noMore: noMore,
+          searchableProyectos: topics.map(p => ({label: `${p.mediaTitle}`, value: p.id}))
         }))
         return topics
       })
