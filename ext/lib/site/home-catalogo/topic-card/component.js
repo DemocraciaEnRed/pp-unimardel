@@ -35,9 +35,8 @@ export class TopicCard extends Component {
     const isSeguirButton = findAncestor(e.target, 'cause-wrapper')
     const isProyectistaButton = findAncestor(e.target, 'proyectista-wrapper')
     const isVotarButton = findAncestor(e.target, 'votar-button-wrapper')
-
     if (!isSeguirButton && !isProyectistaButton && !isVotarButton)
-      window.open(`/propuestas/topic/${this.props.topic.id}`, '_blank');
+      window.open(`${window.location.href}/topic/${this.props.topic.id}`, '_blank');
   }
   render() {
     const { topic, onVote, onProyectista, user } = this.props
@@ -173,7 +172,7 @@ export class TopicCard extends Component {
                     {isProyectista ? 'Te gusta' : 'Me gusta'}&nbsp;&nbsp;<span className='icon-like' /> {topic.proyectistas.length}
                     </button>
                     } 
-                    <Link className='btn comment' to={`/propuestas/topic/${topic.id}`}>Ver más</Link>
+                    <Link className='btn comment' to={`${window.location.href}/topic/${topic.id}`}>Ver más</Link>
                   </div>
             </div>
 
