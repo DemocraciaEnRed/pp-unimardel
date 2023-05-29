@@ -93,11 +93,11 @@ class TopicArticle extends Component {
       forum &&
       forum.privileges &&
       forum.privileges.canChangeTopics
-    const isProyecto = topic && topic.attrs && topic.attrs.state == 'factible'
+    const isProyecto = topic && topic.attrs && ['factible', 'ganador'].indexOf(topic.attrs.state) > -1
     const ideasIntegradas = topic && topic.integradas
     const isIntegrada = topic && topic.attrs && topic.attrs.state === 'integrado'
-
-    const referenciaIntegradoraUrl = topic && topic.attrs && topic.attrs['admin-comment-referencia'] && window.location.origin + '/propuestas/topic/' + topic.attrs['admin-comment-referencia']
+    const section = window.location.href.includes("propuestas") ? "propuestas" : "archivo"
+    const referenciaIntegradoraUrl = topic && topic.attrs && topic.attrs['admin-comment-referencia'] && window.location.origin + `/${section}/topic/` + topic.attrs['admin-comment-referencia']
 
     if (!topic) {
       return (
