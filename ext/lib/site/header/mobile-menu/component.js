@@ -52,7 +52,7 @@ class MobileMenu extends Component {
                     to='/propuestas'
                     className={`header-link ${!~window.location.pathname.includes('propuesta') ? 'active' : ''}`}
                     activeStyle={{ color: '#8C1E81' }}
-                    onClick={this.props.toggleOnClick}
+                    onClick={() => window.location.href = '/propuestas'}
                     tabIndex="3">
                     Ideas y Proyectos
                   </Link>
@@ -62,7 +62,7 @@ class MobileMenu extends Component {
                     to='/archivo'
                     className={`header-link ${!~window.location.pathname.includes('archivo') ? 'active' : ''}`}
                     activeStyle={{ color: '#8C1E81' }}
-                    onClick={this.props.toggleOnClick}
+                    onClick={() => window.location.href = '/archivo'}
                     tabIndex="3">
                     Archivo
                   </Link>
