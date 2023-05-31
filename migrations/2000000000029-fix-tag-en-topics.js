@@ -16,7 +16,6 @@ exports.up = function up (done) {
     .then(() => Tag.find())
     .then((tags) => {
       tags.forEach(tag => {
-        // Topic.find({'tags': {$in: [tag.name]} }).then(topic => console.log(topic, tag.name))
         Topic.collection.updateMany({'tags': {$in: [tag.name]} }, { $set: { tag: ObjectID(tag.id) }});
       });
     })
