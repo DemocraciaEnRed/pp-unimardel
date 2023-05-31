@@ -306,7 +306,7 @@ class TopicArticle extends Component {
           socialLinksUrl={socialLinksUrl} />
         <div className='topic-tags topic-article-content'>
           {
-            this.props.topic.tags && this.props.topic.tags.map((tag, i) => <span className='topic-article-tag' key={i}>{ tag } </span>)
+            this.props.topic.tag && <span className='topic-article-tag'>{ this.props.topic.tag.name } </span>
           }
         </div>
 

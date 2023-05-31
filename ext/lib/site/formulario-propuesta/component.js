@@ -46,7 +46,7 @@ class FormularioPropuesta extends Component {
       // genero: '',
       email: '',
       titulo: '',
-      tags: [],
+      tag: '',
       problema: '',
       solucion: '',
       beneficios: '',
@@ -117,14 +117,13 @@ class FormularioPropuesta extends Component {
           documento: topic.attrs.documento,
           // genero: topic.attrs.genero,
           zona: topic.zona.id,
+          tag: topic.tag,
           problema: topic.attrs.problema,
           solucion: topic.attrs.solucion,
           beneficios: topic.attrs.beneficios,
           telefono: topic.attrs.telefono,
           ubicacion: topic.attrs.ubicacion,
           barrio: topic.attrs.barrio,
-          // los tags se guardan por nombre (¿por qué?) así que buscamos su respectivo objeto
-          tags: tags.filter(t => topic.tags.includes(t.name)),
           state: topic.attrs.state,
           adminComment: topic.attrs['admin-comment'],
           adminCommentReference: topic.attrs['admin-comment-reference'],
@@ -170,6 +169,7 @@ class FormularioPropuesta extends Component {
     const formData = {
       forum: this.state.forum.id,
       mediaTitle: this.state.titulo,
+      tag: this.state.tag.id,
       'attrs.documento': this.state.documento,
       'attrs.telefono': this.state.telefono,
       // 'attrs.genero': this.state.genero,
@@ -179,7 +179,6 @@ class FormularioPropuesta extends Component {
       'attrs.barrio': this.state.barrio,
       'attrs.ubicacion': this.state.ubicacion,
       zona: this.state.zona,
-      tags: this.state.tags.map(tag => tag.name)
     }
     if (this.state.forum.privileges && this.state.forum.privileges.canChangeTopics && this.state.mode === 'edit') {
       formData['attrs.admin-comment'] = this.state.adminComment
@@ -234,13 +233,13 @@ class FormularioPropuesta extends Component {
 
   toggleTag = (tag) => (e) => {
     // If is inside state.tags, remove from there
+    const currentTag = this.state.tag
     this.setState((state) => {
-      let theTags = state.tags
-      if(theTags.includes(tag)){
-        return { tags: theTags.filter(t => t !== tag)}
-      }else if(theTags.length < 1)
-        theTags.push(tag)
-      return { tags: theTags }
+      if (currentTag === '') {
+        return {tag}
+      } else if (currentTag.id === tag.id){
+        return { tag: ''}
+      }
     })
   }
 
@@ -252,7 +251,7 @@ class FormularioPropuesta extends Component {
     if (this.state.titulo === '') return true
     if (this.state.telefono === '') return true
     if (this.state.problema === '') return true
-    if (!this.state.tags || this.state.tags.length == 0) return true
+    if (this.state.tag === '' ) return true
     if (this.state.solucion === '') return true
     if (this.state.beneficios === '') return true
     if (this.state.barrio === '') return true
@@ -284,7 +283,6 @@ class FormularioPropuesta extends Component {
   }
 
   render () {
-
     const { forum, zonas, barrios, requirementsAccepted } = this.state
 
     if (!forum) return null
@@ -510,12 +508,12 @@ class FormularioPropuesta extends Component {
             </label>
             <p className='help-text'>Tipologias para Espacio publico</p>
             {
-              this.state.mode === 'edit' && this.state.tags && <div>
+              this.state.mode === 'edit' && this.state.availableTags && <div>
                 <ul className="tags">
                 {
                   this.state.availableTags.filter(tag => tag.hash !== "ideas-para-organizaciones/clubes").map((tag) => {
                     return (
-                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tags.includes(tag) ? 'tag active' : 'tag'}>{tag.name}</span></li>
+                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tag.id === tag.id ? 'tag active' : 'tag'}>{tag.name}</span></li>
                     )
                   })
                 }
@@ -525,7 +523,7 @@ class FormularioPropuesta extends Component {
                 {
                   this.state.availableTags.filter(tag => tag.hash === "ideas-para-organizaciones/clubes").map((tag) => {
                     return (
-                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tags.includes(tag) ? 'tag active' : 'tag'}>{tag.name}</span></li>
+                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tag.id === tag.id ? 'tag active' : 'tag'}>{tag.name}</span></li>
                     )
                   })
                 }
@@ -538,7 +536,7 @@ class FormularioPropuesta extends Component {
                 {
                   this.state.availableTags.filter(tag => tag.hash !== "ideas-para-organizaciones/clubes").map((tag) => {
                     return (
-                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tags.includes(tag) ? 'tag active' : 'tag'}>{tag.name}</span></li>
+                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tag.id === tag.id ? 'tag active' : 'tag'}>{tag.name}</span></li>
                     )
                   })
                 }
@@ -548,7 +546,7 @@ class FormularioPropuesta extends Component {
                 {
                   this.state.availableTags.filter(tag => tag.hash === "ideas-para-organizaciones/clubes").map((tag) => {
                     return (
-                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tags.includes(tag) ? 'tag active' : 'tag'}>{tag.name}</span></li>
+                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tag.id === tag.id ? 'tag active' : 'tag'}>{tag.name}</span></li>
                     )
                   })
                 }
@@ -557,7 +555,7 @@ class FormularioPropuesta extends Component {
             }
           </div>
           
-          {this.state.tags.length > 0 && this.state.tags.filter(t => t.hash === "ideas-para-organizaciones/clubes").length > 0 && <div className="disclaimer-orgas mb-3">
+          {this.state.tag && this.state.tag.hash === "ideas-para-organizaciones/clubes" && <div className="disclaimer-orgas mb-3">
           Las <b>ideas dirigidas a mejorar o equipar organizaciones serán evaluadas internamente</b> en primera instancia, y luego de aprobadas podrán avanzar a siguientes etapas. <br />
           <b>NO serán factibles aquellas ideas que impliquen entregar equipamiento o construcción/refacción del inmueble.</b>
           </div>}
@@ -566,7 +564,7 @@ class FormularioPropuesta extends Component {
             <label className='required' htmlFor='solucion'>
               * La propuesta de solución / tu idea
             </label>
-            {this.state.tags.length > 0 && descripciones[this.state.tags[0].hash].split(/\n/).map((p, i)=> <p className='help-text'>{p}</p>)}
+            {this.state.tag && descripciones[this.state.tag.hash].split(/\n/).map((p, i)=> <p className='help-text'>{p}</p>)}
             <textarea
               className='form-control'
               required
@@ -709,7 +707,7 @@ class FormularioPropuesta extends Component {
                     {this.hasErrorsField('titulo') && <li className="error-li">El campo "Título" no puede quedar vacío</li> }
                     {this.hasErrorsField('telefono') && <li className="error-li">El campo "Teléfono" no puede quedar vacío</li> }
                     {this.hasErrorsField('problema') && <li className="error-li">El campo "Problema" no puede quedar vacío</li> }
-                    {this.hasErrorsField('tags') && <li className="error-li">El campo "Tipo" no puede quedar vacío</li> }
+                    {this.hasErrorsField('tag') && <li className="error-li">El campo "Tipo" no puede quedar vacío</li> }
                     {this.hasErrorsField('solucion') && <li className="error-li">El campo "Tu idea" no puede quedar vacío</li> }
                     {this.hasErrorsField('beneficios') && <li className="error-li">El campo "Beneficios" no puede quedar vacío</li> }
                     {this.hasErrorsField('barrio') && <li className="error-li">El campo "Barrio" no puede quedar vacío</li> }
