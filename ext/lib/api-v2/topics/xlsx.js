@@ -88,6 +88,17 @@ app.get('/export/topics/xlsx',
       req.zonasName = zonasName
       next()
   }),
+  (req, res, next) =>
+    api.tag.all(function (err, tags) {
+      let tagsName = {}
+      if (err) {
+        log('error serving zonas from DB:', err)
+        return res.status(500).end()
+      }
+      tags.forEach(f => tagsName[f._id] = f.name)
+      req.tagsName = tagsName
+      next()
+  }),  
   function getXlsx(req, res, next) {
     let infoTopics = []
     const attrsNames = req.forum.topicsAttrs
@@ -101,9 +112,12 @@ app.get('/export/topics/xlsx',
         'Idea ID': topic.id,
         'Idea Fecha': `${escapeTxt(moment(topic.createdAt, '', req.locale).format('LL LT'))}`,
         'Idea Título': `${escapeTxt(topic.mediaTitle)}`,
-        'Idea Temas': `${escapeTxt(topic.tags.join(', '))}`,
+        'Idea Tema': `${escapeTxt(topic.tag && req.tagsName[topic.tag])}`,
         'Idea Zona': `${escapeTxt(topic.zona && req.zonasName[topic.zona])}`,
-        'Idea Texto': `${escapeTxt(topic.attrs && topic.attrs.problema)}`,
+        'Idea Barrio': `${escapeTxt(topic.attrs && topic.attrs.barrio)}`,
+        'Idea Problema': `${escapeTxt(topic.attrs && topic.attrs.problema)}`,
+        'Idea Solución': `${escapeTxt(topic.attrs && topic.attrs.solucion)}`,
+        'Idea Beneficios': `${escapeTxt(topic.attrs && topic.attrs.beneficios)}`,
         'Idea Estado': `${escapeTxt(topic.attrs['state'])}`,
         'Autor/a nombre': `${escapeTxt(topic.owner.firstName)}`,
         'Autor/a apellido': `${escapeTxt(topic.owner.lastName)}`,
