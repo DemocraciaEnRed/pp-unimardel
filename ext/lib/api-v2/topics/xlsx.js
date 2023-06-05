@@ -124,8 +124,8 @@ app.get('/export/topics/xlsx',
         'Autor/a email': `${escapeTxt(topic.owner.email)}`,
         'Seguidores cantidad': `${escapeTxt(topic.action.count)}`,
         'Seguidores emails': `${escapeTxt(topic.action.results.join(', '))}`,
-        'Proyectistas cantidad': `${escapeTxt(topic.proyectistas && topic.proyectistas.length)}`,
-        'Proyectistas emails': `${escapeTxt(topic.proyectistas && topic.proyectistas.map(p=>p.email).join(','))}`
+        'Apoyos/me gusta recibidos': `${escapeTxt(topic.proyectistas && topic.proyectistas.length)}`,
+        'email de usuarios interesados': `${escapeTxt(topic.proyectistas && topic.proyectistas.map(p=>p.email).join(','))}`
       }
 
       /*attrsNames.map((name) => {
