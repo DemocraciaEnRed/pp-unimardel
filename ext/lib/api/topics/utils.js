@@ -71,7 +71,7 @@ const queryTopics = (opts) => {
   if (related && related.length > 0) query['attrs.admin-comment-referencia'] = { $regex: `.*${related}.*` }
 
   if (years && years.length > 0) query.$or = years.map(year => ({createdAt: {$gte: new Date(year,0,1),$lte: new Date(year,11,31)}}))
-  if (kwords && kwords.length > 0) query.mediaTitle = { $in: kwords.map(regex => new RegExp(regex))}
+  if (kwords && kwords.length > 0) query.mediaTitle = { $in: kwords.map(kword => new RegExp(`.*${kword}.*`, 'i'))}
   // console.log(kwords)
   // if (years && years.length > 0) query.$where = function (){
   //   const year = this.createdAt.getFullYear().toString()
