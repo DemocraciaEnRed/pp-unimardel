@@ -28,6 +28,11 @@ exports.parseYears = (req, res, next) => {
   next()
 }
 
+exports.parseKWords = (req, res, next) => {
+  req.query.kwords = req.query.kwords.split(' ').filter((t) => !!t)
+  next()
+}
+
 exports.findForum = (req, res, next) => {
   api.forums.find({ name: req.query.forumName })
     .findOne()
@@ -51,7 +56,8 @@ const queryTopics = (opts) => {
     owners,
     zonas,
     zona,
-    years
+    years,
+    kwords
   } = opts
   const query = {
     forum: forum._id,
@@ -65,7 +71,8 @@ const queryTopics = (opts) => {
   if (related && related.length > 0) query['attrs.admin-comment-referencia'] = { $regex: `.*${related}.*` }
 
   if (years && years.length > 0) query.$or = years.map(year => ({createdAt: {$gte: new Date(year,0,1),$lte: new Date(year,11,31)}}))
-  
+  if (kwords && kwords.length > 0) query.mediaTitle = { $in: kwords.map(regex => new RegExp(regex))}
+  // console.log(kwords)
   // if (years && years.length > 0) query.$where = function (){
   //   const year = this.createdAt.getFullYear().toString()
   //   return years.includes(year);

@@ -58,6 +58,10 @@ app.get('/topics',
       years: {
         type: 'string',
         default: ''
+      },      
+      kwords: {
+        type: 'string',
+        default: ''
       }      
     })
   }, { formats }),
@@ -65,6 +69,7 @@ app.get('/topics',
   utils.parseStates,
   utils.parseTipoIdea,
   utils.parseYears,
+  utils.parseKWords,
   utils.parseZonas,
   utils.parseTags,
   middlewares.forums.privileges.canView,
@@ -73,7 +78,6 @@ app.get('/topics',
     opts.forum = req.forum
     opts.user = req.user
     opts.state = opts.tipoIdea
-    opts.years = opts.years
     Promise.all([
       utils.findTopics(opts).then(topics => apiNoExt.user.populateOwners(topics)),
       utils.findTopicsCount(opts)

@@ -63,15 +63,16 @@ class HomePropuestas extends Component {
       noMore: null,
 
       selectedProyecto: null,
-      searchableProyectos: [],
 
       archive: false,
       years: [],
+      kwords: ''
     }
     
 
     this.handleInputChange = this.handleInputChange.bind(this)
     this.renderSortFilter = this.renderSortFilter.bind(this)
+    this.handleInputSearch = this.handleInputSearch.bind(this)
   }
 
   componentDidMount () {
@@ -114,7 +115,8 @@ class HomePropuestas extends Component {
       tags: this.state.tag,
       sort: this.state.sort,
       tipoIdea: this.state.tipoIdea,
-      years: this.state.years
+      years: this.state.years,
+      kwords: this.state.kwords
     }
 
     let queryString = Object.keys(query)
@@ -152,7 +154,6 @@ class HomePropuestas extends Component {
           topics: page == 1 ? topics : prevState.topics.concat(topics),
           page: page,
           noMore: noMore,
-          searchableProyectos: topics.map(p => ({label: `${p.mediaTitle}`, value: p.id}))
         }))
         return topics
       })
@@ -325,32 +326,14 @@ class HomePropuestas extends Component {
     )
   }
 
-  handleSelectedProyecto = (selectedProyecto) => {
-    //console.log(`Option selected:`, selectedProyecto);
-
-    const topicId = selectedProyecto.value
-    if (this.state.topics.find(t => t.id == selectedProyecto.value) == undefined){
-      // si el topic no está en la actual lista de resultados lo vamos a buscar
-      //console.log('Topic not found, searching it:', topicId)
-      topicStore.getTopic(topicId).then(topic => {
-        if (!topic)
-          return
-
-        //console.log('Adding topic:', topic.id)
-        this.setState(prevState => ({
-          topics: prevState.topics.concat(topic),
-          selectedProyecto
-        }));
-      })
-    }else{
-      //console.log('Topic found, filtering it')
-      this.setState({ selectedProyecto });
-    }
+  handleInputSearch = () => {
+    const {kwords} = this.state
+    this.fetchTopics();
   }
 
   render () {
 
-    const { forum, topics, zonas, searchableProyectos, selectedProyecto } = this.state
+    const { forum, topics, zonas, kwords, selectedProyecto } = this.state
     const {archive} = this.props
     let filteredTopics;
 
@@ -411,17 +394,18 @@ class HomePropuestas extends Component {
               <div className='col-md-10 offset-md-1'>
                 <div className='search-proyecto-wrapper'>
                   {/* para esto usamos react-select version 2.4.4 */}
-                  <Select
-                    value={selectedProyecto}
-                    onChange={this.handleSelectedProyecto}
-                    options={searchableProyectos}
+                  <input
+                    value={kwords}
+                    onChange={(e) => this.setState({kwords: e.target.value})}
                     placeholder='Buscá un proyecto por nombre'
-                    isSearchable={true}
-                    className='search-proyecto-select'
+                    className='form-control search-proyecto-select'
                     />
-                  <button onClick={()=>this.setState({selectedProyecto: null})} disabled={selectedProyecto ? false : true}>
-                    Limpiar filtro
+                    
+                  
+                  <button onClick={this.handleInputSearch}>
+                    Buscar
                   </button>
+                        
                 </div>
 
                 {  this.renderSortFilter() }
