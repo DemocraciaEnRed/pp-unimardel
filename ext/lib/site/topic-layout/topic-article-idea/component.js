@@ -317,7 +317,9 @@ class TopicArticle extends Component {
               </p>
             )
         }
-        <div className="topic-article-content">
+
+        {
+          topic.extra && topic.extra.album && topic.extra.album.length > 0 && <div className="topic-article-content">
           <div className='topic-article-album'>
             <h3>Album de imágenes</h3>
             {
@@ -353,6 +355,9 @@ class TopicArticle extends Component {
             </div>
           </div>
         </div>
+        }
+        
+
         {
           !user.state.pending && !isProyecto && <Comments forum={forum} topic={topic} />
         }
