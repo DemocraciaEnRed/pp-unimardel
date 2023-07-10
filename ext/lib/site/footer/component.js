@@ -19,6 +19,7 @@ const Footer = () => (
         <a aria-label='Ícono de instagram' className='social-instagram' tabIndex="103"  href='https://instagram.com/munimardelplata/' target="_blank" />
         <a aria-label='Ícono de twitter' className='social-twitter' tabIndex="104"  href='https://twitter.com/munimardelplata/' target="_blank" />
         <a aria-label='Ícono de mail' className='social-mail' tabIndex="105"  href='mailto:ParticipaMGP@mardelplata.gob.ar' target="_blank"/>
+        <a aria-label='Ícono de whatsapp' className='social-whatsapp' tabIndex="106"  href='https://wa.link/69dr1s' target="_blank" />
       </div>
       <div className='logos'>
         {/* <a href="https://democraciaenred.org/" rel="noopener noreferer" target="_blank">
@@ -28,13 +29,13 @@ const Footer = () => (
           </div>
         </a> */}
         <div className='logo'>
-          <a className='logo-mgp' tabIndex="106" href='https://www.mardelplata.gob.ar/' aria-label="Link a página de Mar del Plata" rel="noopener noreferer" target="_blank" />
+          <a className='logo-mgp' tabIndex="107" href='https://www.mardelplata.gob.ar/' aria-label="Link a página de Mar del Plata" rel="noopener noreferer" target="_blank" />
         </div>
       </div>
       <div className='terminos'>
-        <Link to='/s/terminos-y-condiciones' tabIndex="107"> Términos y condiciones
+        <Link to='/s/terminos-y-condiciones' tabIndex="108"> Términos y condiciones
         </Link>
-        <a href="/reglamento" tabIndex="108" rel="noopener noreferer" target="_blank"> Reglamento
+        <a href="/reglamento" tabIndex="109" rel="noopener noreferer" target="_blank"> Reglamento
         </a>
       </div>
     </div>
