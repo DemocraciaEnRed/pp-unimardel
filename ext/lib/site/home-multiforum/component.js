@@ -54,12 +54,13 @@ export default class HomeMultiforumOverride extends Component {
   }
 
   render () {
+    const {forum} = this.state
     return (
       <div className='ext-home-multiforum'>
         <Anchor id='container'>
           <BannerForoVecinal title="Presupuesto participativo de General Pueyrredon" texts={this.state.texts} />
-          {this.state.forum && <ThumbsVoto texts={this.state.texts} forum={this.state.forum} />}
-          {this.state.forum && <BannerInvitacion forum={this.state.forum} />}
+          {forum && <ThumbsVoto texts={this.state.texts} forum={this.state.forum} />}
+          {forum && <BannerInvitacion forum={this.state.forum} />}
           <EncuentrosProximos />
           <BannerMapaVectores />
           <Jump goTop={this.goTop} />

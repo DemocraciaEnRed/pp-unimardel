@@ -33,6 +33,7 @@ const PopUp = (props) => {
 			</div>
 		)
 	}
+	else{return(null)}
 }
 
 
