@@ -91,6 +91,7 @@ app.get('/topics',
       } else {
         finalTopics = topics
       }
+      finalTopics = utils.findByKwordsAndSort(finalTopics,req.query.queryString)
       res.status(200).json({
         status: 200,
         pagination: {

@@ -29,6 +29,7 @@ exports.parseYears = (req, res, next) => {
 }
 
 exports.parseKWords = (req, res, next) => {
+  req.query.queryString = req.query.kwords
   req.query.kwords = req.query.kwords.split(' ').filter((t) => !!t)
   next()
 }
@@ -167,3 +168,20 @@ exports.findTopicsCount = (opts) => getPossibleOwners(opts).then(owners => {
   } else
     return 0
 })
+
+
+exports.findByKwordsAndSort = (results, searchTerm) => {
+  const exactMatchResults = [];
+  const partialMatchResults = [];
+
+  results.forEach(result => {
+    if (result.mediaTitle.toLowerCase().includes(searchTerm.toLowerCase())) {
+      exactMatchResults.push(result);
+    } else {
+      partialMatchResults.push(result);
+    }
+  });
+
+  const sortedResults = exactMatchResults.concat(partialMatchResults);
+  return sortedResults;
+}
