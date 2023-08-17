@@ -15,14 +15,6 @@ import Anchor from 'ext/lib/site/anchor'
 // https://www.npmjs.com/package/react-select/v/2.4.4
 import Select from 'react-select'; // ! VERSIÓN 2.4.4 !
 
-// Variables para fases de propuestas abiertas o cerrdas:
-// config.propuestasVisibles
-// config.propuestasAbiertas
-// config.propuestasTextoAbiertas
-// config.propuestasTextoCerradas
-// config.votacionAbierta
-// config.votacionTextoAbierta
-// config.votacionTextoCerrada
 
 const defaultValues = {
   limit: 20,
@@ -30,7 +22,7 @@ const defaultValues = {
   tag: [],
   // 'barrio' o 'newest' o 'popular'
   sort: '',
-  tipoIdea: config.propuestasAbiertas ? ['pendiente'] :  config.votacionAbierta ? ['factible'] : config.votacionVisible ? ['ganador'] : ['factible', 'no-factible', 'integrado', 'pendiente']
+  tipoIdea: []
 }
 
 const filters = {
@@ -92,12 +84,13 @@ class HomePropuestas extends Component {
       const tagsMap = tags.map(tag => { return {value: tag.id, name: tag.name}; });
       const tag = this.props.location.query.tags ? [tagsMap.find(j => j.name == this.props.location.query.tags).value] : [];
       const tiposIdea = forum.topicsAttrs.find(a => a.name=='state').options.map(state => { return {value: state.name, name: state.title}; })
+      const tipoIdea = forum.config.ideacion ? ['pendiente'] : forum.config.preVotacion || forum.config.votacion ? ['factible'] : forum.config.seguimientoNormal ? ['ganador'] : []
       this.setState({
         zonas: zonas.map(zona => { return {value: zona._id, name: zona.nombre}; }),
         tags: tagsMap,
         tag,
         tiposIdea,
-        tipoIdea: archive ? ['ganador'] : this.state.tipoIdea,
+        tipoIdea: archive ? ['ganador'] : tipoIdea,
         forum,
         years,
       }, () => this.fetchTopics())
@@ -254,7 +247,6 @@ class HomePropuestas extends Component {
 
   handleRemoveBadge = (option) => (e) => {
     // feísimo, feísimo
-    console.log(option)
     if (this.state.zona.includes(option)){
       this.setState({ zona: this.state.zona.filter(i => i != option) }
       ,() => this.fetchTopics());
@@ -280,14 +272,15 @@ class HomePropuestas extends Component {
   }
 
   renderSortFilter() {
+    const {forum} = this.state 
     return (
       <div>
-        <h4 className="topics-title">{
-          config.propuestasVisibles ? 
-          (config.propuestasAbiertas ? "Lista de ideas" : "Lista de ideas y proyectos") : 
+        {forum && <h4 className="topics-title">{
+          !forum.config.seguimientoNormal ? 
+          (forum.config.propuestasAbiertas ? "Lista de ideas" : "Lista de ideas y proyectos") : 
           "Lista de proyectos"
         }
-        </h4>
+        </h4>}
         <div className='topics-filters'>
           {/*this.state.forumStates &&
             <div className='topics-filter topics-state-filter'>
@@ -339,27 +332,27 @@ class HomePropuestas extends Component {
 
     if (selectedProyecto)
       filteredTopics = topics.filter(t => t.id == selectedProyecto.value)
-
+    
     return (
       <div className={`ext-home-ideas ${this.props.user.state.fulfilled ? 'user-logged' : ''}`}>
         <Anchor id='container'>
-          <BannerListadoTopics
-          btnText={(!archive && config.propuestasAbiertas) ? 'Subí tu idea' : undefined}
-          btnLink={(!archive && config.propuestasAbiertas) ? '/formulario-idea' : undefined}
+          {forum && <BannerListadoTopics
+          btnText={(!archive && forum.config.propuestasAbiertas) ? 'Subí tu idea' : undefined}
+          btnLink={(!archive && forum.config.propuestasAbiertas) ? '/formulario-idea' : undefined}
             title={
-              archive ? "Archivo de proyectos" : config.propuestasVisibles ? 
-              (config.propuestasAbiertas ? "Ideas" : "Ideas y proyectos") : 
+              archive ? "Archivo de proyectos" : forum.config.ideacion || forum.config.preVotacion || forum.config.votacion ? 
+              (forum.config.propuestasAbiertas ? "Ideas" : "Ideas y proyectos") : 
               "Proyectos"
             }
             subtitle={" "}
-            />
+            />}
 
           <div className='container'>
-            <div className="row">
+            {forum && <div className="row">
               {archive ? <div className='notice'>
                       <h1>Aquí podes visualizar los proyectos de años anteriores</h1>
-                    </div> : config.propuestasVisibles &&
-                (config.propuestasAbiertas
+                    </div> : forum.config.ideacion &&
+                (forum.config.propuestasAbiertas
                   ? (
                     <div className='notice'>
                       <h1>{config.propuestasTextoAbiertas}</h1>
@@ -372,7 +365,7 @@ class HomePropuestas extends Component {
                 )
               }
 
-            </div>
+            </div>}
           </div>
 
 

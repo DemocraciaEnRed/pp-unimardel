@@ -21,8 +21,8 @@ class MobileMenu extends Component {
       this.props.toggleOnClick()
     }
   }
-
   render () {
+    const { forumConfig } = this.props
     return (
       <nav className='mobile-nav'>
         <a
@@ -67,7 +67,7 @@ class MobileMenu extends Component {
                     Archivo
                   </Link>
                 </div>                
-                { config.votacionAbierta && <div className='header-item'>
+                { forumConfig.votacion && <div className='header-item'>
                   <Link
                     to='/votacion'
                     className={`header-link ${!~window.location.pathname.includes('votacion') ? 'active' : ''}`}

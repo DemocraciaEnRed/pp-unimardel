@@ -34,3 +34,8 @@ ul.admin-menu.nav.nav-pills.nav-stacked(class=forum.privileges.canChangeTopics ?
       a(href=urlBuilder.for('admin.contenido-portada', {forum: forum.name}) data-section='contenido-portada')
         span.glyphicon.glyphicon-home
         ='Textos portada'
+  - if (user.staff)
+    li
+      a(href=urlBuilder.for('admin.settings-stage', {forum: forum.name}) data-section='settings-stage')
+        span.glyphicon.glyphicon-cog
+        ='configuración'

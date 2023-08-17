@@ -39,7 +39,7 @@ export class TopicCard extends Component {
       window.open(`${window.location.href}/topic/${this.props.topic.id}`, '_blank');
   }
   render() {
-    const { topic, onVote, onProyectista, user } = this.props
+    const { topic, onVote, onProyectista, user, forum } = this.props
 
     const isStaff = !user.state.rejected && user.state.value.staff
     // ooo" ta step progress
@@ -163,15 +163,13 @@ export class TopicCard extends Component {
             <div className='buttons-wrapper'>
                   <div
                     className='proyectista-wrapper'>
-                    {
-                      !isProyecto && config.propuestasVisibles && config.habilitarApoyo &&
+                    {/* !isProyecto && forum.config.votacion && config.habilitarApoyo &&
                     <button
                       className={`btn ${isProyectista ? '' : 'not-voted' }` }
                       onClick={() => onProyectista(topic.id, !isProyectista)}
                       disabled={isProyectista}>
                     {isProyectista ? 'Te gusta' : 'Me gusta'}&nbsp;&nbsp;<span className='icon-like' /> {topic.proyectistas.length}
-                    </button>
-                    } 
+                    </button> */} 
                     <Link className='btn comment' to={`${window.location.href}/topic/${topic.id}`}>Ver más</Link>
                   </div>
             </div>

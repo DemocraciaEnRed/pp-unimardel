@@ -1,8 +1,25 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { Link } from 'react-router'
+import PopUp from '../Popup/component'
+import forumStore from 'lib/stores/forum-store/forum-store'
 
-const Footer = () => (
+
+export default class Footer  extends Component {
+  constructor (props) {
+   super(props)
+    this.state={
+      forum:null
+    }
+ }
+
+ componentDidMount(){
+  forumStore.findOneByName('proyectos').then((forum) => this.setState({forum}))
+ }
+  render(){
+    const {forum} = this.state
+    return(
   <footer className='footer-static'>
+    {forum && <PopUp forum={forum} />}
     <div className='container'>
       <div className='contacto-detalles'>
         <h3>CONTACTO</h3>
@@ -40,6 +57,7 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-)
 
-export default Footer
+    )
+  }
+}

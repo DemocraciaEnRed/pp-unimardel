@@ -81,8 +81,6 @@ class FormularioVoto extends Component {
 
   componentWillMount () {
     const { user } = this.props
-    const side_panel = document.getElementById("side_panel")
-    if (side_panel) side_panel.style.visibility = "hidden";
 
     const promises = [
       // data del forum
@@ -106,6 +104,9 @@ class FormularioVoto extends Component {
         this.onUserStateChange()
       }
       this.setState(newState)
+      
+      const side_panel = document.getElementById("side_panel")
+      if (side_panel) side_panel.style.visibility = "hidden";
     }).catch(err =>
       console.error(err)
     )
@@ -453,7 +454,7 @@ class FormularioVoto extends Component {
     
     const { forum, step, warning, forumAndTopicFetched, userFetched, isTopicDialogOpen, topicDialog } = this.state
     if (!forum) return null
-    if (!config.votacionAbierta) return <Close />
+    if (!forum.config.votacion) return <Close />
 
     if (!forumAndTopicFetched || !userFetched) return (<p>Loading...</p>)
 
@@ -503,7 +504,7 @@ class FormularioVoto extends Component {
           </div>
           } 
           {this.renderStep(step)}
-          {config.votacionAbierta && step !== welcome && step <= confirm && !(hasWarning | isTopicDialogOpen) && (
+          {forum.config.votacion && step !== welcome && step <= confirm && !(hasWarning | isTopicDialogOpen) && (
             <div className='footer-votacion'>
               <button className='button-anterior' disabled={step <= welcome ? true : false} onClick={() => this.changeStep(step - 1)}>
                 <span className='icon-arrow-left-circle'></span> Anterior
