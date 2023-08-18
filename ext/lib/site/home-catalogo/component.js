@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { browserHistory } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import config from 'lib/config'
 import forumStore from 'lib/stores/forum-store/forum-store'
 import topicStore from 'lib/stores/topic-store/topic-store'
@@ -405,7 +405,8 @@ class HomePropuestas extends Component {
                 {topics && topics.length === 0 && (
                   <div className='empty-msg'>
                     <div className='alert alert-success' role='alert'>
-                      No se encontraron ideas.
+                      No se encontraron ideas. <br/>
+                      si queres ver el seguimiento de ideas de años anteriores entra a <Link href="/archivo"> Archivo </Link>
                     </div>
                   </div>
                 )}
