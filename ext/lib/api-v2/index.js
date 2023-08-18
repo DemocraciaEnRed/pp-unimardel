@@ -6,3 +6,4 @@ app.use(require('./topics'))
 app.use(require('./topics/xlsx'))
 
 app.use(require('./votes'))
+app.use(require('./about'))
