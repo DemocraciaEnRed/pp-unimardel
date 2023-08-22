@@ -32,7 +32,7 @@ const textsData = [
     { "name": "votacion-steps", "text": "<div style='text-align: center;'><span style='font-size: 24px;'>Pasos y reglas para la votación</span></div><div class='wrapper'><br></div><ul><li class='wrapper'>Tenés <b>2 votos disponibles</b>.</li><li class='wrapper'>El <b>primer voto es obligatorio</b> y se destina a <b>tu zona indicada al momento de registro.</b></li><li class='wrapper'>Los proyectos aparecerán automáticamente ya definidos por tu zona</li><li class='wrapper'>El <b>segundo voto es opcional</b> y se destina a votar un proyecto de <b>cualquier zona del municipio.</b></li></ul>" },
 	
     //footer
-    { "name": "footer-info", "text":"<div>Subsecretaría de Modernización</div><div><span style='color: rgb(136, 136, 136);'>Av. Juan B. Justo 5665 Piso 1</span></div><div><span style='color: rgb(136, 136, 136);'>Mar Del Plata, Provincia de Buenos Aires</span></div><div><span style='color: rgb(136, 136, 136);'>Código postal: B7604AAG</span></div><div>Mail de contacto: <a href='mailto:ParticipaMGP@mardelplata.gob.ar'>ParticipaMGP@mardelplata.gob.ar</a></div>"}
+    { "name": "footer-info", "text":"<div>Subsecretaría de Modernización</div><div><span style='color: rgb(187, 187, 187);'>Av. Juan B. Justo 5665 Piso 1</span></div><div><span style='color: rgb(187, 187, 187);'>Mar Del Plata, Provincia de Buenos Aires</span></div><div><span style='color: rgb(187, 187, 187);'>Código postal: B7604AAG</span></div><div>Mail de contacto: <a href='mailto:ParticipaMGP@mardelplata.gob.ar'>ParticipaMGP@mardelplata.gob.ar</a></div>"}
 ]
 
 /**

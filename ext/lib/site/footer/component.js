@@ -2,33 +2,36 @@ import React, {Component} from 'react'
 import { Link } from 'react-router'
 import PopUp from '../Popup/component'
 import forumStore from 'lib/stores/forum-store/forum-store'
+import textStore from 'lib/stores/text-store'
 
 
 export default class Footer  extends Component {
   constructor (props) {
    super(props)
     this.state={
-      forum:null
+      forum:null,
+      texts:{}
     }
  }
 
  componentDidMount(){
-  forumStore.findOneByName('proyectos').then((forum) => this.setState({forum}))
+  Promise.all([forumStore.findOneByName('proyectos'),
+                textStore.findAllDict()])
+                .then((results) => {
+                  const [forum, textsDict] = results
+                  this.setState({forum,texts:textsDict})
+                 })
  }
   render(){
-    const {forum} = this.state
+    const {forum, texts} = this.state
     return(
   <footer className='footer-static'>
     {forum && <PopUp forum={forum} />}
     <div className='container'>
       <div className='contacto-detalles'>
         <h3>CONTACTO</h3>
-        <p>
-          <span>Subsecretaría de Modernización</span>
-          <span>Av. Juan B. Justo 5665 Piso 1</span>
-          <span>Mar Del Plata, Provincia de Buenos Aires</span>
-          <span>Código postal: B7604AAG</span>
-          <span><a tabIndex="101" href="mailto:ParticipaMGP@mardelplata.gob.ar">Mail de contacto: ParticipaMGP@mardelplata.gob.ar</a></span>
+        <p dangerouslySetInnerHTML={{__html: texts['footer-info']}}>
+          
         </p>
       </div>
       <div className='social-icon'>
