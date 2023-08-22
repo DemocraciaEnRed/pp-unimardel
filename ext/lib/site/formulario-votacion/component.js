@@ -6,6 +6,7 @@ import topicStore from 'lib/stores/topic-store/topic-store'
 import zonaStore from 'lib/stores/zona-store'
 import voteStore from 'lib/stores/vote-store'
 import tagStore from 'lib/stores/tag-store/tag-store'
+import textStore from 'lib/stores/text-store'
 
 import { browserHistory } from 'react-router'
 import userConnector from 'lib/site/connectors/user'
@@ -25,6 +26,7 @@ class FormularioVoto extends Component {
     this.state = {
       forumAndTopicFetched: false,
       forum: null,
+      texts:{},
       step: 0,
       warning: {},
       hasVoted: '',
@@ -87,14 +89,17 @@ class FormularioVoto extends Component {
       forumStore.findOneByName('proyectos'),
       tagStore.findAll({field: 'name'}),
       zonaStore.findAll(),
+      textStore.findAllDict(),
       topicStore.findAllProyectosForVoting()
+
     ]
 
     Promise.all(promises).then(results => {
       // topic queda en undefined si no estamos en edit
-      const [ forum, tags, zonas, topics ] = results
+      const [ forum, tags, zonas, textsDict, topics ] = results
       let newState = {
         forum,
+        texts:textsDict,
         tags,
         zonas,
         topics,
@@ -275,9 +280,9 @@ class FormularioVoto extends Component {
       case 0:
         return <SelectVoter zonas={this.state.zonas} setState={this.handleInputChange} />
       case 1:
-        return <Welcome changeStep={() => this.changeStep(this.state.step+1)} />
+        return <Welcome changeStep={() => this.changeStep(this.state.step+1)} texts={this.state.texts} />
       case 2:
-        return <Info />
+        return <Info texts={this.state.texts}/>
       case 3:
         return <VotoZona 
           topics={this.state.topics.filter(t => (t.zona.id === this.state.zona && tags.includes(t.tag.id)))} 

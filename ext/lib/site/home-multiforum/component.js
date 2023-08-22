@@ -58,10 +58,10 @@ export default class HomeMultiforumOverride extends Component {
     return (
       <div className='ext-home-multiforum'>
         <Anchor id='container'>
-          <BannerForoVecinal title="Presupuesto participativo de General Pueyrredon" texts={this.state.texts} />
+          <BannerForoVecinal title={this.state.texts['home-title']} texts={this.state.texts} />
           {forum && <ThumbsVoto texts={this.state.texts} forum={this.state.forum} />}
-          {forum && <BannerInvitacion forum={this.state.forum} />}
-          <EncuentrosProximos />
+          {forum && <BannerInvitacion texts={this.state.texts}/>}
+          <EncuentrosProximos  texts={this.state.texts}/>
           <BannerMapaVectores />
           <Jump goTop={this.goTop} />
           <Footer />

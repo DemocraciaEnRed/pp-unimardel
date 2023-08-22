@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link, browserHistory } from 'react-router'
 import config from 'lib/config'
 import forumStore from 'lib/stores/forum-store/forum-store'
+import textStore from 'lib/stores/text-store'
 import topicStore from 'lib/stores/topic-store/topic-store'
 import userConnector from 'lib/site/connectors/user'
 import tagStore from 'lib/stores/tag-store/tag-store'
@@ -41,6 +42,7 @@ class HomePropuestas extends Component {
     super()
     this.state = {
       forum: null,
+      texts:{},
       topics: null,
 
       zonas: [],
@@ -78,9 +80,10 @@ class HomePropuestas extends Component {
       zonaStore.findAll(),
       tagStore.findAll({field: 'name'}),
       forumStore.findOneByName('proyectos'),
+      textStore.findAllDict(),
       topicStore.findAllProyectos()
     ]).then(results => {
-      const [zonas, tags, forum] = results
+      const [zonas, tags, forum, textsDict] = results
       const tagsMap = tags.map(tag => { return {value: tag.id, name: tag.name}; });
       const tag = this.props.location.query.tags ? [tagsMap.find(j => j.name == this.props.location.query.tags).value] : [];
       const tiposIdea = forum.topicsAttrs.find(a => a.name=='state').options.map(state => { return {value: state.name, name: state.title}; })
@@ -92,6 +95,7 @@ class HomePropuestas extends Component {
         tiposIdea,
         tipoIdea: archive ? ['ganador'] : tipoIdea,
         forum,
+        texts:textsDict,
         years,
       }, () => this.fetchTopics())
     }).catch((err) => { throw err })
@@ -326,10 +330,9 @@ class HomePropuestas extends Component {
 
   render () {
 
-    const { forum, topics, zonas, kwords, selectedProyecto } = this.state
+    const { forum, topics, zonas, kwords, selectedProyecto, texts} = this.state
     const {archive} = this.props
     let filteredTopics;
-
     if (selectedProyecto)
       filteredTopics = topics.filter(t => t.id == selectedProyecto.value)
     
@@ -340,9 +343,7 @@ class HomePropuestas extends Component {
           btnText={(!archive && forum.config.propuestasAbiertas) ? 'Subí tu idea' : undefined}
           btnLink={(!archive && forum.config.propuestasAbiertas) ? '/formulario-idea' : undefined}
             title={
-              archive ? "Archivo de proyectos" : forum.config.ideacion || forum.config.preVotacion || forum.config.votacion ? 
-              (forum.config.propuestasAbiertas ? "Ideas" : "Ideas y proyectos") : 
-              "Proyectos"
+              archive ? texts['archivo-title'] : texts['idea-title']
             }
             subtitle={" "}
             />}
@@ -350,19 +351,12 @@ class HomePropuestas extends Component {
           <div className='container'>
             {forum && <div className="row">
               {archive ? <div className='notice'>
-                      <h1>Aquí podes visualizar los proyectos de años anteriores</h1>
-                    </div> : forum.config.ideacion &&
-                (forum.config.propuestasAbiertas
-                  ? (
+                      <h1>{texts['archivo-subtitle']}</h1>
+                    </div> : 
                     <div className='notice'>
-                      <h1>{config.propuestasTextoAbiertas}</h1>
+                      <h1>{texts['idea-subtitle']}</h1>
                     </div>
-                  ) : (
-                    <div className='notice'>
-                      <h1>{config.propuestasTextoCerradas}</h1>
-                    </div>
-                  )
-                )
+               
               }
 
             </div>}

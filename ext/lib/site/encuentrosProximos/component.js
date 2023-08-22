@@ -82,18 +82,19 @@ export default class EncuentrosProximos extends Component {
 
   render () {
     const { isLoading, availableEvents } = this.state
+    const { texts } = this.props
     return (
       <div className='seccion-proximos-encuentros'>
         <div className="text-center">
           <div className="fondo-titulo" style={{backgroundColor: '#c4d94b', fontFamily: 'Museo300'}}>
-            <h3 className='subtitle'>NOVEDADES Y PRÓXIMOS ENCUENTROS</h3>
+            <h3 className='subtitle'>{texts['home-encuentro-title']}</h3>
           </div>
         </div>
         <div className="container-fluid">
 
         <div className="row text-center">
           <div className="col-lg-12">
-          <p className="text-white">Agendate la reunión de tu barrio y presentá tus ideas.<br/></p>
+          <p className="text-white">{texts['home-encuentro-subtitle']}<br/></p>
           </div>
         </div>
         <br></br>
