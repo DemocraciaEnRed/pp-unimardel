@@ -323,6 +323,12 @@ class HomePropuestas extends Component {
     )
   }
 
+  handleInputTextKeyDown = (event) =>{
+    if(event.keyCode === 13){
+      this.handleInputSearch()
+    }
+  }
+
   handleInputSearch = () => {
     const {kwords} = this.state
     this.fetchTopics();
@@ -384,6 +390,7 @@ class HomePropuestas extends Component {
                   <input
                     value={kwords}
                     onChange={(e) => this.setState({kwords: e.target.value})}
+                    onKeyDown={this.handleInputTextKeyDown}
                     placeholder='Buscá un proyecto por nombre'
                     className='form-control search-proyecto-select'
                     />
