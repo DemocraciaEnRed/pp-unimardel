@@ -6,6 +6,7 @@ import topicStore from 'lib/stores/topic-store/topic-store'
 import zonaStore from 'lib/stores/zona-store'
 import voteStore from 'lib/stores/vote-store'
 import tagStore from 'lib/stores/tag-store/tag-store'
+import textStore from 'lib/stores/text-store'
 
 import { browserHistory } from 'react-router'
 import userConnector from 'lib/site/connectors/user'
@@ -25,6 +26,7 @@ class FormularioVoto extends Component {
     this.state = {
       forumAndTopicFetched: false,
       forum: null,
+      texts:{},
       step: 0,
       warning: {},
       hasVoted: '',
@@ -81,22 +83,23 @@ class FormularioVoto extends Component {
 
   componentWillMount () {
     const { user } = this.props
-    const side_panel = document.getElementById("side_panel")
-    if (side_panel) side_panel.style.visibility = "hidden";
 
     const promises = [
       // data del forum
       forumStore.findOneByName('proyectos'),
       tagStore.findAll({field: 'name'}),
       zonaStore.findAll(),
+      textStore.findAllDict(),
       topicStore.findAllProyectosForVoting()
+
     ]
 
     Promise.all(promises).then(results => {
       // topic queda en undefined si no estamos en edit
-      const [ forum, tags, zonas, topics ] = results
+      const [ forum, tags, zonas, textsDict, topics ] = results
       let newState = {
         forum,
+        texts:textsDict,
         tags,
         zonas,
         topics,
@@ -106,6 +109,9 @@ class FormularioVoto extends Component {
         this.onUserStateChange()
       }
       this.setState(newState)
+      
+      const side_panel = document.getElementById("side_panel")
+      if (side_panel) side_panel.style.visibility = "hidden";
     }).catch(err =>
       console.error(err)
     )
@@ -274,9 +280,9 @@ class FormularioVoto extends Component {
       case 0:
         return <SelectVoter zonas={this.state.zonas} setState={this.handleInputChange} />
       case 1:
-        return <Welcome changeStep={() => this.changeStep(this.state.step+1)} />
+        return <Welcome changeStep={() => this.changeStep(this.state.step+1)} texts={this.state.texts} />
       case 2:
-        return <Info />
+        return <Info texts={this.state.texts}/>
       case 3:
         return <VotoZona 
           topics={this.state.topics.filter(t => (t.zona.id === this.state.zona && tags.includes(t.tag.id)))} 
@@ -453,7 +459,7 @@ class FormularioVoto extends Component {
     
     const { forum, step, warning, forumAndTopicFetched, userFetched, isTopicDialogOpen, topicDialog } = this.state
     if (!forum) return null
-    if (!config.votacionAbierta) return <Close />
+    if (!forum.config.votacion) return <Close />
 
     if (!forumAndTopicFetched || !userFetched) return (<p>Loading...</p>)
 
@@ -503,7 +509,7 @@ class FormularioVoto extends Component {
           </div>
           } 
           {this.renderStep(step)}
-          {config.votacionAbierta && step !== welcome && step <= confirm && !(hasWarning | isTopicDialogOpen) && (
+          {forum.config.votacion && step !== welcome && step <= confirm && !(hasWarning | isTopicDialogOpen) && (
             <div className='footer-votacion'>
               <button className='button-anterior' disabled={step <= welcome ? true : false} onClick={() => this.changeStep(step - 1)}>
                 <span className='icon-arrow-left-circle'></span> Anterior

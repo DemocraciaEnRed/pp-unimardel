@@ -32,7 +32,7 @@ export default function ThumbsVoto(props) {
               <h2 dangerouslySetInnerHTML={{__html: subtitle}} />
               :
               <h2>
-                <a tabIndex="20" href={config.propuestasAbiertas ? '/formulario-idea' : config.votacionAbierta ? '/votacion': '/propuestas'}>{ subtitle }</a>
+                <a tabIndex="20" href={props.forum.config.propuestasAbiertas ? '/formulario-idea' : props.forum.config.votacion ? '/votacion': '/propuestas'}>{ subtitle }</a>
               </h2>
             }
             <h3>{ props.texts['home-subtitle-text'] }</h3>

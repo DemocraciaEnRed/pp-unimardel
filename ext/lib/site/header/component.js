@@ -17,7 +17,8 @@ class Header extends Component {
       userForm: null,
       mobileMenu: false,
       userMenu: false,
-      userPrivileges: null
+      userPrivileges: null,
+      forumConfig:null
     }
 
     props.user.onChange(this.onUserStateChange)
@@ -74,7 +75,7 @@ class Header extends Component {
   onUserStateChange = () => {
     if (this.props.user.state.fulfilled){
       forumStore.findOneByName(config.forumProyectos).then(
-        forum => this.setState({ userPrivileges: forum.privileges })
+        forum => this.setState({ userPrivileges: forum.privileges, forumConfig: forum.config })
       )
     }
   }
@@ -87,7 +88,7 @@ class Header extends Component {
     const showAdmin = this.state.userPrivileges && this.state.userPrivileges.canChangeTopics
 
     const userState = this.props.user.state
-
+    const {forumConfig} = this.state
     // MEDIA QUERY - Si es menor al breakpoint muestra un menú, si es mayor, otro
     if (window.matchMedia('(max-width: 975px)').matches) {
       return (
@@ -134,7 +135,8 @@ class Header extends Component {
               form={this.state.userForm}
               menuOn={this.state.mobileMenu}
               showAdmin={showAdmin}
-              toggleOnClick={this.toggleMobileMenu} />
+              toggleOnClick={this.toggleMobileMenu}
+              forumConfig={forumConfig} />
 
           </ul>
         </nav>
@@ -158,7 +160,7 @@ class Header extends Component {
 
             <li className={`header-item ${window.location.pathname.includes('/acerca-de') ? 'active' : ''}`}>
               <Link
-                to='/s/acerca-de'
+                to='/acerca-de'
                 className='header-link'
                 tabIndex="82"
                 >
@@ -185,7 +187,7 @@ class Header extends Component {
                   Archivo
               </Link>
             </li>                
-            { config.votacionAbierta && <li className={`header-item ${window.location.pathname.includes('/votacion') ? 'active' : ''}`}>
+            { forumConfig && forumConfig.votacion && <li className={`header-item ${window.location.pathname.includes('/votacion') ? 'active' : ''}`}>
               <Link
                 to='/votacion'
                 className='header-link'

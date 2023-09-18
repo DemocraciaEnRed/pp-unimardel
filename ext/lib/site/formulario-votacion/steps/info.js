@@ -1,16 +1,12 @@
 import React from 'react'
 
-export default () => (
+export default ({texts}) => (
     <div className='form-votacion'>
         <div className='votacion-header'>
-            <h1>Presupuesto Participativo General Pueyrredon 2022</h1>
-            <p>Pasos y reglas para la votación</p>
+            <h1>Presupuesto Participativo General Pueyrredon 2023</h1>
         </div>
-        <div className='wrapper'>
-          <li>Tenés <b className='superbold'>2 votos disponibles.</b></li> 
-          <li>El <b className='superbold'>primer voto es obligatorio</b> y se destina a <b className='superbold'>tu zona indicada al momento de registro</b></li>
-          <li>Los proyectos aparecerán automáticamente ya definidos por tu zona</li>
-          <li>El <b className='superbold'>segundo voto es opcional</b> y se destina a votar un proyecto de <b className='superbold'>cualquier zona del municipio.</b></li>
+        <div className='wrapper' dangerouslySetInnerHTML={{__html: texts['votacion-steps']}}>
+           
         </div>
     </div>
 )

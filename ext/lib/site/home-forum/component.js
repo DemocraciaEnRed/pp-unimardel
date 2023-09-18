@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import HomeCatalogo from '../home-catalogo/component'
+import HomeAbout from '../home-about/component';
 
 
 const HomeForum = (props) => {
@@ -11,6 +12,8 @@ const HomeForum = (props) => {
     case 'propuestas':
       years = ['2023']
       return <HomeCatalogo {...props} years={years} archive={false} />
+    case 'acerca-de':
+      return <HomeAbout {...props} />
     case 'archivo':
       years = ['2022', '2021']
       return <HomeCatalogo {...props} years={years} archive={true} />

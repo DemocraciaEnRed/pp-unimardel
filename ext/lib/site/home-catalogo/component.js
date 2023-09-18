@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { browserHistory } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import config from 'lib/config'
 import forumStore from 'lib/stores/forum-store/forum-store'
+import textStore from 'lib/stores/text-store'
 import topicStore from 'lib/stores/topic-store/topic-store'
 import userConnector from 'lib/site/connectors/user'
 import tagStore from 'lib/stores/tag-store/tag-store'
@@ -15,14 +16,6 @@ import Anchor from 'ext/lib/site/anchor'
 // https://www.npmjs.com/package/react-select/v/2.4.4
 import Select from 'react-select'; // ! VERSIÓN 2.4.4 !
 
-// Variables para fases de propuestas abiertas o cerrdas:
-// config.propuestasVisibles
-// config.propuestasAbiertas
-// config.propuestasTextoAbiertas
-// config.propuestasTextoCerradas
-// config.votacionAbierta
-// config.votacionTextoAbierta
-// config.votacionTextoCerrada
 
 const defaultValues = {
   limit: 20,
@@ -30,7 +23,7 @@ const defaultValues = {
   tag: [],
   // 'barrio' o 'newest' o 'popular'
   sort: '',
-  tipoIdea: config.propuestasAbiertas ? ['pendiente'] :  config.votacionAbierta ? ['factible'] : config.votacionVisible ? ['ganador'] : ['factible', 'no-factible', 'integrado', 'pendiente']
+  tipoIdea: []
 }
 
 const filters = {
@@ -49,6 +42,7 @@ class HomePropuestas extends Component {
     super()
     this.state = {
       forum: null,
+      texts:{},
       topics: null,
 
       zonas: [],
@@ -86,19 +80,22 @@ class HomePropuestas extends Component {
       zonaStore.findAll(),
       tagStore.findAll({field: 'name'}),
       forumStore.findOneByName('proyectos'),
+      textStore.findAllDict(),
       topicStore.findAllProyectos()
     ]).then(results => {
-      const [zonas, tags, forum] = results
+      const [zonas, tags, forum, textsDict] = results
       const tagsMap = tags.map(tag => { return {value: tag.id, name: tag.name}; });
       const tag = this.props.location.query.tags ? [tagsMap.find(j => j.name == this.props.location.query.tags).value] : [];
       const tiposIdea = forum.topicsAttrs.find(a => a.name=='state').options.map(state => { return {value: state.name, name: state.title}; })
+      const tipoIdea = forum.config.ideacion ? ['pendiente'] : forum.config.preVotacion || forum.config.votacion ? ['factible'] : forum.config.seguimientoNormal ? ['ganador'] : []
       this.setState({
         zonas: zonas.map(zona => { return {value: zona._id, name: zona.nombre}; }),
         tags: tagsMap,
         tag,
         tiposIdea,
-        tipoIdea: archive ? ['ganador'] : this.state.tipoIdea,
+        tipoIdea: archive ? ['ganador'] : tipoIdea,
         forum,
+        texts:textsDict,
         years,
       }, () => this.fetchTopics())
     }).catch((err) => { throw err })
@@ -254,7 +251,6 @@ class HomePropuestas extends Component {
 
   handleRemoveBadge = (option) => (e) => {
     // feísimo, feísimo
-    console.log(option)
     if (this.state.zona.includes(option)){
       this.setState({ zona: this.state.zona.filter(i => i != option) }
       ,() => this.fetchTopics());
@@ -280,14 +276,15 @@ class HomePropuestas extends Component {
   }
 
   renderSortFilter() {
+    const {forum} = this.state 
     return (
       <div>
-        <h4 className="topics-title">{
-          config.propuestasVisibles ? 
-          (config.propuestasAbiertas ? "Lista de ideas" : "Lista de ideas y proyectos") : 
+        {forum && <h4 className="topics-title">{
+          !forum.config.seguimientoNormal ? 
+          (forum.config.propuestasAbiertas ? "Lista de ideas" : "Lista de ideas y proyectos") : 
           "Lista de proyectos"
         }
-        </h4>
+        </h4>}
         <div className='topics-filters'>
           {/*this.state.forumStates &&
             <div className='topics-filter topics-state-filter'>
@@ -326,6 +323,12 @@ class HomePropuestas extends Component {
     )
   }
 
+  handleInputTextKeyDown = (event) =>{
+    if(event.keyCode === 13){
+      this.handleInputSearch()
+    }
+  }
+
   handleInputSearch = () => {
     const {kwords} = this.state
     this.fetchTopics();
@@ -333,46 +336,36 @@ class HomePropuestas extends Component {
 
   render () {
 
-    const { forum, topics, zonas, kwords, selectedProyecto } = this.state
+    const { forum, topics, zonas, kwords, selectedProyecto, texts} = this.state
     const {archive} = this.props
     let filteredTopics;
-
     if (selectedProyecto)
       filteredTopics = topics.filter(t => t.id == selectedProyecto.value)
-
+    
     return (
       <div className={`ext-home-ideas ${this.props.user.state.fulfilled ? 'user-logged' : ''}`}>
         <Anchor id='container'>
-          <BannerListadoTopics
-          btnText={(!archive && config.propuestasAbiertas) ? 'Subí tu idea' : undefined}
-          btnLink={(!archive && config.propuestasAbiertas) ? '/formulario-idea' : undefined}
+          {forum && <BannerListadoTopics
+          btnText={(!archive && forum.config.propuestasAbiertas) ? 'Subí tu idea' : undefined}
+          btnLink={(!archive && forum.config.propuestasAbiertas) ? '/formulario-idea' : undefined}
             title={
-              archive ? "Archivo de proyectos" : config.propuestasVisibles ? 
-              (config.propuestasAbiertas ? "Ideas" : "Ideas y proyectos") : 
-              "Proyectos"
+              archive ? texts['archivo-title'] : texts['idea-title']
             }
             subtitle={" "}
-            />
+            />}
 
           <div className='container'>
-            <div className="row">
+            {forum && <div className="row">
               {archive ? <div className='notice'>
-                      <h1>Aquí podes visualizar los proyectos de años anteriores</h1>
-                    </div> : config.propuestasVisibles &&
-                (config.propuestasAbiertas
-                  ? (
+                      <h1>{texts['archivo-subtitle']}</h1>
+                    </div> : 
                     <div className='notice'>
-                      <h1>{config.propuestasTextoAbiertas}</h1>
+                      <h1>{texts['idea-subtitle']}</h1>
                     </div>
-                  ) : (
-                    <div className='notice'>
-                      <h1>{config.propuestasTextoCerradas}</h1>
-                    </div>
-                  )
-                )
+               
               }
 
-            </div>
+            </div>}
           </div>
 
 
@@ -397,6 +390,7 @@ class HomePropuestas extends Component {
                   <input
                     value={kwords}
                     onChange={(e) => this.setState({kwords: e.target.value})}
+                    onKeyDown={this.handleInputTextKeyDown}
                     placeholder='Buscá un proyecto por nombre'
                     className='form-control search-proyecto-select'
                     />
@@ -412,7 +406,8 @@ class HomePropuestas extends Component {
                 {topics && topics.length === 0 && (
                   <div className='empty-msg'>
                     <div className='alert alert-success' role='alert'>
-                      No se encontraron ideas.
+                      No se encontraron ideas. <br/>
+                      si queres ver el seguimiento de ideas de años anteriores entra a <Link href="/archivo"> Archivo </Link>
                     </div>
                   </div>
                 )}

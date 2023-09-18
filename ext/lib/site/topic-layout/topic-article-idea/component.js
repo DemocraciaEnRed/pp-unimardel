@@ -130,7 +130,7 @@ class TopicArticle extends Component {
     // console.log("Content of attrs>>>\n", topic.attrs['presupuesto-estado'])
 
     const buttons = <div className='topic-actions topic-article-content'>
-    { config.votacionAbierta ? 
+    { forum.config.votacion ? 
     <VotarButton /> : 
     !isProyecto && <Cause
     topic={topic}
