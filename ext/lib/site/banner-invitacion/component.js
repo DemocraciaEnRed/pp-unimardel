@@ -12,12 +12,10 @@ export default (props) =>  {
         }
         <p>{texts['home-banner-title']}</p>
         
-        {texts['home-banner-button1-text'] && <Link to={texts['home-banner-button1-link']} tabIndex="31" className="boton-foro" href="">
+        {texts['home-banner-button1-text'] && <a href={texts['home-banner-button1-link']} target="_blank" tabIndex="31" className="boton-foro">
             {texts['home-banner-button1-text']}
-        </Link>}
-        {texts['home-banner-button2-text'] && <Link to={texts['home-banner-button2-link']}  tabIndex="32" className="boton-votacion" target="_blank">{texts['home-banner-button2-text']}</Link>} 
-        
-        
+        </a>}
+        {texts['home-banner-button2-text'] && <a href={texts['home-banner-button2-link']} target="_blank" tabIndex="32" className="boton-votacion">{texts['home-banner-button2-text']}</a>} 
     </div>
 )
 }
