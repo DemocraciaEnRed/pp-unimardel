@@ -254,6 +254,7 @@ app.get('/export/topics/export-resultados-proyectos',
         'Cantidad Votos': `${topic.action.results.length}`,
         'Monto': `${topic.attrs['presupuesto-total'] ? topic.attrs['presupuesto-total'] : 0}`,
         'Texto': `${escapeTxt(topic.attrs['proyecto-contenido'])}`,
+        'Creado el': `${escapeTxt(moment(topic.createdAt).format('YYYY-MM-DD'))}`
       }
       infoTopics.push(theTopic);
     });

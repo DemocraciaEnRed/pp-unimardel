@@ -89,8 +89,8 @@
   },
   {
     "name" : "admin-comment-referencia",
-    "title" : "Link a proyecto",
-    "description" : "Colocar aquí el link al proyecto final, en el caso que esta propuesta esté integrada junto con otra",
+    "title" : "ID a proyecto integrador",
+    "description" : "Colocar aquí el ID al proyecto integrador, en el caso que esta propuesta se haya integrado junto con otra",
     "mandatory" : true,
     "kind" : "String"
   },
