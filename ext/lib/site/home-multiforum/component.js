@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import config from 'lib/config'
 import Anchor from 'ext/lib/site/anchor'
 import BannerForoVecinal from 'ext/lib/site/banner-foro-vecinal/component'
-import BannerMapaVectores from 'ext/lib/site/banner-mapa-vectores/component'
 import ThumbsVoto from 'ext/lib/site/thumbs-voto/component'
 // import Barrios from 'ext/lib/site/barrios/component'
 // import Proyectos from 'ext/lib/site/proyectos/component'
@@ -61,8 +60,7 @@ export default class HomeMultiforumOverride extends Component {
           <BannerForoVecinal title={this.state.texts['home-title']} texts={this.state.texts} />
           {forum && <ThumbsVoto texts={this.state.texts} forum={this.state.forum} />}
           {forum && <BannerInvitacion texts={this.state.texts}/>}
-          <EncuentrosProximos  texts={this.state.texts}/>
-          <BannerMapaVectores />
+          {/* <EncuentrosProximos  texts={this.state.texts}/> */}
           <Jump goTop={this.goTop} />
           <Footer />
         </Anchor>

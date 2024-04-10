@@ -389,7 +389,7 @@ class FormularioPropuesta extends Component {
             <div className="col-sm-6 ">
               <div className="idea-no-factible">
                 <img src="/ext/lib/site/formulario-propuesta/no-factible.png" alt="Ícono propuesta no factible"/>
-                <p>Asfaltar todas las calles de MGP</p>
+                <p>Asfaltar todas las calles de UNMDP</p>
               </div>
             </div>
             <div className="col-sm-6 ">
@@ -733,7 +733,7 @@ class FormularioPropuesta extends Component {
     } return (
       <div className='form-propuesta'>
         <div className='propuesta-header'>
-          <h1 className='text-center'>PRESUPUESTO PARTICIPATIVO MGP</h1>
+          <h1 className='text-center'>PRESUPUESTO PARTICIPATIVO UNMDP</h1>
           {/* <p>¡Acá vas a poder subir tu propuesta para el presupuesto participativo!</p> */}
           <p>¡Gracias a todos y todas por participar!</p>
         </div>

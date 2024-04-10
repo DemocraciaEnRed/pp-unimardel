@@ -10,7 +10,7 @@ const HomeForum = (props) => {
 
   switch (forum) {
     case 'propuestas':
-      years = ['2023']
+      years = ['2024']
       return <HomeCatalogo {...props} years={years} archive={false} />
     case 'acerca-de':
       return <HomeAbout {...props} />

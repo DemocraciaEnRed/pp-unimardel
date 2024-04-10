@@ -10,7 +10,7 @@ export default function BannerForoVecinal (props) {
         <div className="row">
           <div className="col-md-12">
             <div className="fondo-titulo">
-              <h2>ZONAS ParticipaMGP PP</h2>
+              <h2>ZONAS ParticipaUNMDP PP</h2>
             </div>
           </div>
         </div>

@@ -28,7 +28,7 @@ module.exports = function forgotPassword (notifier) {
       log('Sending mail to %o', utils.emailAddress(user))
       return mailer.send({
         to: utils.emailAddress(user),
-        subject: 'Recibiste un comentario del equipo de presupuesto participativo MGP!',
+        subject: 'Recibiste un comentario del equipo de presupuesto participativo UNMDP!',
         html
       })
     }).then(() => { done() }).catch(err => {

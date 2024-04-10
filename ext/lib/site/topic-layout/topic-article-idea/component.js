@@ -293,7 +293,7 @@ class TopicArticle extends Component {
                   triggerOpenedClassName='topic-article-comentario' 
                   trigger={`Comentarios del moderador`}>
                   {topic.attrs['admin-comment'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
-                  <p className='font-weight-bold'>Equipo de Coordinación y Gestión PPMGP</p>
+                  <p className='font-weight-bold'>Equipo de Coordinación y Gestión PPUNMDP</p>
                 </Collapsible>            
               }
 
