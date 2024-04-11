@@ -73,7 +73,7 @@ export default class FilterPropuestas extends Component {
     //console.log('Render filters')
 
     const {
-      zona, zonas,
+      facultad, facultades,
       tags, tag,
       tiposIdea, tipoIdea,
       handleRemoveBadge
@@ -86,9 +86,9 @@ export default class FilterPropuestas extends Component {
     // - el .map(.find().name) hace la conversión de keys a values
     //   p.ej. barrio contiene keys, y para mostrar su formato para humanos hay
     //   que buscar la key dentro de barrios
-    if (zona.length)
+    if (facultad.length)
       allActiveOpts.push(
-        ...zona.sort().map(i => ({ value: i, name: zonas.find(j => j.value==i).name }))
+        ...facultad.sort().map(i => ({ value: i, name: facultades.find(j => j.value==i).name }))
       )
     if (tag.length && tags.length)
       allActiveOpts.push(
@@ -103,14 +103,14 @@ export default class FilterPropuestas extends Component {
       <nav id='filter-propuestas'>
         <div className='filters-nav center'>
           <FilterBox
-            name='zona'
-            title='Zona'
-            allOptions={zonas.sort(function(a, b) {
-              const y = a.name.split("Zona ")[1]
-              const z = b.name.split("Zona ")[1]
+            name='facultad'
+            title='Facultad'
+            allOptions={facultades.sort(function(a, b) {
+              const y = a.name.split("Facultad ")[1]
+              const z = b.name.split("Facultad ")[1]
               return y-z;
             })}
-            activeOptions={zona}
+            activeOptions={facultad}
             tabIndex="110"
             activeDropdown={this.state.activeDropdown}
             clearedFilters={this.state.clearedFilters}

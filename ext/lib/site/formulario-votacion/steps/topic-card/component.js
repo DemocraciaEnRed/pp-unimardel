@@ -42,7 +42,7 @@ class VotoTopicCard extends Component {
                 </h1>
                 {topic.attrs && <p>{createClauses(topic)} <u onClick={() => handleShowTopicDialog(topic)}>VER MAS</u></p>}
                 <div className='voto-topic-card-tags'>
-                  {topic.zona && <span className='voto-tag-wrapper tag-zona' >{capitalizeFirstLetter(topic.zona.nombre)}</span>}                
+                  {topic.facultad && <span className='voto-tag-wrapper tag-facultad' >{capitalizeFirstLetter(topic.facultad.nombre)}</span>}                
                   {topic.attrs && topic.attrs['presupuesto-total'] && <span className='voto-tag-wrapper tag-presupuesto'>Presupuesto: ${topic.attrs['presupuesto-total'].toLocaleString()}</span>}
                   {topic.tags.length > 0 && <span className='voto-tag-wrapper'>{capitalizeFirstLetter(topic.tags[0])}</span>}
                 </div>                
@@ -70,7 +70,7 @@ class VotoTopicCard extends Component {
                 </h1>
                 {topic.attrs && <p>{createClauses(topic)} <u onClick={() => handleShowTopicDialog(topic)}>VER MAS</u></p>}
                 <div className='voto-topic-card-tags'>
-                  {topic.zona && <span className='voto-tag-wrapper tag-zona' >{capitalizeFirstLetter(topic.zona.nombre)}</span>}                
+                  {topic.facultad && <span className='voto-tag-wrapper tag-facultad' >{capitalizeFirstLetter(topic.facultad.nombre)}</span>}                
                   {topic.tag && <span className='voto-tag-wrapper' >{capitalizeFirstLetter(topic.tag.name)}</span>}
                 </div>                
               </div>

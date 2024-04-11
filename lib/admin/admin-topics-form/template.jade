@@ -57,12 +57,12 @@
         //-       button.btn.btn-default.btn-sm.forum-tag(data-value=tag, type='button', disabled=(topic.tags && !!~topic.tags.indexOf(tag)))= tag
 
         .form-group
-          label= 'Zona'
-          select.form-control(name='zona', validate='required')
-            - var topicZona = typeof topic.zona === 'string' ? topic.zona : (topic.zona && topic.zona.id)
-            - each zona in zonas
-              option(selected=zona.id === topicZona, value=zona.id)
-                = zona.nombre
+          label= 'Facultad'
+          select.form-control(name='facultad', validate='required')
+            - var topicFacultad = typeof topic.facultad === 'string' ? topic.facultad : (topic.facultad && topic.facultad.id)
+            - each facultad in facultades
+              option(selected=facultad.id === topicFacultad, value=facultad.id)
+                = facultad.nombre
 
         - if (forum.topicsAttrs.length > 0)
           fieldset.attrs-wrapper

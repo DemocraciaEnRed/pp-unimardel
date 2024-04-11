@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import config from 'lib/config'
 import forumStore from 'lib/stores/forum-store/forum-store'
 import topicStore from 'lib/stores/topic-store/topic-store'
-import zonaStore from 'lib/stores/zona-store'
+import facultadStore from 'lib/stores/facultad-store'
 
 import tagStore from 'lib/stores/tag-store/tag-store'
 import Tags from 'lib/admin/admin-topics-form/tag-autocomplete/component'
@@ -41,7 +41,7 @@ class FormularioPropuesta extends Component {
       topic: null,
 
       nombre: '',
-      zona: '',
+      facultad: '',
       documento: '',
       // genero: '',
       email: '',
@@ -60,7 +60,7 @@ class FormularioPropuesta extends Component {
       adminCommentReference: '',
       
       availableTags: [],
-      zonas: [],
+      facultades: [],
       barrios: [],
     }
 
@@ -74,12 +74,12 @@ class FormularioPropuesta extends Component {
     const { target: { value, name } } = evt
     this.setState({ [name]: value })
     if (name === "barrio") {
-      const {zonas} = this.state
-      const finalZona = zonas.find(zona => zona.barrios.includes(value))
-      if (finalZona) {
-        this.setState({ zona: finalZona.id })
+      const {facultades} = this.state
+      const finalFacultad = facultades.find(facultad => facultad.barrios.includes(value))
+      if (finalFacultad) {
+        this.setState({ facultad: finalFacultad.id })
       } else {
-        this.setState({ zona: "" })
+        this.setState({ facultad: "" })
       }
     }
   }
@@ -91,7 +91,7 @@ class FormularioPropuesta extends Component {
       // data del forum
       forumStore.findOneByName('proyectos'),
       tagStore.findAll(),
-      zonaStore.findAll(),
+      facultadStore.findAll(),
     ]
 
     // si es edición traemos data del topic también
@@ -100,13 +100,13 @@ class FormularioPropuesta extends Component {
 
     Promise.all(promises).then(results => {
       // topic queda en undefined si no estamos en edit
-      const [ forum, tags, zonas, topic] = results
+      const [ forum, tags, facultades, topic] = results
       let barrios = []
-      zonas.forEach(zona => zona.barrios.forEach(barrio => barrios.push(barrio)))
+      facultades.forEach(facultad => facultad.barrios.forEach(barrio => barrios.push(barrio)))
       let newState = {
         forum,
         availableTags: tags,
-        zonas,
+        facultades,
         barrios: barrios.sort(),
         mode: isEdit ? 'edit' : 'new'
       }
@@ -116,7 +116,7 @@ class FormularioPropuesta extends Component {
           titulo: topic.mediaTitle,
           documento: topic.attrs.documento,
           // genero: topic.attrs.genero,
-          zona: topic.zona.id,
+          facultad: topic.facultad.id,
           tag: topic.tag,
           problema: topic.attrs.problema,
           solucion: topic.attrs.solucion,
@@ -130,7 +130,7 @@ class FormularioPropuesta extends Component {
         })
       this.setState(newState, () => {
         // updateamos campos de usuario
-        // (recién dps del setState tendremos zonas cargadas)
+        // (recién dps del setState tendremos facultades cargadas)
         this.props.user.onChange(this.onUserStateChange)
         // si ya está loggeado de antes debería pasar por la función igualmente
         this.onUserStateChange()
@@ -156,7 +156,7 @@ class FormularioPropuesta extends Component {
     if (this.props.user.state.fulfilled){
       let user = this.props.user.state.value
       this.setState({
-        // zona: user.zona._id,
+        // facultad: user.facultad._id,
         email: user.email,
         documento: user.dni,
         nombre: user.firstName + ' ' + user.lastName
@@ -178,7 +178,7 @@ class FormularioPropuesta extends Component {
       'attrs.beneficios': this.state.beneficios,
       'attrs.barrio': this.state.barrio,
       'attrs.ubicacion': this.state.ubicacion,
-      zona: this.state.zona,
+      facultad: this.state.facultad,
     }
     if (this.state.forum.privileges && this.state.forum.privileges.canChangeTopics && this.state.mode === 'edit') {
       formData['attrs.admin-comment'] = this.state.adminComment
@@ -255,7 +255,7 @@ class FormularioPropuesta extends Component {
     if (this.state.solucion === '') return true
     if (this.state.beneficios === '') return true
     if (this.state.barrio === '') return true
-    if (this.state.zona === '') return true
+    if (this.state.facultad === '') return true
     return false;
 
   }
@@ -283,7 +283,7 @@ class FormularioPropuesta extends Component {
   }
 
   render () {
-    const { forum, zonas, barrios, requirementsAccepted } = this.state
+    const { forum, facultades, barrios, requirementsAccepted } = this.state
 
     if (!forum) return null
     if(forum.config.propuestasAbiertas || (this.state.forum.privileges && this.state.forum.privileges.canChangeTopics)) {
@@ -360,7 +360,7 @@ class FormularioPropuesta extends Component {
               <li>Inversión en espacios públicos, actividades de bien público (talleres, capacitaciones, etc) y compra de bienes muebles para entidades sin fines de lucro.</li>
               <li>Superar el análisis de factibilidad legal, técnica, económica y de impacto social.</li>
               <li>Para entidades sin fines de lucro: contemplar un convenio con el municipio como contraprestación.</li>
-              <li>No superar el monto presupuestario asignado a la zona donde se ubica la propuesta.</li>
+              <li>No superar el monto presupuestario asignado a la facultad donde se ubica la propuesta.</li>
             </ul>
               
           </div>
@@ -599,10 +599,10 @@ class FormularioPropuesta extends Component {
           <hr />
 
             <div className='form-group'>
-              <label htmlFor='zona'>
-                * ¿En qué zona se desarrollará la idea?
+              <label htmlFor='facultad'>
+                * ¿En qué facultad se desarrollará la idea?
               </label>
-              <p className='help-text'>Selecciona el bario y te indicaremos la zona a la que pertenece</p>
+              <p className='help-text'>Selecciona el bario y te indicaremos la facultad a la que pertenece</p>
               <select
                 className='form-control'
                 name='barrio'
@@ -620,20 +620,20 @@ class FormularioPropuesta extends Component {
               
               <br />
               <select
-                className={`form-control ${this.state['zona'] && "zona-selected"}`}
-                name='zona'
-                value={this.state['zona']}
+                className={`form-control ${this.state['facultad'] && "facultad-selected"}`}
+                name='facultad'
+                value={this.state['facultad']}
                 onChange={this.handleInputChange}
                 style={{'height': '50px'}}
                 disabled={true}>
-                <option value=''>Pertenece a la zona...</option>
-                {zonas.length > 0 && zonas.map(zona =>
-                  <option key={zona._id} value={zona._id}>
-                    {zona.nombre}
+                <option value=''>Pertenece a la facultad...</option>
+                {facultades.length > 0 && facultades.map(facultad =>
+                  <option key={facultad._id} value={facultad._id}>
+                    {facultad.nombre}
                   </option>
                 )}
               </select>
-              {this.state['zona'] && <p className='help-text'>* Recordá que las ideas compiten por zona y no por barrio, al momento de la votación verás que las ideas serán para diversos barrios</p>}
+              {this.state['facultad'] && <p className='help-text'>* Recordá que las ideas compiten por facultad y no por barrio, al momento de la votación verás que las ideas serán para diversos barrios</p>}
             </div>
 
                     
@@ -711,7 +711,7 @@ class FormularioPropuesta extends Component {
                     {this.hasErrorsField('solucion') && <li className="error-li">El campo "Tu idea" no puede quedar vacío</li> }
                     {this.hasErrorsField('beneficios') && <li className="error-li">El campo "Beneficios" no puede quedar vacío</li> }
                     {this.hasErrorsField('barrio') && <li className="error-li">El campo "Barrio" no puede quedar vacío</li> }
-                    {this.hasErrorsField('zona') && <li className="error-li">El campo "Zona" no puede quedar vacío</li> }
+                    {this.hasErrorsField('facultad') && <li className="error-li">El campo "Facultad" no puede quedar vacío</li> }
              </ul>
              </div>
           }

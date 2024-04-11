@@ -26,9 +26,9 @@ app.get('/topics',
         enum: allowedForums,
         required: true
       },
-      zonas: {
+      facultades: {
         type: 'string',
-        format: 'zonas',
+        format: 'facultades',
         default: ''
       },
       tags: {
@@ -70,7 +70,7 @@ app.get('/topics',
   utils.parseTipoIdea,
   utils.parseYears,
   utils.parseKWords,
-  utils.parseZonas,
+  utils.parseFacultades,
   utils.parseTags,
   middlewares.forums.privileges.canView,
   (req, res, next) => {
@@ -115,9 +115,9 @@ app.get('/topics/all',
         enum: allowedForums,
         required: true
       },
-      zonas: {
+      facultades: {
         type: 'string',
-        format: 'zonas',
+        format: 'facultades',
         default: ''
       },
       tags: {
@@ -149,7 +149,7 @@ app.get('/topics/all',
   utils.findForum,
   utils.parseStates,
   utils.parseTipoIdea,
-  utils.parseZonas,
+  utils.parseFacultades,
   utils.parseTags,
   middlewares.forums.privileges.canView,
   (req, res, next) => {

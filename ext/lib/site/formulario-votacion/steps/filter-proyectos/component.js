@@ -73,7 +73,7 @@ export default class FilterProyectos extends Component {
     //console.log('Render filters')
 
     const {
-      activeZonas, zonas,
+      activeFacultades, facultades,
       activeTags, tags,
       topics,
       handleRemoveBadge
@@ -85,9 +85,9 @@ export default class FilterProyectos extends Component {
     // - el .map(.find().name) hace la conversión de keys a values
     //   p.ej. barrio contiene keys, y para mostrar su formato para humanos hay
     //   que buscar la key dentro de barrios
-    if (activeZonas && activeZonas.length)
+    if (activeFacultades && activeFacultades.length)
       allActiveOpts.push(
-        ...activeZonas.sort().map(i => ({ value: i, name: zonas.find(j => j.value==i) }))
+        ...activeFacultades.sort().map(i => ({ value: i, name: facultades.find(j => j.value==i) }))
       )
     if (activeTags && activeTags.length)
       allActiveOpts.push(
@@ -97,15 +97,15 @@ export default class FilterProyectos extends Component {
     return (
       <nav id='filter-proyectos'>
         <div className='filters-nav center'>
-          {zonas && zonas.length > 0 && <FilterBox
-            name='activeZonas'
-            title='Zona'
-            allOptions={zonas.sort(function(a, b) {
-              const y = a.nombre.split("Zona ")[1]
-              const z = b.nombre.split("Zona ")[1]
+          {facultades && facultades.length > 0 && <FilterBox
+            name='activeFacultades'
+            title='Facultad'
+            allOptions={facultades.sort(function(a, b) {
+              const y = a.nombre.split("Facultad ")[1]
+              const z = b.nombre.split("Facultad ")[1]
               return y-z;
             })}
-            activeOptions={this.props.activeZonas}
+            activeOptions={this.props.activeFacultades}
             tabIndex="100"
             activeDropdown={this.state.activeDropdown}
             clearedFilters={this.state.clearedFilters}

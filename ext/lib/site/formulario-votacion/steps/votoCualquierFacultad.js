@@ -10,8 +10,8 @@ export default ({
         // Filters
         tags,
         activeTags,
-        zonas,
-        activeZonas,
+        facultades,
+        activeFacultades,
         handleFilter,
         handleDefaultFilter,
         clearFilter,
@@ -19,13 +19,13 @@ export default ({
     }) => (
     <div className='form-votacion'>
         <div className='votacion-header'>
-            <h1 className='text-center'>3. Elegí un proyecto de cualquier zona</h1>
+            <h1 className='text-center'>3. Elegí un proyecto de cualquier facultad</h1>
             <p>Si querés votar en blanco presioná "Siguiente" sin elegir ningún proyecto</p>
             <FilterProyectos
               tags={tags}
               activeTags={activeTags}
-              zonas={zonas}
-              activeZonas={activeZonas}
+              facultades={facultades}
+              activeFacultades={activeFacultades}
               handleFilter={handleFilter}
               handleDefaultFilter={handleDefaultFilter}
               clearFilter={clearFilter} 

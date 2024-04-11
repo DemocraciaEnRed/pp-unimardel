@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({zonas, setState}) => (
+export default ({facultades, setState}) => (
     <div className='form-votacion'>
         <div className='votacion-header'>
             <h1 tabIndex="0" className='text-center'>Votación del Presupuesto Participativo universidad de Mar del Plata 2024</h1>
@@ -20,21 +20,21 @@ export default ({zonas, setState}) => (
               />
           </div>         
           <div className='form-group'>
-            <label className='required' htmlFor='zona'>
-              Zona de Residencia
+            <label className='required' htmlFor='facultad'>
+              Facultad de Residencia
             </label>
             <select
               className='form-control'
-              name='zona'
+              name='facultad'
               onChange={setState}>
-            <option value=''>Seleccioná una zona</option>
-            {zonas.length > 0 && zonas.sort(function(a, b) {
-                const y = a.nombre.split("Zona ")[1]
-                const z = b.nombre.split("Zona ")[1]
+            <option value=''>Seleccioná una facultad</option>
+            {facultades.length > 0 && facultades.sort(function(a, b) {
+                const y = a.nombre.split("Facultad ")[1]
+                const z = b.nombre.split("Facultad ")[1]
                 return y-z;
-                }).map(zona =>
-                <option key={zona._id} value={zona._id}>
-                {zona.nombre}
+                }).map(facultad =>
+                <option key={facultad._id} value={facultad._id}>
+                {facultad.nombre}
                 </option>
             )}
             </select>

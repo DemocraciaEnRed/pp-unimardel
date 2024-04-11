@@ -422,7 +422,7 @@
   , "mediaTitle": "Planes para centros comerciales a cielo abierto"
   , "source": "https://s3.amazonaws.com/pdr-app/361-D-12.pdf"
   , "closingAt": "2013-12-05T15:00:00.001Z"
-  , "body": "Este proyecto busca dar herramientas a los comerciantes para mejorar su competitividad a partir de la elaboración de Planes de Desarrollo para zonas geográficas dentro de la ciudad, consideradas centros comerciales a cielo abierto. Quienes están a favor argumentan que a través de estos planes de desarrollo los integrantes de los centros comerciales a cielo abierto podrán mejorar el espacio público de influencia y realizar otras acciones destinadas a brindar mayores atractivos para los consumidores que allí concurren."
+  , "body": "Este proyecto busca dar herramientas a los comerciantes para mejorar su competitividad a partir de la elaboración de Planes de Desarrollo para facultades geográficas dentro de la ciudad, consideradas centros comerciales a cielo abierto. Quienes están a favor argumentan que a través de estos planes de desarrollo los integrantes de los centros comerciales a cielo abierto podrán mejorar el espacio público de influencia y realizar otras acciones destinadas a brindar mayores atractivos para los consumidores que allí concurren."
   , "clauses": [
       {
           "clauseName": "1"
@@ -432,7 +432,7 @@
       {
           "clauseName": "2"
         , "order": 1
-        , "text": "A los fines de esta ley los comerciantes debidamente habilitados de una zona determinada y delimitada de la ciudad de Buenos Aires y las asociaciones que los representan podrán presentar ante la comisión establecida en el artículo 6º de esta ley un plan de desarrollo del centro comercial a cielo abierto destinado a la modernización y fortalecimiento de su competitividad."
+        , "text": "A los fines de esta ley los comerciantes debidamente habilitados de una facultad determinada y delimitada de la ciudad de Buenos Aires y las asociaciones que los representan podrán presentar ante la comisión establecida en el artículo 6º de esta ley un plan de desarrollo del centro comercial a cielo abierto destinado a la modernización y fortalecimiento de su competitividad."
       },
       {
           "clauseName": "3"
@@ -442,7 +442,7 @@
       {
           "clauseName": "4"
         , "order": 3
-        , "text": "El plan de desarrollo deberá contener:<br/>a) Descripción del proyecto y de las actividades comprendidas;<br/>b) Las bases de su factibilidad económica, financiera y técnica en caso de ser necesario.<br/>c) Monto estimado de la inversión;<br/>d) Zona geográfica que comprende el centro comercial a cielo abierto y el territorio afectado por el proyecto;<br/>e) Nómina de propietarios, locadores y/o locatarios de inmuebles comerciales adherentes al Plan de Desarrollo, que deberá ser de al menos 80% de los comerciantes pertenecientes al Centro Comercial a Cielo Abierto.<br/>f) En caso de tratarse de una asociación de comerciantes previamente constituida se deberá acreditar su personería y acompañar copia de sus estatutos.<br/>g) Las fuentes, recursos y forma de financiamiento.<br/>h) Acreditar fehacientemente el carácter de propietarios y/o inquilinos de los inmuebles comerciales que integren la zona geográfica que comprenderá el Centro Comercial a Cielo Abierto y su habilitación para ejercer la actividad."
+        , "text": "El plan de desarrollo deberá contener:<br/>a) Descripción del proyecto y de las actividades comprendidas;<br/>b) Las bases de su factibilidad económica, financiera y técnica en caso de ser necesario.<br/>c) Monto estimado de la inversión;<br/>d) Facultad geográfica que comprende el centro comercial a cielo abierto y el territorio afectado por el proyecto;<br/>e) Nómina de propietarios, locadores y/o locatarios de inmuebles comerciales adherentes al Plan de Desarrollo, que deberá ser de al menos 80% de los comerciantes pertenecientes al Centro Comercial a Cielo Abierto.<br/>f) En caso de tratarse de una asociación de comerciantes previamente constituida se deberá acreditar su personería y acompañar copia de sus estatutos.<br/>g) Las fuentes, recursos y forma de financiamiento.<br/>h) Acreditar fehacientemente el carácter de propietarios y/o inquilinos de los inmuebles comerciales que integren la facultad geográfica que comprenderá el Centro Comercial a Cielo Abierto y su habilitación para ejercer la actividad."
       },
       {
           "clauseName": "6"
@@ -452,7 +452,7 @@
       {
           "clauseName": "7"
         , "order": 5
-        , "text": "El Plan de Desarrollo deberá ser publicado en el Boletín Oficial por dos días a fin de que los propietarios y/o inquilinos de inmuebles que integren la zona geográfica que comprende el Centro Comercial a Cielo Abierto y que no hayan adherido al mismo manifiesten su oposición en un plazo de diez (10) días contados desde la última publicación. La oposición será resuelta por la Comisión Evaluadora."
+        , "text": "El Plan de Desarrollo deberá ser publicado en el Boletín Oficial por dos días a fin de que los propietarios y/o inquilinos de inmuebles que integren la facultad geográfica que comprende el Centro Comercial a Cielo Abierto y que no hayan adherido al mismo manifiesten su oposición en un plazo de diez (10) días contados desde la última publicación. La oposición será resuelta por la Comisión Evaluadora."
       },
       {
           "clauseName": "8"
@@ -477,7 +477,7 @@
       {
           "clauseName": "12"
         , "order": 10
-        , "text": "La autoridad de aplicación tendrá las siguientes zonas:<br/>1.  Promover la radicación de los comercios en las zonas geográficas que componen los Centros Comerciales a Cielo Abierto.<br/>2.  Fomentar y gestionar el desarrollo y evolución de los Centros Comerciales a Cielo Abierto a través de los órganos gubernamentales existentes o a crearse.<br/>3.  Actuar como órganos de consulta y asesoramiento permanente en cuanto a la aplicación de la presente.<br/>4.  Llevar un registro de organizaciones integradas por los propietarios, locadores y/o inquilinos de inmuebles comerciales debidamente habilitados de una zona determinada y delimitada de la Ciudad de Buenos Aires, asociados entre sí para administrarla conjuntamente con el fin de desarrollar y mejorar la prestación de actividades comerciales, el espacio físico destinado a dichas actividades, la calidad de la oferta comercial y la calidad de vida de los vecinos.<br/>5.  Supervisar y fiscalizar la adecuado ejecución del plan de desarrollo.<br/>6.  La demás funciones que le atribuya la reglamentación de la presente."
+        , "text": "La autoridad de aplicación tendrá las siguientes facultades:<br/>1.  Promover la radicación de los comercios en las facultades geográficas que componen los Centros Comerciales a Cielo Abierto.<br/>2.  Fomentar y gestionar el desarrollo y evolución de los Centros Comerciales a Cielo Abierto a través de los órganos gubernamentales existentes o a crearse.<br/>3.  Actuar como órganos de consulta y asesoramiento permanente en cuanto a la aplicación de la presente.<br/>4.  Llevar un registro de organizaciones integradas por los propietarios, locadores y/o inquilinos de inmuebles comerciales debidamente habilitados de una facultad determinada y delimitada de la Ciudad de Buenos Aires, asociados entre sí para administrarla conjuntamente con el fin de desarrollar y mejorar la prestación de actividades comerciales, el espacio físico destinado a dichas actividades, la calidad de la oferta comercial y la calidad de vida de los vecinos.<br/>5.  Supervisar y fiscalizar la adecuado ejecución del plan de desarrollo.<br/>6.  La demás funciones que le atribuya la reglamentación de la presente."
       },
       {
           "clauseName": "13"

@@ -1,12 +1,23 @@
 const dbReady = require('lib/models').ready
 const models = require('lib/models')
 
-const nombreMigrationParaLog = 'cargar nuevas zonas'
-const Zona = models.Zona
+const nombreMigrationParaLog = 'cargar facultades'
+const Facultad = models.Facultad
 
-const zonas = [
-  { nombre: 'Zona 10' },
-  { nombre: 'Zona 11' },
+const facultades = [
+
+  { nombre: 'CNAI'},
+  { nombre: 'ESM'},
+  { nombre: 'F.PSICO'},
+  { nombre: 'FAUD'},
+  { nombre: 'FCA'},
+  { nombre: 'FCEyN'},
+  { nombre: 'FCEyS'},
+  { nombre: 'FCSYTS'},
+  { nombre: 'FD'},
+  { nombre: 'FH'},
+  { nombre: 'FI'},
+  { nombre: 'Rec'},
 ]
 
 /**
@@ -19,10 +30,10 @@ exports.up = function up (done) {
     // Primero chequear si ya no hay cosas cargadas
     .then(() => {
       return new Promise((resolve, reject) => {
-        Zona.collection.count({}, (err, count) => {
+        Facultad.collection.count({}, (err, count) => {
           if (err) reject(new Error(err))
-          if (count > 10) {
-            console.log('Ya hay zonas cargadas (%s), salteando migración', count)
+          if (count) {
+            console.log('Ya hay facultades cargadas (%s), salteando migración', count)
             reject(new SaltearPromises())
           }
           resolve()
@@ -31,7 +42,7 @@ exports.up = function up (done) {
     })
 
     // Agregamos data
-    .then(() => Zona.collection.insertMany(zonas))
+    .then(() => Facultad.collection.insertMany(facultades))
 
     // Todo OK
     .then(() => {

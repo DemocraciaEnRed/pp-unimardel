@@ -3,7 +3,7 @@ import config from 'lib/config'
 
 import forumStore from 'lib/stores/forum-store/forum-store'
 import topicStore from 'lib/stores/topic-store/topic-store'
-import zonaStore from 'lib/stores/zona-store'
+import facultadStore from 'lib/stores/facultad-store'
 import voteStore from 'lib/stores/vote-store'
 import tagStore from 'lib/stores/tag-store/tag-store'
 import textStore from 'lib/stores/text-store'
@@ -13,8 +13,8 @@ import userConnector from 'lib/site/connectors/user'
 import Close from "./steps/close"
 import SelectVoter from "./steps/select-voter"
 import Info from "./steps/info"
-import VotoZona from "./steps/votoZona"
-import VotoCualquierZona from "./steps/votoCualquierZona"
+import VotoFacultad from "./steps/votoFacultad"
+import VotoCualquierFacultad from "./steps/votoCualquierFacultad"
 import Confirmacion from "./steps/confirmacion"
 import Agradecimiento from "./steps/agradecimiento"
 import Welcome from "./steps/bienvenida"
@@ -34,7 +34,7 @@ class FormularioVoto extends Component {
       //  Datos de usuario
       userFetched: false,
       dni: '',
-      zona: '',
+      facultad: '',
       nombre: '',
       documento: '',
       email: '',
@@ -54,9 +54,9 @@ class FormularioVoto extends Component {
 
       // Para filtros
       tags: [],
-      zonas: [],
+      facultades: [],
       activeTags: [],
-      activeZonas: [],
+      activeFacultades: [],
       searchedByName: '',
       userPrivileges: null,
 
@@ -88,7 +88,7 @@ class FormularioVoto extends Component {
       // data del forum
       forumStore.findOneByName('proyectos'),
       tagStore.findAll({field: 'name'}),
-      zonaStore.findAll(),
+      facultadStore.findAll(),
       textStore.findAllDict(),
       topicStore.findAllProyectosForVoting()
 
@@ -96,12 +96,12 @@ class FormularioVoto extends Component {
 
     Promise.all(promises).then(results => {
       // topic queda en undefined si no estamos en edit
-      const [ forum, tags, zonas, textsDict, topics ] = results
+      const [ forum, tags, facultades, textsDict, topics ] = results
       let newState = {
         forum,
         texts:textsDict,
         tags,
-        zonas,
+        facultades,
         topics,
         forumAndTopicFetched: true
       }
@@ -128,15 +128,15 @@ class FormularioVoto extends Component {
   // }
 
   // componentDidUpdate () {
-  //   const {userPrivileges, dni, zona, step, hasVoted, fetched } = this.state
+  //   const {userPrivileges, dni, facultad, step, hasVoted, fetched } = this.state
   //   const { user } = this.props
   //   // if fetched is true, we have already fetched the user data
   //   if (
-  //     !userPrivileges && dni === "" && zona === "" &&
-  //     user.state.value && user.state.value.zona && user.state.value.dni
+  //     !userPrivileges && dni === "" && facultad === "" &&
+  //     user.state.value && user.state.value.facultad && user.state.value.dni
   //     ) {
   //         this.setState({
-  //           zona: user.state.value.zona.id,
+  //           facultad: user.state.value.facultad.id,
   //           dni: user.state.value.dni,
   //           fetched: true
   //         })
@@ -175,13 +175,13 @@ class FormularioVoto extends Component {
     const { user } = this.props
 
     if (!user.state.value.privileges.canManage) {
-      // !userPrivileges && dni === "" && zona === "" &&
-      // user.state.value && user.state.value.zona && user.state.value.dni
+      // !userPrivileges && dni === "" && facultad === "" &&
+      // user.state.value && user.state.value.facultad && user.state.value.dni
       voteStore.hasVoted(user.state.value.dni)
       .then((hasVoted) => {
         if (hasVoted === "yes") {
           this.setState({
-            zona: user.state.value.zona.id,
+            facultad: user.state.value.facultad.id,
             dni: user.state.value.dni,
             userFetched: true,
             hasVoted,
@@ -189,7 +189,7 @@ class FormularioVoto extends Component {
           })
         } else {
           this.setState({
-            zona: user.state.value.zona.id,
+            facultad: user.state.value.facultad.id,
             dni: user.state.value.dni,
             userFetched: true,
             hasVoted,
@@ -211,13 +211,13 @@ class FormularioVoto extends Component {
   
   handleSubmit (e) {
     e.preventDefault()
-    const { forum, dni, zona, voto1, voto2, userPrivileges } = this.state
+    const { forum, dni, facultad, voto1, voto2, userPrivileges } = this.state
     const { user } = this.props
     const formData = {
       forum: forum.id,
       user: user.state.value.id,
       dni,
-      zona,
+      facultad,
       userPrivileges,
       voto1,
       voto2
@@ -274,18 +274,18 @@ class FormularioVoto extends Component {
 
   renderStep = (step) => {
     const tags = this.state.activeTags.length > 0 ? this.state.activeTags :  this.state.tags.map(t => t.id)
-    const zonas = this.state.activeZonas.length > 0 ? this.state.activeZonas :  this.state.zonas.map(t => t.id)
+    const facultades = this.state.activeFacultades.length > 0 ? this.state.activeFacultades :  this.state.facultades.map(t => t.id)
     
     switch (step) {
       case 0:
-        return <SelectVoter zonas={this.state.zonas} setState={this.handleInputChange} />
+        return <SelectVoter facultades={this.state.facultades} setState={this.handleInputChange} />
       case 1:
         return <Welcome changeStep={() => this.changeStep(this.state.step+1)} texts={this.state.texts} />
       case 2:
         return <Info texts={this.state.texts}/>
       case 3:
-        return <VotoZona 
-          topics={this.state.topics.filter(t => (t.zona.id === this.state.zona && tags.includes(t.tag.id)))} 
+        return <VotoFacultad 
+          topics={this.state.topics.filter(t => (t.facultad.id === this.state.facultad && tags.includes(t.tag.id)))} 
           handler="voto1"
           selected={this.state.voto1}
           setState={this.handleCheckboxInputChange} 
@@ -299,20 +299,20 @@ class FormularioVoto extends Component {
         />
       case 4:
         const { searchedByName } = this.state
-        return <VotoCualquierZona 
+        return <VotoCualquierFacultad 
           topics={searchedByName ? 
               topics.filter(t => searchedByName.include(t.id)) :
               this.state.topics.filter(t => t.id !== this.state.voto1 && 
                 tags.includes(t.tag.id) && 
-                zonas.includes(t.zona.id))
+                facultades.includes(t.facultad.id))
           } 
           handler="voto2"
           selected={this.state.voto2}
           setState={this.handleCheckboxInputChange} 
           tags={this.state.tags}
           activeTags={this.state.activeTags}
-          zonas={this.state.zonas}
-          activeZonas={this.state.activeZonas}
+          facultades={this.state.facultades}
+          activeFacultades={this.state.activeFacultades}
           handleFilter={this.handleFilter}
           handleDefaultFilter={this.handleDefaultFilter}
           clearFilter={this.clearFilter}
@@ -331,13 +331,13 @@ class FormularioVoto extends Component {
   }
 
   checkWarning = () => {
-    const { step, dni, zona, voto1, voto2, notInPadron, noUser, hasVoted, differentZone, searchedUser, zonas } = this.state
+    const { step, dni, facultad, voto1, voto2, notInPadron, noUser, hasVoted, differentZone, searchedUser, facultades } = this.state
 
     switch (step) {
       case 0:
-        if (!dni || !zona) {
+        if (!dni || !facultad) {
           return {
-            message: 'Los campos "DNI" y "Zona de Residencia" no pueden quedar vacíos',
+            message: 'Los campos "DNI" y "Facultad de Residencia" no pueden quedar vacíos',
             canPass: false
           }
         } else if (notInPadron === true){
@@ -358,7 +358,7 @@ class FormularioVoto extends Component {
           }
         } else if (differentZone === true) {
           return {
-            message: `El usuario con DNI ${dni} declaró como zona "${zonas.find(z => z.id === searchedUser.zona).nombre}".`,
+            message: `El usuario con DNI ${dni} declaró como facultad "${facultades.find(z => z.id === searchedUser.facultad).nombre}".`,
             canPass: true
           }
         } else {
@@ -367,7 +367,7 @@ class FormularioVoto extends Component {
 
       case 3:
         return !voto1 ? {
-          message: 'El primer voto es obligatorio y se destina a tu zona indicada al momento de registro',
+          message: 'El primer voto es obligatorio y se destina a tu facultad indicada al momento de registro',
           canPass: false
         } : {}
       case 4:
@@ -381,7 +381,7 @@ class FormularioVoto extends Component {
   }
 
   handleNext = () => {
-    const { step, dni, zona, forum } = this.state
+    const { step, dni, facultad, forum } = this.state
     if(step == 0){
       this.setState({
         notInPadron: null,
@@ -416,7 +416,7 @@ class FormularioVoto extends Component {
             this.setState({
               noUser: true
             })
-          } else if (res && res.user && zona != res.user.zona){
+          } else if (res && res.user && facultad != res.user.facultad){
             // user is in padron, but declared a differnet zone
             this.setState({
               differentZone: true,
@@ -490,7 +490,7 @@ class FormularioVoto extends Component {
                     <p className='titulo'>Título: {topicDialog.mediaTitle}</p>
                     <div className='author'>Autor/es/as: {topicDialog.owner.fullName}</div>
                     <div className='presupuesto'>Presupuesto: ${topicDialog.attrs['presupuesto-total'].toLocaleString()}</div>
-                    <div className='zona'>{topicDialog.zona.nombre}</div>
+                    <div className='facultad'>{topicDialog.facultad.nombre}</div>
                     <p className='contenido'>{topicDialog.attrs['proyecto-contenido'].replace(/\r?\n|\r/g, '\n')}</p>
                   </div>
               </dialog>

@@ -99,7 +99,7 @@ exports.up = function up (done) {
 						if (attr.name.indexOf('admin-comment') == 0){
 							attr.group = ''
 							attr.groupOrder = 0
-						}else if (attr.name == 'zona') {
+						}else if (attr.name == 'facultad') {
 							attr.width = 4
 							attr.description = ''
 							attr.order = 2

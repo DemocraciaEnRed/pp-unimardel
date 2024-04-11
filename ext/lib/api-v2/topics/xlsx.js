@@ -78,13 +78,13 @@ app.get('/export/topics/xlsx',
     api.user.populateProyectistas(req.topics).then(() => next())
   ,
   (req, res, next) =>
-    api.zona.all(function (err, zonas) {
+    api.facultad.all(function (err, facultades) {
       let zonasName = {}
       if (err) {
-        log('error serving zonas from DB:', err)
+        log('error serving facultades from DB:', err)
         return res.status(500).end()
       }
-      zonas.forEach(f => zonasName[f._id] = f.nombre)
+      facultades.forEach(f => zonasName[f._id] = f.nombre)
       req.zonasName = zonasName
       next()
   }),
@@ -92,7 +92,7 @@ app.get('/export/topics/xlsx',
     api.tag.all(function (err, tags) {
       let tagsName = {}
       if (err) {
-        log('error serving zonas from DB:', err)
+        log('error serving facultades from DB:', err)
         return res.status(500).end()
       }
       tags.forEach(f => tagsName[f._id] = f.name)
@@ -113,7 +113,7 @@ app.get('/export/topics/xlsx',
         'Idea Fecha': `${escapeTxt(moment(topic.createdAt, '', req.locale).format('LL LT'))}`,
         'Idea Título': `${escapeTxt(topic.mediaTitle)}`,
         'Idea Tema': `${escapeTxt(topic.tag && req.tagsName[topic.tag])}`,
-        'Idea Zona': `${escapeTxt(topic.zona && req.zonasName[topic.zona])}`,
+        'Idea Facultad': `${escapeTxt(topic.facultad && req.zonasName[topic.facultad])}`,
         'Idea Barrio': `${escapeTxt(topic.attrs && topic.attrs.barrio)}`,
         'Idea Problema': `${escapeTxt(topic.attrs && topic.attrs.problema)}`,
         'Idea Solución': `${escapeTxt(topic.attrs && topic.attrs.solucion)}`,
@@ -134,7 +134,7 @@ app.get('/export/topics/xlsx',
       infoTopics.push(theTopic);
     });
     try {
-      res.xls(`ideas-zonas.xlsx`, infoTopics);
+      res.xls(`ideas-facultades.xlsx`, infoTopics);
     } catch (err) {
       log('get csv: array to csv error', err)
       return res.status(500).end()
@@ -145,15 +145,15 @@ app.get('/export/topics/export-resultados',
   middlewares.users.restrict,
   middlewares.forums.findByName,
   middlewares.forums.privileges.canChangeTopics,
-  // cargar zonas a req
+  // cargar facultades a req
   (req, res, next) =>
-    api.zona.all(function (err, zonas) {
+    api.facultad.all(function (err, facultades) {
       let zonasName = {}
       if (err) {
-        log('error serving zonas from DB:', err)
+        log('error serving facultades from DB:', err)
         return res.status(500).end()
       }
-      zonas.forEach(f => zonasName[f._id] = f.nombre)
+      facultades.forEach(f => zonasName[f._id] = f.nombre)
       req.zonasName = zonasName
       next()
     })
@@ -172,7 +172,7 @@ app.get('/export/topics/export-resultados',
       const topicAttrs = vote.topic.attrs
       const theVote = {
         'Fecha': `${escapeTxt(moment(vote.createdAt, '', req.locale).format('LL LT'))}`,
-        'Zona': `${escapeTxt(req.zonasName[vote.author.zona])}`,
+        'Facultad': `${escapeTxt(req.zonasName[vote.author.facultad])}`,
         '#Proyecto': `${escapeTxt(topicAttrs.numero || '')}`,
         'Título Proyecto': `${escapeTxt(vote.topic.mediaTitle)}`,
       }
@@ -192,14 +192,14 @@ app.get('/export/topics/export-resultados-proyectos',
   middlewares.forums.findByName,
   middlewares.topics.findAllFromForum,
   middlewares.forums.privileges.canChangeTopics,
-  function getAllZonas(req, res, next) {
-    api.zona.all(function (err, zonas) {
+  function getAllFacultades(req, res, next) {
+    api.facultad.all(function (err, facultades) {
       let zonasName = {}
       if (err) {
-        log('error serving zonas from DB:', err)
+        log('error serving facultades from DB:', err)
         return res.status(500).end()
       }
-      zonas.forEach(e => zonasName[e._id] = e.nombre)
+      facultades.forEach(e => zonasName[e._id] = e.nombre)
       req.zonasName = zonasName
       next()
     })
@@ -249,7 +249,7 @@ app.get('/export/topics/export-resultados-proyectos',
       let theTopic = {
         '#Proyecto': `${escapeTxt(topic._id)}`,
         'Estado': `${escapeTxt(topic.attrs.state)}`,
-        'Zona': `${escapeTxt(req.zonasName[topic.zona])}`,
+        'Facultad': `${escapeTxt(req.zonasName[topic.facultad])}`,
         'Título Proyecto': `${escapeTxt(topic.mediaTitle)}`,
         'Cantidad Votos': `${topic.action.results.length}`,
         'Monto': `${topic.attrs['presupuesto-total'] ? topic.attrs['presupuesto-total'] : 0}`,
@@ -272,15 +272,15 @@ app.get('/export/topics/export-resultados-votantes',
   middlewares.forums.findByName,
   middlewares.topics.findAllFromForum,
   middlewares.forums.privileges.canChangeTopics,
-  // cargar zonas a req
+  // cargar facultades a req
   (req, res, next) => {
-    api.zona.all(function (err, zonas) {
+    api.facultad.all(function (err, facultades) {
       if (err) {
-        log('error serving zonas from DB:', err)
+        log('error serving facultades from DB:', err)
         return res.status(500).end()
       }
       let zonasName = {}
-      zonas.forEach(e => zonasName[e._id] = e.nombre)
+      facultades.forEach(e => zonasName[e._id] = e.nombre)
       req.zonasName = zonasName
       next()
     })
@@ -307,7 +307,7 @@ app.get('/export/topics/export-resultados-votantes',
         req.votantes[`${u._id}`] = {
           email: u.email,
           dni: u.dni,
-          zona: u.zona ? u.zona : ""
+          facultad: u.facultad ? u.facultad : ""
         }
       })
       next()
@@ -328,7 +328,7 @@ app.get('/export/topics/export-resultados-votantes',
           'ID Votante': `${escapeTxt(userId)}`,
           'Email': `${escapeTxt(req.votantes[userId].email)}`,
           'DNI': `${escapeTxt(ballot.dni)}`,
-          'Zona': `${escapeTxt(req.zonasName[ballot.zona])}`,
+          'Facultad': `${escapeTxt(req.zonasName[ballot.facultad])}`,
           'Voto 1': `${escapeTxt(ballot.voto1 ? req.topicsName[ballot.voto1] : "")}`,
           'Voto 2': `${escapeTxt(ballot.voto2 ? req.topicsName[ballot.voto2] : "")}`,
         }
@@ -355,7 +355,7 @@ app.get('/export/topics/export-resultados-votantes',
 //           'ID Votante': `${escapeTxt(votante.id)}`,
 //           'Email': `${escapeTxt(votante.email)}`,
 //           'DNI': `${escapeTxt(ballot.dni)}`,
-//           'Zona': `${escapeTxt(req.zonasName[votante.zona])}`,
+//           'Facultad': `${escapeTxt(req.zonasName[votante.facultad])}`,
 //           'Voto 1': `${escapeTxt(ballot.voto1 ? req.topics.find(el => el.id === ballot.voto1.toString()).mediaTitle : "")}`,
 //           'Voto 2': `${escapeTxt(ballot.voto2 ? req.topics.find(el => el.id === ballot.voto2.toString()).mediaTitle : "")}`,
 //         }

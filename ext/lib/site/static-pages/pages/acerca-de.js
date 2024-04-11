@@ -40,25 +40,25 @@ export default class Page extends Component {
                   </div>
                   <div data-trigger="+ ¿CÓMO SE DISTRIBUYE EL DINERO POR ZONA?">
                     <p className='p-padding'>
-                    La partida presupuestaria anual asignada al Programa ParticipaUNMDP, definida anualmente por la Secretaría de Economía y Hacienda, respetando los límites expuestos en la O-25061, se distribuye en 11 zonas considerando equidad territorial, equidad distributiva y cumplimiento fiscal.
+                    La partida presupuestaria anual asignada al Programa ParticipaUNMDP, definida anualmente por la Secretaría de Economía y Hacienda, respetando los límites expuestos en la O-25061, se distribuye en 11 facultades considerando equidad territorial, equidad distributiva y cumplimiento fiscal.
                     <br/>
-                    Para ésto, se le asignará a cada zona el monto que surja de las siguientes pautas:
+                    Para ésto, se le asignará a cada facultad el monto que surja de las siguientes pautas:
                     <ul>
                       <li>25% del monto total del proyecto de ParticipaUNMDP será distribuido en partes iguales.</li>
-                      <li>25% del monto total será dividido proporcionalmente a la población de cada zona, según el último Censo Nacional de Población, Hogares y Viviendas (CNPHyV) disponible.</li>
-                      <li>25% del monto total será dividido proporcionalmente a la cantidad de hogares afectados con Necesidades Básicas Insatisfechas (NBI) de cada zona, según el último Censo Nacional de Población, Hogares y Viviendas (CNPHyV) disponible.</li>
-                      <li>25% del monto total será dividido proporcionalmente según el cumplimiento fiscal de cada zona en la Tasa de Servicios Urbanos (TSU), de acuerdo a listado provisto por la Agencia de Recaudación Municipal del año fiscal anterior.</li>
+                      <li>25% del monto total será dividido proporcionalmente a la población de cada facultad, según el último Censo Nacional de Población, Hogares y Viviendas (CNPHyV) disponible.</li>
+                      <li>25% del monto total será dividido proporcionalmente a la cantidad de hogares afectados con Necesidades Básicas Insatisfechas (NBI) de cada facultad, según el último Censo Nacional de Población, Hogares y Viviendas (CNPHyV) disponible.</li>
+                      <li>25% del monto total será dividido proporcionalmente según el cumplimiento fiscal de cada facultad en la Tasa de Servicios Urbanos (TSU), de acuerdo a listado provisto por la Agencia de Recaudación Municipal del año fiscal anterior.</li>
                     </ul>
                     </p>
                   </div>
                   <div data-trigger="+ ¿QUIÉN PUEDE PRESENTAR IDEAS?">
                     <p className='p-padding'>
-                      Cualquier persona mayor de 16 años (cumplidos a la fecha de votación) con domicilio en su DNI en cualquiera de las zonas en las que se divide el Partido.
+                      Cualquier persona mayor de 16 años (cumplidos a la fecha de votación) con domicilio en su DNI en cualquiera de las facultades en las que se divide el Partido.
                     </p>
                   </div>
                   <div data-trigger="+ ¿CÓMO SE ELABORAN LAS IDEAS?">
                     <p className='p-padding'>
-                    En una serie de reuniones informativas, los vecinos y los representantes de las entidades serán capacitados por funcionarios municipales y/o grupo de consejeros seleccionados en cada zona con el fin de cargar las ideas en la plataforma digital PARTICIPA.MARDELPLATA.GOB.AR utilizando el formulario de presentación de ideas.
+                    En una serie de reuniones informativas, los vecinos y los representantes de las entidades serán capacitados por funcionarios municipales y/o grupo de consejeros seleccionados en cada facultad con el fin de cargar las ideas en la plataforma digital PARTICIPA.MARDELPLATA.GOB.AR utilizando el formulario de presentación de ideas.
                     </p>
                   </div>
 
@@ -70,13 +70,13 @@ export default class Page extends Component {
 
                   <div data-trigger="+ ¿QUIÉN PUEDE VOTAR LOS PROYECTOS?">
                     <p className='p-padding'>
-                      Cualquier persona mayor de 16 años (cumplidos a la fecha de votación) con domicilio en su DNI en cualquiera de las zonas en las que se divide el Partido puede votar los proyectos.
+                      Cualquier persona mayor de 16 años (cumplidos a la fecha de votación) con domicilio en su DNI en cualquiera de las facultades en las que se divide el Partido puede votar los proyectos.
                     </p>
                   </div>
                   
                   <div data-trigger="+ ¿PUEDO VOTAR MÁS DE UNA VEZ?">
                     <p className="p-padding">
-                      Se puede votar un sola vez, con la posibilidad de seleccionar 2 (dos)  proyectos, uno en la zona asignada a tu domicilio o seleccionada en la plataforma y otro en cualquier zona.
+                      Se puede votar un sola vez, con la posibilidad de seleccionar 2 (dos)  proyectos, uno en la facultad asignada a tu domicilio o seleccionada en la plataforma y otro en cualquier facultad.
                     </p>
                   </div>
 

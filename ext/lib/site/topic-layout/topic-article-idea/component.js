@@ -221,7 +221,7 @@ class TopicArticle extends Component {
                   trigger={`Proyecto final`}>
                   <div className='topic-article-author'><span>Autor/es/as:</span> {topic.owner.fullName}</div>
                   {topic.attrs['presupuesto-total'] && <div>Presupuesto asignado: <span>${topic.attrs['presupuesto-total'].toLocaleString()}</span></div>}
-                  <div className='topic-article-zona'><span>{topic.zona.nombre}</span></div>
+                  <div className='topic-article-facultad'><span>{topic.facultad.nombre}</span></div>
 
                   {topic.attrs['proyecto-contenido'].replace(/https?:\/\/[a-zA-Z0-9./]+/g, '<a href="$&" rel="noopener noreferer" target="_blank">$&</a>')}
                 </Collapsible>
@@ -239,7 +239,7 @@ class TopicArticle extends Component {
                 <div>
                   <div className="row">
                       <div className="col-md-6">
-                        {topic.zona.nombre}
+                        {topic.facultad.nombre}
                       </div>
                       <div className="col-md-6">
                         <strong>Autor/as/es:</strong> {topic.owner.fullName}

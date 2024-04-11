@@ -15,7 +15,7 @@ const app = module.exports = express.Router()
 
 const EDITABLE_KEYS = [
   'forum',
-  'zona',
+  'facultad',
   'mediaTitle',
   'tag',
   'attrs.nombre',
@@ -30,7 +30,7 @@ const EDITABLE_KEYS = [
   'attrs.beneficios',
   'attrs.subscribers',
   'attrs.genero',
-  'attrs.zona',
+  'attrs.facultad',
   'eje'
 ]
 

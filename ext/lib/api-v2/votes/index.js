@@ -72,19 +72,19 @@ app.post('/votes/create',
       res.status(403).json({ error: 'Forbidden' })
     }
   },
-  middlewares.zonas.findFromBody,
+  middlewares.facultades.findFromBody,
   votesMiddlewares.findVoto1FromBody, // Agrega el voto1 al req
   votesMiddlewares.findVoto2FromBody,// Agrega el voto2 al req
   function postVote (req, res, next) {
-    // if req.voto1.zona is different from req.user.zona, return error
+    // if req.voto1.facultad is different from req.user.facultad, return error
     // console.log('Voto1')
     // console.log(req.voto1)
     // console.log('Voto2')
     // console.log(req.voto2)
-    // console.log('Zona')
-    // console.log(req.zona)
-    if (!req.canManage && req.voto1.zona.toString() !== req.user.zona.toString()) {
-      log('User is not in the same zona as the vote -- sending error')
+    // console.log('Facultad')
+    // console.log(req.facultad)
+    if (!req.canManage && req.voto1.facultad.toString() !== req.user.facultad.toString()) {
+      log('User is not in the same facultad as the vote -- sending error')
       res.status(403).json({
         error: 'Cant vote projects from different zone'
       })
@@ -95,7 +95,7 @@ app.post('/votes/create',
       user: req.user,
       userPrivileges: req.body.userPrivileges,
       dni: req.body.dni,
-      zona: req.zona,
+      facultad: req.facultad,
       voto1: req.voto1,
       voto2: req.voto2
     })

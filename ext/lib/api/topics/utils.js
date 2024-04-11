@@ -4,8 +4,8 @@ const topicScopes = require('lib/api-v2/db-api/topics/scopes')
 const { notFound } = require('../errors')
 const ObjectID = require('mongoose').Types.ObjectId
 
-exports.parseZonas = (req, res, next) => {
-  req.query.zonas = req.query.zonas.split(',').filter((t) => !!t)
+exports.parseFacultades = (req, res, next) => {
+  req.query.facultades = req.query.facultades.split(',').filter((t) => !!t)
   next()
 }
 exports.parseTags = (req, res, next) => {
@@ -55,8 +55,8 @@ const queryTopics = (opts) => {
     tags,
     related,
     owners,
-    zonas,
-    zona,
+    facultades,
+    facultad,
     years,
     kwords
   } = opts
@@ -66,8 +66,8 @@ const queryTopics = (opts) => {
   }
   if (owners && owners.length > 0) query.owner = { $in: owners }
   if (tags && tags.length > 0) query.tag = { $in: tags }
-  if (zonas && zonas.length > 0) query.zona = { $in: zonas.map(id => ObjectID(id)) }
-  else if (zona) query.zona = zona
+  if (facultades && facultades.length > 0) query.facultad = { $in: facultades.map(id => ObjectID(id)) }
+  else if (facultad) query.facultad = facultad
   if (state && state.length > 0) query['attrs.state'] = { $in: state }
   if (related && related.length > 0) query['attrs.admin-comment-referencia'] = { $regex: `.*${related}.*` }
 
@@ -85,15 +85,15 @@ const queryTopics = (opts) => {
 // si modificás esta, habría que modificar la otra (considerar)
 const getPossibleOwners = (opts) => {
   const {
-    zonas,
-    zona,
+    facultades,
+    facultad,
   } = opts
 
   const query = {}
 
-  // La zona ahora se encuentra en el topic
-  // if (zonas && zonas.length > 0) query.zona = { $in: zonas.map(id => ObjectID(id)) }
-  // else if (zona) query.zona = zona
+  // La facultad ahora se encuentra en el topic
+  // if (facultades && facultades.length > 0) query.facultad = { $in: facultades.map(id => ObjectID(id)) }
+  // else if (facultad) query.facultad = facultad
 
   if (Object.keys(query).length > 0)
     return apiV1.user.findIds(query)
