@@ -47,7 +47,6 @@ const deleteFields = [
 	// el form usa mediaTitle
 	'titulo',
 	'título',
-	'barrio',
 	'solucion',
 	'beneficios',
 	'description',

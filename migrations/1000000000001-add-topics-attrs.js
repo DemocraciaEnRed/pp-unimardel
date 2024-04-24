@@ -6,10 +6,7 @@ const Topic = require('lib/models').Topic
 const Forum = require('lib/models').Forum
 
 const newTopicsAttrs = require('ext/lib/site/formulario-propuesta/campos.json')
-const barrios = [
-  'villa-martelli', 'villa-adelina', 'vicente-lopez', 'olivos',
-  'munro', 'la-lucila', 'florida-oeste', 'florida-este', 'carapachay'
-]
+
 
 const topicDescription = (topic) => {
   if (topic.attrs.solucion === undefined) {
@@ -23,23 +20,19 @@ const topicDescription = (topic) => {
 
 const migratePPScript = () => {
   const migraProyectos = Promise.all([
-      Forum.find({ 'name': { $in: barrios } }).exec(),
       Forum.find({ 'name': 'proyectos' }).exec()
     ])
-    .then(([barrios, [ proyectos ]]) => {
-      const barriosIds = barrios.map((b) => b.id)
-      return Topic.find({ forum: { $in: barriosIds } })
+    .then(([proyectos]) => {
+      return Topic.find()
         .then((topics) => {
           return {
             topics: topics,
-            barrios: barrios,
             proyectos: proyectos
           }
         })
     })
-    .then(({ topics, barrios, proyectos }) => {
+    .then(({ topics, proyectos }) => {
       const changedTopics = topics.map((topic) => {
-        const barrioName = barrios.find((barrio) => barrio.id === topic.forum.toString()).name
         const changeState = (state) => {
           let newState = null
           switch (state) {
@@ -54,7 +47,6 @@ const migratePPScript = () => {
           }
           return newState
         }
-        topic.set('attrs.barrio', barrioName)
         topic.set('forum', proyectos.id)
         topic.set('attrs.state', changeState(topic.attrs.state))
         return topic.save()
