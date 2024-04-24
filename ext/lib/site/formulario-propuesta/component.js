@@ -51,7 +51,6 @@ class FormularioPropuesta extends Component {
       solucion: '',
       beneficios: '',
       ubicacion: '',
-      barrio: '',
       telefono: '',
       requirementsAccepted: false,
       
@@ -61,7 +60,6 @@ class FormularioPropuesta extends Component {
       
       availableTags: [],
       facultades: [],
-      barrios: [],
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -73,15 +71,7 @@ class FormularioPropuesta extends Component {
     evt.preventDefault()
     const { target: { value, name } } = evt
     this.setState({ [name]: value })
-    if (name === "barrio") {
-      const {facultades} = this.state
-      const finalFacultad = facultades.find(facultad => facultad.barrios.includes(value))
-      if (finalFacultad) {
-        this.setState({ facultad: finalFacultad.id })
-      } else {
-        this.setState({ facultad: "" })
-      }
-    }
+
   }
 
   componentWillMount () {
@@ -100,14 +90,11 @@ class FormularioPropuesta extends Component {
 
     Promise.all(promises).then(results => {
       // topic queda en undefined si no estamos en edit
-      const [ forum, tags, facultades, topic] = results
-      let barrios = []
-      facultades.forEach(facultad => facultad.barrios.forEach(barrio => barrios.push(barrio)))
+      const [forum, tags, facultades, topic] = results
       let newState = {
         forum,
         availableTags: tags,
         facultades,
-        barrios: barrios.sort(),
         mode: isEdit ? 'edit' : 'new'
       }
 
@@ -123,7 +110,6 @@ class FormularioPropuesta extends Component {
           beneficios: topic.attrs.beneficios,
           telefono: topic.attrs.telefono,
           ubicacion: topic.attrs.ubicacion,
-          barrio: topic.attrs.barrio,
           state: topic.attrs.state,
           adminComment: topic.attrs['admin-comment'],
           adminCommentReference: topic.attrs['admin-comment-reference'],
@@ -176,7 +162,6 @@ class FormularioPropuesta extends Component {
       'attrs.problema': this.state.problema,
       'attrs.solucion': this.state.solucion,
       'attrs.beneficios': this.state.beneficios,
-      'attrs.barrio': this.state.barrio,
       'attrs.ubicacion': this.state.ubicacion,
       facultad: this.state.facultad,
     }
@@ -254,7 +239,6 @@ class FormularioPropuesta extends Component {
     if (this.state.tag === '' ) return true
     if (this.state.solucion === '') return true
     if (this.state.beneficios === '') return true
-    if (this.state.barrio === '') return true
     if (this.state.facultad === '') return true
     return false;
 
@@ -283,7 +267,7 @@ class FormularioPropuesta extends Component {
   }
 
   render () {
-    const { forum, facultades, barrios, requirementsAccepted } = this.state
+    const { forum, facultades, requirementsAccepted } = this.state
 
     if (!forum) return null
     if(forum.config.propuestasAbiertas || (this.state.forum.privileges && this.state.forum.privileges.canChangeTopics)) {
@@ -383,7 +367,7 @@ class FormularioPropuesta extends Component {
             <div className="col-sm-6 ">
               <div className="idea-no-factible">
                 <img src="/ext/lib/site/formulario-propuesta/no-factible.png" alt="Ícono propuesta no factible"/>
-                <p>Cloacas y red de agua para mi barrio</p>
+                <p>Cloacas y red de agua para mi facultad</p>
               </div>
             </div>
             <div className="col-sm-6 ">
@@ -579,9 +563,9 @@ class FormularioPropuesta extends Component {
 
           <div className='form-group'>
             <label className='required' htmlFor='beneficios'>
-              * Beneficios que brindará el proyecto al barrio
+                * Beneficios que brindará el proyecto a la facultad
             </label>
-            <p className='help-text'>¿Como ayuda este proyecto al barrio? ¿Quiénes se benefician?</p>
+              <p className='help-text'>¿Como ayuda este proyecto a la facultad? ¿Quiénes se benefician?</p>
             <textarea
               className='form-control'
               required
@@ -603,20 +587,7 @@ class FormularioPropuesta extends Component {
                 * ¿En qué facultad se desarrollará la idea?
               </label>
               <p className='help-text'>Selecciona el bario y te indicaremos la facultad a la que pertenece</p>
-              <select
-                className='form-control'
-                name='barrio'
-                value={this.state['barrio']}
-                onChange={this.handleInputChange}
-                required
-                >
-                <option value=''>Seleccione un barrio</option>
-                {barrios.length > 0 && barrios.map((barrio, index) =>
-                  <option key={index} value={barrio}>
-                    {barrio}
-                  </option>
-                )}
-              </select>
+
               
               <br />
               <select
@@ -625,15 +596,14 @@ class FormularioPropuesta extends Component {
                 value={this.state['facultad']}
                 onChange={this.handleInputChange}
                 style={{'height': '50px'}}
-                disabled={true}>
-                <option value=''>Pertenece a la facultad...</option>
+              >
+                <option value=''>Seleccione una facultad...</option>
                 {facultades.length > 0 && facultades.map(facultad =>
                   <option key={facultad._id} value={facultad._id}>
                     {facultad.nombre}
                   </option>
                 )}
               </select>
-              {this.state['facultad'] && <p className='help-text'>* Recordá que las ideas compiten por facultad y no por barrio, al momento de la votación verás que las ideas serán para diversos barrios</p>}
             </div>
 
                     
@@ -709,8 +679,7 @@ class FormularioPropuesta extends Component {
                     {this.hasErrorsField('problema') && <li className="error-li">El campo "Problema" no puede quedar vacío</li> }
                     {this.hasErrorsField('tag') && <li className="error-li">El campo "Tipo" no puede quedar vacío</li> }
                     {this.hasErrorsField('solucion') && <li className="error-li">El campo "Tu idea" no puede quedar vacío</li> }
-                    {this.hasErrorsField('beneficios') && <li className="error-li">El campo "Beneficios" no puede quedar vacío</li> }
-                    {this.hasErrorsField('barrio') && <li className="error-li">El campo "Barrio" no puede quedar vacío</li> }
+                    {this.hasErrorsField('beneficios') && <li className="error-li">El campo "Beneficios" no puede quedar vacío</li>}
                     {this.hasErrorsField('facultad') && <li className="error-li">El campo "Facultad" no puede quedar vacío</li> }
              </ul>
              </div>
