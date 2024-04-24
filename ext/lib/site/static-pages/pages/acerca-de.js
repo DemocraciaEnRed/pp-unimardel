@@ -38,7 +38,7 @@ export default class Page extends Component {
                   <div data-trigger="+ ¿QUÉ ES EL PRESUPUESTO PARTICIPATIVO DE UNIVERSIDAD DE MAR DEL PLATA?">
                     <p className='p-padding'>El Programa ParticipaUNMDP PP (Presupuesto Participativo) es un espacio donde vas a poder presentar las ideas que tu barrio necesita. Luego, a través del voto, los vecinos del barrio van a poder decidir en qué utilizar parte del presupuesto del Municipio.</p>
                   </div>
-                  <div data-trigger="+ ¿CÓMO SE DISTRIBUYE EL DINERO POR ZONA?">
+                  <div data-trigger="+ ¿CÓMO SE DISTRIBUYE EL DINERO POR FACULTAD?">
                     <p className='p-padding'>
                     La partida presupuestaria anual asignada al Programa ParticipaUNMDP, definida anualmente por la Secretaría de Economía y Hacienda, respetando los límites expuestos en la O-25061, se distribuye en 11 facultades considerando equidad territorial, equidad distributiva y cumplimiento fiscal.
                     <br/>
