@@ -30,7 +30,6 @@ const EDITABLE_KEYS = [
   'attrs.subscribers',
   'attrs.genero',
   'attrs.facultad',
-  'eje'
 ]
 
 class CantUploadProposal extends Error {

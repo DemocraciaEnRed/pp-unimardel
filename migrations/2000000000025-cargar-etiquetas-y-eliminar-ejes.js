@@ -1,9 +1,8 @@
 const dbReady = require('lib/models').ready
 const models = require('lib/models')
 
-const nombreMigrationParaLog = 'cargar etiquetas y eliminar ejes por ser innecesarios en este pp'
+const nombreMigrationParaLog = 'cargar etiquetas '
 const Tag = models.Tag
-const Eje = models.Eje
 
 const etiquetas = [
   { nombre: 'Equidad de Género' },
@@ -32,8 +31,6 @@ exports.up = function up (done) {
   // done() devuelve al Migrator de lib/migrations
   dbReady()
 
-    // borramos data en eje al ser innecesaria para el funcionamiento del sistema y esto confunde con Tags
-    .then(() => Eje.collection.deleteMany({}))
 
     // quitamos la visibilidad a las tags viejas
     .then(() => Tag.collection.updateMany({}, {$set: {visible: false}}))

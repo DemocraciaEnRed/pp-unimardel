@@ -94,9 +94,7 @@ export class TopicCard extends Component {
         <div className={`idea-${topic && topic.attrs && topic.attrs.state}`}>
           <div className='topic-card-info'>
             <div className='topic-card-attrs'>
-              {topic.eje &&
-                <span className='badge badge-default'>{topic.eje.nombre}</span>
-              }
+   
               {/*<span className={`estado ${topic.attrs.state}`}>{estados(topic.attrs.state)}</span>*/}
             </div>
 
