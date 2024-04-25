@@ -2,8 +2,6 @@ import React from 'react'
 import { browserHistory, Link } from 'react-router'
 import urlBuilder from 'lib/url-builder'
 
-const barrios = [
-]
 
 const states = [
   { 'name': 'No ganador', 'value': 'no-ganador' },
@@ -33,7 +31,7 @@ const getBudget = (state) => {
 
 export default ({ topic, forum }) => {
   const topicUrl = `${window.location.origin}${topic.url}`
-  const twitterDesc = encodeURIComponent(`Mirá el proyecto que quiero para mi barrio ${topicUrl}`)
+  const twitterDesc = encodeURIComponent(`Mirá el proyecto que quiero para mi facultad ${topicUrl}`)
   // const linkTopic = () => { browserHistory.push(`/proyectos/topic/${topic.id}`) }
   return (
     <a href={`/proyectos/topic/${topic.id}`} target="_blank" className='ext-topic-card'>
@@ -69,9 +67,6 @@ export default ({ topic, forum }) => {
               : topic.mediaTitle
             }
           </h4>
-          <h5 className='topic-card-forum'>
-            {barrios.find((barrio) => barrio.name === topic.attrs.barrio).title}
-          </h5>
           {topic.attrs && topic.attrs.description && (
             <p className='topic-card-description'>
               {topic.attrs.description.length > 100

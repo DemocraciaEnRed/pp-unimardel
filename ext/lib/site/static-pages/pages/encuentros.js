@@ -99,7 +99,7 @@ export default class Page extends Component {
           <div className='ext-herramientas'>
             <div className="text-center">
               <h3 className="color-black">Calendario</h3>
-              <p>Agendate la reunión de tu barrio y presentá tus ideas.</p>
+              <p>Agendate la reunión de tu facultad y presentá tus ideas.</p>
             </div>
             <br/> 
              <div className="text-center">

@@ -13,7 +13,7 @@ export default class Carrusel extends Component {
   }
 
   componentDidMount () {
-    window.fetch(`/ext/api/topics?forumName=proyectos&anio=2020&state=preparacion,compra,ejecucion,finalizado&limit=20&sort=popular`, { credentials: 'include' })
+    window.fetch(`/ext/api/topics?forumName=proyectos&anio=2024&state=preparacion,compra,ejecucion,finalizado&limit=20&sort=popular`, { credentials: 'include' })
       .then((res) => res.json())
       .then((res) => {
         this.setState({ topics: res.results.topics.sort(() => 0.5 - Math.random()) }
@@ -48,7 +48,7 @@ export default class Carrusel extends Component {
         </div>
         <div ref='carrusel'>
           {topics && topics.map((topic, i) => (
-            <TopicCard key={topic.id} topic={topic} forum={{ title: topic.attrs.barrio }} />
+            <TopicCard key={topic.id} topic={topic} />
           ))}
         </div>
         <Link className='boton-azul' href='/proyectos'>

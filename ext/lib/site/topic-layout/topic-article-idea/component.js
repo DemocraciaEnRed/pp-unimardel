@@ -46,17 +46,6 @@ class TopicArticle extends Component {
     })
   }
 
-  handleBarrio = (barrio) => {
-    const barrios = {
-    }
-    let barrioName = ''
-    Object.keys(barrios).find((key) => {
-      if (barrio === key) {
-        barrioName = barrios[key]
-      }
-    })
-    return barrioName
-  }
 // ooo" habria que agregar el estado ganador a este switch
   getEstado (name) {
     switch (name) {

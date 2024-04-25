@@ -51,8 +51,8 @@ const newFields = [
 	},	
 	{
 		"name" : "beneficios",
-		"title" : "Beneficios para el barrio",
-		"description" : "¿Como ayuda este proyecto al barrio? ¿Quiénes se benefician?",
+		"title": "Beneficios para el facultad",
+		"description": "¿Como ayuda este proyecto al facultad? ¿Quiénes se benefician?",
 		"kind" : "LongString",
 		"mandatory" : false,
 		"groupOrder" : 0,

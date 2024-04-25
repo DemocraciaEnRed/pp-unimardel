@@ -18,7 +18,7 @@ export default ({ problema, solucion, beneficios }) => {
       }
       { beneficios &&
         <div>
-          <span className='topic-article-span'>Beneficios que brindará el proyecto al barrio</span>
+          <span className='topic-article-span'>Beneficios que brindará el proyecto a la facultad</span>
           <p className='topic-article-p'>{beneficios} </p>
         </div>
       }

@@ -14,15 +14,11 @@ import { Link } from 'react-router'
 // const PROPOSALS_FORUM_NAME = 'propuestas'
 
 const descripciones = {
-  'otras-ideas-innovadoras': "Contanos con el mayor detalle posible, tu idea innovadora de solución",
-  'asfalto/mejora-asfaltica': "Cantidad de cuadras/Metros\nEs cordón cuneta? (Si/No)\nSolo cordón cuneta? (Sí/No)",
-  'luminarias': "Hay que instalar nuevas luminarias o convertir la luminaria a LED?",
-  'semáforos/reductores-de-velocidad': "En qué calle o intersección? (completar en el campo Dirección al final del formulario)\nCuántos hacen falta?",
-  'plazas/espacios-públicos': "De qué tipo? Plaza / Playón deportivo/ Skatepark\nQue hay que mejorar o inlcuirr? (Veredas, iluminación, juegos, bancos, cestos de basura, mejorar el paisajismo, delimitar canchas, Iluminación)",
-  'capacitaciones/actividades-deportivas': "Que tipo de actividad hace falta?\nDonde la realizarias (lugar y calles), cuantas veces por semana y de cuanto tiempo?",
-  'bicisendas': "Que recorrido o para que calles?",
-  'mejoras-de-accesibilidad': "Que cantidad de rampas?\nGrandes o pequeñas?",
-  'ideas-para-organizaciones/clubes': "",
+  'equidad-de-género': '',
+  'diversidad': '',
+  'accesibilidad': '',
+  'sostenibilidad': '',
+  'innovación': '',
 }
 
 
@@ -548,7 +544,7 @@ class FormularioPropuesta extends Component {
             <label className='required' htmlFor='solucion'>
               * La propuesta de solución / tu idea
             </label>
-            {this.state.tag && descripciones[this.state.tag.hash].split(/\n/).map((p, i)=> <p className='help-text'>{p}</p>)}
+              {this.state.tag && descripciones[this.state.tag.hash].split(/\n/).map((p, i) => <p key={i} className='help-text'>{p}</p>)}
             <textarea
               className='form-control'
               required

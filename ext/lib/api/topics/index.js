@@ -13,7 +13,6 @@ const allowedForums = ['propuestas', 'proyectos']
 const formats = {
   formats: {
     tags: /^([a-zA-Z0-9-_]+,?)+$/,
-    barrio: /^[a-z0-9-]+$/,
     anio: /[0-9]+/
   }
 }
@@ -43,13 +42,8 @@ app.get('/topics',
       },
       sort: {
         type: 'string',
-        enum: ['', 'newest', 'popular', 'barrio'],
+        enum: ['', 'newest', 'popular'],
         default: ''
-      },
-      related: {
-        type: 'string',
-        default: '',
-        format: 'barrio'
       },
       tipoIdea: {
         type: 'string',
@@ -132,13 +126,8 @@ app.get('/topics/all',
       },
       sort: {
         type: 'string',
-        enum: ['', 'newest', 'popular', 'barrio'],
+        enum: ['', 'newest', 'popular'],
         default: ''
-      },
-      related: {
-        type: 'string',
-        default: '',
-        format: 'barrio'
       },
       tipoIdea: {
         type: 'string',

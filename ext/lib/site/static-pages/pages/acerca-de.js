@@ -36,7 +36,7 @@ export default class Page extends Component {
 
                 <Accordion>
                   <div data-trigger="+ ¿QUÉ ES EL PRESUPUESTO PARTICIPATIVO DE UNIVERSIDAD DE MAR DEL PLATA?">
-                    <p className='p-padding'>El Programa ParticipaUNMDP PP (Presupuesto Participativo) es un espacio donde vas a poder presentar las ideas que tu barrio necesita. Luego, a través del voto, los vecinos del barrio van a poder decidir en qué utilizar parte del presupuesto del Municipio.</p>
+                    <p className='p-padding'>El Programa ParticipaUNMDP PP (Presupuesto Participativo) es un espacio donde vas a poder presentar las ideas que tu facultad necesita. Luego, a través del voto, los alumnos de la facultad van a poder decidir en qué utilizar parte del presupuesto del Municipio.</p>
                   </div>
                   <div data-trigger="+ ¿CÓMO SE DISTRIBUYE EL DINERO POR FACULTAD?">
                     <p className='p-padding'>

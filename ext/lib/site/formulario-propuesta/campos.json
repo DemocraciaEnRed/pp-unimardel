@@ -142,14 +142,7 @@
       "max" : 128,
       "min" : 0
   },
-  {
-      "name" : "barrio",
-      "title" : "Barrio",
-      "mandatory" : true,
-      "kind" : "Enum",
-      "options" : [
-      ]
-  },
+
   {
     "name" : "problema",
     "title" : "Problema o necesidad existente",
@@ -168,7 +161,7 @@
   },
   {
     "name" : "beneficios",
-    "title" : "Beneficios que brindará el proyecto al barrio",
+    "title" : "Beneficios que brindará el proyecto a la facultad",
     "mandatory" : true,
     "kind" : "String",
     "max" : 1000,

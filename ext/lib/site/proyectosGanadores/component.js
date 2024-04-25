@@ -9,15 +9,14 @@ export default class Carrusel extends Component {
     this.flkty = null
     this.state = {
       topics: null,
-      barrios: [
-      ],
     }
   }
 
   componentDidMount () {
-    window.fetch(`/ext/api/topics?forumName=proyectos&anio=2020&state=preparacion,compra,ejecucion,finalizado&limit=100&sort=popular`, { credentials: 'include' })
+    window.fetch(`/ext/api/topics?forumName=proyectos&anio=2024&state=preparacion,compra,ejecucion,finalizado&limit=100&sort=popular`, { credentials: 'include' })
       .then((res) => res.json())
       .then((res) => {
+        console.log(res.results.topics);
         this.setState({ topics: res.results.topics.sort(() => 0.5 - Math.random()) }
       )})
       .catch((err) => console.error(err))
@@ -42,30 +41,21 @@ export default class Carrusel extends Component {
   }
 
   render () {
-    const { topics, barrios } = this.state
+    const { topics } = this.state
     return (
       <div className='seccion-proyectos-factibles container-fluid'>
         <div className="fondo-titulo">
-          <h2 className='title'>Proyectos 2020</h2>
+          <h2 className='title'>Proyectos 2024</h2>
         </div>
         <section className='seccion-barrios-factibles container'>
           <div className='seccion-barrios-proyectos-factibles container'>
             <div className='seccion-botones-factibles'>
-              {/* <Link to={`/proyectos`} className={`boton-azul btn`}>
-                Todos los barrios
-              </Link> */}
-              {barrios.map((barrio, i) => (
-                <Link key={i} to={`/proyectos?barrio=${barrio.name}`}
-                  className={`boton-azul btn`}>
-                  { barrio.title }
-                </Link>
-              ))}
             </div>
           </div>
         </section>
         <div ref='carrusel'>
           {topics && topics.map((topic, i) => (
-            <TopicCard key={topic.id} topic={topic} forum={{ title: topic.attrs.barrio }} />
+            <TopicCard key={topic.id} topic={topic} />
           ))}
         </div>
         <Link className='boton-azul' href='/proyectos'>

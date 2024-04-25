@@ -21,7 +21,6 @@ const defaultValues = {
   limit: 20,
   facultad: [],
   tag: [],
-  // 'barrio' o 'newest' o 'popular'
   sort: '',
   tipoIdea: []
 }
@@ -120,7 +119,6 @@ class HomePropuestas extends Component {
       .filter((k) => query[k] && query[k].length > 0)
       .map((k) => `${k}=${ Array.isArray(query[k]) ?  query[k].join(',') : query[k] }`)
       .join('&')
-
     return window
       .fetch(`/ext/api/topics?${queryString}`, {credentials: 'include'})
       .then((res) => res.json())

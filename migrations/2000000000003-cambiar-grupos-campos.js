@@ -12,8 +12,6 @@ const defaultsDataKeyd = {}
 defaultsData.forEach(attr => defaultsDataKeyd[attr.name] = attr)
 
 const attrsData = [
-	{name: 'lat', order: 5 },
-	{name: 'long', order: 6 },
 	{name: 'subscribers', order: 7, width: 12 },
 	{name: 'album', order: 8, width: 12 }
 ]

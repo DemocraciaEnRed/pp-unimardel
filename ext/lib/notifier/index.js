@@ -41,7 +41,7 @@ const interval = setInterval(function () {
     notifier.now(testMailJob, {
       topic: {
         id: '5e668613024049422bb22078',
-        mediaTitle: 'Direcciones y nombres de pasillos para el Barrio Las Flores',
+        mediaTitle: 'Direcciones y nombres de pasillos para la facultad',
         authorName: 'Micaela Torres',
         authorEmail: testMailAccount,
         subscriber: testMailUserId,
@@ -50,7 +50,6 @@ const interval = setInterval(function () {
         documento: '<Documento>',
         telefono: '<Teléfono>',
         email: '<Email>',
-        barrio: '<Barrio>',
         tags: ['<Tag 1>', '<Tag 2>'],
         problema: '<Problema>',
         solucion: '<Solución>',

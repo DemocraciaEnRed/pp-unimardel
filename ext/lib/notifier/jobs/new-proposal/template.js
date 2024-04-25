@@ -26,8 +26,6 @@ module.exports = ({
       Teléfono: ${topic.telefono}<br>
       Email: ${topic.email}<br>
       </p>
-      <h2>Barrio</h2>
-      <p>${topic.barrio}</p>
       <h2>Tags</h2>
       <p>${topic.tags.join(', ')}</p>
       <h2>Problema</h2>

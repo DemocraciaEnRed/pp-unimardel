@@ -60,11 +60,7 @@ export default class Content extends Component {
             <div className='box-content'>
               <div className='topic-info'>
                 <span className='topic-year'><b>AÑO:</b> {this.props.anio}</span>
-                { this.props.lat && this.props.long ? (
-                  <a href={`http://maps.google.com/maps?q=${this.props.lat},${this.props.long}`} target='_blank' className='topic-location'><b>{this.props.barrio}</b></a>
-                ) : (
-                  <span className='topic-location unavailable'><b>{this.props.barrio}</b></span>
-                )}
+
               </div>
               <div className='box-content-item'>
                 <span className='box-content-title'>Presupuesto {states.find((st) => st.value === this.props.presupuesto).name}:</span>

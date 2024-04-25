@@ -8,7 +8,7 @@ const textsData = [
     //home
     { "name": "home-title", "text": "PRESUPUESTO PARTICIPATIVO DE UNIVERSIDAD DE MAR DEL PLATA" },
     { "name": "home-encuentro-title", "text": "NOVEDADES Y PRÓXIMOS ENCUENTROS" },
-    { "name": "home-encuentro-subtitle", "text": "Agendate la reunión de tu barrio y presentá tus ideas." },
+  { "name": "home-encuentro-subtitle", "text": "Agendate la reunión de tu facultad y presentá tus ideas." },
 
     //baner 1 
     { "name": "home-banner-image", "text": config.votacionAbierta ?  "https://participa.mardelplata.gob.ar//ext/lib/site/banner-invitacion/icon-votar.svg" : "https://participa.mardelplata.gob.ar//ext/lib/site/banner-invitacion/icon-idea.svg" },
