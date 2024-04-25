@@ -103,22 +103,6 @@ export default class FilterPropuestas extends Component {
       <nav id='filter-propuestas'>
         <div className='filters-nav center'>
           <FilterBox
-            name='facultad'
-            title='Facultad'
-            allOptions={facultades.sort(function(a, b) {
-              const y = a.name.split("Facultad ")[1]
-              const z = b.name.split("Facultad ")[1]
-              return y-z;
-            })}
-            activeOptions={facultad}
-            tabIndex="110"
-            activeDropdown={this.state.activeDropdown}
-            clearedFilters={this.state.clearedFilters}
-            handleDropdown={this.handleDropdown}
-            handleFilter={this.handleFilter}
-            clearFilter={this.clearFilter}
-            />
-          <FilterBox
             name='tag'
             title='Tema'
             allOptions={tags}
@@ -152,6 +136,23 @@ export default class FilterPropuestas extends Component {
             handleFilter={this.handleFilter}
             clearFilter={this.clearFilter}
             />
+          <FilterBox
+            name='facultad'
+            title='Facultad'
+            allOptions={facultades.sort(function (a, b) {
+              const y = a.name.split("Facultad ")[1]
+              const z = b.name.split("Facultad ")[1]
+              return y - z;
+            })}
+            activeOptions={facultad}
+            tabIndex="110"
+            activeDropdown={this.state.activeDropdown}
+            clearedFilters={this.state.clearedFilters}
+            handleDropdown={this.handleDropdown}
+            handleFilter={this.handleFilter}
+            clearFilter={this.clearFilter}
+          />
+
 
         </div>
 
