@@ -3,7 +3,7 @@ import config from 'lib/config'
 import forumStore from 'lib/stores/forum-store/forum-store'
 import topicStore from 'lib/stores/topic-store/topic-store'
 import facultadStore from 'lib/stores/facultad-store'
-
+import claustroStore from 'lib/stores/claustro-store'
 import tagStore from 'lib/stores/tag-store/tag-store'
 import Tags from 'lib/admin/admin-topics-form/tag-autocomplete/component'
 import Attrs from 'lib/admin/admin-topics-form/attrs/component'
@@ -37,6 +37,7 @@ class FormularioPropuesta extends Component {
       topic: null,
 
       nombre: '',
+      claustro: '',
       facultad: '',
       documento: '',
       // genero: '',
@@ -56,6 +57,8 @@ class FormularioPropuesta extends Component {
       
       availableTags: [],
       facultades: [],
+      claustros: []
+
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -78,6 +81,7 @@ class FormularioPropuesta extends Component {
       forumStore.findOneByName('proyectos'),
       tagStore.findAll(),
       facultadStore.findAll(),
+      claustroStore.findAll(),
     ]
 
     // si es edición traemos data del topic también
@@ -86,11 +90,12 @@ class FormularioPropuesta extends Component {
 
     Promise.all(promises).then(results => {
       // topic queda en undefined si no estamos en edit
-      const [forum, tags, facultades, topic] = results
+      const [forum, tags, facultades, claustros, topic] = results
       let newState = {
         forum,
         availableTags: tags,
         facultades,
+        claustros,
         mode: isEdit ? 'edit' : 'new'
       }
 
@@ -100,6 +105,7 @@ class FormularioPropuesta extends Component {
           documento: topic.attrs.documento,
           // genero: topic.attrs.genero,
           facultad: topic.facultad.id,
+          claustro: topic.attrs.claustro,
           tag: topic.tag,
           problema: topic.attrs.problema,
           solucion: topic.attrs.solucion,
@@ -112,7 +118,7 @@ class FormularioPropuesta extends Component {
         })
       this.setState(newState, () => {
         // updateamos campos de usuario
-        // (recién dps del setState tendremos facultades cargadas)
+        // (recién dps del setState tendremos facultades y claustros cargados))
         this.props.user.onChange(this.onUserStateChange)
         // si ya está loggeado de antes debería pasar por la función igualmente
         this.onUserStateChange()
@@ -139,6 +145,7 @@ class FormularioPropuesta extends Component {
       let user = this.props.user.state.value
       this.setState({
         // facultad: user.facultad._id,
+        claustro: user.claustro._id,
         email: user.email,
         documento: user.dni,
         nombre: user.firstName + ' ' + user.lastName
@@ -233,6 +240,7 @@ class FormularioPropuesta extends Component {
     if (this.state.telefono === '') return true
     if (this.state.problema === '') return true
     if (this.state.tag === '' ) return true
+    if (this.state.claustro === '') return true
     if (this.state.solucion === '') return true
     if (this.state.beneficios === '') return true
     if (this.state.facultad === '') return true
@@ -263,7 +271,7 @@ class FormularioPropuesta extends Component {
   }
 
   render () {
-    const { forum, facultades, requirementsAccepted } = this.state
+    const { forum, facultades, claustros, requirementsAccepted } = this.state
 
     if (!forum) return null
     if(forum.config.propuestasAbiertas || (this.state.forum.privileges && this.state.forum.privileges.canChangeTopics)) {
@@ -296,6 +304,25 @@ class FormularioPropuesta extends Component {
               placeholder=""
               onChange={this.handleInputChange}
               disabled={true} />
+          </div>
+          <div className='form-group'>
+            <label className='required' htmlFor='claustro'>
+              Claustro
+            </label>
+            <select
+              className='form-control special-height'
+              required
+              name='claustro'
+              value={this.state['claustro']}
+              onChange={this.handleInputChange}
+              disabled={true}>
+              <option value=''>Seleccione un claustro</option>
+              {claustros.length > 0 && claustros.map(claustro =>
+                <option key={claustro._id} value={claustro._id}>
+                  {claustro.nombre}
+                </option>
+              )}
+            </select>
           </div>
           <div className='form-group'>
             <label className='required' htmlFor='documento'>
@@ -677,6 +704,7 @@ class FormularioPropuesta extends Component {
                     {this.hasErrorsField('solucion') && <li className="error-li">El campo "Tu idea" no puede quedar vacío</li> }
                     {this.hasErrorsField('beneficios') && <li className="error-li">El campo "Beneficios" no puede quedar vacío</li>}
                     {this.hasErrorsField('facultad') && <li className="error-li">El campo "Facultad" no puede quedar vacío</li> }
+                    {this.hasErrorsField('claustro') && <li className="error-li">El campo "Claustro" no puede quedar vacío</li>}
              </ul>
              </div>
           }

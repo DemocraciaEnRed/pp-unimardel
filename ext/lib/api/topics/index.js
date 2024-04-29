@@ -30,6 +30,11 @@ app.get('/topics',
         format: 'facultades',
         default: ''
       },
+      claustros: {
+        type: 'string',
+        format: 'claustros',
+        default: ''
+      },
       tags: {
         type: 'string',
         format: 'tags',
@@ -65,6 +70,7 @@ app.get('/topics',
   utils.parseYears,
   utils.parseKWords,
   utils.parseFacultades,
+  utils.parseClaustros,
   utils.parseTags,
   middlewares.forums.privileges.canView,
   (req, res, next) => {

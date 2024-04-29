@@ -8,6 +8,11 @@ exports.parseFacultades = (req, res, next) => {
   req.query.facultades = req.query.facultades.split(',').filter((t) => !!t)
   next()
 }
+exports.parseClaustros = (req, res, next) => {
+  req.query.claustros = req.query.claustros.split(',').filter((t) => !!t)
+  next()
+}
+
 exports.parseTags = (req, res, next) => {
   req.query.tags = req.query.tags.split(',').filter((t) => !!t)
   next()
@@ -87,6 +92,8 @@ const getPossibleOwners = (opts) => {
   const {
     facultades,
     facultad,
+    claustros,
+    claustro
   } = opts
 
   const query = {}
@@ -94,6 +101,8 @@ const getPossibleOwners = (opts) => {
   // La facultad ahora se encuentra en el topic
   // if (facultades && facultades.length > 0) query.facultad = { $in: facultades.map(id => ObjectID(id)) }
   // else if (facultad) query.facultad = facultad
+  if (claustros && claustros.length > 0) query.claustro = { $in: claustros.map(id => ObjectID(id)) }
+  else if (claustro) query.claustro = claustro
 
   if (Object.keys(query).length > 0)
     return apiV1.user.findIds(query)
