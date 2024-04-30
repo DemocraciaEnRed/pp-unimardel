@@ -51,7 +51,7 @@ export default class HomeAbout extends Component {
           <div className='banner'></div>
           <div className='contenedor'>
             <div className='fondo-titulo'>
-              <h1>Presupuesto Participativo</h1>
+              <h1>ACERCA DEL PP</h1>
             </div>
           </div>
         </section>
@@ -59,7 +59,7 @@ export default class HomeAbout extends Component {
           <div className='ext-acerca-de container'>
             <div className='filas'>
               <div className='faq text-left'>
-              <p className='p-padding'>Accedé al <a target="_blank" href="/reglamento">reglamento general</a> de Participa UNMDP. En este espacio te dejamos algunas normas básicas para que conozcas el funcionamiento del Presupuesto Participativo.</p>
+                <p className='info-reglamento'>Accedé al <a target="_blank" href="/reglamento">reglamento general</a> del Presupuesto Participativo de la Universidad. Nacional de Mar del Plata. En este espacio, te compartimos algunas normas básicas para que conozcas el funcionamiento de la iniciativa.</p>
                 {faqs && 
                   <Accordion startPosition={-1}>
                     {faqs.map((faq) => (
