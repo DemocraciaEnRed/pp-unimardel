@@ -3,14 +3,46 @@ const dbReady = require('lib/models').ready
 const aboutUs = require('lib/models').aboutUs
 
 const aboutUsData = [
-  { 'order': 0, 'question': '+ ¿QUÉ ES EL PRESUPUESTO PARTICIPATIVO DE UNIVERSIDAD DE MAR DEL PLATA?', 'answer': '<p className="p-padding">El Programa ParticipaUNMDP PP (Presupuesto Participativo) es un espacio donde vas a poder presentar las ideas que tu facultad necesita. Luego, a través del voto, los vecinos del facultad van a poder decidir en qué utilizar parte del presupuesto del Municipio.</p>' },
-  { 'order': 1, 'question': '+ ¿CÓMO SE DISTRIBUYE EL DINERO POR FACULTAD?', 'answer': '<p className="p-padding">La partida presupuestaria anual asignada al Programa ParticipaUNMDP, definida anualmente por la Secretaría de Economía y Hacienda, respetando los límites expuestos en la O-25061, se distribuye en 11 facultades considerando equidad territorial, equidad distributiva y cumplimiento fiscal.<br/>Para ésto, se le asignará a cada facultad el monto que surja de las siguientes pautas:<ul><li>25% del monto total del proyecto de ParticipaUNMDP será distribuido en partes iguales.</li><li>25% del monto total será dividido proporcionalmente a la población de cada facultad, según el último Censo Nacional de Población, Hogares y Viviendas (CNPHyV) disponible.</li><li>25% del monto total será dividido proporcionalmente a la cantidad de hogares afectados con Necesidades Básicas Insatisfechas (NBI) de cada facultad, según el último Censo Nacional de Población, Hogares y Viviendas (CNPHyV) disponible.</li><li>25% del monto total será dividido proporcionalmente según el cumplimiento fiscal de cada facultad en la Tasa de Servicios Urbanos (TSU), de acuerdo a listado provisto por la Agencia de Recaudación Municipal del año fiscal anterior.</li></ul></p>' },
-{ 'order': 2, 'question': '+ ¿QUIÉN PUEDE PRESENTAR IDEAS?', 'answer': '<p className="p-padding">Cualquier persona mayor de 16 años (cumplidos a la fecha de votación) con domicilio en su DNI en cualquiera de las facultades en las que se divide el Partido.</p>' },
-{ 'order': 3, 'question': '+ ¿CÓMO SE ELABORAN LAS IDEAS?', 'answer': '<p className="p-padding">En una serie de reuniones informativas, los vecinos y los representantes de las entidades serán capacitados por funcionarios municipales y/o grupo de consejeros seleccionados en cada facultad con el fin de cargar las ideas en la plataforma digital PARTICIPA.MARDELPLATA.GOB.AR utilizando el formulario de presentación de ideas.</p>' },
-{ 'order': 4, 'question': '+ ¿CÓMO SE DECIDE QUÉ PROYECTOS VAN A VOTACIÓN?', 'answer': '<p className="p-padding">Para que una idea pueda convertirse en un proyecto votable, luego del trabajo conjunto con funcionarios y/o grupo de consejeros, se pasa a una etapa de análisis legal, técnico y presupuestario. En esta instancia se termina de definir la factibilidad del proyecto y los costos estimados del mismo.</p>' },
-{ 'order': 5, 'question': '+ ¿QUIÉN PUEDE VOTAR LOS PROYECTOS?', 'answer': '<p className="p-padding">Cualquier persona mayor de 16 años (cumplidos a la fecha de votación) con domicilio en su DNI en cualquiera de las facultades en las que se divide el Partido puede votar los proyectos.</p>' },
-{ 'order': 6, 'question': '+ ¿PUEDO VOTAR MÁS DE UNA VEZ?', 'answer': '<p className="p-padding">Se puede votar un sola vez, con la posibilidad de seleccionar 2 (dos)  proyectos, uno en la facultad asignada a tu domicilio o seleccionada en la plataforma y otro en cualquier facultad.</p>' },
-{ 'order': 7, 'question': '+ ¿CÓMO VOTAR?', 'answer': '<p className="p-padding">Para poder votar los proyectos, tenés que registrarte en plataforma online ParticipaUNMDP (participa.mardelplata.gob.ar) y ahí seleccionar tus preferidos.</p>' },
+  {
+    "order": 0,
+    "question": "+ ¿Qué es el presupuesto participativo de universidad De Mar Del Plata?",
+    "answer": "<p className=\"p-padding\">El Programa ParticipaUNMDP PP (Presupuesto Participativo) es un espacio donde vas a poder presentar las ideas que tu facultad necesita. Luego, a través del voto, los vecinos del facultad van a poder decidir en qué utilizar parte del presupuesto del Municipio.</p>"
+  },
+  {
+    "order": 1,
+    "question": "+ ¿Cómo se distribuye el dinero por facultad?",
+    "answer": "<p className=\"p-padding\">La partida presupuestaria anual asignada al Programa ParticipaUNMDP, definida anualmente por la Secretaría de Economía y Hacienda, respetando los límites expuestos en la O-25061, se distribuye en 11 facultades considerando equidad territorial, equidad distributiva y cumplimiento fiscal.<br/>Para ésto, se le asignará a cada facultad el monto que surja de las siguientes pautas:<ul><li>25% del monto total del proyecto de ParticipaUNMDP será distribuido en partes iguales.</li><li>25% del monto total será dividido proporcionalmente a la población de cada facultad, según el último Censo Nacional de Población, Hogares y Viviendas (CNPHyV) disponible.</li><li>25% del monto total será dividido proporcionalmente a la cantidad de hogares afectados con Necesidades Básicas Insatisfechas (NBI) de cada facultad, según el último Censo Nacional de Población, Hogares y Viviendas (CNPHyV) disponible.</li><li>25% del monto total será dividido proporcionalmente según el cumplimiento fiscal de cada facultad en la Tasa de Servicios Urbanos (TSU), de acuerdo a listado provisto por la Agencia de Recaudación Municipal del año fiscal anterior.</li></ul></p>"
+  },
+  {
+    "order": 2,
+    "question": "+ ¿Quién puede Presentar ideas?",
+    "answer": "<p className=\"p-padding\">Cualquier persona mayor de 16 años (cumplidos a la fecha de votación) con domicilio en su DNI en cualquiera de las facultades en las que se divide el Partido.</p>"
+  },
+  {
+    "order": 3,
+    "question": "+ ¿Cómo se elaboran las ideas?",
+    "answer": "<p className=\"p-padding\">En una serie de reuniones informativas, los vecinos y los representantes de las entidades serán capacitados por funcionarios municipales y/o grupo de consejeros seleccionados en cada facultad con el fin de cargar las ideas en la plataforma digital PARTICIPA.MARDELPLATA.GOB.AR utilizando el formulario de presentación de ideas.</p>"
+  },
+  {
+    "order": 4,
+    "question": "+ ¿Cómo se decide qué proyectos van a votación?",
+    "answer": "<p className=\"p-padding\">Para que una idea pueda convertirse en un proyecto votable, luego del trabajo conjunto con funcionarios y/o grupo de consejeros, se pasa a una etapa de análisis legal, técnico y presupuestario. En esta instancia se termina de definir la factibilidad del proyecto y los costos estimados del mismo.</p>"
+  },
+  {
+    "order": 5,
+    "question": "+ ¿Quién puede votar los proyectos?",
+    "answer": "<p className=\"p-padding\">Cualquier persona mayor de 16 años (cumplidos a la fecha de votación) con domicilio en su DNI en cualquiera de las facultades en las que se divide el Partido puede votar los proyectos.</p>"
+  },
+  {
+    "order": 6,
+    "question": "+ ¿Puedo votar más de una vez?",
+    "answer": "<p className=\"p-padding\">Se puede votar un sola vez, con la posibilidad de seleccionar 2 (dos)  proyectos, uno en la facultad asignada a tu domicilio o seleccionada en la plataforma y otro en cualquier facultad.</p>"
+  },
+  {
+    "order": 7,
+    "question": "+ ¿Cómo votar?",
+    "answer": "<p className=\"p-padding\">Para poder votar los proyectos, tenés que registrarte en plataforma online ParticipaUNMDP (participa.mardelplata.gob.ar) y ahí seleccionar tus preferidos.</p>"
+  }
 ]
 
 /**
