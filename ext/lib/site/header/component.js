@@ -157,14 +157,13 @@ class Header extends Component {
           </Link>
 
           <ul className='nav navbar-nav'>
-
-            <li className={`header-item ${window.location.pathname.includes('/acerca-de') ? 'active' : ''}`}>
+            <li className={`header-item ${window.location.pathname === '/' ? 'active' : ''}`}>
               <Link
-                to='/acerca-de'
+                to='/'
                 className='header-link'
                 tabIndex="82"
                 >
-                  Acerca de
+                Inicio
               </Link>
             </li>
             <li className={`header-item ${window.location.pathname.includes('/propuestas') ? 'active' : ''}`}>
@@ -174,14 +173,23 @@ class Header extends Component {
                 tabIndex="83"
                 onClick={() => window.location.href = '/propuestas'}
                 >
-                  Ideas y Proyectos
+                Ideas y Proyectos
               </Link>
             </li>         
+            <li className={`header-item ${window.location.pathname.includes('/acerca-de') ? 'active' : ''}`}>
+              <Link
+                to='/acerca-de'
+                className='header-link'
+                tabIndex="84"
+              >
+                Acerca de
+              </Link>
+            </li>
             <li className={`header-item ${window.location.pathname.includes('/archivo') ? 'active' : ''}`}>
               <Link
                 to='/archivo'
                 className='header-link'
-                tabIndex="83"
+                tabIndex="85"
                 onClick={() => window.location.href = '/archivo'}
                 >
                   Archivo
@@ -191,7 +199,7 @@ class Header extends Component {
               <Link
                 to='/votacion'
                 className='header-link'
-                tabIndex="84"
+                tabIndex="86"
                 >
                   Votá
               </Link>
@@ -202,7 +210,7 @@ class Header extends Component {
                 <Link
                   to='/proyectos/admin/topics'
                   className='header-link'
-                  tabIndex="85"
+                  tabIndex="87"
                   >
                     Admin
                 </Link>

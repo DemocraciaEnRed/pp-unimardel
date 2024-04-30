@@ -28,7 +28,7 @@ nav.navbar
     color: #C4D94B
     font-weight: normal
   .navbar-nav
-    height: 80px;
+    height: 90px;
     font-size: 17px
     display: flex
     align-items center
@@ -49,21 +49,26 @@ nav.navbar
           @media screen and (min-width: 975px)
             font-weight: normal          
   .header-item
-    padding: 0 20px;
+    padding: 0 .25rem;
+    margin: 0.25rem
     @media screen and (max-width: 500px)
-      padding: 0 13px;
+      padding: 0 .25rem;
     font-weight: normal
     display: flex;
     align-items: center;
     &:hover, &.active
-      background-color: #eeeeee
-      border-radius: 34px;
+      background-color: transparentify($pink,0.3)
+      border-radius: 10px;
       height: 50px;
       padding: 3px, 17px, 3px, 17px;
     .header-link
       height: auto
       position: relative
       color: black
+      font-size: 1.15rem
+      font-weight: 300
+      &:hover, &.active, &:focus
+        background-color: transparent
   .user-badge-helper
     margin-left 
 
