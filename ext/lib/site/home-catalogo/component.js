@@ -403,10 +403,7 @@ class HomePropuestas extends Component {
                 {  this.renderSortFilter() }
                 {topics && topics.length === 0 && (
                   <div className='empty-msg'>
-                    <div className='alert alert-success' role='alert'>
-                      No se encontraron ideas. <br/>
-                      si queres ver el seguimiento de ideas de años anteriores entra a <Link href="/archivo"> Archivo </Link>
-                    </div>
+                    Aun no hay ideas subidas
                   </div>
                 )}
                 {topics && (filteredTopics || topics).map((topic) => (
