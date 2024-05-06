@@ -1,5 +1,4 @@
 .footer-static
-  font-family: 'Museo300', sans-serif
   background-color: $primary-color-2
   border-top: solid 3px $pink
   width: 100%
@@ -86,10 +85,12 @@
         margin-top: 40px
   .logos
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
+    gap: 10px
     align-items: start;
     width: 100%;
     padding: 20px;
+    margin-bottom:1.5rem
     @media (max-width: 550px)
       flex-direction: column
       align-items: center
@@ -101,18 +102,10 @@
       font-size: 12px;
       margin-left: 10px;
     img
-      width: 86px
-  .logo-access
-    padding: 15px;
-    position: relative;
-    bottom: 20px;
-  .logo-flor
+      width: 200px
+  .logo-unmdp
       img
-        padding: 10px 20px 0;
-        width: 120px
-  .logo-ciudad
-      img
-        width: 150px
+        width: 410px
         @media (max-width: 550px)
           margin: 30px auto
   .logo
@@ -180,6 +173,7 @@
     a
       color: #d8d8d8
       display: block
+      font-weight: 600
 
 @media screen and (max-width: 500px)
   .container

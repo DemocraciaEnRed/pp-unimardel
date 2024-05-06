@@ -9,15 +9,15 @@ const textsData = [
 	{ "name": "home-video1-webm", "text": "https://cldup.com/b5-PScfd-V.webm" },
 	{ "name": "home-video2-mp4", "text": "https://cldup.com/w4RSGFJStA.mp4" },
 	{ "name": "home-video2-webm", "text": "https://cldup.com/0Cy2GaQ-cR.webm" },
-	{ "name": "home-icono1-imagen", "text": "https://i.ibb.co/Fgf5xgb/foros-vecinales-icono.png" },
+  { "name": "home-icono1-imagen", "text": "https://i.ibb.co/6mRywkZ/1.png" },
 	{ "name": "home-icono1-titulo", "text": "¿Qué es?" },
-	{ "name": "home-icono1-texto", "text": "home-icono1-texto" },
-	{ "name": "home-icono2-imagen", "text": "https://i.ibb.co/9VjQQHy/icon-propuestas.png" },
-	{ "name": "home-icono2-titulo", "text": "¿Qué puedo proponer?" },
-	{ "name": "home-icono2-texto", "text": "home-icono2-texto" },
-	{ "name": "home-icono3-imagen", "text": "https://i.ibb.co/BttPHbc/icon-seguimiento.png" },
-	{ "name": "home-icono3-titulo", "text": "¿Cómo sigo los proyectos?" },
-	{ "name": "home-icono3-texto", "text": "home-icono3-texto" }
+  { "name": "home-icono1-texto", "text": "Es un programa en el que tendrás la oportunidad de presentar ideas para mejorar tu colegio o facultad. Si tu idea cumple con el reglamento establecido, pasará a la etapa de votación, donde podría convertirse en un proyecto ganador." },
+  { "name": "home-icono2-imagen", "text": "https://i.ibb.co/6Hcvz8g/2.png" },
+  { "name": "home-icono2-titulo", "text": "¿Cómo participo?" },
+  { "name": "home-icono2-texto", "text": "Registra tu usuario para subir una o más ideas. Asegúrate de revisar el reglamento para participar. Eligí un eje temático, un título y describe brevemente tu idea. Además, podés comentar las ideas de otras personas y poner “me gusta”. Las propuestas factibles pasarán a la votación, y los proyectos más votados serán financiadas." },
+  { "name": "home-icono3-imagen", "text": "https://i.ibb.co/TWGMzCJ/3.png" },
+  { "name": "home-icono3-titulo", "text": "¿Cómo seguimos?" },
+  { "name": "home-icono3-texto", "text": "Una vez finalizada la etapa de subir ideas, estas serán evaluadas y se convertirán en proyectos para la instancia de votación." }
 ]
 
 /**

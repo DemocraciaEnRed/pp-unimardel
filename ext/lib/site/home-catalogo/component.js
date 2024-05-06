@@ -344,7 +344,7 @@ class HomePropuestas extends Component {
       <div className={`ext-home-ideas ${this.props.user.state.fulfilled ? 'user-logged' : ''}`}>
         <Anchor id='container'>
           {forum && <BannerListadoTopics
-          btnText={(!archive && forum.config.propuestasAbiertas) ? 'Subí tu idea' : undefined}
+            btnText={(!archive && forum.config.propuestasAbiertas) ? '¡Subí tu idea!' : undefined}
           btnLink={(!archive && forum.config.propuestasAbiertas) ? '/formulario-idea' : undefined}
             title={
               archive ? texts['archivo-title'] : texts['idea-title']

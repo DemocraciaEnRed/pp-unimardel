@@ -49,7 +49,7 @@ export default function ThumbsVoto(props) {
             </div>
         </div>     */}
 
-        <div className="row cont">
+        <div className="row cont cards-home">
           <div className="col-md-4">
             <div
               className="que-son img-responsive"

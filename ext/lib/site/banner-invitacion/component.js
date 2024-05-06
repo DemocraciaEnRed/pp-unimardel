@@ -17,13 +17,13 @@ export default (props) =>  {
             </div>
             <div className='actions' >
                 {texts['home-banner-button1-text'] &&
-                    <a href={texts['home-banner-button1-link']} target="_blank" tabIndex="31" className="boton-foro">
+                    <Link href={texts['home-banner-button1-link']} tabIndex="31" className="boton-foro">
                         {texts['home-banner-button1-text']}
-                    </a>}
+                    </Link>}
                 {texts['home-banner-button2-text'] &&
-                    <a href={texts['home-banner-button2-link']} target="_blank" tabIndex="32" className="boton-votacion">
+                    <Link href={texts['home-banner-button2-link']} tabIndex="32" className="boton-votacion">
                         {texts['home-banner-button2-text']}
-                    </a>}
+                    </Link>}
             </div>
     </div>
 )

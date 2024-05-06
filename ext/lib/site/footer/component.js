@@ -33,7 +33,9 @@ export default class Footer  extends Component {
         <p dangerouslySetInnerHTML={{__html: texts['footer-info']}}>
           
         </p>
+
       </div>
+          <div className="mapa-box"><div><iframe className="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.7735132720068!2d-57.5734977849084!3d-38.00574297971802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9584deb7308df243%3A0x73f08d2c6aeca400!2sUniversidad%20Nacional%20de%20Mar%20del%20Plata!5e0!3m2!1ses!2sar!4v1675882131071!5m2!1ses!2sar" frameborder="0" allowfullscreen=""></iframe></div></div>
           {/*  <div className='social-icon'>
         <a aria-label='Ícono de facebook' className='social-facebook' tabIndex="102"  href='https://facebook.com/municipalidadmardelplata/ ' target="_blank"/>
         <a aria-label='Ícono de instagram' className='social-instagram' tabIndex="103"  href='https://instagram.com/munimardelplata/' target="_blank" />
@@ -42,12 +44,16 @@ export default class Footer  extends Component {
         <a aria-label='Ícono de whatsapp' className='social-whatsapp' tabIndex="106"  href='https://wa.link/69dr1s' target="_blank" />
       </div> */}
       <div className='logos'>
-        {/* <a href="https://democraciaenred.org/" rel="noopener noreferer" target="_blank">
+            <a href="https://democraciaenred.org/" rel="noopener noreferer" target="_blank">
           <div className='logo-der'>
-            <img src="/ext/lib/site/footer/logo-der.png" alt="Logo democracia en red"/>
-            <span>Desarrollado por<br /><b>Democracia en red</b></span>
+                <img src="/ext/lib/site/footer/logo-der.png" alt="Logo democracia en red" />
           </div>
-        </a> */}
+            </a>
+            <a href="https://www.mdp.edu.ar/" rel="noopener noreferer" target="_blank">
+              <div className='logo-unmdp'>
+                <img src="/ext/lib/site/footer/logo-unmdp.png" alt="Logo universidad de Mar del Plata" />
+              </div>
+            </a>
         <div className='logo'>
           <a className='logo-mgp' tabIndex="107" href='https://www.mardelplata.gob.ar/' aria-label="Link a página de Mar del Plata" rel="noopener noreferer" target="_blank" />
         </div>
