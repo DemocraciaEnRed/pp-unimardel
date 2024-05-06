@@ -22,11 +22,11 @@ exports.up = function up (done) {
                                          : config.propuestasTextoCerradas */
         //forumProyecto.config.mostrarSeccionEventos = false
         
-        forumProyecto.config.propuestasAbiertas = config.propuestasAbiertas
+        forumProyecto.config.propuestasAbiertas = true
         forumProyecto.config.preIdeacion = false
         forumProyecto.config.ideacion = false
         forumProyecto.config.PreVotacion = false
-        forumProyecto.config.votacion = config.votacionAbierta
+        forumProyecto.config.votacion = false
         forumProyecto.config.seguimientoNormal = true
 
 

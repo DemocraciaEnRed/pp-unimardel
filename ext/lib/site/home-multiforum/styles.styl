@@ -274,37 +274,50 @@
       padding-bottom: 250px
 
   .banner-ideas
-    background-color: #f3f3f3;
+    background-color: $primary-color-3;
     padding: 50px 20px
     text-align: center
-    p
-      color: #4b3c59;
-      font-size: 30px;
+    .header-banner
+      max-width: 80%;
       margin: 20px auto;
-      max-width: 50%;
-      line-height: 1.25;
-      @media (max-width: 600px)
-        max-width: 80%
-        font-size: 25px;
+      h4
+        color: #fff;
+        font-size: 1.5rem;
+        line-height: 1.25;
+        font-weight: 500
+        @media (max-width: 600px)
+          font-size: 1rem;
+      p
+        color: #fff;
+        font-size: .95rem;
+        margin: 20px auto;
+        line-height: 1.25;
     img 
       width: 110px
-    .boton-foro
-      font-family: 'Museo300', sans-serif
-      border-radius: 5px;
-      box-shadow: 0 4px 4px 0 rgba(255, 255, 255, 0.25);
-      background-color: #C4D94B;
-      color: white
-      padding: 15px 30px
-      display: inline-block
-      margin: 10px
-    .boton-votacion
-      font-family: 'Museo300', sans-serif
-      border-radius: 5px;
-      box-shadow: 0 4px 4px 0 rgba(255, 255, 255, 0.25);
-      background-color: #0080A5;
-      color: white
-      padding: 15px 30px
-      display: inline-block
-      margin: 10px
+    .actions
+      display: flex
+      width: 50%
+      margin: auto
+      flex-wrap: wrap
+      justify-content: center
+      gap: 5%
+      @media (max-width: 768px)
+        width: 70%
+      a
+        color: white
+        padding: 15px 30px
+        border-radius: 5px;
+        width 45%
+        margin: 10px 0
+        font-size: 1.25rem;
+        font-weight: 600;
+        @media (max-width: 768px)
+          width: 100%
+          font-size: 1rem;
+      .boton-foro
+        background-color: $pink;
+      .boton-votacion
+        border: 2px solid #fff
+        
 *:focus
   outline: 1px solid
