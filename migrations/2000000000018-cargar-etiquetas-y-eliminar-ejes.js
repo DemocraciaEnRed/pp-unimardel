@@ -5,11 +5,11 @@ const nombreMigrationParaLog = 'cargar etiquetas '
 const Tag = models.Tag
 
 const etiquetas = [
-  { nombre: 'Equidad de Género' },
-  { nombre: 'Diversidad' },
-  { nombre: 'Accesibilidad' },
-  { nombre: 'Sostenibilidad' },
-  { nombre: 'Innovación' },
+  { nombre: 'Equidad de Género', color: '#9747FF', image: 'transgender-alt' },
+  { nombre: 'Diversidad', color: '#F9B678', image: 'users' },
+  { nombre: 'Accesibilidad', color: '#FF5353', image: 'wheelchair-alt' },
+  { nombre: 'Sostenibilidad', color: '#33CC99', image: 'tree' },
+  { nombre: 'Innovación', color: '#9E9CFB', image: 'lightbulb-o' },
 ]
 
 
@@ -18,8 +18,8 @@ const tags = etiquetas.map(etiqueta => {
   return {
     name: etiqueta.nombre,
     hash: etiqueta.nombre.toLowerCase().replace(/ /g, '-'),
-    image: 'people',
-    color: '#091A33',
+    image: etiqueta.image,
+    color: etiqueta.color,
     visible: true
   }
 })

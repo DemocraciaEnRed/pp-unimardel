@@ -471,7 +471,7 @@ class FormularioPropuesta extends Component {
                 {
                   this.state.availableTags.filter(tag => tag.hash !== "ideas-para-organizaciones/clubes").map((tag) => {
                     return (
-                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tag.id === tag.id ? 'tag active' : 'tag'}>{tag.name}</span></li>
+                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tag.id === tag.id ? 'tag active' : 'tag'} style={{ backgroundColor: this.state.tag.id === tag.id ? tag.color : '' }} ><i className={"fa fa-" + tag.image} aria-hidden="true"></i> {tag.name}</span></li>
                     )
                   })
                 }
@@ -485,7 +485,7 @@ class FormularioPropuesta extends Component {
                 {
                   this.state.availableTags.filter(tag => tag.hash !== "ideas-para-organizaciones/clubes").map((tag) => {
                     return (
-                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tag.id === tag.id ? 'tag active' : 'tag'}>{tag.name}</span></li>
+                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tag.id === tag.id ? 'tag active' : 'tag'} style={{ backgroundColor: this.state.tag.id === tag.id ? tag.color : '' }} ><i className={"fa fa-" + tag.image} aria-hidden="true"></i> {tag.name}</span></li>
                     )
                   })
                 }
