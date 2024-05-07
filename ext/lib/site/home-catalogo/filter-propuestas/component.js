@@ -75,7 +75,7 @@ export default class FilterPropuestas extends Component {
     const {
       facultad, facultades,
       tags, tag,
-      tiposIdea, tipoIdea,
+      claustros, claustro,
       handleRemoveBadge
     } = this.props
 
@@ -94,9 +94,9 @@ export default class FilterPropuestas extends Component {
       allActiveOpts.push(
         ...tag.sort().map(i => ({ value: i, name: tags.find(j => j.value==i).name }))
       )
-    if (tipoIdea.length && tiposIdea.length)
+    if (claustro.length && claustros.length)
       allActiveOpts.push(
-        ...tipoIdea.sort().map(i => ({ value: i, name: tiposIdea.find(j => j.value==i).name }))
+        ...claustro.sort().map(i => ({ value: i, name: claustros.find(j => j.value == i).name }))
       )
 
     return (
@@ -115,21 +115,10 @@ export default class FilterPropuestas extends Component {
             clearFilter={this.clearFilter}
             />
           <FilterBox
-            name='tipoIdea'
-            title='Tipo de idea'
-            allOptions={tiposIdea.map(tipo => {
-              let newName = "Ideas " + tipo.name + "s"
-              if (tipo.value === "factible") {
-                newName += " - a votar "  
-              }
-              const newOpt = {
-                value: tipo.value,
-                name: newName 
-              }
-              return newOpt
-            })}
-            activeOptions={tipoIdea}
-
+            name='claustro'
+            title='Claustro'
+            allOptions={claustros}
+            activeOptions={claustro}
             activeDropdown={this.state.activeDropdown}
             clearedFilters={this.state.clearedFilters}
             handleDropdown={this.handleDropdown}

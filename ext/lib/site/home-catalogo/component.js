@@ -7,6 +7,7 @@ import topicStore from 'lib/stores/topic-store/topic-store'
 import userConnector from 'lib/site/connectors/user'
 import tagStore from 'lib/stores/tag-store/tag-store'
 import facultadStore from 'lib/stores/facultad-store'
+import claustroStore from 'lib/stores/claustro-store'
 import TopicCard from './topic-card/component'
 import BannerListadoTopics from 'ext/lib/site/banner-listado-topics/component'
 import FilterPropuestas from './filter-propuestas/component'
@@ -22,7 +23,7 @@ const defaultValues = {
   facultad: [],
   tag: [],
   sort: '',
-  tipoIdea: []
+  claustro: []
 }
 
 const filters = {
@@ -48,9 +49,9 @@ class HomePropuestas extends Component {
       facultad: defaultValues.facultad,
       tags: [],
       tag: defaultValues.tag,
-      tiposIdea: [],
+      claustros: [],
       sort: defaultValues.sort,
-      tipoIdea: defaultValues.tipoIdea,
+      claustro: defaultValues.claustro,
 
       page: null,
       noMore: null,
@@ -79,20 +80,20 @@ class HomePropuestas extends Component {
       facultadStore.findAll(),
       tagStore.findAll({field: 'name'}),
       forumStore.findOneByName('proyectos'),
+      claustroStore.findAll(),
       textStore.findAllDict(),
       topicStore.findAllProyectos()
     ]).then(results => {
-      const [facultades, tags, forum, textsDict] = results
+      const [facultades, tags, forum, claustrosall, textsDict] = results
       const tagsMap = tags.map(tag => { return {value: tag.id, name: tag.name}; });
       const tag = this.props.location.query.tags ? [tagsMap.find(j => j.name == this.props.location.query.tags).value] : [];
-      const tiposIdea = forum.topicsAttrs.find(a => a.name=='state').options.map(state => { return {value: state.name, name: state.title}; })
-      const tipoIdea = forum.config.ideacion ? ['pendiente'] : forum.config.preVotacion || forum.config.votacion ? ['factible'] : forum.config.seguimientoNormal ? ['ganador'] : []
+      const claustros = claustrosall.map(claustro => { return { value: claustro.id, name: claustro.nombre }; });
+      console.log(claustros);
       this.setState({
         facultades: facultades.map(facultad => { return {value: facultad._id, name: facultad.nombre}; }),
         tags: tagsMap,
         tag,
-        tiposIdea,
-        tipoIdea: archive ? ['ganador'] : tipoIdea,
+        claustros,
         forum,
         texts:textsDict,
         years,
@@ -110,7 +111,7 @@ class HomePropuestas extends Component {
       facultades: this.state.facultad,
       tags: this.state.tag,
       sort: this.state.sort,
-      tipoIdea: this.state.tipoIdea,
+      claustro: this.state.claustro,
       years: this.state.years,
       kwords: this.state.kwords
     }
@@ -255,8 +256,8 @@ class HomePropuestas extends Component {
     }else if (this.state.tag.includes(option)){
       this.setState({ tag: this.state.tag.filter(i => i != option) }
       ,() => this.fetchTopics());
-    }else if (this.state.tipoIdea.includes(option)){
-      this.setState({ tipoIdea: this.state.tipoIdea.filter(i => i != option) }
+    } else if (this.state.claustro.includes(option)) {
+      this.setState({ claustro: this.state.claustro.filter(i => i != option) }
       ,() => this.fetchTopics());
     }
   }
@@ -269,8 +270,8 @@ class HomePropuestas extends Component {
     Anchor.goTo('container')
   }
 
-  onChangeTipoIdeaFilter = (name) => {
-    this.setState({ tipoIdea: name }, () => this.fetchTopics());
+  onChangeClaurtoFilter = (name) => {
+    this.setState({ claustro: name }, () => this.fetchTopics());
   }
 
   renderSortFilter() {
@@ -290,8 +291,8 @@ class HomePropuestas extends Component {
               {this.state.forumStates.map((state) => (
                   <button
                     key={state.name}
-                    className={`btn-sort-filter ${this.state.tipoIdea === state.name ? 'active' : ''}`}
-                    onClick={() => this.onChangeTipoIdeaFilter(state.name)}>
+                    className={`btn-sort-filter ${this.state.claustro === state.name ? 'active' : ''}`}
+                    onClick={() => this.onChangeClaustroFilter(state.name)}>
                     <span className="glyphicon glyphicon-ok" />
                     {
                       (state.name == 'pendiente' && 'Originales') ||
@@ -373,8 +374,8 @@ class HomePropuestas extends Component {
               facultad={this.state.facultad}
               tags={this.state.tags}
               tag={this.state.tag}
-              tiposIdea={this.state.tiposIdea}
-              tipoIdea={this.state.tipoIdea}
+              claustros={this.state.claustros}
+              claustro={this.state.claustro}
               openVotation={true}
               handleFilter={this.handleFilter}
               handleDefaultFilter={this.handleDefaultFilter}
