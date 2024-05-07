@@ -9,16 +9,12 @@ const getSeguimientoStateLabel = (state) => {
   switch (state) {
     case 'preparacion':
       return 'Preparación'
-      break
     case 'compra':
       return 'Contratación'
-      break
     case 'ejecucion':
       return 'Ejecución'
-      break
     case 'finalizado':
       return 'Finalizado'
-      break
   }
 }
 
@@ -91,7 +87,7 @@ export class TopicCard extends Component {
     // console.log(topic)
     return (
       <div className='ext-topic-card ideas-topic-card' onClick={this.handleWrapperClick}>
-        <div className={`idea-${topic && topic.attrs && topic.attrs.state}`}>
+        <div className={`idea-${topic && topic.attrs && topic.attrs.state}`} style={{ borderLeft: `10px solid ${topic.tag.color}` }}>
           <div className='topic-card-info'>
             <div className='topic-card-attrs'>
    
@@ -139,7 +135,7 @@ export class TopicCard extends Component {
           <div className='topic-card-footer'>
             <div className='topic-card-tags'>
               <span className="glyphicon glyphicon-tag"></span>
-              { topic.tag && <span className='tag-wrapper' >{topic.tag.name}</span>} 
+              {topic.tag && <span className='tag-wrapper' style={{ backgroundColor: topic.tag.color }} ><i className={"fa fa-" + topic.tag.image} aria-hidden="true"></i>  {topic.tag.name}</span>} 
               {
                 topic && topic.attrs && topic.attrs.state &&
                 <span

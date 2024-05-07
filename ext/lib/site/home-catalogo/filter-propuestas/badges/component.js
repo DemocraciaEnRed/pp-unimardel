@@ -16,7 +16,7 @@ export default class Badges extends Component {
             <div className='badges-item' key={option.value}>
               {option.name}&nbsp;
               <span className='badge-cross' onClick={handleRemove(option.value)}>
-                x
+                <i aria-hidden='true' className='fa fa-times-circle-o'></i>
               </span>
             </div>
           )}

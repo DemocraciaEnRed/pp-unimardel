@@ -8,21 +8,22 @@ h1
   justify-content: center;
 
   .badges-item
-    background-color: #C4D94B;
-    color: white;
-    font-size: 12px;
-    font-weight: 600;
+    background-color: $primary-color;
+    font-size: 1rem;
+    font-weight: 400;
     line-height: 20px;
     margin: 0 7px 8px;
-    padding: 3px 6px 3px 17px;
-    border-radius: 8px;
+    padding: 8px 6px 8px 17px;
+    border-radius: 9999px;
+    display: flex
     &:hover
-      background-color: #a4b92e;
+      background-color: transparentify($pink, 0.8);
+      color: #fff
 
     .badge-cross
       padding-right: 4px
       padding-left: 4px
       margin-left: 4px;
       cursor: pointer;
-      font-size: 13px;
-      vertical-align: text-bottom;
+      i
+        font-size: 20px;

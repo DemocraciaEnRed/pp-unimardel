@@ -15,13 +15,10 @@ const getBudget = (state) => {
   switch (state) {
     case 'preparacion':
       return 'project-budget-preparacion'
-      break
     case 'compra':
       return 'project-budget-compra'
-      break
     case 'ejecucion':
       return 'project-budget-ejecucion'
-      break
     case 'finalizado':
       return 'project-budget-finalizado'
     default:
