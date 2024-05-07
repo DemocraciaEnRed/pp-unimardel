@@ -598,8 +598,7 @@ class FormularioPropuesta extends Component {
                     {this.hasErrorsField('documento') && <li className="error-li">El campo "DNI" no puede quedar vacío</li> }
                     {/* {this.hasErrorsField('genero') && <li className="error-li">El campo "Género" no puede quedar vacío</li> } */}
                     {this.hasErrorsField('email') && <li className="error-li">El campo "Email" no puede quedar vacío</li> }
-                    {this.hasErrorsField('titulo') && <li className="error-li">El campo "Título" no puede quedar vacío</li> }
-                    {this.hasErrorsField('telefono') && <li className="error-li">El campo "Teléfono" no puede quedar vacío</li> }
+                    {this.hasErrorsField('titulo') && <li className="error-li">El campo "Título" no puede quedar vacío</li>}
                     {this.hasErrorsField('problema') && <li className="error-li">El campo "Problema" no puede quedar vacío</li> }
                     {this.hasErrorsField('tag') && <li className="error-li">El campo "Tipo" no puede quedar vacío</li> }
                     {this.hasErrorsField('solucion') && <li className="error-li">El campo "Tu idea" no puede quedar vacío</li> }
