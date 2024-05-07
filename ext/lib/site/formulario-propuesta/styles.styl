@@ -6,7 +6,6 @@
   display: flex
   flex-direction: column
   align-items: center
-  font-family: 'Museo300', sans-serif
   @media (max-width: 400px)
     margin-top: 140px
   .propuesta-header
@@ -28,14 +27,12 @@
     h1
       font-size: 32px
       margin:0;
-      font-family: 'Museo300', sans-serif
       background-color: $primary-color-2;
       padding: 10px 20px;
       @media screen and (min-width: 764px)
         font-size: 32px
     p
       font-size: 16px
-      font-family: 'Museo900', sans-serif
       margin:0;
       padding: 4px 30px;
       // margin-top:6px;
@@ -45,7 +42,7 @@
         font-size: 20px
 
   .wrapper
-    max-width:900px
+    max-width:80%
     width: 100%
     padding: 20px
     position: relative
@@ -58,14 +55,13 @@
       text-align: center
       &.acerca-requisitos
         margin-top: 0
-        background: #00758F;
+        background-color: $primary-color-2
         .section-title
           font-size: 20px
-          font-family: 'Museo300', sans-serif
           color: white
           text-align: center;        
       &.acerca-propuesta
-        background: $primary-color-2;
+        background: $pink;
         margin: 2rem 20%    
         margin-bottom: 0
       p
@@ -76,26 +72,12 @@
       .section-title
         font-size: 30px
         font-weight: bold
-        font-family: 'Museo300', sans-serif
         color: white
         text-align: center;
       .section-subtitle
         color: #484747
         font-size: 16px
-        text-align: center
-        font-family: 'Museo300', sans-serif
-      .section-intro
-        background-color: #8c1e80
-        font-size: 16px
-        color: white
-        padding: 4px 20px
-        display: inline-block
-        margin-bottom: 25px
-    .required
-      color: #000
-    label
-      // color: rgba(0, 0, 0, 0.55)
-      margin: 10px 0 15px;
+        text-align: centerfont-family
       font-size: 20px;
       font-weight: bold;
 
@@ -108,14 +90,14 @@
       width: 100%
     
     .btn-requirements-accepted
-      color: $primary-color-2
-      font-family: 'Museo300', sans-serif
+      color: $primary-color
       font-style: normal;
       font-size: 25px;
+      font-weight: 400
       line-height: 30px;
       text-align: center;
       padding: 1rem;
-      border: 3px solid $primary-color-2;
+      border: 3px solid $primary-color;
       filter: drop-shadow(0px 4px 4px rgba(255, 255, 255, 0.25));
       border-radius: 5px;
       background: #FFFFFF;      
@@ -123,32 +105,21 @@
     .bullet-requisitos
       margin-top: 40px
     li
-      font-family: 'Museo300', sans-serif
       font-style: normal;
       font-weight: 400;
       color: #000000;
       text-align: justify
-      margin-bottom: 20px
+      margin-bottom: .5rem
     .bold
       font-weight: bold;
 
-    input, select, textarea
-      border-radius: 0px
-      border: 1px solid #CACACA
-      border-bottom: 2px solid #CACACA
-      font-size: 1.2rem
-      color: #000
-      &:focus
-        box-shadow: none;
-        // border-color: #1791be
-        border: 1px solid #1791be
-        border-bottom: 2px solid #1791be
+    
     .submit-div
       text-align: center
       .submit-btn
-        color: #C4D94B
+        color: $primary-color
         font-weight: 800
-        border: 2px solid #C4D94B
+        border: 2px solid $primary-color
         background-color: #FFF;
         border-radius: 5px
         padding: 12px 60px
@@ -156,8 +127,18 @@
         font-size: 25px
         cursor: pointer
         &:hover
-          background-color: #C4D94B;
+          background-color: $primary-color;
           color: #FFF
+      .submit-btn-disabled
+        color: #fff
+        font-weight: 800
+        border: none
+        background-color: $grey;
+        border-radius: 5px
+        padding: 12px 60px
+        font-weight: 800;
+        font-size: 25px
+        cursor: not-allowed
     .form-section-label
       color: #9e41b9
       font-size: 18px
@@ -167,10 +148,6 @@
         left: -240px
         margin-top: 10px
         top: 30px
-
-  select.special-height
-    height: 3rem !important;
-
   ul.tags
     list-style: none;
     margin: 20px 0;
@@ -227,7 +204,7 @@
       border-left-color: #8c1e80; */
 
   .add-color
-    color: #0080A5;
+    color: $primary-color;
   .help-text
     display: block
     font-size: 16px
@@ -279,7 +256,6 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-family: 'Museo300', sans-serif
       font-style: normal;
       font-weight: 300;
       font-size: 18px;
@@ -303,7 +279,6 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-family: 'Museo300', sans-serif
       font-style: normal;
       font-weight: 300;
       font-size: 18px;
@@ -312,16 +287,14 @@
       color: #000000;    
 
   .aceptar-tyc
-    font-family: 'Museo300', sans-serif
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.85rem;
     line-height: 30px;
     text-align: center;
-    color: $primary-color-2;
+    color: $primary-color;
 
   .parte-ubicacion
-    font-family: 'Museo300', sans-serif
     font-style: normal;
     font-weight: 400;
     font-size: 30px;

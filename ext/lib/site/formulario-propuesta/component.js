@@ -47,8 +47,6 @@ class FormularioPropuesta extends Component {
       problema: '',
       solucion: '',
       beneficios: '',
-      ubicacion: '',
-      telefono: '',
       requirementsAccepted: false,
       
       state: '',
@@ -110,8 +108,6 @@ class FormularioPropuesta extends Component {
           problema: topic.attrs.problema,
           solucion: topic.attrs.solucion,
           beneficios: topic.attrs.beneficios,
-          telefono: topic.attrs.telefono,
-          ubicacion: topic.attrs.ubicacion,
           state: topic.attrs.state,
           adminComment: topic.attrs['admin-comment'],
           adminCommentReference: topic.attrs['admin-comment-reference'],
@@ -160,12 +156,10 @@ class FormularioPropuesta extends Component {
       mediaTitle: this.state.titulo,
       tag: this.state.tag.id,
       'attrs.documento': this.state.documento,
-      'attrs.telefono': this.state.telefono,
       // 'attrs.genero': this.state.genero,
       'attrs.problema': this.state.problema,
       'attrs.solucion': this.state.solucion,
       'attrs.beneficios': this.state.beneficios,
-      'attrs.ubicacion': this.state.ubicacion,
       facultad: this.state.facultad,
     }
     if (this.state.forum.privileges && this.state.forum.privileges.canChangeTopics && this.state.mode === 'edit') {
@@ -237,7 +231,6 @@ class FormularioPropuesta extends Component {
     // if (this.state.genero === '') return true
     if (this.state.email === '') return true
     if (this.state.titulo === '') return true
-    if (this.state.telefono === '') return true
     if (this.state.problema === '') return true
     if (this.state.tag === '' ) return true
     if (this.state.claustro === '') return true
@@ -364,80 +357,54 @@ class FormularioPropuesta extends Component {
 
           <div className="bullet-requisitos">
             <ul>
-              <li>Inversión en espacios públicos, actividades de bien público (talleres, capacitaciones, etc) y compra de bienes muebles para entidades sin fines de lucro.</li>
-              <li>Superar el análisis de factibilidad legal, técnica, económica y de impacto social.</li>
-              <li>Para entidades sin fines de lucro: contemplar un convenio con el municipio como contraprestación.</li>
-              <li>No superar el monto presupuestario asignado a la facultad donde se ubica la propuesta.</li>
+              <li>Serán factibles las propuestas de obras o equipamiento para entidades sin fines de lucro (sociedades de fomento, centros de jubilados, asociaciones civiles, etc.) para espacios públicos y para escuelas de gestión pública provincial.</li>
+              <li>Serán factibles campañas o talleres sobre un tema específico cuya ejecución sólo sea durante el 2025.</li>
+              <li>No serán factibles las propuestas que impliquen un gasto corriente (recursos humanos que incrementen la planta municipal).</li>
+              <li>Cada propuesta se debe presentar para un solo barrio. (No se puede presentar una propuesta para todo el Municipio)</li>
+              <li>El presupuesto máximo de la propuesta no puede superar los $ 10.000.000.</li>
             </ul>
               
           </div>
-          <div className="bar-section acerca-requisitos">
-              <p className='section-title'>No serán factibles:</p>
-          </div>
-
-          <div className="bullet-requisitos">
-            <ul>
-              <li>Propuestas que impliquen un gasto corriente recurrente (recursos humanos que incrementen la planta municipal).</li>
-              <li>Afectar a proyectos ya existentes o en curso.</li>
-              <li>Subsidios en beneficio directo de quien lo proponga.</li>
-              <li>Inversiones en inmuebles pertenecientes a instituciones y/o entidades sin fines de lucro.</li>
-              <li>Para entidades sin fines de lucro: proyectos que superen el monto establecido para el procedimiento de “Concurso de Precios” del art. 151° de la Ley Orgánica de las Municipalidades y modificatorias.</li>
-              <li>Proyectos que no se encuentren dentro del ámbito de competencia del municipio o contradigan la normativa vigente.</li>
-            </ul>
-          </div>          
-
           <div className="row ideas-no-factibles">
-            <div className="col-sm-6 ">
+            <div className="col-sm-4 ">
               <div className="idea-no-factible">
                 <img src="/ext/lib/site/formulario-propuesta/no-factible.png" alt="Ícono propuesta no factible"/>
-                <p>Cloacas y red de agua para mi facultad</p>
+                <p>“Asfaltar todas las calles MGP”</p>
               </div>
             </div>
-            <div className="col-sm-6 ">
+            <div className="col-sm-4 ">
               <div className="idea-no-factible">
                 <img src="/ext/lib/site/formulario-propuesta/no-factible.png" alt="Ícono propuesta no factible"/>
-                <p>Asfaltar todas las calles de UNMDP</p>
+                <p>“Dictar clases de xxxx los sabados en la rambla”</p>
               </div>
             </div>
-            <div className="col-sm-6 ">
+            <div className="col-sm-4 ">
               <div className="idea-no-factible">
                 <img src="/ext/lib/site/formulario-propuesta/no-factible.png" alt="Ícono propuesta no factible"/>
-                <p>Mejora en la escuela provincial nro.x</p>
+                <p>“Mas personal en los centros municipales”</p>
               </div>
             </div>
-            <div className="col-sm-6 ">
-              <div className="idea-no-factible">
-                <img src="/ext/lib/site/formulario-propuesta/no-factible.png" alt="Ícono propuesta no factible"/>
-                <p>Más personal en los centros municipales </p>
-              </div>
-            </div>            
           </div>
-            
           <div className="row ideas-factibles">
-            <div className="col-sm-6 ">
+            <div className="col-sm-4 ">
               <div className="idea-factible">
                 <img src="/ext/lib/site/formulario-propuesta/factible.png" alt="Ícono propuesta no factible"/>
-                <p>Colocar un semáforo en la esquina de calle A y calle B</p>
+                <p>“Poner juego en la Plaza zxy”</p>
               </div>
             </div>
-            <div className="col-sm-6 ">
+            <div className="col-sm-4 ">
               <div className="idea-factible">
                 <img src="/ext/lib/site/formulario-propuesta/factible.png" alt="Ícono propuesta no factible"/>
-                <p>Equipamiento para la entidad X</p>
+                <p>“Camaras de seguridad en xxx”</p>
               </div>
             </div>
-            <div className="col-sm-6 ">
+            <div className="col-sm-4 ">
               <div className="idea-factible">
                 <img src="/ext/lib/site/formulario-propuesta/factible.png" alt="Ícono propuesta no factible"/>
-                <p>Juegos en la plaza X</p>
+                <p>“Colocar una plaza en el predio de la calle xxx”</p>
               </div>
             </div>
-            <div className="col-sm-6 ">
-              <div className="idea-factible">
-                <img src="/ext/lib/site/formulario-propuesta/factible.png" alt="Ícono propuesta no factible"/>
-                <p>Construir Skatepark / Parkour / Playón Deportivo</p>
-              </div>
-            </div>            
+
           </div>
                         
           <hr />
@@ -457,16 +424,15 @@ class FormularioPropuesta extends Component {
 
           { requirementsAccepted && <section>
           
-          <div className="bar-section acerca-requisitos mt-6">
+            {/* <div className="bar-section acerca-requisitos mt-6">
             <p className='section-title'>Contanos sobre tu idea</p>
-          </div>
+          </div> */}
 
 
           <div className='form-group mt-5'>
             <label className='required' htmlFor='titulo'>
               * Título de la idea
-            </label>
-            <p className="help-text">Elegí un título</p>
+              </label>
             <input
               className='form-control'
               required
@@ -475,45 +441,30 @@ class FormularioPropuesta extends Component {
               name='titulo'
               value={this.state['titulo']}
               onChange={this.handleInputChange} />
-          </div>       
-
-          <div className='form-group'>
-            <label className='required' htmlFor='telefono'>
-              * Número de teléfono
-            </label>
-            <p className="help-text">Únicamente será para contactarte por dudas o avances sobre tu idea.</p>
-            <input
-              className='form-control'
-              required
-              type='text'
-              max='128'
-              name='telefono'
-              value={this.state['telefono']}
-              onChange={this.handleInputChange} />
-          </div>         
-
-          <div className='form-group'>
-            <label className='required' htmlFor='problema'>
-              * Problema o necesidad existente
-            </label>
-            <p className='help-text'>¿Qué problemas querés resolver? ¿a quiénes afecta? ¿Cómo?</p>
-            {/*<p className='help-text'><strong>Recordá ingresar solo una idea por formulario</strong></p>*/}
-            <textarea
-              className='form-control'
-              required
-              rows='7'
-              max='5000'
-              name='problema'
-              value={this.state['problema']}
-              onChange={this.handleInputChange}>
-            </textarea>
-          </div>      
-
-          <div className='tags-autocomplete'>
+            </div>       
+            <div className='form-group'>
+              <label htmlFor='facultad'>
+                Para que facultad es tu idea? (Si no aplica, dejalo en blanco)
+              </label>
+              <select
+                className={`form-control ${this.state['facultad'] && "facultad-selected"}`}
+                name='facultad'
+                value={this.state['facultad']}
+                onChange={this.handleInputChange}
+              >
+                <option value=''>Seleccione una facultad...</option>
+                {facultades.length > 0 && facultades.map(facultad =>
+                  <option key={facultad._id} value={facultad._id}>
+                    {facultad.nombre}
+                  </option>
+                )}
+              </select>
+            </div>
+            <div className='tags-autocomplete'>
             <label className='required'>
               * Tipo de proyecto
             </label>
-            <p className='help-text'>Tipologias para Espacio publico</p>
+              <p className='help-text'>Elegi un tipo de proyecto para tu idea</p>
             {
               this.state.mode === 'edit' && this.state.availableTags && <div>
                 <ul className="tags">
@@ -525,16 +476,7 @@ class FormularioPropuesta extends Component {
                   })
                 }
                 </ul>
-                <p className='help-text'>Tipologías para Organizaciónes de base / Clubes / Etc</p>
-                <ul className="tags">
-                {
-                  this.state.availableTags.filter(tag => tag.hash === "ideas-para-organizaciones/clubes").map((tag) => {
-                    return (
-                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tag.id === tag.id ? 'tag active' : 'tag'}>{tag.name}</span></li>
-                    )
-                  })
-                }
-                </ul>
+
               </div>
             }
             {
@@ -548,19 +490,26 @@ class FormularioPropuesta extends Component {
                   })
                 }
                 </ul>
-                <p className='help-text'>Tipologías para Organizaciónes de base / Clubes / Etc</p>
-                <ul className="tags">
-                {
-                  this.state.availableTags.filter(tag => tag.hash === "ideas-para-organizaciones/clubes").map((tag) => {
-                    return (
-                      <li key={tag.id}><span onClick={this.toggleTag(tag)} value={tag.id} className={this.state.tag.id === tag.id ? 'tag active' : 'tag'}>{tag.name}</span></li>
-                    )
-                  })
-                }
-                </ul>                
-              </div>
-            }
-          </div>
+
+                </div>
+              }
+            </div>
+            <div className='form-group'>
+              <label className='required' htmlFor='problema'>
+                * Problema o necesidad existente
+              </label>
+              <p className='help-text'>¿Qué problemas querés resolver? ¿a quiénes afecta? ¿Cómo?</p>
+              {/*<p className='help-text'><strong>Recordá ingresar solo una idea por formulario</strong></p>*/}
+              <textarea
+                className='form-control'
+                required
+                rows='7'
+                max='5000'
+                name='problema'
+                value={this.state['problema']}
+                onChange={this.handleInputChange}>
+              </textarea>
+            </div>
           
           {this.state.tag && this.state.tag.hash === "ideas-para-organizaciones/clubes" && <div className="disclaimer-orgas mb-3">
           Las <b>ideas dirigidas a mejorar o equipar organizaciones serán evaluadas internamente</b> en primera instancia, y luego de aprobadas podrán avanzar a siguientes etapas. <br />
@@ -598,55 +547,7 @@ class FormularioPropuesta extends Component {
               value={this.state['beneficios']}
               onChange={this.handleInputChange}>
             </textarea>
-          </div> 
-
-          <div className="parte-ubicacion mt-5">
-            <p className='section-title'>Ubicación</p>
-          </div>
-          <hr />
-
-            <div className='form-group'>
-              <label htmlFor='facultad'>
-                * ¿En qué facultad se desarrollará la idea?
-              </label>
-              <p className='help-text'>Selecciona el bario y te indicaremos la facultad a la que pertenece</p>
-
-              
-              <br />
-              <select
-                className={`form-control ${this.state['facultad'] && "facultad-selected"}`}
-                name='facultad'
-                value={this.state['facultad']}
-                onChange={this.handleInputChange}
-                style={{'height': '50px'}}
-              >
-                <option value=''>Seleccione una facultad...</option>
-                {facultades.length > 0 && facultades.map(facultad =>
-                  <option key={facultad._id} value={facultad._id}>
-                    {facultad.nombre}
-                  </option>
-                )}
-              </select>
-            </div>
-
-                    
-
-
-          <div className='form-group'>
-            <label htmlFor='ubicacion'>
-              ¿Cuál es la dirección (calle y altura)? (opcional)
-            </label>
-            <input
-              className='form-control'
-              type='text'
-              max='128'
-              name='ubicacion'
-              value={this.state['ubicacion']}
-              onChange={this.handleInputChange} />
-          </div>
-
-
-
+            </div> 
           {this.state.forum.privileges && this.state.forum.privileges.canChangeTopics && this.state.mode === 'edit' && (
             <div className='form-group'>
               <label htmlFor='state'>Estado</label>
@@ -691,7 +592,7 @@ class FormularioPropuesta extends Component {
           )}
           {
              this.hasErrors() &&
-             <div className="error-box mt-6">
+              <div className="error-box mt-5">
              <ul>
                     {this.hasErrorsField('nombre') && <li className="error-li">El campo "Nombre y apellido" no puede quedar vacío</li> }
                     {this.hasErrorsField('documento') && <li className="error-li">El campo "DNI" no puede quedar vacío</li> }
@@ -708,14 +609,19 @@ class FormularioPropuesta extends Component {
              </ul>
              </div>
           }
+            <p className="more-info add-color">*La propuesta será revisada por el equipo de la Municipalidad y notificará su factibilidad a la brevedad. Si la propuesta es factible pasará a la etapa de votación.</p>
           <div className='submit-div'>
             { !this.hasErrors() &&
               <button type='submit' className='submit-btn'>
                 {this.state.mode === 'new' ? 'Enviar idea' : 'Guardar idea'}
               </button>
             }
-          </div>
-          <p className="more-info add-color">¡Luego de mandarla, podés volver a editarla!</p>
+              {this.hasErrors() &&
+                <button type='submit' className='submit-btn-disabled' disabled="true">
+                  {this.state.mode === 'new' ? 'Enviar idea' : 'Guardar idea'}
+                </button>
+              }
+            </div>
           </section>}
 
           
