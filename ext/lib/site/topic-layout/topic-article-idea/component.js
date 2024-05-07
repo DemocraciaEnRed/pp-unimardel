@@ -13,6 +13,11 @@ import VerTodosButton from 'ext/lib/site/home-catalogo/topic-card/ver-todos-butt
 import config from 'lib/config'
 import Collapsible from 'react-collapsible'
 import StepProgress from './step-progress/component'
+
+function capitalizeFirstLetter(str) {
+  if (!str) return ''
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
 class TopicArticle extends Component {
   constructor (props) {
     super(props)
@@ -51,16 +56,12 @@ class TopicArticle extends Component {
     switch (name) {
       case 'pendiente':
         return 'pendiente'
-        break
       case 'no-factible':
         return 'no factible'
-        break
       case 'integrado':
         return 'integrada'
-        break
       default:
         return 'factible'
-        break
     }
   }
 
@@ -245,6 +246,28 @@ class TopicArticle extends Component {
                     <div className="col-md-12">
                       <strong>Beneficios:</strong>
                       <p>{topic.attrs['beneficios'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}</p>
+                      </div>
+                      <div className='col-md-12'>
+                        <div className='topic-card-tags'>
+                          {topic.tag && <span className='tag-wrapper' style={{ backgroundColor: topic.tag.color }} ><i className={"fa fa-" + topic.tag.image} aria-hidden="true"></i>  {topic.tag.name}</span>}
+                          {
+                            topic && topic.attrs && topic.attrs.state &&
+                            <span
+                              className={`tag-wrapper tag-status-${topic.attrs.state}`} >
+                              {capitalizeFirstLetter(topic.attrs.state)}
+                            </span>
+
+                          }
+                          {
+                            topic && topic.attrs && topic.attrs.state && topic.attrs.state === 'ganador' && topic.attrs['presupuesto-estado'] &&
+                            <span
+                              className={`tag-wrapper tag-status-${topic.attrs['presupuesto-estado']}`} >
+                              {getSeguimientoStateLabel(topic.attrs['presupuesto-estado'])}
+                            </span>
+
+                          }
+                        </div>
+
                     </div>
                   </div>
                 </div> : 
@@ -271,6 +294,10 @@ class TopicArticle extends Component {
                   </div>
                 }                            
               </Collapsible>
+              <Social
+                topic={topic}
+                twitterText={twitterText}
+                socialLinksUrl={socialLinksUrl} />
 
               {!isProyecto && buttons}
 
@@ -289,15 +316,8 @@ class TopicArticle extends Component {
             </div>
           </div>
         </div>
-        <Social
-          topic={topic}
-          twitterText={twitterText}
-          socialLinksUrl={socialLinksUrl} />
-        <div className='topic-tags topic-article-content'>
-          {
-            this.props.topic.tag && <span className='topic-article-tag'>{ this.props.topic.tag.name } </span>
-          }
-        </div>
+
+
 
         { (topic.privileges && !topic.privileges.canEdit && user.state.value && topic.owner.id === user.state.value.id) &&
             (

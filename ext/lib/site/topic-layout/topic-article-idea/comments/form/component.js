@@ -115,7 +115,7 @@ class CommentsForm extends Component {
         {this.state.focused && (
           <div className='actions'>
             <button
-              className='btn btn-sm btn-outline-success'
+              className='btn btn-sm btn-outline-primary'
               type='submit'>
               {t('comments.create.publish')}
             </button>
