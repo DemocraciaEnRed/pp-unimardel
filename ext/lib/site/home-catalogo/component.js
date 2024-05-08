@@ -87,7 +87,7 @@ class HomePropuestas extends Component {
       const [facultades, tags, forum, claustrosall, textsDict] = results
       const tagsMap = tags.map(tag => { return {value: tag.id, name: tag.name}; });
       const tag = this.props.location.query.tags ? [tagsMap.find(j => j.name == this.props.location.query.tags).value] : [];
-      const claustros = claustrosall.map(claustro => { return { value: claustro.id, name: claustro.nombre }; });
+      const claustros = claustrosall.map(claustro => { return { value: claustro._id, name: claustro.nombre }; });
       this.setState({
         facultades: facultades.map(facultad => { return {value: facultad._id, name: facultad.nombre}; }),
         tags: tagsMap,
