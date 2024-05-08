@@ -161,6 +161,7 @@ class FormularioPropuesta extends Component {
       'attrs.solucion': this.state.solucion,
       'attrs.beneficios': this.state.beneficios,
       facultad: this.state.facultad,
+      claustro: this.state.claustro
     }
     if (this.state.forum.privileges && this.state.forum.privileges.canChangeTopics && this.state.mode === 'edit') {
       formData['attrs.admin-comment'] = this.state.adminComment

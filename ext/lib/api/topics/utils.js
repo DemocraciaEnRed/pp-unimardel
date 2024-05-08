@@ -62,6 +62,8 @@ const queryTopics = (opts) => {
     owners,
     facultades,
     facultad,
+    claustros,
+    claustro,
     years,
     kwords
   } = opts
@@ -73,6 +75,8 @@ const queryTopics = (opts) => {
   if (tags && tags.length > 0) query.tag = { $in: tags }
   if (facultades && facultades.length > 0) query.facultad = { $in: facultades.map(id => ObjectID(id)) }
   else if (facultad) query.facultad = facultad
+  if (claustros && claustros.length > 0) query.claustro = { $in: claustros.map(id => ObjectID(id)) }
+  else if (claustro) query.claustro = claustro
   if (state && state.length > 0) query['attrs.state'] = { $in: state }
   if (related && related.length > 0) query['attrs.admin-comment-referencia'] = { $regex: `.*${related}.*` }
 
@@ -101,8 +105,8 @@ const getPossibleOwners = (opts) => {
   // La facultad ahora se encuentra en el topic
   // if (facultades && facultades.length > 0) query.facultad = { $in: facultades.map(id => ObjectID(id)) }
   // else if (facultad) query.facultad = facultad
-  if (claustros && claustros.length > 0) query.claustro = { $in: claustros.map(id => ObjectID(id)) }
-  else if (claustro) query.claustro = claustro
+  // if (claustros && claustros.length > 0) query.claustro = { $in: claustros.map(id => ObjectID(id)) }
+  // else if (claustro) query.claustro = claustro
 
   if (Object.keys(query).length > 0)
     return apiV1.user.findIds(query)
@@ -125,6 +129,7 @@ exports.findTopics = (opts) => {
     user,
     state
   } = opts
+
   return getPossibleOwners(opts).then(owners => {
     // si devuelve null es porque no se filtró por owner
     // (porque no se pasaron dichos parámetros en opts)

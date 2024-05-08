@@ -88,7 +88,6 @@ class HomePropuestas extends Component {
       const tagsMap = tags.map(tag => { return {value: tag.id, name: tag.name}; });
       const tag = this.props.location.query.tags ? [tagsMap.find(j => j.name == this.props.location.query.tags).value] : [];
       const claustros = claustrosall.map(claustro => { return { value: claustro.id, name: claustro.nombre }; });
-      console.log(claustros);
       this.setState({
         facultades: facultades.map(facultad => { return {value: facultad._id, name: facultad.nombre}; }),
         tags: tagsMap,
@@ -111,7 +110,7 @@ class HomePropuestas extends Component {
       facultades: this.state.facultad,
       tags: this.state.tag,
       sort: this.state.sort,
-      claustro: this.state.claustro,
+      claustros: this.state.claustro,
       years: this.state.years,
       kwords: this.state.kwords
     }

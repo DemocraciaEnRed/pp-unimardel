@@ -77,7 +77,7 @@ app.get('/topics',
     const opts = Object.assign({}, req.query)
     opts.forum = req.forum
     opts.user = req.user
-    opts.state = opts.tipoIdea
+    //opts.state = opts.tipoIdea
     Promise.all([
       utils.findTopics(opts).then(topics => apiNoExt.user.populateOwners(topics)),
       utils.findTopicsCount(opts)

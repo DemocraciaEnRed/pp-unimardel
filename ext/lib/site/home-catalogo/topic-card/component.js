@@ -84,7 +84,6 @@ export class TopicCard extends Component {
       if (!str) return ''
       return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
     }
-    // console.log(topic)
     return (
       <div className='ext-topic-card ideas-topic-card' onClick={this.handleWrapperClick}>
         <div className={`idea-${topic && topic.attrs && topic.attrs.state}`} style={{ borderLeft: `10px solid ${topic.tag.color}` }}>
@@ -103,6 +102,8 @@ export class TopicCard extends Component {
                 <span>Creado por: <span className='topic-card-author'>{topic.owner.firstName}</span></span>
                 {topic.facultad &&
                   <span className='topic-card-facultad'>({topic.facultad.nombre})</span>
+                }{topic.claustro &&
+                  <span className='topic-card-facultad'>({topic.claustro.nombre})</span>
                 }
                 {!topic.facultad && topic.attrs && topic.attrs.facultad && topic.attrs.facultad != 'ninguna' &&
                 <span className='topic-card-facultad'>
