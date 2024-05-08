@@ -136,7 +136,7 @@ class FormularioVoto extends Component {
   //     user.state.value && user.state.value.facultad && user.state.value.dni
   //     ) {
   //         this.setState({
-  //           facultad: user.state.value.facultad.id,
+  //           facultad: user.state.value.facultad._id,
   //           dni: user.state.value.dni,
   //           fetched: true
   //         })
@@ -181,7 +181,7 @@ class FormularioVoto extends Component {
       .then((hasVoted) => {
         if (hasVoted === "yes") {
           this.setState({
-            facultad: user.state.value.facultad.id,
+            facultad: user.state.value.facultad._id,
             dni: user.state.value.dni,
             userFetched: true,
             hasVoted,
@@ -189,7 +189,7 @@ class FormularioVoto extends Component {
           })
         } else {
           this.setState({
-            facultad: user.state.value.facultad.id,
+            facultad: user.state.value.facultad._id,
             dni: user.state.value.dni,
             userFetched: true,
             hasVoted,
@@ -285,7 +285,7 @@ class FormularioVoto extends Component {
         return <Info texts={this.state.texts}/>
       case 3:
         return <VotoFacultad 
-          topics={this.state.topics.filter(t => (t.facultad.id === this.state.facultad && tags.includes(t.tag.id)))} 
+          topics={this.state.topics.filter(t => (t.facultad._id === this.state.facultad && tags.includes(t.tag.id)))} 
           handler="voto1"
           selected={this.state.voto1}
           setState={this.handleCheckboxInputChange} 
@@ -304,7 +304,7 @@ class FormularioVoto extends Component {
               topics.filter(t => searchedByName.include(t.id)) :
               this.state.topics.filter(t => t.id !== this.state.voto1 && 
                 tags.includes(t.tag.id) && 
-                facultades.includes(t.facultad.id))
+                facultades.includes(t.facultad._id))
           } 
           handler="voto2"
           selected={this.state.voto2}

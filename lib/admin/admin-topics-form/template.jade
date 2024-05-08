@@ -59,9 +59,9 @@
         .form-group
           label= 'Facultad'
           select.form-control(name='facultad', validate='required')
-            - var topicFacultad = typeof topic.facultad === 'string' ? topic.facultad : (topic.facultad && topic.facultad.id)
+            - var topicFacultad = typeof topic.facultad === 'string' ? topic.facultad : (topic.facultad && topic.facultad._id)
             - each facultad in facultades
-              option(selected=facultad.id === topicFacultad, value=facultad.id)
+              option(selected=facultad._id === topicFacultad, value=facultad._id)
                 = facultad.nombre
 
         - if (forum.topicsAttrs.length > 0)

@@ -102,7 +102,7 @@ class FormularioPropuesta extends Component {
           titulo: topic.mediaTitle,
           documento: topic.attrs.documento,
           // genero: topic.attrs.genero,
-          facultad: topic.facultad.id,
+          facultad: topic.facultad._id,
           claustro: topic.attrs.claustro,
           tag: topic.tag,
           problema: topic.attrs.problema,
