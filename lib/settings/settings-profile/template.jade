@@ -21,6 +21,10 @@
       .form-group
         label= 'Facultad'
         select.form-control(disabled='disabled', id='facultad', name='facultad', placeholder='Facultad', value='#{user.facultad}', validate='required')
+      
+      .form-group
+        label= 'Clausto'
+        select.form-control(disabled='disabled', id='claustro', name='claustro', placeholder='Facultad', value='#{user.claustro}', validate='required')
 
       .form-group
         label= t('signup.email')
