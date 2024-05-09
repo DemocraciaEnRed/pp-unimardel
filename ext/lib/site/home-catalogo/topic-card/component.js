@@ -102,8 +102,6 @@ export class TopicCard extends Component {
                 <span>Creado por: <span className='topic-card-author'>{topic.owner.firstName}</span></span>
                 {topic.facultad &&
                   <span className='topic-card-facultad'>({topic.facultad.nombre})</span>
-                }{topic.claustro &&
-                  <span className='topic-card-facultad'>({topic.claustro.nombre})</span>
                 }
                 {!topic.facultad && topic.attrs && topic.attrs.facultad && topic.attrs.facultad != 'ninguna' &&
                 <span className='topic-card-facultad'>
