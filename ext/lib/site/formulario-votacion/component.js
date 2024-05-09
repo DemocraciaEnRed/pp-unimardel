@@ -285,7 +285,7 @@ class FormularioVoto extends Component {
         return <Info texts={this.state.texts}/>
       case 3:
         return <VotoFacultad 
-          topics={this.state.topics.filter(t => (t.facultad._id === this.state.facultad && tags.includes(t.tag.id)))} 
+          topics={this.state.topics} 
           handler="voto1"
           selected={this.state.voto1}
           setState={this.handleCheckboxInputChange} 

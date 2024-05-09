@@ -44,7 +44,7 @@ class VotoTopicCard extends Component {
                 <div className='voto-topic-card-tags'>
                   {topic.facultad && <span className='voto-tag-wrapper tag-facultad' >{capitalizeFirstLetter(topic.facultad.nombre)}</span>}                
                   {topic.attrs && topic.attrs['presupuesto-total'] && <span className='voto-tag-wrapper tag-presupuesto'>Presupuesto: ${topic.attrs['presupuesto-total'].toLocaleString()}</span>}
-                  {topic.tags.length > 0 && <span className='voto-tag-wrapper'>{capitalizeFirstLetter(topic.tags[0])}</span>}
+                  {topic.tags && <span className='voto-tag-wrapper' style={{ backgroundColor: topic.tag.color }}>{capitalizeFirstLetter(topic.tag.name)}</span>}
                 </div>                
               </div>
             </div>
@@ -71,7 +71,7 @@ class VotoTopicCard extends Component {
                 {topic.attrs && <p>{createClauses(topic)} <u onClick={() => handleShowTopicDialog(topic)}>VER MAS</u></p>}
                 <div className='voto-topic-card-tags'>
                   {topic.facultad && <span className='voto-tag-wrapper tag-facultad' >{capitalizeFirstLetter(topic.facultad.nombre)}</span>}                
-                  {topic.tag && <span className='voto-tag-wrapper' >{capitalizeFirstLetter(topic.tag.name)}</span>}
+                  {topic.tag && <span className='voto-tag-wrapper' style={{ backgroundColor: topic.tag.color }}>{capitalizeFirstLetter(topic.tag.name)}</span>}
                 </div>                
               </div>
             </div>
