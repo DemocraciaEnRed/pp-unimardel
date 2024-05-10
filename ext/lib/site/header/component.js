@@ -26,6 +26,9 @@ class Header extends Component {
 
   componentWillMount () {
     bus.on('user-form:load', this.onLoadUserForm)
+    forumStore.findOneByName(config.forumProyectos).then(
+      forum => this.setState({ forumConfig: forum.config })
+    )
   }
 
   componentWillUnmount () {
