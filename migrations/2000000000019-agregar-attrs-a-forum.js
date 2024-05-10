@@ -3,7 +3,7 @@ const dbReady = require('lib/models').ready
 const models = require('lib/models')
 const Forum = models.Forum
 
-const nombreMigrationParaLog = 'Se agregan campos: telefono, solucion, beneficios, ubicacion al forum para expandir las nuevas ideas'
+const nombreMigrationParaLog = 'Se agregan campos: telefono, solucion, beneficios al forum para expandir las nuevas ideas'
 
 
 const newFields = [
@@ -21,20 +21,6 @@ const newFields = [
 		"min": 0,
 		"max": 340,	
 	},
-	{
-		"name" : "ubicacion",
-		"title" : "Ubicación",
-		"description" : "Calle y número en caso de que el proyecto tenga ubicación concreta",
-		"kind" : "String",
-		"mandatory" : false,
-		"groupOrder" : 0,
-		"group" : "",
-		"order" : 35,
-		"width" : 12,
-		"icon" : "",
-		"min": 0,
-		"max": 340,	
-	},	
 	{
 		"name" : "solucion",
 		"title" : "Propuesta de Solución",
