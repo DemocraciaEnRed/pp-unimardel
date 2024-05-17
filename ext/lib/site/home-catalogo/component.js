@@ -403,7 +403,7 @@ class HomePropuestas extends Component {
                 {this.renderSortFilter()}
                 {topics && topics.length === 0 && (
                   <div className='empty-msg'>
-                    Aun no hay ideas subidas
+                    Aún no hay ideas subidas
                   </div>
                 )}
                 {topics && (filteredTopics || topics).map((topic) => (
