@@ -153,6 +153,11 @@ class Header extends Component {
             aria-label="Link a página de inicio"
             tabIndex="1">
             <img
+              src="/ext/lib/boot/logomdp.png"
+              alt="Logo de la Municipalidad de Mar del Plata"
+              className='d-inline-block align-top'
+            />
+            <img
               src={config.logo}
               alt="Logo de la Municipalidad de Mar del Plata"
               className='d-inline-block align-top'

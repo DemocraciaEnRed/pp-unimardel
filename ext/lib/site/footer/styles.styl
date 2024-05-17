@@ -103,9 +103,20 @@
       margin-left: 10px;
     img
       width: 200px
-  .logo-unmdp
+  .logos-wrapper
+    display: flex
+    align-items: center
+    .logo-unmdp
+      width: 200px
+      height: fit-content;
+      margin: 0 .75rem
+      @media (max-width: 550px)
+        margin: 30px auto
+    .logo-secretaria
+      border-left: 3px solid white
       img
-        width: 410px
+        width: 250px
+        margin: .5rem .75rem
         @media (max-width: 550px)
           margin: 30px auto
   .logo
