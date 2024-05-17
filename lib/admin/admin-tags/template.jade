@@ -12,5 +12,10 @@
     .col-md-3
   .list.list-group
     - each tag in tags
-      a.list-group-item(href=urlBuilder.for('admin.tags.id', {id: tag.id, forum: forum.name}))
-        span.tag-title= tag.name
+      a.list-group-item(href=urlBuilder.for('admin.tags.id', {id: tag.id, forum: forum.name}), class="tag-wrapper")
+        .tag-name.d-flex
+          - const id = 'fa fa-' + tag.image
+          i(class=id, aria-hidden="true")
+          span.tag-title= tag.name
+          div.ml-3(class="tag-color", style=`background-color:${tag.color}`)
+        

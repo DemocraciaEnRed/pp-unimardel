@@ -38,11 +38,11 @@ const filters = {
 }
 
 class HomePropuestas extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       forum: null,
-      texts:{},
+      texts: {},
       topics: null,
 
       facultades: [],
@@ -62,39 +62,39 @@ class HomePropuestas extends Component {
       years: [],
       kwords: ''
     }
-    
+
 
     this.handleInputChange = this.handleInputChange.bind(this)
     this.renderSortFilter = this.renderSortFilter.bind(this)
     this.handleInputSearch = this.handleInputSearch.bind(this)
   }
 
-  componentDidMount () {
-    const {archive, years} = this.props;
-    window.scrollTo(0,0)
+  componentDidMount() {
+    const { archive, years } = this.props;
+    window.scrollTo(0, 0)
     if (this.props.location.query.tags)
       defaultValues.tag.push(this.props.location.query.tags)
 
     // igual que filtros de admin (lib/admin/admin/admin.js)
     Promise.all([
       facultadStore.findAll(),
-      tagStore.findAll({field: 'name'}),
+      tagStore.findAll({ field: 'name' }),
       forumStore.findOneByName('proyectos'),
       claustroStore.findAll(),
       textStore.findAllDict(),
       topicStore.findAllProyectos()
     ]).then(results => {
       const [facultades, tags, forum, claustrosall, textsDict] = results
-      const tagsMap = tags.map(tag => { return {value: tag.id, name: tag.name}; });
+      const tagsMap = tags.map(tag => { return { value: tag.id, name: tag.name }; });
       const tag = this.props.location.query.tags ? [tagsMap.find(j => j.name == this.props.location.query.tags).value] : [];
       const claustros = claustrosall.map(claustro => { return { value: claustro._id, name: claustro.nombre }; });
       this.setState({
-        facultades: facultades.map(facultad => { return {value: facultad._id, name: facultad.nombre}; }),
+        facultades: facultades.map(facultad => { return { value: facultad._id, name: facultad.nombre }; }),
         tags: tagsMap,
         tag,
         claustros,
         forum,
-        texts:textsDict,
+        texts: textsDict,
         years,
       }, () => this.fetchTopics())
     }).catch((err) => { throw err })
@@ -117,10 +117,10 @@ class HomePropuestas extends Component {
 
     let queryString = Object.keys(query)
       .filter((k) => query[k] && query[k].length > 0)
-      .map((k) => `${k}=${ Array.isArray(query[k]) ?  query[k].join(',') : query[k] }`)
+      .map((k) => `${k}=${Array.isArray(query[k]) ? query[k].join(',') : query[k]}`)
       .join('&')
     return window
-      .fetch(`/ext/api/topics?${queryString}`, {credentials: 'include'})
+      .fetch(`/ext/api/topics?${queryString}`, { credentials: 'include' })
       .then((res) => res.json())
       .then((res) => {
         let topics = res.results ? res.results.topics : []
@@ -161,7 +161,7 @@ class HomePropuestas extends Component {
     this.fetchTopics(page)
   }
 
-  changeTopics () {
+  changeTopics() {
     this.fetchTopics(this.state.page)
       .then((res) => {
         this.setState({ topics: res })
@@ -179,20 +179,20 @@ class HomePropuestas extends Component {
   }
 
   handleFilter = (filter, value) => {
-      // If the value is not included in the filter array, add it
-      if (!this.state[filter].includes(value)) {
-        this.setState({
-          [filter]: [...this.state[filter], value]
-        }, () => this.fetchTopics())
-        // If it's already included and it's the only filter applied, apply default filters
+    // If the value is not included in the filter array, add it
+    if (!this.state[filter].includes(value)) {
+      this.setState({
+        [filter]: [...this.state[filter], value]
+      }, () => this.fetchTopics())
+    // If it's already included and it's the only filter applied, apply default filters
       /* } else if (this.state[filter].length === 1) {
         this.clearFilter(filter) */
-        // If it's already included erase it
-      } else {
-        this.setState({
-          [filter]: [...this.state[filter]].filter((item) => item !== value)
-        }, () => this.fetchTopics())
-      }
+      // If it's already included erase it
+    } else {
+      this.setState({
+        [filter]: [...this.state[filter]].filter((item) => item !== value)
+      }, () => this.fetchTopics())
+    }
 
   }
 
@@ -249,15 +249,15 @@ class HomePropuestas extends Component {
 
   handleRemoveBadge = (option) => (e) => {
     // feísimo, feísimo
-    if (this.state.facultad.includes(option)){
+    if (this.state.facultad.includes(option)) {
       this.setState({ facultad: this.state.facultad.filter(i => i != option) }
-      ,() => this.fetchTopics());
-    }else if (this.state.tag.includes(option)){
+        , () => this.fetchTopics());
+    } else if (this.state.tag.includes(option)) {
       this.setState({ tag: this.state.tag.filter(i => i != option) }
-      ,() => this.fetchTopics());
+        , () => this.fetchTopics());
     } else if (this.state.claustro.includes(option)) {
       this.setState({ claustro: this.state.claustro.filter(i => i != option) }
-      ,() => this.fetchTopics());
+        , () => this.fetchTopics());
     }
   }
 
@@ -265,7 +265,7 @@ class HomePropuestas extends Component {
     this.setState({ sort: key }, () => this.fetchTopics());
   }
 
-  goTop () {
+  goTop() {
     Anchor.goTo('container')
   }
 
@@ -274,13 +274,13 @@ class HomePropuestas extends Component {
   }
 
   renderSortFilter() {
-    const {forum} = this.state 
+    const { forum } = this.state
     return (
       <div>
         {forum && <h4 className="topics-title">{
-          !forum.config.seguimientoNormal ? 
-          (forum.config.propuestasAbiertas ? "Lista de ideas" : "Lista de ideas y proyectos") : 
-          "Lista de proyectos"
+          !forum.config.seguimientoNormal ?
+            (forum.config.propuestasAbiertas ? "Lista de ideas" : "Lista de ideas y proyectos") :
+            "Lista de proyectos"
         }
         </h4>}
         <div className='topics-filters'>
@@ -306,14 +306,14 @@ class HomePropuestas extends Component {
             <div className='topics-filter topics-sort-filter'>
               <span>Ordenar por</span>
               {Object.keys(filters).map((key) => (
-                  <button
-                    key={key}
-                    className={`btn-sort-filter ${this.state.sort === key ? 'active' : ''}`}
-                    onClick={() => this.onChangeSortFilter(filters[key].sort)}>
-                    <span className="glyphicon glyphicon-ok" />
-                    {filters[key].text}
-                  </button>
-                ))}
+                <button
+                  key={key}
+                  className={`btn-sort-filter ${this.state.sort === key ? 'active' : ''}`}
+                  onClick={() => this.onChangeSortFilter(filters[key].sort)}>
+                  <span className="glyphicon glyphicon-ok" />
+                  {filters[key].text}
+                </button>
+              ))}
             </div>
           }
         </div>
@@ -321,46 +321,46 @@ class HomePropuestas extends Component {
     )
   }
 
-  handleInputTextKeyDown = (event) =>{
-    if(event.keyCode === 13){
+  handleInputTextKeyDown = (event) => {
+    if (event.keyCode === 13) {
       this.handleInputSearch()
     }
   }
 
   handleInputSearch = () => {
-    const {kwords} = this.state
+    const { kwords } = this.state
     this.fetchTopics();
   }
 
-  render () {
+  render() {
 
-    const { forum, topics, facultades, kwords, selectedProyecto, texts} = this.state
-    const {archive} = this.props
+    const { forum, topics, facultades, kwords, selectedProyecto, texts, tags } = this.state
+    const { archive } = this.props
     let filteredTopics;
     if (selectedProyecto)
       filteredTopics = topics.filter(t => t.id == selectedProyecto.value)
-    
+
     return (
       <div className={`ext-home-ideas ${this.props.user.state.fulfilled ? 'user-logged' : ''}`}>
         <Anchor id='container'>
           {forum && <BannerListadoTopics
             btnText={(!archive && forum.config.propuestasAbiertas) ? '¡Subí tu idea!' : undefined}
-          btnLink={(!archive && forum.config.propuestasAbiertas) ? '/formulario-idea' : undefined}
+            btnLink={(!archive && forum.config.propuestasAbiertas) ? '/formulario-idea' : undefined}
             title={
               archive ? texts['archivo-title'] : texts['idea-title']
             }
             subtitle={" "}
-            />}
+          />}
 
           <div className='container'>
             {forum && <div className="row">
               {archive ? <div className='notice'>
-                      <h1>{texts['archivo-subtitle']}</h1>
-                    </div> : 
-                    <div className='notice'>
-                      <h1>{texts['idea-subtitle']}</h1>
-                    </div>
-               
+                <h1>{texts['archivo-subtitle']}</h1>
+              </div> :
+                <div className='notice'>
+                  <h1>{texts['idea-subtitle']}</h1>
+                </div>
+
               }
 
             </div>}
@@ -387,20 +387,20 @@ class HomePropuestas extends Component {
                   {/* para esto usamos react-select version 2.4.4 */}
                   <input
                     value={kwords}
-                    onChange={(e) => this.setState({kwords: e.target.value})}
+                    onChange={(e) => this.setState({ kwords: e.target.value })}
                     onKeyDown={this.handleInputTextKeyDown}
                     placeholder='Buscá un proyecto por nombre'
                     className='form-control search-proyecto-select'
-                    />
-                    
-                  
+                  />
+
+
                   <button onClick={this.handleInputSearch}>
                     Buscar
                   </button>
-                        
+
                 </div>
 
-                {  this.renderSortFilter() }
+                {this.renderSortFilter()}
                 {topics && topics.length === 0 && (
                   <div className='empty-msg'>
                     Aun no hay ideas subidas
@@ -413,7 +413,9 @@ class HomePropuestas extends Component {
                     onProyectista={this.handleProyectista}
                     forum={forum}
                     topic={topic}
-                    facultades={facultades} />
+                    facultades={facultades}
+                    tags={tags}
+                  />
                 ))}
                 {!filteredTopics && topics && !this.state.noMore && (
                   <div className='more-topics'>

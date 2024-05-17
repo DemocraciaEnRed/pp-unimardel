@@ -13,13 +13,6 @@ import { Link } from 'react-router'
 
 // const PROPOSALS_FORUM_NAME = 'propuestas'
 
-const descripciones = {
-  'equidad-de-género': '',
-  'diversidad': '',
-  'accesibilidad': '',
-  'sostenibilidad': '',
-  'innovación': '',
-}
 
 
 
@@ -520,8 +513,7 @@ class FormularioPropuesta extends Component {
           <div className='form-group'>
             <label className='required' htmlFor='solucion'>
               * La propuesta de solución / tu idea
-            </label>
-              {this.state.tag && descripciones[this.state.tag.hash].split(/\n/).map((p, i) => <p key={i} className='help-text'>{p}</p>)}
+              </label>
             <textarea
               className='form-control'
               required

@@ -6,16 +6,24 @@
       h1= t(form.title)
     form.form(action=form.action, method="post", role="form", autocomplete="off", autovalidate='autovalidate', autosubmit='autosubmit')
       ul.form-messages
-      .form-group
-        label= t('admin-tags-form.label.name')
-        input.form-control(type='text', maxlength='50', id="name", name='name', placeholder=t('admin-tags-form.placeholder.name'), value=tag.name, validate='required')
-      .form-group
-        label= t('admin-tags-form.label.image')
+      .name-color
+        .form-group.name
+          label= t('admin-tags-form.label.name')
+          input.form-control(type='text', maxlength='50', id="name", name='name', placeholder=t('admin-tags-form.placeholder.name'), value=tag.name, validate='required')
+        .form-group.color
+          label= 'Color'
+          input.form-control(type="color", name="color",value=tag.color )
+      .form-group.mt-3
+        div.d-flex.justify-content-between.align-self-center
+          label= t('admin-tags-form.label.image')
+          div.form-group
+            label='buscar'
+            input.ml-3(type='text', id="icon-search")
         .tag-images
-          - each image in images
-            - const id = 'fa fa-' + image
+          - each tag in tags
+            - const id = 'fa fa-' + tag.image
             .tag-image()
-              input(type='radio', name='image', value=image, checked= tag.image === image, validate='any:image', id=id)
+              input(type='radio', name='image', value=tag.image, checked=tag.image === tag.image, validate='any:image', id=id)
               label(for=id)
                 i(class=id, aria-hidden="true")
       .form-group
