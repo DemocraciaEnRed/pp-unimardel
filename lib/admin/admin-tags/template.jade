@@ -15,7 +15,8 @@
       a.list-group-item(href=urlBuilder.for('admin.tags.id', {id: tag.id, forum: forum.name}), class="tag-wrapper")
         .tag-name.d-flex
           - const id = 'fa fa-' + tag.image
+          - const color = 'background-color:'+tag.color
           i(class=id, aria-hidden="true")
           span.tag-title= tag.name
-          div.ml-3(class="tag-color", style=`background-color:${tag.color}`)
+          div.ml-3(class="tag-color", style=color)
         
