@@ -155,12 +155,12 @@ class Header extends Component {
             <img
               src="/ext/lib/boot/logomdp.png"
               alt="Logo de la Municipalidad de Mar del Plata"
-              className='d-inline-block align-top'
+              className='align-top'
             />
             <img
               src={config.logo}
               alt="Logo de la Municipalidad de Mar del Plata"
-              className='d-inline-block align-top'
+              className='align-top'
             />
           </Link>
 
