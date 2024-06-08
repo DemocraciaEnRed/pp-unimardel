@@ -134,7 +134,7 @@ class FormularioPropuesta extends Component {
       let user = this.props.user.state.value
       this.setState({
         // facultad: user.facultad._id,
-        claustro: user.claustro._id,
+        claustro: user.staff ? null : user.claustro._id,
         email: user.email,
         documento: user.dni,
         nombre: user.firstName + ' ' + user.lastName
@@ -227,7 +227,7 @@ class FormularioPropuesta extends Component {
     if (this.state.titulo === '') return true
     if (this.state.problema === '') return true
     if (this.state.tag === '' ) return true
-    if (this.state.claustro === '') return true
+    //if (this.state.claustro === '') return true
     if (this.state.solucion === '') return true
     if (this.state.beneficios === '') return true
     if (this.state.facultad === '') return true
@@ -597,7 +597,7 @@ class FormularioPropuesta extends Component {
                     {this.hasErrorsField('solucion') && <li className="error-li">El campo "Tu idea" no puede quedar vacío</li> }
                     {this.hasErrorsField('beneficios') && <li className="error-li">El campo "Beneficios" no puede quedar vacío</li>}
                     {this.hasErrorsField('facultad') && <li className="error-li">El campo "Facultad" no puede quedar vacío</li> }
-                    {this.hasErrorsField('claustro') && <li className="error-li">El campo "Claustro" no puede quedar vacío</li>}
+                    {/* {this.hasErrorsField('claustro') && <li className="error-li">El campo "Claustro" no puede quedar vacío</li>} */}
              </ul>
              </div>
           }
