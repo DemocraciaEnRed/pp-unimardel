@@ -266,7 +266,7 @@ class FormularioPropuesta extends Component {
       <div className='form-propuesta'>
         <div className='propuesta-header'>
           <h1 className='text-center'>Formulario para enviar ideas</h1>
-          <p>¡Compartinos tus ideas para mejorar nuestra comunidad!</p>
+          <p>¡Compartinos tus ideas para mejorar nuestra Universidad!</p>
           {//<p>¡Gracias a todos y todas por participar!</p>
           }
         </div>
@@ -351,11 +351,9 @@ class FormularioPropuesta extends Component {
 
           <div className="bullet-requisitos">
             <ul>
-              <li>Serán factibles las propuestas de obras o equipamiento para entidades sin fines de lucro (sociedades de fomento, centros de jubilados, asociaciones civiles, etc.) para espacios públicos y para escuelas de gestión pública provincial.</li>
-              <li>Serán factibles campañas o talleres sobre un tema específico cuya ejecución sólo sea durante el 2025.</li>
-              <li>No serán factibles las propuestas que impliquen un gasto corriente (recursos humanos que incrementen la planta municipal).</li>
-              <li>Cada propuesta se debe presentar para un solo barrio. (No se puede presentar una propuesta para todo el Municipio)</li>
-              <li>El presupuesto máximo de la propuesta no puede superar los $ 10.000.000.</li>
+              <li>Serán factibles las propuestas de adquisición de bienes, prestación de servicios y reparaciones en las dependencias de la UNDMP, incluyendo cursos-talleres, intervenciones artísticas, mejoras en espacios compartidos y adquisición de bienes que beneficien a estudiantes, docentes y nodocentes, mejorando así la calidad de vida de la comunidad universitaria.</li>
+              <li>No serán factibles la contratación permanente de servicios o personal, la inversión en infraestructura, construcción, obra pública, adquisición de terrenos o creación de nuevos espacios para la comunidad.</li>
+              <li>El presupuesto máximo de la propuesta no puede superar los $6.000.000.</li>
             </ul>
               
           </div>
@@ -363,19 +361,19 @@ class FormularioPropuesta extends Component {
             <div className="col-sm-4 ">
               <div className="idea-no-factible">
                 <img src="/ext/lib/site/formulario-propuesta/no-factible.png" alt="Ícono propuesta no factible"/>
-                <p>“Asfaltar todas las calles MGP”</p>
+                <p>“Crear un espacio para almorzar en XXXX.”</p>
               </div>
             </div>
             <div className="col-sm-4 ">
               <div className="idea-no-factible">
                 <img src="/ext/lib/site/formulario-propuesta/no-factible.png" alt="Ícono propuesta no factible"/>
-                <p>“Dictar clases de xxxx los sabados en la rambla”</p>
+                <p>“Construir nuevos baños en XXXX.”</p>
               </div>
             </div>
             <div className="col-sm-4 ">
               <div className="idea-no-factible">
                 <img src="/ext/lib/site/formulario-propuesta/no-factible.png" alt="Ícono propuesta no factible"/>
-                <p>“Mas personal en los centros municipales”</p>
+                <p>“Contratar más personal en XXXX.”</p>
               </div>
             </div>
           </div>
@@ -383,19 +381,19 @@ class FormularioPropuesta extends Component {
             <div className="col-sm-4 ">
               <div className="idea-factible">
                 <img src="/ext/lib/site/formulario-propuesta/factible.png" alt="Ícono propuesta no factible"/>
-                <p>“Poner juego en la Plaza zxy”</p>
+                <p>“Adquisición de impresoras y equipos de computación para la sala de XXXX.”</p>
               </div>
             </div>
             <div className="col-sm-4 ">
               <div className="idea-factible">
                 <img src="/ext/lib/site/formulario-propuesta/factible.png" alt="Ícono propuesta no factible"/>
-                <p>“Camaras de seguridad en xxx”</p>
+                <p>“Realizar un mural/intervención artística en el espacio compartido en XXXX.”</p>
               </div>
             </div>
             <div className="col-sm-4 ">
               <div className="idea-factible">
                 <img src="/ext/lib/site/formulario-propuesta/factible.png" alt="Ícono propuesta no factible"/>
-                <p>“Colocar una plaza en el predio de la calle xxx”</p>
+                <p>“Hacer una ludoteca en la facultad XXXX en el espacio libre cerca del buffet.”</p>
               </div>
             </div>
 
