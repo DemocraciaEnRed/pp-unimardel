@@ -39,12 +39,15 @@ class CantUploadProposal extends Error {
   }
 }
 
-const defaultValues = () => ({
+const defaultValues = () => {
+  const propuestasAnio = new Date().getFullYear()
+  return {
   'attrs.subscribers': '',
-  'attrs.anio': '2022', //TODO Variable de entorno que se pueda setear el año
+    'attrs.anio': propuestasAnio, //TODO Variable de entorno que se pueda setear el año
   'attrs.state': 'pendiente',
   'action.method': 'cause',
-})
+  }
+}
 
 // Only allow to edit specific keys when is a proposal
 // and the users doesn't have forum privileges.

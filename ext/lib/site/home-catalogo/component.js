@@ -23,7 +23,8 @@ const defaultValues = {
   facultad: [],
   tag: [],
   sort: '',
-  claustro: []
+  claustro: [],
+  tipoIdea: []
 }
 
 const filters = {
@@ -57,9 +58,13 @@ class HomePropuestas extends Component {
       noMore: null,
 
       selectedProyecto: null,
+      tiposIdea: [],
+
+      tipoIdea: defaultValues.tipoIdea,
 
       archive: false,
       years: [],
+      state: 'pendiente,factible,no-factible,integrado',
       kwords: ''
     }
 
@@ -70,7 +75,7 @@ class HomePropuestas extends Component {
   }
 
   componentDidMount() {
-    const { archive, years } = this.props;
+    const { archive, years, state } = this.props;
     window.scrollTo(0, 0)
     if (this.props.location.query.tags)
       defaultValues.tag.push(this.props.location.query.tags)
@@ -80,22 +85,22 @@ class HomePropuestas extends Component {
       facultadStore.findAll(),
       tagStore.findAll({ field: 'name' }),
       forumStore.findOneByName('proyectos'),
-      claustroStore.findAll(),
       textStore.findAllDict(),
-      topicStore.findAllProyectos()
     ]).then(results => {
-      const [facultades, tags, forum, claustrosall, textsDict] = results
+      const [facultades, tags, forum, textsDict] = results
       const tagsMap = tags.map(tag => { return { value: tag.id, name: tag.name }; });
       const tag = this.props.location.query.tags ? [tagsMap.find(j => j.name == this.props.location.query.tags).value] : [];
-      const claustros = claustrosall.map(claustro => { return { value: claustro._id, name: claustro.nombre }; });
+      const tiposIdea = forum.topicsAttrs.find(a => a.name == 'state').options.map(state => { return { value: state.name, name: state.title }; })
+      const tipoIdea = forum.config.ideacion ? ['pendiente'] : forum.config.preVotacion || forum.config.votacion ? ['factible'] : forum.config.seguimientoNormal ? ['ganador'] : []
       this.setState({
         facultades: facultades.map(facultad => { return { value: facultad._id, name: facultad.nombre }; }),
         tags: tagsMap,
         tag,
-        claustros,
         forum,
         texts: textsDict,
         years,
+        tiposIdea,
+        tipoIdea: archive ? ['ganador'] : tipoIdea,
       }, () => this.fetchTopics())
     }).catch((err) => { throw err })
   }
@@ -112,6 +117,7 @@ class HomePropuestas extends Component {
       sort: this.state.sort,
       claustros: this.state.claustro,
       years: this.state.years,
+      tipoIdea: this.state.tipoIdea,
       kwords: this.state.kwords
     }
 
@@ -255,14 +261,14 @@ class HomePropuestas extends Component {
     } else if (this.state.tag.includes(option)) {
       this.setState({ tag: this.state.tag.filter(i => i != option) }
         , () => this.fetchTopics());
-    } else if (this.state.claustro.includes(option)) {
-      this.setState({ claustro: this.state.claustro.filter(i => i != option) }
+    } else if (this.state.tipoIdea.includes(option)) {
+      this.setState({ tipoIdea: this.state.tipoIdea.filter(i => i != option) }
         , () => this.fetchTopics());
     }
   }
 
-  onChangeSortFilter = (key) => {
-    this.setState({ sort: key }, () => this.fetchTopics());
+  onChangeTipoIdeaFilter = (name) => {
+    this.setState({ tipoIdea: name }, () => this.fetchTopics());
   }
 
   goTop() {
@@ -339,7 +345,6 @@ class HomePropuestas extends Component {
     let filteredTopics;
     if (selectedProyecto)
       filteredTopics = topics.filter(t => t.id == selectedProyecto.value)
-
     return (
       <div className={`ext-home-ideas ${this.props.user.state.fulfilled ? 'user-logged' : ''}`}>
         <Anchor id='container'>
@@ -373,8 +378,8 @@ class HomePropuestas extends Component {
               facultad={this.state.facultad}
               tags={this.state.tags}
               tag={this.state.tag}
-              claustros={this.state.claustros}
-              claustro={this.state.claustro}
+              tiposIdea={this.state.tiposIdea}
+              tipoIdea={this.state.tipoIdea}
               openVotation={true}
               handleFilter={this.handleFilter}
               handleDefaultFilter={this.handleDefaultFilter}

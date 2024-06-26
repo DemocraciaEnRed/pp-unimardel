@@ -14,6 +14,19 @@ import config from 'lib/config'
 import Collapsible from 'react-collapsible'
 import StepProgress from './step-progress/component'
 
+const getSeguimientoStateLabel = (state) => {
+  switch (state) {
+    case 'preparacion':
+      return 'Preparación'
+    case 'compra':
+      return 'Contratación'
+    case 'ejecucion':
+      return 'Ejecución'
+    case 'finalizado':
+      return 'Finalizado'
+  }
+}
+
 function capitalizeFirstLetter(str) {
   if (!str) return ''
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();

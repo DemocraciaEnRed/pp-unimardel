@@ -110,7 +110,8 @@ export class TopicCard extends Component {
                 }
                 <span
                   className={`date ${(topic.attrs.state !== 'pendiente') && 'space'}`}>
-                  {moment(topic.createdAt).format('D-M-YYYY')}
+                  {topic.attrs.anio}
+                  {/* {moment(topic.createdAt).format('D-M-YYYY')} */}
                 </span>
               </div>
             )}

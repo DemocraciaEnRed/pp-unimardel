@@ -73,6 +73,7 @@ const queryTopics = (opts) => {
   }
   if (owners && owners.length > 0) query.owner = { $in: owners }
   if (tags && tags.length > 0) query.tag = { $in: tags }
+  if (years && years.length > 0) query['attrs.anio'] = { $in: years }
   if (facultades && facultades.length > 0) query.facultad = { $in: facultades.map(id => ObjectID(id)) }
   else if (facultad) query.facultad = facultad
   if (claustros && claustros.length > 0) query.claustro = { $in: claustros.map(id => ObjectID(id)) }
@@ -80,7 +81,7 @@ const queryTopics = (opts) => {
   if (state && state.length > 0) query['attrs.state'] = { $in: state }
   if (related && related.length > 0) query['attrs.admin-comment-referencia'] = { $regex: `.*${related}.*` }
 
-  if (years && years.length > 0) query.$or = years.map(year => ({createdAt: {$gte: new Date(year,0,1),$lte: new Date(year,11,31)}}))
+  //if (years && years.length > 0) query.$or = years.map(year => ({createdAt: {$gte: new Date(year,0,1),$lte: new Date(year,11,31)}}))
   if (kwords && kwords.length > 0) query.mediaTitle = { $in: kwords.map(kword => new RegExp(`.*${kword}.*`, 'i'))}
   // console.log(kwords)
   // if (years && years.length > 0) query.$where = function (){
