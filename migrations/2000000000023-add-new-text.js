@@ -33,7 +33,7 @@ const textsData = [
   { "name": "votacion-steps", "text": "<div style='text-align: center;'><span style='font-size: 24px;'>Pasos y reglas para la votación</span></div><div class='wrapper'><br></div><ul><li class='wrapper'>Tenés <b>2 votos disponibles</b>.</li><li class='wrapper'>El <b>primer voto es obligatorio</b> y se destina a <b>tu facultad indicada al momento de registro.</b></li><li class='wrapper'>Los proyectos aparecerán automáticamente ya definidos por tu facultad</li><li class='wrapper'>El <b>segundo voto es opcional</b> y se destina a votar un proyecto de <b>cualquier facultad del municipio.</b></li></ul>" },
 
   //footer
-  { "name": "footer-info", "text": "<span>Universidad Nacional de Mar del Plata</span><span>Diagonal J. B. Alberdi 2695</span><span>(7600) Mar del Plata</span><span>Tel.: 54.0223.492.1705 al 1710</span><span>Fax 54.223.492.1710</span><br><span class='c-white'>Email para consultas: </span><a tabindex='8' href='mailto:presupuestoparticipativo@mdp.edu.ar'>presupuestoparticipativo@mdp.edu.ar</a>" }
+  { "name": "footer-info", "text": "<span>Universidad Nacional de Mar del Plata</span><span>Diagonal J. B. Alberdi 2695</span><span>(7600) Mar del Plata</span><span>Tel.: 54.0223.492.1705 al 1710</span><span>Fax.: 54.223.492.1710</span><br><span class='c-white'>Email para consultas: </span><a tabindex='8' href='mailto:presupuestoparticipativo@mdp.edu.ar'>presupuestoparticipativo@mdp.edu.ar</a>" }
 ]
 
 /**

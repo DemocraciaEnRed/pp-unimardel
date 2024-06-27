@@ -58,10 +58,12 @@ nav.navbar
     display: flex;
     align-items: center;
     &:hover, &.active
-      background-color: transparentify($pink,0.3)
+      background-color: transparentify($pink,$pink,0.5)
       border-radius: 10px;
       height: 50px;
       padding: 3px, 17px, 3px, 17px;
+      .header-link
+        color: white
     .header-link
       height: auto
       position: relative

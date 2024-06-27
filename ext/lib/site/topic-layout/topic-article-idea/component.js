@@ -79,7 +79,7 @@ class TopicArticle extends Component {
   }
 
   twitText = () => {
-    return encodeURIComponent('Sumate a pensar la Ciudad que queremos. ')
+    return encodeURIComponent('Sumate a pensar la universidad que queremos. ')
   }
 
   render () {
@@ -316,14 +316,19 @@ class TopicArticle extends Component {
 
               {
                 topic.attrs['admin-comment'] &&
+                <div
+                  className=' mt-4'
+                >
+
                 <Collapsible 
-                  open={true} 
+                      open={true}
                   triggerClassName='topic-article-comentario' 
                   triggerOpenedClassName='topic-article-comentario' 
                   trigger={`Comentarios del moderador`}>
                   {topic.attrs['admin-comment'].replace(/https?:\/\/[a-zA-Z0-9./]+/g)}                
                   <p className='font-weight-bold'>Equipo de Coordinación y Gestión PPUNMDP</p>
                 </Collapsible>            
+                  </div>
               }
 
             </div>

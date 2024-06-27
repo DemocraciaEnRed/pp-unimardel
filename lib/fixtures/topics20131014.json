@@ -809,9 +809,9 @@
         , "text": "Deber de información. Los cajeros automáticos deberán informar en pantalla el costo de la operación bancaria a realizarse, ya sea extracción, transferencia y/o depósito, en forma previa, con la opción a cancelar la operación sin costo alguno. <br/>    Asimismo deberán consignar en el comprobante que se expida el costo de la operación realizada."
       },
       {
-          "clauseName": "2"
-        , "order": 1
-        , "text": "Autoridad de Aplicación. La autoridad del Gobierno de la Ciudad en materia de defensa de los consumidores y usuarios, será la autoridad de aplicación a los efectos de esta Ley, sin perjuicio de las funciones de los demás organismos de la Ciudad que persigan la protección y defensa del consumidor o de problemáticas afines a las establecidas por esta Ley."
+        "clauseName": "2",
+        "order": 1,
+        "text": "Autoridad de Aplicación. La autoridad del Gobierno de la Ciudad en materia de defensa de los consumidores y usuarios, será la autoridad de aplicación a los efectos de esta Ley, sin perjuicio de las funciones de los demás organismos de la universidad que persigan la protección y defensa del consumidor o de problemáticas afines a las establecidas por esta Ley."
       },
       {
           "clauseName": "3"

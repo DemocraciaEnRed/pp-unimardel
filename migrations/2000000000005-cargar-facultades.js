@@ -29,6 +29,7 @@ const claustros = [
 /**
  * Make any changes you need to make to the database here
  */
+class SaltearPromises { }
 exports.up = function up (done) {
   // done() devuelve al Migrator de lib/migrations
   dbReady()
@@ -70,6 +71,7 @@ exports.up = function up (done) {
     })
     // Error
     .catch((err) => {
+      console.log(err);
       console.log(`-- Migración ${nombreMigrationParaLog} no funcionó! Error: ${err}`)
       done(err)
     })
