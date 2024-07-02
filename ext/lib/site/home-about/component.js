@@ -59,7 +59,7 @@ export default class HomeAbout extends Component {
           <div className='ext-acerca-de container'>
             <div className='filas'>
               <div className='faq text-left'>
-                <p className='info-reglamento'>Accedé al <a target="_blank" href="/reglamento">reglamento general</a> del Presupuesto Participativo de la Universidad. Nacional de Mar del Plata. En este espacio, te compartimos algunas normas básicas para que conozcas el funcionamiento de la iniciativa.</p>
+                <p className='info-reglamento'>Accedé al <a target="_blank" href="https://drive.google.com/file/d/1I1D-a1HNfAQNSMejPKrUeUAzPeglnvLQ/view?usp=drive_link">reglamento general</a> del Presupuesto Participativo de la Universidad. Nacional de Mar del Plata. En este espacio, te compartimos algunas normas básicas para que conozcas el funcionamiento de la iniciativa.</p>
                 {faqs && 
                   <Accordion startPosition={-1}>
                     {faqs.map((faq) => (

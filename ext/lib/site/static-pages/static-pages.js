@@ -20,7 +20,7 @@ router.childRoutes.unshift({
   component: Encuentros
 })
 
-router.childRoutes.unshift({
-  path: 'reglamento',
-  component: PdfViewer
-})
+// router.childRoutes.unshift({
+//   path: 'reglamento',
+//   component: PdfViewer
+// })

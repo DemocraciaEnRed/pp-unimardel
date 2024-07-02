@@ -65,7 +65,7 @@ export default class Footer  extends Component {
       <div className='terminos'>
         <Link to='/s/terminos-y-condiciones' tabIndex="108"> Términos y condiciones
         </Link>
-        <a href="/reglamento" tabIndex="109" rel="noopener noreferer" target="_blank"> Reglamento
+            <a href="https://drive.google.com/file/d/1I1D-a1HNfAQNSMejPKrUeUAzPeglnvLQ/view?usp=drive_link" tabIndex="109" rel="noopener noreferer" target="_blank"> Reglamento
         </a>
       </div>
     </div>
