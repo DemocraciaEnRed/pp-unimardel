@@ -116,7 +116,7 @@ export default class FilterPropuestas extends Component {
             />
           <FilterBox
             name='tipoIdea'
-            title='tipoIdea'
+            title='Estado'
             allOptions={tiposIdea}
             activeOptions={tipoIdea}
             activeDropdown={this.state.activeDropdown}

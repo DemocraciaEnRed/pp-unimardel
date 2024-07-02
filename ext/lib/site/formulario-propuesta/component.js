@@ -599,7 +599,7 @@ class FormularioPropuesta extends Component {
              </ul>
              </div>
           }
-            <p className="more-info add-color">*La propuesta será revisada por el equipo de la Municipalidad y notificará su factibilidad a la brevedad. Si la propuesta es factible pasará a la etapa de votación.</p>
+            <p className="more-info add-color">*La propuesta será revisada por el equipo de la Universidad de Mar del Plata y notificará su factibilidad a la brevedad. Si la propuesta es factible, pasará a la etapa de votación</p>
           <div className='submit-div'>
             { !this.hasErrors() &&
               <button type='submit' className='submit-btn'>

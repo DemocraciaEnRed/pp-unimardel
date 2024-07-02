@@ -37,7 +37,7 @@ export default class Footer  extends Component {
       </div>
           <div className="mapa-box"><div><iframe className="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.7735132720068!2d-57.5734977849084!3d-38.00574297971802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9584deb7308df243%3A0x73f08d2c6aeca400!2sUniversidad%20Nacional%20de%20Mar%20del%20Plata!5e0!3m2!1ses!2sar!4v1675882131071!5m2!1ses!2sar" frameBorder="0" allowFullScreen=""></iframe></div></div>
           {/*  <div className='social-icon'>
-        <a aria-label='Ícono de facebook' className='social-facebook' tabIndex="102"  href='https://facebook.com/municipalidadmardelplata/ ' target="_blank"/>
+        
         <a aria-label='Ícono de instagram' className='social-instagram' tabIndex="103"  href='https://instagram.com/munimardelplata/' target="_blank" />
         <a aria-label='Ícono de twitter' className='social-twitter' tabIndex="104"  href='https://twitter.com/munimardelplata/' target="_blank" />
         <a aria-label='Ícono de mail' className='social-mail' tabIndex="105"  href='mailto:presupuestoparticipativo@mdp.edu.ar' target="_blank"/>
