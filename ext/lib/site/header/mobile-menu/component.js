@@ -64,7 +64,7 @@ class MobileMenu extends Component {
                     activeStyle={{ color: '#8C1E81' }}
                     onClick={() => window.location.href = '/archivo'}
                     tabIndex="3">
-                    Archivo
+                    historial
                   </Link>
                 </div>                
                 { forumConfig.votacion && <div className='header-item'>
