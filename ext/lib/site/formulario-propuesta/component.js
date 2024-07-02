@@ -230,7 +230,7 @@ class FormularioPropuesta extends Component {
     //if (this.state.claustro === '') return true
     if (this.state.solucion === '') return true
     if (this.state.beneficios === '') return true
-    if (this.state.facultad === '') return true
+    // if (this.state.facultad === '') return true
     return false;
 
   }
@@ -594,7 +594,7 @@ class FormularioPropuesta extends Component {
                     {this.hasErrorsField('tag') && <li className="error-li">El campo "Tipo" no puede quedar vacío</li> }
                     {this.hasErrorsField('solucion') && <li className="error-li">El campo "Tu idea" no puede quedar vacío</li> }
                     {this.hasErrorsField('beneficios') && <li className="error-li">El campo "Beneficios" no puede quedar vacío</li>}
-                    {this.hasErrorsField('facultad') && <li className="error-li">El campo "Facultad" no puede quedar vacío</li> }
+                    {/* {this.hasErrorsField('facultad') && <li className="error-li">El campo "Facultad" no puede quedar vacío</li> } */}
                     {/* {this.hasErrorsField('claustro') && <li className="error-li">El campo "Claustro" no puede quedar vacío</li>} */}
              </ul>
              </div>
