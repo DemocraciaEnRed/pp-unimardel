@@ -200,7 +200,7 @@ class Header extends Component {
                 tabIndex="85"
                 onClick={() => window.location.href = '/archivo'}
                 >
-                historial
+                Historial
               </Link>
             </li>                
             { forumConfig && forumConfig.votacion && <li className={`header-item ${window.location.pathname.includes('/votacion') ? 'active' : ''}`}>
