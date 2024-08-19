@@ -265,7 +265,7 @@ export default class Page extends Component {
               <a href="https://democracyos.org/" target="_blank">
                 DemocracyOS
               </a>{" "}
-              con la coordinación de la Universidad de Mar del Plata.
+              con la coordinación de la Universidad Nacional de Mar del Plata.
               DemocracyOS es una plataforma online de código abierto
               especialmente diseñada para informar, debatir y comprometerse con
               propuestas públicas hacia la construcción de una democracia

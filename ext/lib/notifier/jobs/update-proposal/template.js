@@ -21,6 +21,6 @@ module.exports = ({
       text: 'Mirá los cambios'
     })}
     <p>Muchas gracias por tu aporte.</p>
-    <p>¡Sigamos mejorando juntos la Universidad de Mar del Plata!</p>
+    <p>¡Sigamos mejorando juntos la Universidad Nacional de Mar del Plata!</p>
   `
 })

@@ -3,7 +3,7 @@ import React from 'react'
 export default ({dni, hasVoted}) => {
 
     const socialLinksUrl = window.location
-    const shareText = '¡Ayudanos a mejorar la Universidad de Mar del Plata! Votá los proyectos del presupuesto participativo en'
+    const shareText = '¡Ayudanos a mejorar la Universidad Nacional de Mar del Plata! Votá los proyectos del presupuesto participativo en'
     return (
         <div className='form-votacion'>
             {hasVoted === 'yes' ? 
@@ -21,7 +21,7 @@ export default ({dni, hasVoted}) => {
                 </div>)
             }
             <div className='wrapper text-center'>
-                Te agradecemos nuevamente por haber participado del primer Presupuesto participativo de Universidad de Mar del Plata
+                Te agradecemos nuevamente por haber participado del primer Presupuesto participativo de Universidad Nacional de Mar del Plata
             </div>
     
             <div className='votacion-share text-center'>

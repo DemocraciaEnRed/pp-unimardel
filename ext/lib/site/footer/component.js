@@ -51,10 +51,10 @@ export default class Footer  extends Component {
             </a>
             <a href="https://www.mdp.edu.ar/" rel="noopener noreferer" target="_blank">
               <div className='logos-wrapper'>
-                <img className='logo-unmdp' src="/ext/lib/site/footer/logo-unmdp.png" alt="Logo universidad de Mar del Plata" />
+                <img className='logo-unmdp' src="/ext/lib/site/footer/logo-unmdp.png" alt="Logo Universidad Nacional de Mar del Plata" />
                 <div className='logo-secretaria'>
-                  <img src="/ext/lib/site/footer/logo-secretaria-a.png" alt="Logo universidad de Mar del Plata" />
-                  <img src="/ext/lib/site/footer/logo-secretaria-b.png" alt="Logo universidad de Mar del Plata" />
+                  <img src="/ext/lib/site/footer/logo-secretaria-a.png" alt="Logo Universidad Nacional de Mar del Plata" />
+                  <img src="/ext/lib/site/footer/logo-secretaria-b.png" alt="Logo Universidad Nacional de Mar del Plata" />
                 </div>
               </div>
             </a>

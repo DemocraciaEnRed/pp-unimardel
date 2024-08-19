@@ -6,7 +6,7 @@ const Text = require('lib/models').Text
 
 const textsData = [
   //home
-  { "name": "home-title", "text": "PRESUPUESTO PARTICIPATIVO DE UNIVERSIDAD DE MAR DEL PLATA" },
+  { "name": "home-title", "text": "PRESUPUESTO PARTICIPATIVO DE UNIVERSIDAD NACIONAL DE MAR DEL PLATA" },
   { "name": "home-encuentro-title", "text": "NOVEDADES Y PRÓXIMOS ENCUENTROS" },
   { "name": "home-encuentro-subtitle", "text": "Agendate la reunión de tu facultad y presentá tus ideas." },
 
@@ -28,7 +28,7 @@ const textsData = [
   { "name": "archivo-subtitle", "text": "Aquí podes visualizar los proyectos de años anteriores" },
 
   //votacion
-  { "name": "votacion-title", "text": 'VOTACIÓN DEL PRESUPUESTO PARTICIPATIVO UNIVERSIDAD DE MAR DEL PLATA 2024' },
+  { "name": "votacion-title", "text": 'VOTACIÓN DEL PRESUPUESTO PARTICIPATIVO Universidad Nacional de Mar del Plata 2024' },
   { "name": "votacion-subtitle", "text": "Gracias por participar de la votación del presupuesto participativo 2024" },
   { "name": "votacion-steps", "text": "<div style='text-align: center;'><span style='font-size: 24px;'>Pasos y reglas para la votación</span></div><div class='wrapper'><br></div><ul><li class='wrapper'>Tenés <b>2 votos disponibles</b>.</li><li class='wrapper'>El <b>primer voto es obligatorio</b> y se destina a <b>tu facultad indicada al momento de registro.</b></li><li class='wrapper'>Los proyectos aparecerán automáticamente ya definidos por tu facultad</li><li class='wrapper'>El <b>segundo voto es opcional</b> y se destina a votar un proyecto de <b>cualquier facultad del municipio.</b></li></ul>" },
 

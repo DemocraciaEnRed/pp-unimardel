@@ -5,7 +5,7 @@ const aboutUs = require('lib/models').aboutUs
 const aboutUsData = [
   {
     "order": 0,
-    "question": "+ ¿Qué es el presupuesto participativo de universidad De Mar Del Plata?",
+    "question": "+ ¿Qué es el presupuesto participativo de Universidad Nacional de Mar del Plata?",
     "answer": "<p className=\"p-padding\">El Programa ParticipaUNMDP PP (Presupuesto Participativo) es un espacio donde vas a poder presentar las ideas que tu facultad necesita. Luego, a través del voto, los vecinos del facultad van a poder decidir en qué utilizar parte del presupuesto del Municipio.</p>"
   },
   {

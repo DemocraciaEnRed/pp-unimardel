@@ -377,12 +377,12 @@ module.exports = ({
                       <tr>
                         <td class="align-center">
                           <p>
-                            <span style="color:#e4147f">PRESUPUESTO PARTICIPATIVO DE LA UNIVERSIDAD DE MAR DEL PLATA</span>
+                            <span style="color:#e4147f">PRESUPUESTO PARTICIPATIVO DE LA UNIVERSIDAD NACIONAL DE MAR DEL PLATA</span>
                             <br> <span style="color:#005e80">#PPUNMDP #LaUniversidadQueQueremos</span>
                           </p>
                           <!-- When inserting images remember to include the following attributes or
                           risk them breaking in different clients: src, alt, width, height, border -->
-                          <a href="${baseUrl}"><img class="block-center" src="${baseUrl}/ext/lib/boot/logo.png" alt="Presupuesto Participativo de la Universidad de Mar del Plata" width="250" height="58" border="0" style="border:0; outline:none; text-decoration:none; display:block;"></a>
+                          <a href="${baseUrl}"><img class="block-center" src="${baseUrl}/ext/lib/boot/logo.png" alt="Presupuesto Participativo de la Universidad Nacional de Mar del Plata" width="250" height="58" border="0" style="border:0; outline:none; text-decoration:none; display:block;"></a>
                         </td>
                       </tr>
                     </table>
