@@ -63,7 +63,7 @@ class VotoTopicCard extends Component {
       return (
         <div className={`voto-topic-card ${topic.id === selected ? 'active' : ""}`}>
           <div className="row">
-            <div className="col-md-8">
+            <div className="col-md-10">
               <div className="voto-topic-card-info">
                 <h1>
                   {topic.mediaTitle.length > 70 ? topic.mediaTitle.slice(0,50) + "..." : topic.mediaTitle}
@@ -75,12 +75,12 @@ class VotoTopicCard extends Component {
                 </div>                
               </div>
             </div>
-            {topic.attrs && topic.attrs['presupuesto-total'] && <div className="col-md-2 text-center">
+            {/* {topic.attrs && topic.attrs['presupuesto-total'] && <div className="col-md-2 text-center">
               <div className='voto-topic-card-presupuesto'>
                 <h1>Presupuesto</h1>
                 <p className='superbold'>${topic.attrs['presupuesto-total'].toLocaleString()}</p>
               </div>
-            </div>}
+            </div>} */}
             {handler && setState && <div className="col-md-2">
               <div className="voto-topic-card-checkbox">
                 <input type="checkbox" name={handler} id={topic.id} value={topic.id} onChange={setState} checked={topic.id === selected && true} className='select-topic' />
