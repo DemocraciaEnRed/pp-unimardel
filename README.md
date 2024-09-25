@@ -1,17 +1,16 @@
-<div style="display: flex; justify-content: space-between; align-items: center">
-  <img src="./docs/der-logo.png" height="90px" alt="Logo Democracia en Red" />
-  <img src="./ext/lib/site/footer/assets/logo-unmdp.png" height="50px" alt="Logo Universidad de Mar del Plata"/>
-</div>
+![Header](./docs/der-logo.png)
 
 # Presupuesto Participativo Universidad de Mar del Plata
 
 ![Node Version](<https://img.shields.io/badge/node-v8(!)-red>)
-![Documentation](https://img.shields.io/badge/docs-available-brightgreen)
+![Documentation](https://img.shields.io/badge/docs-obsolete-yellow)
 ![License](https://img.shields.io/github/license/DemocraciaEnRed/presupuesto-participativo)
 ![Docker](https://img.shields.io/badge/docker-ready-blue)
 ![Version](https://img.shields.io/github/v/release/DemocraciaEnRed/presupuesto-participativo)
 
 Herramienta digital de participación ciudadana para gobiernos e instituciones, que permite a los usuarios comentar, votar, jerarquizar, optar entre opciones, o establecer grados de valoración entre temas públicos.
+
+[Instancia](https://presupuestoparticipativo.mdp.edu.ar/) para [Universidad de Mar del Plata](https://mdp.edu.ar/)
 
 ## ⚒️ Guía de instalación y ejecución
 
