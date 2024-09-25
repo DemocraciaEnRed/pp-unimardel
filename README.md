@@ -1,6 +1,6 @@
-<div style="display: flex; justify-content: space-between; height: 100px">
-  <img src="./docs/der-logo.png" alt="Logo Democracia en Red" />
-  <img src="./ext/lib/site/footer/assets/logo-unmdp.png" alt="Logo Universidad de Mar del Plata"/>
+<div style="display: flex; justify-content: space-between; align-items: center">
+  <img src="./docs/der-logo.png" height="90px" alt="Logo Democracia en Red" />
+  <img src="./ext/lib/site/footer/assets/logo-unmdp.png" height="50px" alt="Logo Universidad de Mar del Plata"/>
 </div>
 
 # Presupuesto Participativo Universidad de Mar del Plata
