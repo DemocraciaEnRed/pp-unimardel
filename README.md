@@ -4,9 +4,9 @@
 
 ![Node Version](<https://img.shields.io/badge/node-v8(!)-red>)
 ![Documentation](https://img.shields.io/badge/docs-obsolete-yellow)
-![License](https://img.shields.io/github/license/DemocraciaEnRed/presupuesto-participativo)
+![License](https://img.shields.io/github/license/DemocraciaEnRed/pp-unimardel)
 ![Docker](https://img.shields.io/badge/docker-ready-blue)
-![Version](https://img.shields.io/github/v/release/DemocraciaEnRed/presupuesto-participativo)
+![Version](https://img.shields.io/github/v/release/DemocraciaEnRed/pp-unimardel)
 
 Herramienta digital de participación ciudadana para gobiernos e instituciones, que permite a los usuarios comentar, votar, jerarquizar, optar entre opciones, o establecer grados de valoración entre temas públicos.
 
