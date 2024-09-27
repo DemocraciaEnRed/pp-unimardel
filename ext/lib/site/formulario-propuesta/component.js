@@ -443,6 +443,7 @@ class FormularioPropuesta extends Component {
                 name='facultad'
                 value={this.state['facultad']}
                 onChange={this.handleInputChange}
+                style={{ 'height': '45px' }}
               >
                 <option value=''>Seleccione una facultad...</option>
                 {facultades.length > 0 && facultades.map(facultad =>

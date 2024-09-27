@@ -3,7 +3,7 @@ import VotoTopicCard from './topic-card/component'
 
 export default ({topics}) => {
 
-    const showTopics = topics.length === 1 ? [topics[0], {id: '', mediaTitle: "Voto N°2 en blanco"}] : topics
+    const showTopics = topics
 
     return (
         <div className='form-votacion'>

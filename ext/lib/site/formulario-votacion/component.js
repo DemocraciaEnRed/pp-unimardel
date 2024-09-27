@@ -275,6 +275,7 @@ class FormularioVoto extends Component {
   renderStep = (step) => {
     const tags = this.state.activeTags.length > 0 ? this.state.activeTags :  this.state.tags.map(t => t.id)
     const facultades = this.state.activeFacultades.length > 0 ? this.state.activeFacultades :  this.state.facultades.map(t => t.id)
+    const { searchedByName } = this.state
     
     switch (step) {
       case 0:
@@ -284,27 +285,29 @@ class FormularioVoto extends Component {
       case 2:
         return <Info texts={this.state.texts}/>
       case 3:
-        return <VotoFacultad 
-          topics={this.state.topics} 
+        return <VotoCualquierFacultad
+          topics={searchedByName ?
+            this.state.topics.filter(t => searchedByName.include(t.id)) :
+            this.state.topics.filter(t => tags.includes(t.tag.id) && facultades.includes(t.facultad._id))
+          }
           handler="voto1"
           selected={this.state.voto1}
           setState={this.handleCheckboxInputChange} 
-          // Filters
           tags={this.state.tags}
           activeTags={this.state.activeTags}
+          facultades={this.state.facultades}
+          activeFacultades={this.state.activeFacultades}
           handleFilter={this.handleFilter}
           handleDefaultFilter={this.handleDefaultFilter}
           clearFilter={this.clearFilter}
           handleShowTopicDialog={this.handleShowTopicDialog}
         />
       case 4:
-        const { searchedByName } = this.state
         return <VotoCualquierFacultad 
           topics={searchedByName ? 
-              topics.filter(t => searchedByName.include(t.id)) :
+            this.state.topics.filter(t => searchedByName.include(t.id)) :
               this.state.topics.filter(t => t.id !== this.state.voto1 && 
-                tags.includes(t.tag.id) && 
-                facultades.includes(t.facultad._id))
+                tags.includes(t.tag.id))
           } 
           handler="voto2"
           selected={this.state.voto2}
@@ -367,12 +370,12 @@ class FormularioVoto extends Component {
 
       case 3:
         return !voto1 ? {
-          message: 'El primer voto es obligatorio y se destina a tu facultad indicada al momento de registro',
+          message: 'El primer voto es obligatorio',
           canPass: false
         } : {}
       case 4:
         return !voto2 ? {
-          message: 'No elegiste ningún proyecto, esto se considerará como VOTO EN BLANCO.',
+          message: 'No elegiste ningún proyecto para tu segundo voto',
           canPass: true
         } : {}        
       default:

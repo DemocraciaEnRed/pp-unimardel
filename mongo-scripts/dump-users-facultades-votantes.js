@@ -1,5 +1,5 @@
 /* Ejecutar haciendo túnel con servidor mongo a localhost:26017 y después:
-mongo --quiet localhost:26017/ppunr-prod dump-users-facultades.js > ppunr-facultades-usuarios.csv
+mongo --quiet localhost:26017/ppunmdp-prod dump-users-facultades.js > ppunmdp-facultades-usuarios.csv
 */
 
 print('Nombre,Apellido,Email,DNI,Facultad,Claustro,Fecha de registro,Validado')

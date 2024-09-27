@@ -1,5 +1,5 @@
 // Ejecutar haciendo túnel con servidor mongo a localhost:26017 y después:
-// mongo --quiet localhost:26017/ppunr-prod dump-users-no-validados.js > ppunr-facultades-usuarios-no-validados.csv
+// mongo --quiet localhost:26017/ppunmdp-prod dump-users-no-validados.js > ppunmdp-facultades-usuarios-no-validados.csv
 
 print('Nombre,Apellido,Email,Fecha registración')
 

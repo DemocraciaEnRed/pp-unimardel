@@ -83,13 +83,7 @@ app.post('/votes/create',
     // console.log(req.voto2)
     // console.log('Facultad')
     // console.log(req.facultad)
-    if (!req.canManage && req.voto1.facultad.toString() !== req.user.facultad.toString()) {
-      log('User is not in the same facultad as the vote -- sending error')
-      res.status(403).json({
-        error: 'Cant vote projects from different zone'
-      })
-      return
-    }
+
 
     apiV2.votes.create({
       user: req.user,
