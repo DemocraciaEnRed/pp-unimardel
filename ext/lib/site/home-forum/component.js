@@ -16,7 +16,7 @@ const HomeForum = (props) => {
     case 'acerca-de':
       return <HomeAbout {...props} />
     case 'archivo':
-      years = ['2024']
+      years = ['2023','2024']
       return <HomeCatalogo {...props} years={years} state={['ganador']} archive={true} />
     default:
       // que nunca caiga en la vieja pantalla de proyectos
