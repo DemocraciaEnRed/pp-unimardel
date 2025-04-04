@@ -32,7 +32,7 @@ export default class Page extends Component {
           <div className='ext-acerca-de container'>
             <div className="filas">
               <div className="fila faq text-left">
-                <p className='p-padding'>Accedé al <a target="_blank" href="https://drive.google.com/file/d/1I1D-a1HNfAQNSMejPKrUeUAzPeglnvLQ/view?usp=drive_link">reglamento general</a> de Participa UNMDP. En este espacio te dejamos algunas normas básicas para que conozcas el funcionamiento del Presupuesto Participativo.</p>
+                <p className='p-padding'>Accedé al <a target="_blank" href="https://democraciaenred.nyc3.digitaloceanspaces.com/projects/pp-unimardel/2025-unmdp-reglamento.pdf">reglamento general</a> de Participa UNMDP. En este espacio te dejamos algunas normas básicas para que conozcas el funcionamiento del Presupuesto Participativo.</p>
 
                 <Accordion>
                   <div data-trigger="+ ¿QUÉ ES EL PRESUPUESTO PARTICIPATIVO DE UNIVERSIDAD NACIONAL DE MAR DEL PLATA?">
