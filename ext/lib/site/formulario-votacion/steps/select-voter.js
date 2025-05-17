@@ -3,7 +3,7 @@ import React from 'react'
 export default ({facultades, setState}) => (
     <div className='form-votacion'>
         <div className='votacion-header'>
-            <h1 tabIndex="0" className='text-center'>Votación del Presupuesto Participativo Universidad Nacional de Mar del Plata 2024</h1>
+            <h1 tabIndex="0" className='text-center'>Votación del Presupuesto Participativo Universidad Nacional de Mar del Plata</h1>
         </div>
         <div className='wrapper text-center'>
             <p className="superbold">Ingresá los datos del votante</p>
