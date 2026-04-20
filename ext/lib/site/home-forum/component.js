@@ -4,20 +4,21 @@ import HomeCatalogo from '../home-catalogo/component'
 import HomeAbout from '../home-about/component';
 
 
+const currentEdition = Number.parseInt(process.env.CURRENT_EDITION, 10) || new Date().getFullYear()
+const archiveYears = [currentEdition - 3, currentEdition - 2, currentEdition - 1].map(String)
+
+
 const HomeForum = (props) => {
   const { params: { forum } } = props;
-  let years
 
   switch (forum) {
     case 'propuestas':
-      years = ['2025']
-      const propuestasAnio = [new Date().getFullYear()]
+      const propuestasAnio = [currentEdition]
       return <HomeCatalogo {...props} years={propuestasAnio} archive={false} />
     case 'acerca-de':
       return <HomeAbout {...props} />
     case 'archivo':
-      years = ['2023','2024']
-      return <HomeCatalogo {...props} years={years} state={['ganador']} archive={true} />
+      return <HomeCatalogo {...props} years={archiveYears} state={['ganador']} archive={true} />
     default:
       // que nunca caiga en la vieja pantalla de proyectos
       //return <HomeProyectos {...props} />
